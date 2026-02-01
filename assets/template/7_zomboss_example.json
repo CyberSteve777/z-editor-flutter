@@ -1,0 +1,130 @@
+{
+  "objects": [
+    {
+      "objclass": "LevelDefinition",
+      "objdata": {
+        "Description": "本关为僵王战示例关",
+        "LevelNumber": 7,
+        "Loot": "RTID(DefaultLoot@LevelModules)",
+        "Modules": [
+          "RTID(DefaultCustomLevel@LevelModules)",
+          "RTID(DefaultZombieWinCondition@LevelModules)",
+          "RTID(ConveyorBelt@CurrentLevel)",
+          "RTID(ZombossBattleIntro@CurrentLevel)",
+          "RTID(ZombossBattle@CurrentLevel)"
+        ],
+        "MusicType": "",
+        "Name": "僵王战示例",
+        "StageModule": "RTID(FutureStage@LevelModules)",
+        "StartingSun": 200,
+        "VictoryModule": "RTID(ZombossVictoryOutro@LevelModules)"
+      }
+    },
+    {
+      "aliases": [
+        "ConveyorBelt"
+      ],
+      "objclass": "ConveyorSeedBankProperties",
+      "objdata": {
+        "DropDelayConditions": [
+          {
+            "Delay": 2,
+            "MaxPackets": 0
+          },
+          {
+            "Delay": 3,
+            "MaxPackets": 2
+          },
+          {
+            "Delay": 6,
+            "MaxPackets": 4
+          },
+          {
+            "Delay": 8,
+            "MaxPackets": 9
+          }
+        ],
+        "InitialPlantList": [
+          {
+            "MaxCount": 10,
+            "MaxWeightFactor": 0.0,
+            "MinCount": 0,
+            "MinWeightFactor": 1.0,
+            "PlantType": "citron",
+            "Weight": 100
+          },
+          {
+            "MaxCount": 0,
+            "MaxWeightFactor": 1.0,
+            "MinCount": 0,
+            "MinWeightFactor": 1.0,
+            "PlantType": "laser_bean",
+            "Weight": 50
+          },
+          {
+            "MaxCount": 5,
+            "MaxWeightFactor": 0.0,
+            "MinCount": 0,
+            "MinWeightFactor": 1.0,
+            "PlantType": "holonut",
+            "Weight": 50
+          },
+          {
+            "MaxCount": 2,
+            "MaxWeightFactor": 0.0,
+            "MinCount": 0,
+            "MinWeightFactor": 1.0,
+            "PlantType": "blover",
+            "Weight": 50
+          },
+          {
+            "MaxCount": 5,
+            "MaxWeightFactor": 0.0,
+            "MinCount": 0,
+            "MinWeightFactor": 1.0,
+            "PlantType": "tool_powertile_alpha",
+            "Weight": 20
+          }
+        ],
+        "SpeedConditions": [
+          {
+            "MaxPackets": 0,
+            "Speed": 100
+          }
+        ]
+      }
+    },
+    {
+      "aliases": [
+        "ZombossBattleIntro"
+      ],
+      "objclass": "ZombossBattleIntroProperties",
+      "objdata": {
+        "PanEndOffset": 486,
+        "PanLeftDuration": 1.5,
+        "PanRightDuration": 1.5,
+        "PanStartOffset": 78,
+        "SkipShowingStreetBossBattle": false,
+        "ZombossPhaseCount": 3
+      }
+    },
+    {
+      "aliases": [
+        "ZombossBattle"
+      ],
+      "objclass": "ZombossBattleModuleProperties",
+      "objdata": {
+        "ReservedColumnCount": 2,
+        "ZombossDeathColumn": 5,
+        "ZombossDeathRow": 3,
+        "ZombossMechType": "zombossmech_future",
+        "ZombossSpawnGridPosition": {
+          "mX": 6,
+          "mY": 3
+        },
+        "ZombossStageCount": 3
+      }
+    }
+  ],
+  "version": 1
+}

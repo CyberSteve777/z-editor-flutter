@@ -1,0 +1,62 @@
+name: z_editor
+description: "Level Editor for Plants vs. Zombies 2 Chinese"
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  collection: ^1.18.0
+  shared_preferences: ^2.2.2
+  path_provider: ^2.1.1
+  file_picker: ^6.1.1
+  path: ^1.8.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/template/
+    - assets/icon.png
+    - assets/reference/
+    - assets/resources/
+    - assets/images/
+    - assets/images/plants/
+    - assets/images/zombies/
+    - assets/images/stages/
+    - assets/images/tags/
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/icon.png"
+    background_color: "#ffffff"
+    theme_color: "#1976d2"
+  windows:
+    generate: true
+    image_path: "assets/icon.png"
+  macos:
+    generate: true
+    image_path: "assets/icon.png"
+  linux:
+    generate: true
+    image_path: "assets/icon.png"

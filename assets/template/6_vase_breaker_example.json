@@ -1,0 +1,92 @@
+{
+  "objects": [
+    {
+      "objclass": "LevelDefinition",
+      "objdata": {
+        "Description": "本关为砸罐子示例关",
+        "DisablePeavine": true,
+        "LevelNumber": 6,
+        "Loot": "RTID(DefaultLoot@LevelModules)",
+        "Modules": [
+          "RTID(VaseBreakerArcade@LevelModules)",
+          "RTID(VaseBreakerFlow@LevelModules)",
+          "RTID(VaseBreakerProps@CurrentLevel)",
+          "RTID(CowboyRails@CurrentLevel)",
+          "RTID(ZombiesDeadWinCon@LevelModules)",
+          "RTID(DefaultZombieWinCondition@LevelModules)",
+          "RTID(DefaultCustomLevel@LevelModules)"
+        ],
+        "MusicType": "MiniGame_B",
+        "Name": "砸罐子示例",
+        "StageModule": "RTID(ModernStage@LevelModules)",
+        "StartingSun": 200,
+        "VictoryModule": "RTID(VictoryOutro@LevelModules)"
+      }
+    },
+    {
+      "aliases": [
+        "CowboyRails"
+      ],
+      "objclass": "RailcartProperties",
+      "objdata": {
+        "RailcartType": "railcart_cowboy",
+        "Railcarts": [
+          {
+            "Column": 0,
+            "Row": 2
+          }
+        ],
+        "Rails": [
+          {
+            "Column": 0,
+            "RowEnd": 4,
+            "RowStart": 0
+          }
+        ]
+      }
+    },
+    {
+      "aliases": [
+        "VaseBreakerProps"
+      ],
+      "objclass": "VaseBreakerPresetProperties",
+      "objdata": {
+        "MaxColumnIndex": 8,
+        "MinColumnIndex": 3,
+        "NumColoredPlantVases": 3,
+        "NumColoredZombieVases": 0,
+        "Vases": [
+          {
+            "Count": 5,
+            "ZombieTypeName": "tutorial"
+          },
+          {
+            "Count": 4,
+            "ZombieTypeName": "modern_newspaper"
+          },
+          {
+            "Count": 6,
+            "ZombieTypeName": "newspaper_veteran"
+          },
+          {
+            "Count": 5,
+            "PlantTypeName": "shadowpeashooter"
+          },
+          {
+            "Count": 5,
+            "PlantTypeName": "shrinkingviolet"
+          },
+          {
+            "Count": 2,
+            "PlantTypeName": "moonflower"
+          },
+          {
+            "CollectableTypeName": "plantfood",
+            "Count": 3
+          }
+        ]
+      }
+    }
+  ],
+  "version": 1
+}

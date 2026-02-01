@@ -1,0 +1,266 @@
+{
+  "objects": [
+    {
+      "objclass": "LevelDefinition",
+      "objdata": {
+        "Description": "本关为我是僵尸示例关",
+        "DisablePeavine": true,
+        "LevelNumber": 5,
+        "Loot": "RTID(DefaultLoot@LevelModules)",
+        "Modules": [
+          "RTID(StandardIntro@LevelModules)",
+          "RTID(EvilDave@CurrentLevel)",
+          "RTID(SeedBank@CurrentLevel)",
+          "RTID(ChallengeModule@CurrentLevel)",
+          "RTID(InitialPlant@CurrentLevel)",
+          "RTID(DefaultCustomLevel@LevelModules)"
+        ],
+        "MusicType": "MiniGame_B",
+        "Name": "我是僵尸示例",
+        "StageModule": "RTID(ModernStage@LevelModules)",
+        "StartingSun": 300,
+        "VictoryModule": "RTID(VictoryOutro@LevelModules)"
+      }
+    },
+    {
+      "aliases": [
+        "SeedBank"
+      ],
+      "objclass": "SeedBankProperties",
+      "objdata": {
+        "PresetPlantList": [
+          "tutorial",
+          "tutorial_armor1",
+          "tutorial_armor2",
+          "modern_newspaper",
+          "modern_allstar"
+        ],
+        "SelectionMethod": "preset",
+        "ZombieMode": true
+      }
+    },
+    {
+      "aliases": [
+        "InitialPlant"
+      ],
+      "objclass": "InitialPlantEntryProperties",
+      "objdata": {
+        "Plants": [
+          {
+            "Avatar": false,
+            "GridX": 0,
+            "GridY": 0,
+            "Level": 1,
+            "PlantTypes": [
+              "repeater"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 1,
+            "GridY": 0,
+            "Level": 1,
+            "PlantTypes": [
+              "peashooter"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 2,
+            "GridY": 0,
+            "Level": 1,
+            "PlantTypes": [
+              "peach"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 3,
+            "GridY": 0,
+            "Level": 1,
+            "PlantTypes": [
+              "wallnut"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 0,
+            "GridY": 1,
+            "Level": 1,
+            "PlantTypes": [
+              "threepeater"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 1,
+            "GridY": 1,
+            "Level": 1,
+            "PlantTypes": [
+              "kernelpult"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 2,
+            "GridY": 1,
+            "Level": 1,
+            "PlantTypes": [
+              "starfruit"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 3,
+            "GridY": 1,
+            "Level": 1,
+            "PlantTypes": [
+              "torchwood"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 0,
+            "GridY": 2,
+            "Level": 1,
+            "PlantTypes": [
+              "melonpult"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 1,
+            "GridY": 2,
+            "Level": 1,
+            "PlantTypes": [
+              "magnetshroom"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 2,
+            "GridY": 2,
+            "Level": 1,
+            "PlantTypes": [
+              "explodeonut"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 3,
+            "GridY": 2,
+            "Level": 1,
+            "PlantTypes": [
+              "bamboo"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 0,
+            "GridY": 3,
+            "Level": 1,
+            "PlantTypes": [
+              "fumeshroom"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 1,
+            "GridY": 3,
+            "Level": 1,
+            "PlantTypes": [
+              "fumeshroom"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 2,
+            "GridY": 3,
+            "Level": 1,
+            "PlantTypes": [
+              "chomper"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 3,
+            "GridY": 3,
+            "Level": 1,
+            "PlantTypes": [
+              "wallnut"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 0,
+            "GridY": 4,
+            "Level": 1,
+            "PlantTypes": [
+              "snowpea"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 1,
+            "GridY": 4,
+            "Level": 1,
+            "PlantTypes": [
+              "peashooter"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 2,
+            "GridY": 4,
+            "Level": 1,
+            "PlantTypes": [
+              "cabbagepult"
+            ]
+          },
+          {
+            "Avatar": false,
+            "GridX": 3,
+            "GridY": 4,
+            "Level": 1,
+            "PlantTypes": [
+              "squash"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "aliases": [
+        "EvilDave"
+      ],
+      "objclass": "EvilDaveProperties",
+      "objdata": {
+        "PlantDistance": 4
+      }
+    },
+    {
+      "aliases": [
+        "ChallengeModule"
+      ],
+      "objclass": "StarChallengeModuleProperties",
+      "objdata": {
+        "Challenges": [
+          [
+            "RTID(SunUsed@CurrentLevel)"
+          ]
+        ],
+        "ChallengesAlwaysAvailable": true
+      }
+    },
+    {
+      "aliases": [
+        "SunUsed"
+      ],
+      "objclass": "StarChallengeSunUsedProps",
+      "objdata": {
+        "MaximumSun": 3000
+      }
+    }
+  ],
+  "version": 1
+}

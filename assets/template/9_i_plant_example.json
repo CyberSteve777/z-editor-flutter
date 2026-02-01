@@ -1,0 +1,398 @@
+{
+  "objects": [
+    {
+      "objclass": "LevelDefinition",
+      "objdata": {
+        "Description": "本关为我是植物示例关",
+        "LevelNumber": 9,
+        "DisablePeavine": true,
+        "IsArtifactDisabled": true,
+        "Loot": "RTID(DefaultLoot@LevelModules)",
+        "Modules": [
+          "RTID(DefaultZombieWinCondition@LevelModules)",
+          "RTID(ZombiesDeadWinCon@LevelModules)",
+          "RTID(NewWaves@CurrentLevel)",
+          "RTID(ChallengeModule@CurrentLevel)",
+          "RTID(BowlingBulbMinigame@CurrentLevel)",
+          "RTID(FrozenZombiePlacement@CurrentLevel)",
+          "RTID(SeedBank@CurrentLevel)",
+          "RTID(LastStand@CurrentLevel)",
+          "RTID(DefaultCustomLevel@LevelModules)"
+        ],
+        "Name": "我是植物示例",
+        "MusicType": "MiniGame_B",
+        "NormalPresentTable": "egypt_normal_01",
+        "ShinyPresentTable": "egypt_shiny_01",
+        "VictoryModule": "RTID(VictoryOutro@LevelModules)",
+        "StageModule": "RTID(ModernStage@LevelModules)",
+        "ShowZombies": [],
+        "StartingSun": 200
+      }
+    },
+    {
+      "aliases": [
+        "SeedBank"
+      ],
+      "objclass": "SeedBankProperties",
+      "objdata": {
+        "PresetPlantList": [
+          "repeater",
+          "torchwood",
+          "spikeweed"
+        ],
+        "SelectionMethod": "preset",
+        "OverrideSeedSlotsCount": 8,
+        "PlantBlackList": [],
+        "PlantWhiteList": [],
+        "GlobalLevel": 1
+      }
+    },
+    {
+      "aliases": [
+        "LastStand"
+      ],
+      "objclass": "LastStandMinigameProperties",
+      "objdata": {
+        "StartingPlantfood": 0,
+        "StartingSun": 2400
+      }
+    },
+    {
+      "aliases": [
+        "BowlingBulbMinigame"
+      ],
+      "objclass": "BowlingMinigameProperties",
+      "objdata": {
+        "BowlingFoulLine": 20
+      }
+    },
+    {
+      "aliases": [
+        "FrozenZombiePlacement"
+      ],
+      "objclass": "InitialZombieProperties",
+      "objdata": {
+        "InitialZombiePlacements": [
+          {
+            "Condition": "stun",
+            "GridX": 5,
+            "GridY": 0,
+            "TypeName": "tutorial_armor2"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 7,
+            "GridY": 0,
+            "TypeName": "modern_balloon"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 8,
+            "GridY": 0,
+            "TypeName": "tutorial_armor1"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 6,
+            "GridY": 1,
+            "TypeName": "tutorial"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 7,
+            "GridY": 1,
+            "TypeName": "tutorial_armor1"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 5,
+            "GridY": 1,
+            "TypeName": "modern_miner"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 5,
+            "GridY": 2,
+            "TypeName": "modern_newspaper"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 6,
+            "GridY": 2,
+            "TypeName": "tutorial_armor1"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 8,
+            "GridY": 2,
+            "TypeName": "tutorial"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 6,
+            "GridY": 3,
+            "TypeName": "tutorial_armor2"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 7,
+            "GridY": 3,
+            "TypeName": "tutorial"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 8,
+            "GridY": 3,
+            "TypeName": "tutorial_armor1"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 5,
+            "GridY": 4,
+            "TypeName": "tutorial_armor2"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 6,
+            "GridY": 4,
+            "TypeName": "tutorial_armor1"
+          },
+          {
+            "Condition": "stun",
+            "GridX": 8,
+            "GridY": 4,
+            "TypeName": "modern_balloon"
+          }
+        ]
+      }
+    },
+    {
+      "aliases": [
+        "ChallengeModule"
+      ],
+      "objclass": "StarChallengeModuleProperties",
+      "objdata": {
+        "Challenges": [
+          [
+            "RTID(SunUsed@CurrentLevel)"
+          ]
+        ],
+        "ChallengesAlwaysAvailable": true
+      }
+    },
+    {
+      "aliases": [
+        "SunUsed"
+      ],
+      "objclass": "StarChallengeSunUsedProps",
+      "objdata": {
+        "MaximumSun": 2400
+      }
+    },
+    {
+      "aliases": [
+        "NewWaves"
+      ],
+      "objclass": "WaveManagerModuleProperties",
+      "objdata": {
+        "DynamicZombies": [
+          {
+            "PointIncrementPerWave": 0,
+            "StartingPoints": 0,
+            "StartingWave": 0,
+            "ZombieLevel": [],
+            "ZombiePool": []
+          }
+        ],
+        "ManualStartup": true,
+        "WaveManagerProps": "RTID(WaveManagerPropsWeek1@CurrentLevel)"
+      }
+    },
+    {
+      "aliases": [
+        "WaveManagerPropsWeek1"
+      ],
+      "objclass": "WaveManagerProperties",
+      "objdata": {
+        "FlagWaveInterval": 5,
+        "MaxNextWaveHealthPercentage": 0.85,
+        "MinNextWaveHealthPercentage": 0.7,
+        "SuppressFlagZombie": true,
+        "WaveCount": 2,
+        "Waves": [
+          [
+            "RTID(Wave1GravestoneEvent0@CurrentLevel)"
+          ],
+          []
+        ],
+        "ZombieCountDownFirstWaveConveyorSecs": 5,
+        "ZombieCountDownFirstWaveSecs": 12,
+        "ZombieCountDownHugeWaveDelay": 5
+      }
+    },
+    {
+      "aliases": [
+        "Wave1GravestoneEvent0"
+      ],
+      "objclass": "SpawnGravestonesWaveActionProps",
+      "objdata": {
+        "GravestonePool": [
+          {
+            "Count": 1,
+            "Type": "RTID(boulder_trap_falling_forward1@CurrentLevel)"
+          }
+        ],
+        "SpawnEffectAnimID": "",
+        "SpawnPositionsPool": [
+          {
+            "mX": 0,
+            "mY": 0
+          }
+        ],
+        "SpawnSoundID": "",
+        "maxX": 8,
+        "minX": 0
+      }
+    },
+    {
+      "aliases": [
+        "BoulderFallingForwardTrapProps1"
+      ],
+      "objclass": "GridItemProjectileTrapProps",
+      "objdata": {
+        "Height": "ground",
+        "PopAnim": "POPANIM_BACKGROUNDS_BOULDERTILE",
+        "PopAnimRenderOffset": {
+          "x": 10000,
+          "y": 10000
+        },
+        "PopAnimRigClass": "EffectAnimRig_SwitchTile",
+        "TriggeringEntityTypes": [
+          "griditem"
+        ],
+        "TriggerRect": {
+          "mX": -15,
+          "mY": -60,
+          "mWidth": 30,
+          "mHeight": 60
+        },
+        "ProjectileTypeToSpawn": "RTID(Projectile1@CurrentLevel)",
+        "TileBaseAnimation": "bouldertile",
+        "ProjectileFireOriginOffset": {
+          "x": 0,
+          "y": 400,
+          "z": 25
+        },
+        "PositioningFlags": [
+          "lockx"
+        ],
+        "TimeBetweenTriggersInSeconds": 9999
+      }
+    },
+    {
+      "aliases": [
+        "boulder_trap_falling_forward1"
+      ],
+      "objclass": "GridItemType",
+      "objdata": {
+        "TypeName": "boulder_trap_falling_forward",
+        "GridItemClass": "GridItemProjectileTrap",
+        "Properties": "RTID(BoulderFallingForwardTrapProps1@CurrentLevel)",
+        "ResourceGroups": [
+          "ZombieLostCityZombossGroup",
+          "BoulderTrapTileGroup",
+          "PlantRepeater",
+          "PlantCoconutCannonAudio",
+          "PlantCoconutCannon"
+        ]
+      }
+    },
+    {
+      "aliases": [
+        "Projectile1"
+      ],
+      "objclass": "ProjectilePropertySheet",
+      "objdata": {
+        "BaseDamage": 0.1,
+        "SplashDamage": 0.1,
+        "SplashRadius": 8000,
+        "HasShadow": false,
+        "CollisionFlags": [
+          "ground"
+        ],
+        "DamageFlags": [
+          "lobbed",
+          "fire",
+          "no_flash"
+        ],
+        "InitialVelocity": [
+          {
+            "Min": 0,
+            "Max": 0
+          },
+          {
+            "Min": 0,
+            "Max": 0
+          },
+          {
+            "Min": -500,
+            "Max": -500
+          }
+        ],
+        "InitialAcceleration": [
+          {
+            "Min": 0,
+            "Max": 0
+          },
+          {
+            "Min": 0,
+            "Max": 0
+          },
+          {
+            "Min": 0,
+            "Max": 0
+          }
+        ],
+        "InitialScale": {
+          "Min": 0,
+          "Max": 0
+        },
+        "AttachedPAM": "",
+        "AttachedPAMOffset": {
+          "x": -98,
+          "y": -93
+        },
+        "AttachedPAMAnimationToPlay": "animation",
+        "ImpactPAM": "",
+        "ImpactPAMAnimationToPlay": "animation",
+        "ImpactSoundEvent": "",
+        "ImpactOffset": [
+          {
+            "Min": 0,
+            "Max": 0
+          },
+          {
+            "Min": -20,
+            "Max": -20
+          }
+        ],
+        "Conditions": [
+          {
+            "Condition": "invincible",
+            "Duration": {
+              "Min": 0.02,
+              "Max": 0.02
+            }
+          }
+        ],
+        "CollisionRect": {
+          "mX": -15,
+          "mY": -15,
+          "mWidth": 30,
+          "mHeight": 30
+        }
+      }
+    }
+  ],
+  "version": 1
+}
