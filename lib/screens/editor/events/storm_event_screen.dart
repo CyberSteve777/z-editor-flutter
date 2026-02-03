@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
+import 'package:z_editor/data/zombie_properties_repository.dart';
 import 'package:z_editor/data/zombie_repository.dart';
 import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/widgets/asset_image.dart';
@@ -17,6 +18,8 @@ class StormEventScreen extends StatefulWidget {
     required this.onChanged,
     required this.onBack,
     required this.onRequestZombieSelection,
+    this.onEditCustomZombie,
+    this.onInjectCustomZombie,
   });
 
   final String rtid;
@@ -24,6 +27,8 @@ class StormEventScreen extends StatefulWidget {
   final VoidCallback onChanged;
   final VoidCallback onBack;
   final void Function(void Function(String) onSelected) onRequestZombieSelection;
+  final void Function(String rtid)? onEditCustomZombie;
+  final String? Function(String alias)? onInjectCustomZombie;
 
   @override
   State<StormEventScreen> createState() => _StormEventScreenState();
@@ -87,6 +92,20 @@ class _StormEventScreenState extends State<StormEventScreen> {
 
   void _removeZombie(int index) {
     final zombies = List<StormZombieData>.from(_data.zombies)..removeAt(index);
+    _data = StormZombieSpawnerPropsData(
+      columnStart: _data.columnStart,
+      columnEnd: _data.columnEnd,
+      groupSize: _data.groupSize,
+      timeBetweenGroups: _data.timeBetweenGroups,
+      type: _data.type,
+      zombies: zombies,
+    );
+    _sync();
+  }
+
+  void _replaceZombieType(int index, String newRtid) {
+    final zombies = List<StormZombieData>.from(_data.zombies);
+    zombies[index] = StormZombieData(type: newRtid);
     _data = StormZombieSpawnerPropsData(
       columnStart: _data.columnStart,
       columnEnd: _data.columnEnd,
@@ -311,6 +330,7 @@ class _StormEventScreenState extends State<StormEventScreen> {
                 final z = e.value;
                 final parsed = RtidParser.parse(z.type);
                 final alias = parsed?.alias ?? z.type;
+                final isCustom = parsed?.source == 'CurrentLevel';
                 final zombie = zombieRepo.getZombieById(alias);
                 final iconPath = zombie?.iconAssetPath;
                 return Card(
@@ -333,14 +353,43 @@ class _StormEventScreenState extends State<StormEventScreen> {
                                   : '?',
                             ),
                           ),
-                    title: Text(ResourceNames.lookup(context, zombieRepo.getName(alias))),
+                    title: Text(
+                      isCustom
+                          ? alias
+                          : ResourceNames.lookup(context, zombieRepo.getName(alias)),
+                    ),
                     subtitle: Text(
-                      alias,
+                      isCustom ? 'Custom: $alias' : alias,
                       style: theme.textTheme.bodySmall,
                     ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () => _removeZombie(idx),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (isCustom && widget.onEditCustomZombie != null)
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () => widget.onEditCustomZombie?.call(z.type),
+                          ),
+                        if (!isCustom && widget.onInjectCustomZombie != null)
+                          IconButton(
+                            icon: const Icon(Icons.build),
+                            onPressed: () {
+                              final baseType =
+                                  ZombiePropertiesRepository.getTypeNameByAlias(
+                                alias,
+                              );
+                              final newRtid =
+                                  widget.onInjectCustomZombie!(baseType);
+                              if (newRtid != null) {
+                                _replaceZombieType(idx, newRtid);
+                              }
+                            },
+                          ),
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () => _removeZombie(idx),
+                        ),
+                      ],
                     ),
                   ),
                 );

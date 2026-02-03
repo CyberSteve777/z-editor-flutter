@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:z_editor/data/asset_loader.dart';
@@ -275,6 +274,34 @@ class ZombieRepository {
     } catch (_) {
       return null;
     }
+  }
+
+  bool isElite(String id) {
+    final zombie = getZombieById(id);
+    if (zombie == null) return false;
+    return zombie.tags.contains(ZombieTag.elite);
+  }
+
+  bool isFavorite(String id) => _favoriteIds.contains(id);
+
+  List<ZombieInfo> search(String query, ZombieTag? tag, ZombieCategory category) {
+    if (!_isLoaded) return [];
+    final baseList =
+        category == ZombieCategory.collection
+            ? _allZombies.where((z) => _favoriteIds.contains(z.id)).toList()
+            : (tag != null && tag != ZombieTag.all
+                ? _allZombies.where((z) => z.tags.contains(tag)).toList()
+                : _allZombies);
+
+    if (query.trim().isEmpty) return baseList;
+    final lower = query.toLowerCase();
+    return baseList
+        .where(
+          (z) =>
+              z.id.toLowerCase().contains(lower) ||
+              z.name.toLowerCase().contains(lower),
+        )
+        .toList();
   }
 
   Future<void> toggleFavorite(String id) async {

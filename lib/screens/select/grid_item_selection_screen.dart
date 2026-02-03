@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/grid_item_repository.dart';
-import 'package:z_editor/widgets/asset_image.dart';
+import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
 
 /// Grid item selection. Ported from Z-Editor-master GridItemSelectionScreen.kt
 class GridItemSelectionScreen extends StatefulWidget {
@@ -24,7 +24,6 @@ class _GridItemSelectionScreenState extends State<GridItemSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     final displayList = _searchQuery.trim().isEmpty
         ? GridItemRepository.getByCategory(_selectedCategory)
         : GridItemRepository.search(_searchQuery)
@@ -102,24 +101,21 @@ class _GridItemSelectionScreenState extends State<GridItemSelectionScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              if (iconPath != null)
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: AssetImageWidget(
-                                      assetPath: iconPath,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                )
-                              else
-                                Expanded(
-                                  child: Icon(
-                                    Icons.grid_on,
-                                    size: 32,
-                                    color: theme.colorScheme.outline,
-                                  ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: iconPath != null
+                                      ? AssetImageWidget(
+                                          assetPath: iconPath,
+                                          altCandidates: imageAltCandidates(iconPath),
+                                          fit: BoxFit.contain,
+                                        )
+                                      : AssetImageWidget(
+                                          assetPath: 'assets/images/others/unknown.webp',
+                                          fit: BoxFit.contain,
+                                        ),
                                 ),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(

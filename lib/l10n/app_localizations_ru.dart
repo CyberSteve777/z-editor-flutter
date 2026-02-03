@@ -92,7 +92,8 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get folderDeleteDetail => 'Если это папка, её содержимое также будет удалено.';
+  String get folderDeleteDetail =>
+      'Если это папка, её содержимое также будет удалено.';
 
   @override
   String get levelDeleteDetail => 'Это действие нельзя отменить.';
@@ -200,28 +201,34 @@ class AppLocalizationsRu extends AppLocalizations {
   String get introSection => 'Введение';
 
   @override
-  String get introText => 'Z-Editor — визуальный редактор уровней для Plants vs. Zombies 2. Упрощает редактирование JSON-файлов уровней с помощью интуитивного интерфейса.';
+  String get introText =>
+      'Z-Editor — визуальный редактор уровней для Plants vs. Zombies 2. Упрощает редактирование JSON-файлов уровней с помощью интуитивного интерфейса.';
 
   @override
   String get featuresSection => 'Основные возможности';
 
   @override
-  String get feature1 => 'Модульное редактирование: управление модулями и событиями уровней.';
+  String get feature1 =>
+      'Модульное редактирование: управление модулями и событиями уровней.';
 
   @override
-  String get feature2 => 'Режимы: «Я зомби», «Разбей горшки», «Несокрушимый», бой с Зомбоссом.';
+  String get feature2 =>
+      'Режимы: «Я зомби», «Разбей горшки», «Несокрушимый», бой с Зомбоссом.';
 
   @override
-  String get feature3 => 'Пользовательские зомби: добавление и редактирование свойств.';
+  String get feature3 =>
+      'Пользовательские зомби: добавление и редактирование свойств.';
 
   @override
-  String get feature4 => 'Проверка: обнаружение отсутствующих модулей и неверных ссылок.';
+  String get feature4 =>
+      'Проверка: обнаружение отсутствующих модулей и неверных ссылок.';
 
   @override
   String get usageSection => 'Использование';
 
   @override
-  String get usageText => '1. Папка: нажмите на иконку папки, чтобы выбрать каталог с уровнями.\n2. Открыть/Создать: нажмите на уровень для редактирования или «+» для создания из шаблона.\n3. Модули: добавляйте модули в редакторе.\n4. Сохранить: нажмите «Сохранить» для записи в JSON.\nQQ-группа: 562251204';
+  String get usageText =>
+      '1. Папка: нажмите на иконку папки, чтобы выбрать каталог с уровнями.\n2. Открыть/Создать: нажмите на уровень для редактирования или «+» для создания из шаблона.\n3. Модули: добавляйте модули в редакторе.\n4. Сохранить: нажмите «Сохранить» для записи в JSON.\nQQ-группа: 562251204';
 
   @override
   String get creditsSection => 'Благодарности';
@@ -236,7 +243,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get thanksLabel => 'Благодарность:';
 
   @override
-  String get thanksNames => '星寻、metal海枣、超越自我3333、桃酱、凉沈、小小师、顾小言、PhiLia093、咖啡、不留名';
+  String get thanksNames =>
+      '星寻、metal海枣、超越自我3333、桃酱、凉沈、小小师、顾小言、PhiLia093、咖啡、不留名';
 
   @override
   String get tagline => 'Создавайте бесконечные возможности';
@@ -304,7 +312,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noLevelDefinition => 'Определение уровня не найдено';
 
   @override
-  String get noLevelDefinitionHint => 'Модуль определения уровня (LevelDefinition) не найден. Это базовый узел файла уровня. Попробуйте добавить его вручную.';
+  String get noLevelDefinitionHint =>
+      'Модуль определения уровня (LevelDefinition) не найден. Это базовый узел файла уровня. Попробуйте добавить его вручную.';
 
   @override
   String get levelBasicInfo => 'Основные данные уровня';
@@ -316,172 +325,173 @@ class AppLocalizationsRu extends AppLocalizations {
   String get removeModule => 'Удалить модуль';
 
   @override
-  String get zombieCategoryMain => 'By World';
+  String get zombieCategoryMain => 'По миру';
 
   @override
-  String get zombieCategorySize => 'By Size';
+  String get zombieCategorySize => 'По размеру';
 
   @override
-  String get zombieCategoryOther => 'Other';
+  String get zombieCategoryOther => 'Прочее';
 
   @override
-  String get zombieCategoryCollection => 'My Collection';
+  String get zombieCategoryCollection => 'Моя коллекция';
 
   @override
-  String get zombieTagAll => 'All Zombies';
+  String get zombieTagAll => 'Все зомби';
 
   @override
-  String get zombieTagEgyptPirate => 'Egypt/Pirate';
+  String get zombieTagEgyptPirate => 'Египет/Пираты';
 
   @override
-  String get zombieTagWestFuture => 'West/Future';
+  String get zombieTagWestFuture => 'Запад/Будущее';
 
   @override
-  String get zombieTagDarkBeach => 'Dark/Beach';
+  String get zombieTagDarkBeach => 'Тёмные/Пляж';
 
   @override
-  String get zombieTagIceageLostcity => 'Ice Age/Lost City';
+  String get zombieTagIceageLostcity => 'Ледниковый/Затерянный город';
 
   @override
-  String get zombieTagKongfuSkycity => 'Kongfu/Sky City';
+  String get zombieTagKongfuSkycity => 'Кунг-фу/Небесный город';
 
   @override
-  String get zombieTagEightiesDino => '80s/Dino';
+  String get zombieTagEightiesDino => '80-е/Динозавры';
 
   @override
-  String get zombieTagModernPvz1 => 'Modern/Pvz1';
+  String get zombieTagModernPvz1 => 'Современный/PvZ1';
 
   @override
-  String get zombieTagSteamRenai => 'Steam/Renaissance';
+  String get zombieTagSteamRenai => 'Пар/Ренессанс';
 
   @override
-  String get zombieTagHenaiAtlantis => 'Heian/Atlantis';
+  String get zombieTagHenaiAtlantis => 'Хэйан/Атлантида';
 
   @override
-  String get zombieTagTaleZCorp => 'Fairytale/ZCorp';
+  String get zombieTagTaleZCorp => 'Сказка/ZCorp';
 
   @override
-  String get zombieTagParkourSpeed => 'Parkour/Speed';
+  String get zombieTagParkourSpeed => 'Паркур/Скорость';
 
   @override
-  String get zombieTagTothewest => 'Journey to West';
+  String get zombieTagTothewest => 'Путь на Запад';
 
   @override
-  String get zombieTagMemory => 'Memory Journey';
+  String get zombieTagMemory => 'Путь воспоминаний';
 
   @override
-  String get zombieTagUniverse => 'Parallel Universe';
+  String get zombieTagUniverse => 'Параллельный мир';
 
   @override
-  String get zombieTagFestival1 => 'Festival 1';
+  String get zombieTagFestival1 => 'Фестиваль 1';
 
   @override
-  String get zombieTagFestival2 => 'Festival 2';
+  String get zombieTagFestival2 => 'Фестиваль 2';
 
   @override
-  String get zombieTagRoman => 'Roman';
+  String get zombieTagRoman => 'Рим';
 
   @override
-  String get zombieTagPet => 'Pet';
+  String get zombieTagPet => 'Питомец';
 
   @override
-  String get zombieTagImp => 'Imp';
+  String get zombieTagImp => 'Имп';
 
   @override
-  String get zombieTagBasic => 'Basic';
+  String get zombieTagBasic => 'Базовый';
 
   @override
-  String get zombieTagFat => 'Fat';
+  String get zombieTagFat => 'Толстый';
 
   @override
-  String get zombieTagStrong => 'Strong';
+  String get zombieTagStrong => 'Сильный';
 
   @override
-  String get zombieTagGargantuar => 'Gargantuar';
+  String get zombieTagGargantuar => 'Гаргантюар';
 
   @override
-  String get zombieTagElite => 'Elite';
+  String get zombieTagElite => 'Элита';
 
   @override
-  String get zombieTagEvildave => 'Evil Dave';
+  String get zombieTagEvildave => 'Злой Дейв';
 
   @override
-  String get plantCategoryQuality => 'By Quality';
+  String get plantCategoryQuality => 'По качеству';
 
   @override
-  String get plantCategoryRole => 'By Role';
+  String get plantCategoryRole => 'По роли';
 
   @override
-  String get plantCategoryAttribute => 'By Attribute';
+  String get plantCategoryAttribute => 'По атрибуту';
 
   @override
-  String get plantCategoryOther => 'Other';
+  String get plantCategoryOther => 'Прочее';
 
   @override
-  String get plantCategoryCollection => 'My Collection';
+  String get plantCategoryCollection => 'Моя коллекция';
 
   @override
-  String get plantTagAll => 'All Plants';
+  String get plantTagAll => 'Все растения';
 
   @override
-  String get plantTagWhite => 'White Quality';
+  String get plantTagWhite => 'Белое качество';
 
   @override
-  String get plantTagGreen => 'Green Quality';
+  String get plantTagGreen => 'Зелёное качество';
 
   @override
-  String get plantTagBlue => 'Blue Quality';
+  String get plantTagBlue => 'Синее качество';
 
   @override
-  String get plantTagPurple => 'Purple Quality';
+  String get plantTagPurple => 'Фиолетовое качество';
 
   @override
-  String get plantTagOrange => 'Orange Quality';
+  String get plantTagOrange => 'Оранжевое качество';
 
   @override
-  String get plantTagAssist => 'Assist';
+  String get plantTagAssist => 'Помощник';
 
   @override
-  String get plantTagRemote => 'Remote';
+  String get plantTagRemote => 'Дальний бой';
 
   @override
-  String get plantTagProductor => 'Producer';
+  String get plantTagProductor => 'Производитель';
 
   @override
-  String get plantTagDefence => 'Defense';
+  String get plantTagDefence => 'Защита';
 
   @override
-  String get plantTagVanguard => 'Vanguard';
+  String get plantTagVanguard => 'Авангард';
 
   @override
-  String get plantTagTrapper => 'Trapper';
+  String get plantTagTrapper => 'Ловушка';
 
   @override
-  String get plantTagFire => 'Fire';
+  String get plantTagFire => 'Огонь';
 
   @override
-  String get plantTagIce => 'Ice';
+  String get plantTagIce => 'Лёд';
 
   @override
-  String get plantTagMagic => 'Magic';
+  String get plantTagMagic => 'Магия';
 
   @override
-  String get plantTagPoison => 'Poison';
+  String get plantTagPoison => 'Яд';
 
   @override
-  String get plantTagElectric => 'Electric';
+  String get plantTagElectric => 'Электричество';
 
   @override
-  String get plantTagPhysics => 'Physics';
+  String get plantTagPhysics => 'Физика';
 
   @override
-  String get plantTagOriginal => 'Original PvZ1';
+  String get plantTagOriginal => 'Оригинал PvZ1';
 
   @override
-  String get plantTagParallel => 'Parallel World';
+  String get plantTagParallel => 'Параллельный мир';
 
   @override
-  String get removeModuleConfirm => 'Удалить этот модуль? Локальные модули (@CurrentLevel) и их данные будут удалены безвозвратно.';
+  String get removeModuleConfirm =>
+      'Удалить этот модуль? Локальные модули (@CurrentLevel) и их данные будут удалены безвозвратно.';
 
   @override
   String get confirmRemove => 'Удалить';
@@ -523,19 +533,187 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noWaveManager => 'Менеджер волн не найден';
 
   @override
-  String get noWaveManagerHint => 'У уровня есть модуль волн, но отсутствует объект WaveManagerProperties.';
+  String get noWaveManagerHint =>
+      'У уровня есть модуль волн, но отсутствует объект WaveManagerProperties.';
 
   @override
-  String get waveTimelineHint => 'Нажмите на событие для редактирования. Нажмите + для добавления.';
+  String get waveTimelineHint =>
+      'Нажмите на событие для редактирования. Нажмите + для добавления.';
 
   @override
   String get waveTimelineHintDetail => 'Смахните влево для удаления волны.';
+
+  @override
+  String get waveTimelineGuideTitle => 'Инструкция';
+
+  @override
+  String get waveTimelineGuideBody =>
+      'Свайп вправо: управление событиями волны\nСвайп влево: удалить волну\nНажмите на очки: ожидание';
+
+  @override
+  String get waveDeadLinksTitle => 'Неверные ссылки';
+
+  @override
+  String get waveDeadLinksClear => 'Очистить неверные ссылки';
+
+  @override
+  String get customZombieManagerTitle => 'Управление пользовательскими зомби';
+
+  @override
+  String get customZombieEmpty => 'Нет данных о пользовательских зомби';
+
+  @override
+  String get waveManagerGlobalParams => 'Глобальные параметры волн';
+
+  @override
+  String waveManagerGlobalSummary(
+    int interval,
+    int minPercent,
+    int maxPercent,
+  ) {
+    return 'Интервал флага: $interval, порог здоровья: $minPercent% - $maxPercent%';
+  }
+
+  @override
+  String get waveEmptyTitle => 'Список волн пуст';
+
+  @override
+  String get waveEmptySubtitle =>
+      'Добавьте первую волну или удалите этот пустой контейнер.';
+
+  @override
+  String get waveHeaderPreview => 'Содержимое и очки';
+
+  @override
+  String waveTotalLabel(int total) {
+    return 'Всего: $total';
+  }
+
+  @override
+  String get waveEmptyRowHint => 'Пустая волна (свайп влево/вправо)';
+
+  @override
+  String get removeFromWave => 'Удалить из волны';
+
+  @override
+  String get deleteEventEntityTitle => 'Удалить объект события?';
+
+  @override
+  String get deleteEventEntityBody => 'Это удалит объект события из уровня.';
+
+  @override
+  String waveEventsTitle(int wave) {
+    return 'События волны $wave';
+  }
 
   @override
   String get waveManagerSettings => 'Настройки менеджера волн';
 
   @override
   String get flagInterval => 'Интервал флага';
+
+  @override
+  String get waveManagerHelpTitle => 'Менеджер волн';
+
+  @override
+  String get waveManagerHelpOverviewTitle => 'Обзор';
+
+  @override
+  String get waveManagerHelpOverviewBody =>
+      'Глобальные параметры волн и пороги здоровья.';
+
+  @override
+  String get waveManagerHelpFlagTitle => 'Интервал флага';
+
+  @override
+  String get waveManagerHelpFlagBody =>
+      'Каждые N волн — флаговая; последняя волна всегда флаговая.';
+
+  @override
+  String get waveManagerHelpTimeTitle => 'Контроль времени';
+
+  @override
+  String get waveManagerHelpTimeBody =>
+      'Задержка первой волны зависит от наличия конвейера.';
+
+  @override
+  String get waveManagerHelpMusicTitle => 'Тип музыки';
+
+  @override
+  String get waveManagerHelpMusicBody =>
+      'Только Modern; задает фиксированный фон.';
+
+  @override
+  String get waveManagerBasicParams => 'Базовые параметры';
+
+  @override
+  String get waveManagerMaxHealthThreshold => 'Макс. порог здоровья';
+
+  @override
+  String get waveManagerMinHealthThreshold => 'Мин. порог здоровья';
+
+  @override
+  String get waveManagerThresholdHint => 'Порог должен быть от 0 до 1.';
+
+  @override
+  String get waveManagerTimeControl => 'Контроль времени';
+
+  @override
+  String get waveManagerFirstWaveDelayConveyor =>
+      'Задержка первой волны (конвейер)';
+
+  @override
+  String get waveManagerFirstWaveDelayNormal =>
+      'Задержка первой волны (обычно)';
+
+  @override
+  String get waveManagerFlagWaveDelay => 'Задержка флаговой волны';
+
+  @override
+  String get waveManagerConveyorDetected =>
+      'Обнаружен конвейер; применена задержка конвейера.';
+
+  @override
+  String get waveManagerConveyorNotDetected =>
+      'Конвейер не найден; применена обычная задержка.';
+
+  @override
+  String get waveManagerSpecial => 'Особое';
+
+  @override
+  String get waveManagerSuppressFlagZombieTitle => 'Отключить флаг-зомби';
+
+  @override
+  String get waveManagerSuppressFlagZombieField => 'SuppressFlagZombie';
+
+  @override
+  String get waveManagerSuppressFlagZombieHint =>
+      'При включении флаговые волны не спавнят флаг-зомби.';
+
+  @override
+  String get waveManagerLevelJam => 'Level Jam';
+
+  @override
+  String get waveManagerLevelJamHint =>
+      'Только Modern; фиксированная фоновая музыка.';
+
+  @override
+  String get jamNone => 'Нет';
+
+  @override
+  String get jamPop => 'Поп';
+
+  @override
+  String get jamRap => 'Рэп';
+
+  @override
+  String get jamMetal => 'Метал';
+
+  @override
+  String get jamPunk => 'Панк';
+
+  @override
+  String get jam8Bit => '8-бит';
 
   @override
   String get noWaves => 'Нет волн';
@@ -588,7 +766,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get confirmRemoveRef => 'Удалить ссылку';
 
   @override
-  String get confirmRemoveRefMessage => 'Удалить эту ссылку? Данные объекта останутся до удаления всех ссылок.';
+  String get confirmRemoveRefMessage =>
+      'Удалить эту ссылку? Данные объекта останутся до удаления всех ссылок.';
 
   @override
   String get code => 'Код';
@@ -697,268 +876,301 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noDynamicZombies => 'Нет динамических зомби';
 
   @override
-  String get moduleTitle_WaveManagerModuleProperties => 'Wave Manager';
+  String get moduleTitle_WaveManagerModuleProperties => 'Менеджер волн';
 
   @override
-  String get moduleDesc_WaveManagerModuleProperties => 'Manage level wave events';
+  String get moduleDesc_WaveManagerModuleProperties =>
+      'Управление волнами уровня';
 
   @override
-  String get moduleTitle_CustomLevelModuleProperties => 'Lawn Module';
+  String get moduleTitle_CustomLevelModuleProperties => 'Модуль лужайки';
 
   @override
-  String get moduleDesc_CustomLevelModuleProperties => 'Enable custom lawn framework';
+  String get moduleDesc_CustomLevelModuleProperties =>
+      'Включить свою схему лужайки';
 
   @override
-  String get moduleTitle_StandardLevelIntroProperties => 'Intro Animation';
+  String get moduleTitle_StandardLevelIntroProperties => 'Заставка';
 
   @override
-  String get moduleDesc_StandardLevelIntroProperties => 'Camera pan at level start';
+  String get moduleDesc_StandardLevelIntroProperties =>
+      'Прокрутка камеры в начале уровня';
 
   @override
-  String get moduleTitle_ZombiesAteYourBrainsProperties => 'Failure Condition';
+  String get moduleTitle_ZombiesAteYourBrainsProperties => 'Условие поражения';
 
   @override
-  String get moduleDesc_ZombiesAteYourBrainsProperties => 'Zombie enters house condition';
+  String get moduleDesc_ZombiesAteYourBrainsProperties => 'Зомби дошёл до дома';
 
   @override
-  String get moduleTitle_ZombiesDeadWinConProperties => 'Death Drop';
+  String get moduleTitle_ZombiesDeadWinConProperties => 'Смертельная капля';
 
   @override
-  String get moduleDesc_ZombiesDeadWinConProperties => 'Required for level stability';
+  String get moduleDesc_ZombiesDeadWinConProperties =>
+      'Нужно для стабильности уровня';
 
   @override
-  String get moduleTitle_PennyClassroomModuleProperties => 'Plant Tier';
+  String get moduleTitle_PennyClassroomModuleProperties => 'Уровень растений';
 
   @override
-  String get moduleDesc_PennyClassroomModuleProperties => 'Global plant tier definition';
+  String get moduleDesc_PennyClassroomModuleProperties =>
+      'Глобальные уровни растений';
 
   @override
-  String get moduleTitle_SeedBankProperties => 'Seed Bank';
+  String get moduleTitle_SeedBankProperties => 'Банк семян';
 
   @override
-  String get moduleDesc_SeedBankProperties => 'Preset plants and selection method';
+  String get moduleDesc_SeedBankProperties => 'Набор растений и способ выбора';
 
   @override
-  String get moduleTitle_ConveyorSeedBankProperties => 'Conveyor Belt';
+  String get moduleTitle_ConveyorSeedBankProperties => 'Конвейер';
 
   @override
-  String get moduleDesc_ConveyorSeedBankProperties => 'Preset conveyor plants and weights';
+  String get moduleDesc_ConveyorSeedBankProperties =>
+      'Растения на конвейере и веса';
 
   @override
-  String get moduleTitle_SunDropperProperties => 'Sun Dropper';
+  String get moduleTitle_SunDropperProperties => 'Падающее солнце';
 
   @override
-  String get moduleDesc_SunDropperProperties => 'Control falling sun frequency';
+  String get moduleDesc_SunDropperProperties => 'Частота падения солнца';
 
   @override
-  String get moduleTitle_LevelMutatorMaxSunProps => 'Max Sun';
+  String get moduleTitle_LevelMutatorMaxSunProps => 'Макс. солнце';
 
   @override
-  String get moduleDesc_LevelMutatorMaxSunProps => 'Override maximum sun limit';
+  String get moduleDesc_LevelMutatorMaxSunProps => 'Лимит солнца';
 
   @override
-  String get moduleTitle_LevelMutatorStartingPlantfoodProps => 'Starting Plant Food';
+  String get moduleTitle_LevelMutatorStartingPlantfoodProps =>
+      'Стартовый растительный корм';
 
   @override
-  String get moduleDesc_LevelMutatorStartingPlantfoodProps => 'Override initial plant food';
+  String get moduleDesc_LevelMutatorStartingPlantfoodProps =>
+      'Начальный растительный корм';
 
   @override
-  String get moduleTitle_StarChallengeModuleProperties => 'Challenges';
+  String get moduleTitle_StarChallengeModuleProperties => 'Испытания';
 
   @override
-  String get moduleDesc_StarChallengeModuleProperties => 'Level restrictions and goals';
+  String get moduleDesc_StarChallengeModuleProperties =>
+      'Ограничения и цели уровня';
 
   @override
-  String get moduleTitle_LevelScoringModuleProperties => 'Scoring';
+  String get moduleTitle_LevelScoringModuleProperties => 'Очки';
 
   @override
-  String get moduleDesc_LevelScoringModuleProperties => 'Enable score points for kills';
+  String get moduleDesc_LevelScoringModuleProperties => 'Очки за убийства';
 
   @override
-  String get moduleTitle_BowlingMinigameProperties => 'Bowling Bulb';
+  String get moduleTitle_BowlingMinigameProperties => 'Боулинг';
 
   @override
-  String get moduleDesc_BowlingMinigameProperties => 'Set line and disable shovel';
+  String get moduleDesc_BowlingMinigameProperties =>
+      'Линия и отключение лопаты';
 
   @override
-  String get moduleTitle_NewBowlingMinigameProperties => 'Wall-nut Bowling';
+  String get moduleTitle_NewBowlingMinigameProperties => 'Боулинг с орехами';
 
   @override
-  String get moduleDesc_NewBowlingMinigameProperties => 'Bowling line setup';
+  String get moduleDesc_NewBowlingMinigameProperties =>
+      'Настройка линии боулинга';
 
   @override
-  String get moduleTitle_VaseBreakerPresetProperties => 'Vase Layout';
+  String get moduleTitle_VaseBreakerPresetProperties => 'Расклад ваз';
 
   @override
-  String get moduleDesc_VaseBreakerPresetProperties => 'Configure vase contents';
+  String get moduleDesc_VaseBreakerPresetProperties => 'Содержимое ваз';
 
   @override
-  String get moduleTitle_VaseBreakerArcadeModuleProperties => 'Vase Breaker Mode';
+  String get moduleTitle_VaseBreakerArcadeModuleProperties =>
+      'Режим «Разбей горшки»';
 
   @override
-  String get moduleDesc_VaseBreakerArcadeModuleProperties => 'Enable vase breaker UI';
+  String get moduleDesc_VaseBreakerArcadeModuleProperties =>
+      'Включить интерфейс режима';
 
   @override
-  String get moduleTitle_VaseBreakerFlowModuleProperties => 'Vase Animation';
+  String get moduleTitle_VaseBreakerFlowModuleProperties => 'Анимация ваз';
 
   @override
-  String get moduleDesc_VaseBreakerFlowModuleProperties => 'Control vase drop animation';
+  String get moduleDesc_VaseBreakerFlowModuleProperties =>
+      'Анимация падения ваз';
 
   @override
-  String get moduleTitle_EvilDaveProperties => 'I, Zombie';
+  String get moduleTitle_EvilDaveProperties => 'Я зомби';
 
   @override
-  String get moduleDesc_EvilDaveProperties => 'Enable I, Zombie mode';
+  String get moduleDesc_EvilDaveProperties => 'Включить режим «Я зомби»';
 
   @override
-  String get moduleTitle_ZombossBattleModuleProperties => 'Zomboss Battle';
+  String get moduleTitle_ZombossBattleModuleProperties => 'Бой с Зомбоссом';
 
   @override
-  String get moduleDesc_ZombossBattleModuleProperties => 'Boss battle parameters';
+  String get moduleDesc_ZombossBattleModuleProperties => 'Параметры босса';
 
   @override
-  String get moduleTitle_ZombossBattleIntroProperties => 'Zomboss Intro';
+  String get moduleTitle_ZombossBattleIntroProperties => 'Заставка Зомбосса';
 
   @override
-  String get moduleDesc_ZombossBattleIntroProperties => 'Boss intro and health bar';
+  String get moduleDesc_ZombossBattleIntroProperties =>
+      'Заставка и полоска здоровья босса';
 
   @override
-  String get moduleTitle_SeedRainProperties => 'Seed Rain';
+  String get moduleTitle_SeedRainProperties => 'Семенной дождь';
 
   @override
-  String get moduleDesc_SeedRainProperties => 'Falling plants/zombies/items';
+  String get moduleDesc_SeedRainProperties =>
+      'Падающие растения/зомби/предметы';
 
   @override
-  String get moduleTitle_LastStandMinigameProperties => 'Last Stand';
+  String get moduleTitle_LastStandMinigameProperties => 'Несокрушимый';
 
   @override
-  String get moduleDesc_LastStandMinigameProperties => 'Initial resources and setup phase';
+  String get moduleDesc_LastStandMinigameProperties =>
+      'Стартовые ресурсы и фаза подготовки';
 
   @override
   String get moduleTitle_PVZ1OverwhelmModuleProperties => 'Overwhelm';
 
   @override
-  String get moduleDesc_PVZ1OverwhelmModuleProperties => 'Overwhelm minigame';
+  String get moduleDesc_PVZ1OverwhelmModuleProperties => 'Мини-игра Overwhelm';
 
   @override
-  String get moduleTitle_SunBombChallengeProperties => 'Sun Bombs';
+  String get moduleTitle_SunBombChallengeProperties => 'Солнечные бомбы';
 
   @override
-  String get moduleDesc_SunBombChallengeProperties => 'Falling sun bomb config';
+  String get moduleDesc_SunBombChallengeProperties =>
+      'Настройка падающих солнечных бомб';
 
   @override
-  String get moduleTitle_IncreasedCostModuleProperties => 'Inflation';
+  String get moduleTitle_IncreasedCostModuleProperties => 'Инфляция';
 
   @override
-  String get moduleDesc_IncreasedCostModuleProperties => 'Sun cost increases with planting';
+  String get moduleDesc_IncreasedCostModuleProperties =>
+      'Рост стоимости солнца при посадке';
 
   @override
-  String get moduleTitle_DeathHoleModuleProperties => 'Death Holes';
+  String get moduleTitle_DeathHoleModuleProperties => 'Смертельные ямы';
 
   @override
-  String get moduleDesc_DeathHoleModuleProperties => 'Plants leave unplantable holes';
+  String get moduleDesc_DeathHoleModuleProperties =>
+      'Растения оставляют непосадочные ямы';
 
   @override
-  String get moduleTitle_ZombieMoveFastModuleProperties => 'Fast Entry';
+  String get moduleTitle_ZombieMoveFastModuleProperties => 'Быстрый вход';
 
   @override
-  String get moduleDesc_ZombieMoveFastModuleProperties => 'Zombies move fast on entry';
+  String get moduleDesc_ZombieMoveFastModuleProperties =>
+      'Зомби быстрее входят';
 
   @override
-  String get moduleTitle_InitialPlantEntryProperties => 'Initial Plants';
+  String get moduleTitle_InitialPlantEntryProperties => 'Начальные растения';
 
   @override
-  String get moduleDesc_InitialPlantEntryProperties => 'Plants present at start';
+  String get moduleDesc_InitialPlantEntryProperties =>
+      'Растения в начале уровня';
 
   @override
-  String get moduleTitle_InitialZombieProperties => 'Initial Zombies';
+  String get moduleTitle_InitialZombieProperties => 'Начальные зомби';
 
   @override
-  String get moduleDesc_InitialZombieProperties => 'Zombies present at start';
+  String get moduleDesc_InitialZombieProperties => 'Зомби в начале уровня';
 
   @override
-  String get moduleTitle_InitialGridItemProperties => 'Initial Grid Items';
+  String get moduleTitle_InitialGridItemProperties => 'Начальные объекты сетки';
 
   @override
-  String get moduleDesc_InitialGridItemProperties => 'Grid items present at start';
+  String get moduleDesc_InitialGridItemProperties =>
+      'Объекты сетки в начале уровня';
 
   @override
-  String get moduleTitle_ProtectThePlantChallengeProperties => 'Protect Plants';
+  String get moduleTitle_ProtectThePlantChallengeProperties =>
+      'Защитить растения';
 
   @override
-  String get moduleDesc_ProtectThePlantChallengeProperties => 'Plants that must be protected';
+  String get moduleDesc_ProtectThePlantChallengeProperties =>
+      'Растения, которые нужно защитить';
 
   @override
-  String get moduleTitle_ProtectTheGridItemChallengeProperties => 'Protect Items';
+  String get moduleTitle_ProtectTheGridItemChallengeProperties =>
+      'Защитить предметы';
 
   @override
-  String get moduleDesc_ProtectTheGridItemChallengeProperties => 'Items that must be protected';
+  String get moduleDesc_ProtectTheGridItemChallengeProperties =>
+      'Предметы, которые нужно защитить';
 
   @override
-  String get moduleTitle_ZombiePotionModuleProperties => 'Zombie Potions';
+  String get moduleTitle_ZombiePotionModuleProperties => 'Зелья зомби';
 
   @override
-  String get moduleDesc_ZombiePotionModuleProperties => 'Dark Ages potion generation';
+  String get moduleDesc_ZombiePotionModuleProperties =>
+      'Генерация зелий в Тёмных веках';
 
   @override
-  String get moduleTitle_PiratePlankProperties => 'Pirate Planks';
+  String get moduleTitle_PiratePlankProperties => 'Пиратские доски';
 
   @override
-  String get moduleDesc_PiratePlankProperties => 'Pirate Seas plank rows';
+  String get moduleDesc_PiratePlankProperties => 'Ряды досок в Пиратском море';
 
   @override
-  String get moduleTitle_RailcartProperties => 'Railcarts';
+  String get moduleTitle_RailcartProperties => 'Вагонетки';
 
   @override
-  String get moduleDesc_RailcartProperties => 'Minecart and track layout';
+  String get moduleDesc_RailcartProperties => 'Вагонетки и рельсы';
 
   @override
-  String get moduleTitle_PowerTileProperties => 'Power Tiles';
+  String get moduleTitle_PowerTileProperties => 'Силовые плитки';
 
   @override
-  String get moduleDesc_PowerTileProperties => 'Future power tile layout';
+  String get moduleDesc_PowerTileProperties =>
+      'Расклад силовых плиток в Будущем';
 
   @override
-  String get moduleTitle_ManholePipelineModuleProperties => 'Manholes';
+  String get moduleTitle_ManholePipelineModuleProperties => 'Люки';
 
   @override
-  String get moduleDesc_ManholePipelineModuleProperties => 'Steam Age pipelines';
+  String get moduleDesc_ManholePipelineModuleProperties =>
+      'Трубы в Паровом веке';
 
   @override
-  String get moduleTitle_RoofProperties => 'Roof Pots';
+  String get moduleTitle_RoofProperties => 'Крышные горшки';
 
   @override
-  String get moduleDesc_RoofProperties => 'Roof level pot columns';
+  String get moduleDesc_RoofProperties => 'Колонки горшков на крыше';
 
   @override
-  String get moduleTitle_TideProperties => 'Tide System';
+  String get moduleTitle_TideProperties => 'Система прилива';
 
   @override
-  String get moduleDesc_TideProperties => 'Enable tide system';
+  String get moduleDesc_TideProperties => 'Включить прилив';
 
   @override
-  String get moduleTitle_WarMistProperties => 'War Mist';
+  String get moduleTitle_WarMistProperties => 'Туман войны';
 
   @override
-  String get moduleDesc_WarMistProperties => 'Fog of war system';
+  String get moduleDesc_WarMistProperties => 'Система тумана войны';
 
   @override
-  String get moduleTitle_RainDarkProperties => 'Weather';
+  String get moduleTitle_RainDarkProperties => 'Погода';
 
   @override
-  String get moduleDesc_RainDarkProperties => 'Rain, snow, storm effects';
+  String get moduleDesc_RainDarkProperties => 'Дождь, снег, буря';
 
   @override
   String get eventTitle_SpawnZombiesFromGroundSpawnerProps => 'Земляной спавн';
 
   @override
-  String get eventDesc_SpawnZombiesFromGroundSpawnerProps => 'Зомби появляются из-под земли';
+  String get eventDesc_SpawnZombiesFromGroundSpawnerProps =>
+      'Зомби появляются из-под земли';
 
   @override
-  String get eventTitle_SpawnZombiesJitteredWaveActionProps => 'Стандартный спавн';
+  String get eventTitle_SpawnZombiesJitteredWaveActionProps =>
+      'Стандартный спавн';
 
   @override
-  String get eventDesc_SpawnZombiesJitteredWaveActionProps => 'Основной естественный спавн';
+  String get eventDesc_SpawnZombiesJitteredWaveActionProps =>
+      'Основной естественный спавн';
 
   @override
   String get eventTitle_FrostWindWaveActionProps => 'Морозный ветер';
@@ -970,7 +1182,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get eventTitle_BeachStageEventZombieSpawnerProps => 'Низкая вода';
 
   @override
-  String get eventDesc_BeachStageEventZombieSpawnerProps => 'Зомби появляются при низкой воде';
+  String get eventDesc_BeachStageEventZombieSpawnerProps =>
+      'Зомби появляются при низкой воде';
 
   @override
   String get eventTitle_TidalChangeWaveActionProps => 'Смена прилива';
@@ -982,7 +1195,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get eventTitle_ModifyConveyorWaveActionProps => 'Изменение конвейера';
 
   @override
-  String get eventDesc_ModifyConveyorWaveActionProps => 'Динамическое добавление/удаление карт';
+  String get eventDesc_ModifyConveyorWaveActionProps =>
+      'Динамическое добавление/удаление карт';
 
   @override
   String get eventTitle_DinoWaveActionProps => 'Призыв динозавра';
@@ -994,7 +1208,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get eventTitle_SpawnModernPortalsWaveActionProps => 'Разлом времени';
 
   @override
-  String get eventDesc_SpawnModernPortalsWaveActionProps => 'Создать порталы времени';
+  String get eventDesc_SpawnModernPortalsWaveActionProps =>
+      'Создать порталы времени';
 
   @override
   String get eventTitle_StormZombieSpawnerProps => 'Штормовой спавн';
@@ -1006,7 +1221,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get eventTitle_RaidingPartyZombieSpawnerProps => 'Налет пиратов';
 
   @override
-  String get eventDesc_RaidingPartyZombieSpawnerProps => 'Разбойники/пиратские зомби вторгаются';
+  String get eventDesc_RaidingPartyZombieSpawnerProps =>
+      'Разбойники/пиратские зомби вторгаются';
 
   @override
   String get eventTitle_ZombiePotionActionProps => 'Бросок зелий';
@@ -1021,10 +1237,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get eventDesc_SpawnGravestonesWaveActionProps => 'Создать надгробия';
 
   @override
-  String get eventTitle_SpawnZombiesFromGridItemSpawnerProps => 'Спавн из надгробий';
+  String get eventTitle_SpawnZombiesFromGridItemSpawnerProps =>
+      'Спавн из надгробий';
 
   @override
-  String get eventDesc_SpawnZombiesFromGridItemSpawnerProps => 'Появление зомби из могил';
+  String get eventDesc_SpawnZombiesFromGridItemSpawnerProps =>
+      'Появление зомби из могил';
 
   @override
   String get eventTitle_FairyTaleFogWaveActionProps => 'Сказочный туман';
@@ -1048,52 +1266,69 @@ class AppLocalizationsRu extends AppLocalizations {
   String get eventTitle_ParachuteRainZombieSpawnerProps => 'Парашютный дождь';
 
   @override
-  String get eventDesc_ParachuteRainZombieSpawnerProps => 'Зомби падают с парашютами';
+  String get eventDesc_ParachuteRainZombieSpawnerProps =>
+      'Зомби падают с парашютами';
 
   @override
-  String get eventTitle_BassRainZombieSpawnerProps => 'Дождь басистов/джетпаков';
+  String get eventTitle_BassRainZombieSpawnerProps =>
+      'Дождь басистов/джетпаков';
 
   @override
-  String get eventDesc_BassRainZombieSpawnerProps => 'Падают басисты/джетпак-зомби';
+  String get eventDesc_BassRainZombieSpawnerProps =>
+      'Падают басисты/джетпак-зомби';
 
   @override
   String get eventTitle_BlackHoleWaveActionProps => 'Чёрная дыра';
 
   @override
-  String get eventDesc_BlackHoleWaveActionProps => 'Чёрная дыра притягивает растения';
+  String get eventDesc_BlackHoleWaveActionProps =>
+      'Чёрная дыра притягивает растения';
 
   @override
-  String get eventTitle_WaveActionMagicMirrorTeleportationArrayProps2 => 'Волшебное зеркало';
+  String get eventTitle_MagicMirrorWaveActionProps => 'Волшебное зеркало';
 
   @override
-  String get eventDesc_WaveActionMagicMirrorTeleportationArrayProps2 => 'Зеркальные порталы';
+  String get eventDesc_MagicMirrorWaveActionProps => 'Зеркальные порталы';
 
   @override
-  String get weatherOption_DefaultSnow_label => 'Frostbite Caves (DefaultSnow)';
+  String get eventTitle_WaveActionMagicMirrorTeleportationArrayProps2 =>
+      'Волшебное зеркало';
 
   @override
-  String get weatherOption_DefaultSnow_desc => 'Snowing effect from Frostbite Caves';
+  String get eventDesc_WaveActionMagicMirrorTeleportationArrayProps2 =>
+      'Зеркальные порталы';
 
   @override
-  String get weatherOption_LightningRain_label => 'Thunderstorm (LightningRain)';
+  String get weatherOption_DefaultSnow_label => 'Ледяные пещеры (DefaultSnow)';
 
   @override
-  String get weatherOption_LightningRain_desc => 'Rain and lightning from Dark Ages Day 8';
+  String get weatherOption_DefaultSnow_desc => 'Эффект снега из Ледяных пещер';
 
   @override
-  String get weatherOption_DefaultRainDark_label => 'Dark Ages (DefaultRainDark)';
+  String get weatherOption_LightningRain_label => 'Гроза (LightningRain)';
 
   @override
-  String get weatherOption_DefaultRainDark_desc => 'Rain effect from Dark Ages';
+  String get weatherOption_LightningRain_desc =>
+      'Дождь и молнии, Тёмные века день 8';
 
   @override
-  String get iZombiePlantReserveLabel => 'Колонна резерва растений (PlantDistance)';
+  String get weatherOption_DefaultRainDark_label =>
+      'Тёмные века (DefaultRainDark)';
+
+  @override
+  String get weatherOption_DefaultRainDark_desc =>
+      'Эффект дождя в Тёмных веках';
+
+  @override
+  String get iZombiePlantReserveLabel =>
+      'Колонна резерва растений (PlantDistance)';
 
   @override
   String get column => 'Колонна';
 
   @override
-  String get iZombieInfoText => 'В режиме «Я, Зомби» предварительные растения и зомби необходимо настроить в модуле уровня (Preset Plants) и в банке семян.';
+  String get iZombieInfoText =>
+      'В режиме «Я, Зомби» предварительные растения и зомби необходимо настроить в модуле уровня (Preset Plants) и в банке семян.';
 
   @override
   String get vaseRangeTitle => 'Диапазон генерации ваз и черный список';
@@ -1168,4 +1403,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get clearAll => 'Очистить всё';
+
+  @override
+  String get moduleCategoryBase => 'Базовые';
+
+  @override
+  String get moduleCategoryMode => 'Режимы';
+
+  @override
+  String get moduleCategoryScene => 'Сцена';
 }

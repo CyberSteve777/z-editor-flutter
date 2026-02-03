@@ -8,6 +8,7 @@ import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/screens/select/plant_selection_screen.dart';
 import 'package:z_editor/screens/select/zombie_selection_screen.dart';
 import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
+import 'package:z_editor/widgets/editor_components.dart';
 
 class VaseBreakerTab extends StatefulWidget {
   const VaseBreakerTab({
@@ -27,6 +28,15 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
   PvzObject? _presetObj;
   late VaseBreakerPresetData _data;
   bool _isLoading = true;
+
+  static const _collectableTypes = [
+    _CollectableType('plantfood', 'Plant Food', 'plantfood.webp'),
+    _CollectableType('sun_large', 'Large Sun', 'sun_large.webp'),
+    _CollectableType('rails', 'Rails', 'rails.webp'),
+    _CollectableType('rail', 'Rails', 'rails.webp'),
+    _CollectableType('railcarts', 'Railcarts', 'railcarts.webp'),
+    _CollectableType('railcart', 'Railcarts', 'railcarts.webp'),
+  ];
 
   @override
   void initState() {
@@ -185,52 +195,56 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
           children: [
             Text(l10n?.toggleBlacklistHint ?? 'Click to toggle blacklist'),
             const SizedBox(height: 8),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final cellSize = (constraints.maxWidth / 9).floorToDouble();
-                return Column(
-                  children: List.generate(5, (row) {
-                    return Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: List.generate(9, (col) {
-                        final isBlacklisted = _data.gridSquareBlacklist.any(
-                          (loc) => loc.x == col && loc.y == row,
-                        );
-                        final isInRange =
-                            col >= _data.minColumnIndex &&
-                            col <= _data.maxColumnIndex;
+            scaleTableForDesktop(
+              context: context,
+              desktopScale: 0.5,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final cellSize = (constraints.maxWidth / 9).floorToDouble();
+                  return Column(
+                    children: List.generate(5, (row) {
+                      return Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: List.generate(9, (col) {
+                          final isBlacklisted = _data.gridSquareBlacklist.any(
+                            (loc) => loc.x == col && loc.y == row,
+                          );
+                          final isInRange =
+                              col >= _data.minColumnIndex &&
+                              col <= _data.maxColumnIndex;
 
-                        Color color;
-                        if (!isInRange) {
-                          color = Colors.grey.withOpacity(0.3);
-                        } else if (isBlacklisted) {
-                          color = Colors.red.withOpacity(0.5);
-                        } else {
-                          color = Colors.green.withOpacity(0.5);
-                        }
+                          Color color;
+                          if (!isInRange) {
+                            color = Colors.grey.withOpacity(0.3);
+                          } else if (isBlacklisted) {
+                            color = Colors.red.withOpacity(0.5);
+                          } else {
+                            color = Colors.green.withOpacity(0.5);
+                          }
 
-                        return GestureDetector(
-                          onTap: () {
-                            if (!isInRange) return;
-                            _toggleBlacklist(col, row);
-                          },
-                          child: Container(
-                            width: cellSize,
-                            height: cellSize,
-                            decoration: BoxDecoration(
-                              color: color,
-                              border: Border.all(color: Colors.grey),
+                          return GestureDetector(
+                            onTap: () {
+                              if (!isInRange) return;
+                              _toggleBlacklist(col, row);
+                            },
+                            child: Container(
+                              width: cellSize,
+                              height: cellSize,
+                              decoration: BoxDecoration(
+                                color: color,
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: isBlacklisted
+                                  ? const Icon(Icons.block, size: 16)
+                                  : null,
                             ),
-                            child: isBlacklisted
-                                ? const Icon(Icons.block, size: 16)
-                                : null,
-                          ),
-                        );
-                      }),
-                    );
-                  }),
-                );
-              },
+                          );
+                        }),
+                      );
+                    }),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -382,6 +396,22 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
       }
       return const Icon(Icons.android, color: Colors.red, size: size);
     }
+    if (vase.collectableTypeName != null) {
+      final info = _collectableTypes.firstWhereOrNull(
+        (e) => e.id == vase.collectableTypeName,
+      );
+      final iconPath =
+          info != null ? 'assets/images/others/${info.iconName}' : null;
+      if (iconPath != null) {
+        return AssetImageWidget(
+          assetPath: iconPath,
+          altCandidates: imageAltCandidates(iconPath),
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+        );
+      }
+    }
     return const Icon(Icons.inventory, color: Colors.amber, size: size);
   }
 
@@ -402,7 +432,11 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
           ? ResourceNames.lookup(context, zombies.first.name)
           : vase.zombieTypeName!;
     }
-    return vase.collectableTypeName ??
+    final collectableName = _collectableTypes
+        .firstWhereOrNull((e) => e.id == vase.collectableTypeName)
+        ?.name;
+    return collectableName ??
+        vase.collectableTypeName ??
         (AppLocalizations.of(context)?.unknownVaseLabel ?? 'Unknown Vase');
   }
 
@@ -418,7 +452,7 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
       );
     if (vase.collectableTypeName != null)
       parts.add(
-        '${AppLocalizations.of(context)?.itemLabel ?? "Item"}: ${vase.collectableTypeName}',
+        '${AppLocalizations.of(context)?.itemLabel ?? "Item"}: ${_collectableTypes.firstWhereOrNull((e) => e.id == vase.collectableTypeName)?.name ?? vase.collectableTypeName}',
       );
     return parts.isEmpty ? '${vase.count} vase(s)' : parts.join(', ');
   }
@@ -449,6 +483,13 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
               onTap: () {
                 Navigator.pop(ctx);
                 _showZombiePicker();
+              },
+            ),
+            ListTile(
+              title: Text(AppLocalizations.of(context)?.itemLabel ?? 'Item'),
+              onTap: () {
+                Navigator.pop(ctx);
+                _showCollectablePicker();
               },
             ),
           ],
@@ -487,7 +528,52 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
     );
   }
 
+  void _showCollectablePicker() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(AppLocalizations.of(context)?.itemLabel ?? 'Item'),
+        content: SizedBox(
+          width: 320,
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemCount: _collectableTypes.length,
+            separatorBuilder: (_, __) => const Divider(height: 1),
+            itemBuilder: (_, index) {
+              final item = _collectableTypes[index];
+              final iconPath = 'assets/images/others/${item.iconName}';
+              return ListTile(
+                leading: AssetImageWidget(
+                  assetPath: iconPath,
+                  altCandidates: imageAltCandidates(iconPath),
+                  width: 32,
+                  height: 32,
+                  fit: BoxFit.cover,
+                ),
+                title: Text(item.name),
+                subtitle: Text(item.id),
+                onTap: () {
+                  _addVase(
+                    VaseDefinition(collectableTypeName: item.id, count: 1),
+                  );
+                  Navigator.pop(ctx);
+                },
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
   void _addVase(VaseDefinition vase) {
     _updateData((d) => d.vases.add(vase));
   }
+}
+
+class _CollectableType {
+  const _CollectableType(this.id, this.name, this.iconName);
+  final String id;
+  final String name;
+  final String iconName;
 }

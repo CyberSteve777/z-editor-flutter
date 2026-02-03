@@ -63,7 +63,8 @@ import 'app_localizations_zh.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,7 +72,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -83,18 +85,19 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('ru'),
-    Locale('zh')
+    Locale('zh'),
   ];
 
   /// No description provided for @appTitle.
@@ -1123,6 +1126,108 @@ abstract class AppLocalizations {
   /// **'Swipe wave left to delete.'**
   String get waveTimelineHintDetail;
 
+  /// No description provided for @waveTimelineGuideTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Usage guide'**
+  String get waveTimelineGuideTitle;
+
+  /// No description provided for @waveTimelineGuideBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view expectation'**
+  String get waveTimelineGuideBody;
+
+  /// No description provided for @waveDeadLinksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Broken references'**
+  String get waveDeadLinksTitle;
+
+  /// No description provided for @waveDeadLinksClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear dead links'**
+  String get waveDeadLinksClear;
+
+  /// No description provided for @customZombieManagerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom zombie management'**
+  String get customZombieManagerTitle;
+
+  /// No description provided for @customZombieEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No custom zombie data'**
+  String get customZombieEmpty;
+
+  /// No description provided for @waveManagerGlobalParams.
+  ///
+  /// In en, this message translates to:
+  /// **'Wave manager parameters'**
+  String get waveManagerGlobalParams;
+
+  /// No description provided for @waveManagerGlobalSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Flag interval: {interval}, health: {minPercent}% - {maxPercent}%'**
+  String waveManagerGlobalSummary(int interval, int minPercent, int maxPercent);
+
+  /// No description provided for @waveEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No waves yet'**
+  String get waveEmptyTitle;
+
+  /// No description provided for @waveEmptySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the first wave, or remove this empty container.'**
+  String get waveEmptySubtitle;
+
+  /// No description provided for @waveHeaderPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Content & points preview'**
+  String get waveHeaderPreview;
+
+  /// No description provided for @waveTotalLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Total: {total}'**
+  String waveTotalLabel(int total);
+
+  /// No description provided for @waveEmptyRowHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty wave (swipe left/right)'**
+  String get waveEmptyRowHint;
+
+  /// No description provided for @removeFromWave.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from wave'**
+  String get removeFromWave;
+
+  /// No description provided for @deleteEventEntityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete event entity?'**
+  String get deleteEventEntityTitle;
+
+  /// No description provided for @deleteEventEntityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This will remove the event object from the level.'**
+  String get deleteEventEntityBody;
+
+  /// No description provided for @waveEventsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wave {wave} events'**
+  String waveEventsTitle(int wave);
+
   /// No description provided for @waveManagerSettings.
   ///
   /// In en, this message translates to:
@@ -1134,6 +1239,192 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Flag interval'**
   String get flagInterval;
+
+  /// No description provided for @waveManagerHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wave manager'**
+  String get waveManagerHelpTitle;
+
+  /// No description provided for @waveManagerHelpOverviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get waveManagerHelpOverviewTitle;
+
+  /// No description provided for @waveManagerHelpOverviewBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Global parameters for wave events and health thresholds.'**
+  String get waveManagerHelpOverviewBody;
+
+  /// No description provided for @waveManagerHelpFlagTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Flag interval'**
+  String get waveManagerHelpFlagTitle;
+
+  /// No description provided for @waveManagerHelpFlagBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Every N waves is a flag wave; the final wave is always flag.'**
+  String get waveManagerHelpFlagBody;
+
+  /// No description provided for @waveManagerHelpTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time control'**
+  String get waveManagerHelpTimeTitle;
+
+  /// No description provided for @waveManagerHelpTimeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'First wave delay changes when a conveyor is present.'**
+  String get waveManagerHelpTimeBody;
+
+  /// No description provided for @waveManagerHelpMusicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Music type'**
+  String get waveManagerHelpMusicTitle;
+
+  /// No description provided for @waveManagerHelpMusicBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Modern world only; provides fixed background jam type.'**
+  String get waveManagerHelpMusicBody;
+
+  /// No description provided for @waveManagerBasicParams.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic params'**
+  String get waveManagerBasicParams;
+
+  /// No description provided for @waveManagerMaxHealthThreshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Max health threshold'**
+  String get waveManagerMaxHealthThreshold;
+
+  /// No description provided for @waveManagerMinHealthThreshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Min health threshold'**
+  String get waveManagerMinHealthThreshold;
+
+  /// No description provided for @waveManagerThresholdHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Threshold must be between 0 and 1.'**
+  String get waveManagerThresholdHint;
+
+  /// No description provided for @waveManagerTimeControl.
+  ///
+  /// In en, this message translates to:
+  /// **'Time control'**
+  String get waveManagerTimeControl;
+
+  /// No description provided for @waveManagerFirstWaveDelayConveyor.
+  ///
+  /// In en, this message translates to:
+  /// **'First wave delay (conveyor)'**
+  String get waveManagerFirstWaveDelayConveyor;
+
+  /// No description provided for @waveManagerFirstWaveDelayNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'First wave delay (normal)'**
+  String get waveManagerFirstWaveDelayNormal;
+
+  /// No description provided for @waveManagerFlagWaveDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Flag wave delay'**
+  String get waveManagerFlagWaveDelay;
+
+  /// No description provided for @waveManagerConveyorDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'Conveyor module detected; conveyor delay applied.'**
+  String get waveManagerConveyorDetected;
+
+  /// No description provided for @waveManagerConveyorNotDetected.
+  ///
+  /// In en, this message translates to:
+  /// **'No conveyor module; normal delay applied.'**
+  String get waveManagerConveyorNotDetected;
+
+  /// No description provided for @waveManagerSpecial.
+  ///
+  /// In en, this message translates to:
+  /// **'Special'**
+  String get waveManagerSpecial;
+
+  /// No description provided for @waveManagerSuppressFlagZombieTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suppress flag zombie'**
+  String get waveManagerSuppressFlagZombieTitle;
+
+  /// No description provided for @waveManagerSuppressFlagZombieField.
+  ///
+  /// In en, this message translates to:
+  /// **'SuppressFlagZombie'**
+  String get waveManagerSuppressFlagZombieField;
+
+  /// No description provided for @waveManagerSuppressFlagZombieHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, flag waves won’t spawn a flag zombie.'**
+  String get waveManagerSuppressFlagZombieHint;
+
+  /// No description provided for @waveManagerLevelJam.
+  ///
+  /// In en, this message translates to:
+  /// **'Level Jam'**
+  String get waveManagerLevelJam;
+
+  /// No description provided for @waveManagerLevelJamHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Only applies to Modern world; provides fixed background music.'**
+  String get waveManagerLevelJamHint;
+
+  /// No description provided for @jamNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get jamNone;
+
+  /// No description provided for @jamPop.
+  ///
+  /// In en, this message translates to:
+  /// **'Pop'**
+  String get jamPop;
+
+  /// No description provided for @jamRap.
+  ///
+  /// In en, this message translates to:
+  /// **'Rap'**
+  String get jamRap;
+
+  /// No description provided for @jamMetal.
+  ///
+  /// In en, this message translates to:
+  /// **'Metal'**
+  String get jamMetal;
+
+  /// No description provided for @jamPunk.
+  ///
+  /// In en, this message translates to:
+  /// **'Punk'**
+  String get jamPunk;
+
+  /// No description provided for @jam8Bit.
+  ///
+  /// In en, this message translates to:
+  /// **'8-Bit'**
+  String get jam8Bit;
 
   /// No description provided for @noWaves.
   ///
@@ -2173,6 +2464,18 @@ abstract class AppLocalizations {
   /// **'Black hole attracts plants'**
   String get eventDesc_BlackHoleWaveActionProps;
 
+  /// No description provided for @eventTitle_MagicMirrorWaveActionProps.
+  ///
+  /// In en, this message translates to:
+  /// **'Magic Mirror'**
+  String get eventTitle_MagicMirrorWaveActionProps;
+
+  /// No description provided for @eventDesc_MagicMirrorWaveActionProps.
+  ///
+  /// In en, this message translates to:
+  /// **'Mirror portals'**
+  String get eventDesc_MagicMirrorWaveActionProps;
+
   /// No description provided for @eventTitle_WaveActionMagicMirrorTeleportationArrayProps2.
   ///
   /// In en, this message translates to:
@@ -2382,9 +2685,28 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clear all'**
   String get clearAll;
+
+  /// No description provided for @moduleCategoryBase.
+  ///
+  /// In en, this message translates to:
+  /// **'Base'**
+  String get moduleCategoryBase;
+
+  /// No description provided for @moduleCategoryMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Game Modes'**
+  String get moduleCategoryMode;
+
+  /// No description provided for @moduleCategoryScene.
+  ///
+  /// In en, this message translates to:
+  /// **'Scene'**
+  String get moduleCategoryScene;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -2393,26 +2715,28 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'ru', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['en', 'ru', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en': return AppLocalizationsEn();
-    case 'ru': return AppLocalizationsRu();
-    case 'zh': return AppLocalizationsZh();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'ru':
+      return AppLocalizationsRu();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

@@ -200,7 +200,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get introSection => '简介';
 
   @override
-  String get introText => 'Z-Editor 是一款专为《植物大战僵尸2》设计的可视化关卡编辑工具。它旨在解决直接修改 JSON 文件繁琐、易错的问题，提供直观的图形界面来管理关卡配置。';
+  String get introText =>
+      'Z-Editor 是一款专为《植物大战僵尸2》设计的可视化关卡编辑工具。它旨在解决直接修改 JSON 文件繁琐、易错的问题，提供直观的图形界面来管理关卡配置。';
 
   @override
   String get featuresSection => '核心功能';
@@ -221,7 +222,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get usageSection => '使用说明';
 
   @override
-  String get usageText => '1. 目录设置：首次进入请选择存放 JSON 关卡文件的目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n交流 QQ 群：562251204';
+  String get usageText =>
+      '1. 目录设置：首次进入请选择存放 JSON 关卡文件的目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n交流 QQ 群：562251204';
 
   @override
   String get creditsSection => '致谢名单';
@@ -236,7 +238,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get thanksLabel => '特别鸣谢：';
 
   @override
-  String get thanksNames => '星寻、metal海枣、超越自我3333、桃酱、凉沈、小小师、顾小言、PhiLia093、咖啡、不留名';
+  String get thanksNames =>
+      '星寻、metal海枣、超越自我3333、桃酱、凉沈、小小师、顾小言、PhiLia093、咖啡、不留名';
 
   @override
   String get tagline => '穿越时空 创造无穷可能';
@@ -304,7 +307,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noLevelDefinition => '未找到关卡定义';
 
   @override
-  String get noLevelDefinitionHint => '当前关卡内未找到关卡定义模块 (LevelDefinition)，这是关卡文件的基础节点。请尝试手动添加。';
+  String get noLevelDefinitionHint =>
+      '当前关卡内未找到关卡定义模块 (LevelDefinition)，这是关卡文件的基础节点。请尝试手动添加。';
 
   @override
   String get levelBasicInfo => '关卡基本信息';
@@ -316,172 +320,173 @@ class AppLocalizationsZh extends AppLocalizations {
   String get removeModule => '移除模块';
 
   @override
-  String get zombieCategoryMain => 'By World';
+  String get zombieCategoryMain => '按世界';
 
   @override
-  String get zombieCategorySize => 'By Size';
+  String get zombieCategorySize => '按体型';
 
   @override
-  String get zombieCategoryOther => 'Other';
+  String get zombieCategoryOther => '其他';
 
   @override
-  String get zombieCategoryCollection => 'My Collection';
+  String get zombieCategoryCollection => '我的收藏';
 
   @override
-  String get zombieTagAll => 'All Zombies';
+  String get zombieTagAll => '全部僵尸';
 
   @override
-  String get zombieTagEgyptPirate => 'Egypt/Pirate';
+  String get zombieTagEgyptPirate => '埃及/海盗';
 
   @override
-  String get zombieTagWestFuture => 'West/Future';
+  String get zombieTagWestFuture => '西部/未来';
 
   @override
-  String get zombieTagDarkBeach => 'Dark/Beach';
+  String get zombieTagDarkBeach => '黑暗/沙滩';
 
   @override
-  String get zombieTagIceageLostcity => 'Ice Age/Lost City';
+  String get zombieTagIceageLostcity => '冰河/失落之城';
 
   @override
-  String get zombieTagKongfuSkycity => 'Kongfu/Sky City';
+  String get zombieTagKongfuSkycity => '功夫/天空之城';
 
   @override
-  String get zombieTagEightiesDino => '80s/Dino';
+  String get zombieTagEightiesDino => '80年代/恐龙';
 
   @override
-  String get zombieTagModernPvz1 => 'Modern/Pvz1';
+  String get zombieTagModernPvz1 => '现代/一代';
 
   @override
-  String get zombieTagSteamRenai => 'Steam/Renaissance';
+  String get zombieTagSteamRenai => '蒸汽/文艺复兴';
 
   @override
-  String get zombieTagHenaiAtlantis => 'Heian/Atlantis';
+  String get zombieTagHenaiAtlantis => '平安/亚特兰蒂斯';
 
   @override
-  String get zombieTagTaleZCorp => 'Fairytale/ZCorp';
+  String get zombieTagTaleZCorp => '童话/Z公司';
 
   @override
-  String get zombieTagParkourSpeed => 'Parkour/Speed';
+  String get zombieTagParkourSpeed => '跑酷/极速';
 
   @override
-  String get zombieTagTothewest => 'Journey to West';
+  String get zombieTagTothewest => '西游';
 
   @override
-  String get zombieTagMemory => 'Memory Journey';
+  String get zombieTagMemory => '回忆之旅';
 
   @override
-  String get zombieTagUniverse => 'Parallel Universe';
+  String get zombieTagUniverse => '平行宇宙';
 
   @override
-  String get zombieTagFestival1 => 'Festival 1';
+  String get zombieTagFestival1 => '节日1';
 
   @override
-  String get zombieTagFestival2 => 'Festival 2';
+  String get zombieTagFestival2 => '节日2';
 
   @override
-  String get zombieTagRoman => 'Roman';
+  String get zombieTagRoman => '罗马';
 
   @override
-  String get zombieTagPet => 'Pet';
+  String get zombieTagPet => '宠物';
 
   @override
-  String get zombieTagImp => 'Imp';
+  String get zombieTagImp => '小鬼';
 
   @override
-  String get zombieTagBasic => 'Basic';
+  String get zombieTagBasic => '基础';
 
   @override
-  String get zombieTagFat => 'Fat';
+  String get zombieTagFat => '胖子';
 
   @override
-  String get zombieTagStrong => 'Strong';
+  String get zombieTagStrong => '强壮';
 
   @override
-  String get zombieTagGargantuar => 'Gargantuar';
+  String get zombieTagGargantuar => '巨人';
 
   @override
-  String get zombieTagElite => 'Elite';
+  String get zombieTagElite => '精英';
 
   @override
-  String get zombieTagEvildave => 'Evil Dave';
+  String get zombieTagEvildave => '邪恶戴夫';
 
   @override
-  String get plantCategoryQuality => 'By Quality';
+  String get plantCategoryQuality => '按品质';
 
   @override
-  String get plantCategoryRole => 'By Role';
+  String get plantCategoryRole => '按角色';
 
   @override
-  String get plantCategoryAttribute => 'By Attribute';
+  String get plantCategoryAttribute => '按属性';
 
   @override
-  String get plantCategoryOther => 'Other';
+  String get plantCategoryOther => '其他';
 
   @override
-  String get plantCategoryCollection => 'My Collection';
+  String get plantCategoryCollection => '我的收藏';
 
   @override
-  String get plantTagAll => 'All Plants';
+  String get plantTagAll => '全部植物';
 
   @override
-  String get plantTagWhite => 'White Quality';
+  String get plantTagWhite => '白品质';
 
   @override
-  String get plantTagGreen => 'Green Quality';
+  String get plantTagGreen => '绿品质';
 
   @override
-  String get plantTagBlue => 'Blue Quality';
+  String get plantTagBlue => '蓝品质';
 
   @override
-  String get plantTagPurple => 'Purple Quality';
+  String get plantTagPurple => '紫品质';
 
   @override
-  String get plantTagOrange => 'Orange Quality';
+  String get plantTagOrange => '橙品质';
 
   @override
-  String get plantTagAssist => 'Assist';
+  String get plantTagAssist => '辅助';
 
   @override
-  String get plantTagRemote => 'Remote';
+  String get plantTagRemote => '远程';
 
   @override
-  String get plantTagProductor => 'Producer';
+  String get plantTagProductor => '生产';
 
   @override
-  String get plantTagDefence => 'Defense';
+  String get plantTagDefence => '防御';
 
   @override
-  String get plantTagVanguard => 'Vanguard';
+  String get plantTagVanguard => '先锋';
 
   @override
-  String get plantTagTrapper => 'Trapper';
+  String get plantTagTrapper => '陷阱';
 
   @override
-  String get plantTagFire => 'Fire';
+  String get plantTagFire => '火焰';
 
   @override
-  String get plantTagIce => 'Ice';
+  String get plantTagIce => '寒冰';
 
   @override
-  String get plantTagMagic => 'Magic';
+  String get plantTagMagic => '魔法';
 
   @override
-  String get plantTagPoison => 'Poison';
+  String get plantTagPoison => '毒系';
 
   @override
-  String get plantTagElectric => 'Electric';
+  String get plantTagElectric => '电能';
 
   @override
-  String get plantTagPhysics => 'Physics';
+  String get plantTagPhysics => '物理';
 
   @override
-  String get plantTagOriginal => 'Original PvZ1';
+  String get plantTagOriginal => '一代原版';
 
   @override
-  String get plantTagParallel => 'Parallel World';
+  String get plantTagParallel => '平行世界';
 
   @override
-  String get removeModuleConfirm => '确定要移除该模块吗？本地自定义模块(@CurrentLevel)及其关联数据将一并删除，不可恢复。';
+  String get removeModuleConfirm =>
+      '确定要移除该模块吗？本地自定义模块(@CurrentLevel)及其关联数据将一并删除，不可恢复。';
 
   @override
   String get confirmRemove => '确认移除';
@@ -532,10 +537,164 @@ class AppLocalizationsZh extends AppLocalizations {
   String get waveTimelineHintDetail => '左滑波次可删除。';
 
   @override
+  String get waveTimelineGuideTitle => '操作指引';
+
+  @override
+  String get waveTimelineGuideBody => '右滑：管理波次事件\n左滑：删除该波次\n点击pt：查看期望';
+
+  @override
+  String get waveDeadLinksTitle => '引用失效报警';
+
+  @override
+  String get waveDeadLinksClear => '一键清理失效波次';
+
+  @override
+  String get customZombieManagerTitle => '自定义僵尸管理';
+
+  @override
+  String get customZombieEmpty => '暂无自定义僵尸数据';
+
+  @override
+  String get waveManagerGlobalParams => '波次管理器全局参数';
+
+  @override
+  String waveManagerGlobalSummary(
+    int interval,
+    int minPercent,
+    int maxPercent,
+  ) {
+    return '旗帜间隔: $interval, 刷新血线: $minPercent% - $maxPercent%';
+  }
+
+  @override
+  String get waveEmptyTitle => '当前波次列表为空';
+
+  @override
+  String get waveEmptySubtitle => '您可以添加第一个波次，或者删除这个空的容器。';
+
+  @override
+  String get waveHeaderPreview => '内容及点数预览';
+
+  @override
+  String waveTotalLabel(int total) {
+    return '总计: $total';
+  }
+
+  @override
+  String get waveEmptyRowHint => '空波次 (左右划操作)';
+
+  @override
+  String get removeFromWave => '从波次移除';
+
+  @override
+  String get deleteEventEntityTitle => '删除事件实体？';
+
+  @override
+  String get deleteEventEntityBody => '这会从关卡中移除该事件对象。';
+
+  @override
+  String waveEventsTitle(int wave) {
+    return '第 $wave 波事件';
+  }
+
+  @override
   String get waveManagerSettings => '波次管理器设置';
 
   @override
   String get flagInterval => '旗帜间隔';
+
+  @override
+  String get waveManagerHelpTitle => '波次管理器';
+
+  @override
+  String get waveManagerHelpOverviewTitle => '简要介绍';
+
+  @override
+  String get waveManagerHelpOverviewBody => '全局参数与血线阈值设置。';
+
+  @override
+  String get waveManagerHelpFlagTitle => '旗帜间隔';
+
+  @override
+  String get waveManagerHelpFlagBody => '每 N 波为旗帜波，最后一波始终为旗帜波。';
+
+  @override
+  String get waveManagerHelpTimeTitle => '时间控制';
+
+  @override
+  String get waveManagerHelpTimeBody => '传送带关卡会使用不同的首波延迟。';
+
+  @override
+  String get waveManagerHelpMusicTitle => '音乐类型';
+
+  @override
+  String get waveManagerHelpMusicBody => '仅现代世界有效，设置固定背景音乐。';
+
+  @override
+  String get waveManagerBasicParams => '基础参数';
+
+  @override
+  String get waveManagerMaxHealthThreshold => '最大血线阈值';
+
+  @override
+  String get waveManagerMinHealthThreshold => '最小血线阈值';
+
+  @override
+  String get waveManagerThresholdHint => '阈值必须在 0 到 1 之间。';
+
+  @override
+  String get waveManagerTimeControl => '时间控制';
+
+  @override
+  String get waveManagerFirstWaveDelayConveyor => '首波延迟（传送带）';
+
+  @override
+  String get waveManagerFirstWaveDelayNormal => '首波延迟（常规）';
+
+  @override
+  String get waveManagerFlagWaveDelay => '旗帜波延迟';
+
+  @override
+  String get waveManagerConveyorDetected => '检测到传送带模块，使用传送带延迟。';
+
+  @override
+  String get waveManagerConveyorNotDetected => '未检测到传送带模块，使用常规延迟。';
+
+  @override
+  String get waveManagerSpecial => '特殊';
+
+  @override
+  String get waveManagerSuppressFlagZombieTitle => '禁用旗帜僵尸';
+
+  @override
+  String get waveManagerSuppressFlagZombieField => 'SuppressFlagZombie';
+
+  @override
+  String get waveManagerSuppressFlagZombieHint => '开启后旗帜波不再生成旗帜僵尸。';
+
+  @override
+  String get waveManagerLevelJam => '关卡 Jam';
+
+  @override
+  String get waveManagerLevelJamHint => '仅现代世界有效，设置固定背景音乐。';
+
+  @override
+  String get jamNone => '无';
+
+  @override
+  String get jamPop => '流行';
+
+  @override
+  String get jamRap => '说唱';
+
+  @override
+  String get jamMetal => '金属';
+
+  @override
+  String get jamPunk => '朋克';
+
+  @override
+  String get jam8Bit => '8 位';
 
   @override
   String get noWaves => '暂无波次';
@@ -697,256 +856,256 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noDynamicZombies => '没有动态僵尸';
 
   @override
-  String get moduleTitle_WaveManagerModuleProperties => 'Wave Manager';
+  String get moduleTitle_WaveManagerModuleProperties => '波次管理器';
 
   @override
-  String get moduleDesc_WaveManagerModuleProperties => 'Manage level wave events';
+  String get moduleDesc_WaveManagerModuleProperties => '管理关卡波次事件';
 
   @override
-  String get moduleTitle_CustomLevelModuleProperties => 'Lawn Module';
+  String get moduleTitle_CustomLevelModuleProperties => '草坪模块';
 
   @override
-  String get moduleDesc_CustomLevelModuleProperties => 'Enable custom lawn framework';
+  String get moduleDesc_CustomLevelModuleProperties => '启用自定义草坪框架';
 
   @override
-  String get moduleTitle_StandardLevelIntroProperties => 'Intro Animation';
+  String get moduleTitle_StandardLevelIntroProperties => '开场动画';
 
   @override
-  String get moduleDesc_StandardLevelIntroProperties => 'Camera pan at level start';
+  String get moduleDesc_StandardLevelIntroProperties => '关卡开始镜头平移';
 
   @override
-  String get moduleTitle_ZombiesAteYourBrainsProperties => 'Failure Condition';
+  String get moduleTitle_ZombiesAteYourBrainsProperties => '失败条件';
 
   @override
-  String get moduleDesc_ZombiesAteYourBrainsProperties => 'Zombie enters house condition';
+  String get moduleDesc_ZombiesAteYourBrainsProperties => '僵尸进房条件';
 
   @override
-  String get moduleTitle_ZombiesDeadWinConProperties => 'Death Drop';
+  String get moduleTitle_ZombiesDeadWinConProperties => '死亡掉落';
 
   @override
-  String get moduleDesc_ZombiesDeadWinConProperties => 'Required for level stability';
+  String get moduleDesc_ZombiesDeadWinConProperties => '关卡稳定所需';
 
   @override
-  String get moduleTitle_PennyClassroomModuleProperties => 'Plant Tier';
+  String get moduleTitle_PennyClassroomModuleProperties => '植物阶位';
 
   @override
-  String get moduleDesc_PennyClassroomModuleProperties => 'Global plant tier definition';
+  String get moduleDesc_PennyClassroomModuleProperties => '全局植物阶位定义';
 
   @override
-  String get moduleTitle_SeedBankProperties => 'Seed Bank';
+  String get moduleTitle_SeedBankProperties => '种子库';
 
   @override
-  String get moduleDesc_SeedBankProperties => 'Preset plants and selection method';
+  String get moduleDesc_SeedBankProperties => '预设植物与选取方式';
 
   @override
-  String get moduleTitle_ConveyorSeedBankProperties => 'Conveyor Belt';
+  String get moduleTitle_ConveyorSeedBankProperties => '传送带';
 
   @override
-  String get moduleDesc_ConveyorSeedBankProperties => 'Preset conveyor plants and weights';
+  String get moduleDesc_ConveyorSeedBankProperties => '预设传送带植物与权重';
 
   @override
-  String get moduleTitle_SunDropperProperties => 'Sun Dropper';
+  String get moduleTitle_SunDropperProperties => '阳光掉落';
 
   @override
-  String get moduleDesc_SunDropperProperties => 'Control falling sun frequency';
+  String get moduleDesc_SunDropperProperties => '控制掉落阳光频率';
 
   @override
-  String get moduleTitle_LevelMutatorMaxSunProps => 'Max Sun';
+  String get moduleTitle_LevelMutatorMaxSunProps => '最大阳光';
 
   @override
-  String get moduleDesc_LevelMutatorMaxSunProps => 'Override maximum sun limit';
+  String get moduleDesc_LevelMutatorMaxSunProps => '覆盖阳光上限';
 
   @override
-  String get moduleTitle_LevelMutatorStartingPlantfoodProps => 'Starting Plant Food';
+  String get moduleTitle_LevelMutatorStartingPlantfoodProps => '初始植物食品';
 
   @override
-  String get moduleDesc_LevelMutatorStartingPlantfoodProps => 'Override initial plant food';
+  String get moduleDesc_LevelMutatorStartingPlantfoodProps => '覆盖初始植物食品';
 
   @override
-  String get moduleTitle_StarChallengeModuleProperties => 'Challenges';
+  String get moduleTitle_StarChallengeModuleProperties => '挑战';
 
   @override
-  String get moduleDesc_StarChallengeModuleProperties => 'Level restrictions and goals';
+  String get moduleDesc_StarChallengeModuleProperties => '关卡限制与目标';
 
   @override
-  String get moduleTitle_LevelScoringModuleProperties => 'Scoring';
+  String get moduleTitle_LevelScoringModuleProperties => '计分';
 
   @override
-  String get moduleDesc_LevelScoringModuleProperties => 'Enable score points for kills';
+  String get moduleDesc_LevelScoringModuleProperties => '击杀获得分数';
 
   @override
-  String get moduleTitle_BowlingMinigameProperties => 'Bowling Bulb';
+  String get moduleTitle_BowlingMinigameProperties => '保龄球';
 
   @override
-  String get moduleDesc_BowlingMinigameProperties => 'Set line and disable shovel';
+  String get moduleDesc_BowlingMinigameProperties => '设置阵线并禁用铲子';
 
   @override
-  String get moduleTitle_NewBowlingMinigameProperties => 'Wall-nut Bowling';
+  String get moduleTitle_NewBowlingMinigameProperties => '墙果保龄';
 
   @override
-  String get moduleDesc_NewBowlingMinigameProperties => 'Bowling line setup';
+  String get moduleDesc_NewBowlingMinigameProperties => '保龄阵线设置';
 
   @override
-  String get moduleTitle_VaseBreakerPresetProperties => 'Vase Layout';
+  String get moduleTitle_VaseBreakerPresetProperties => '花瓶布局';
 
   @override
-  String get moduleDesc_VaseBreakerPresetProperties => 'Configure vase contents';
+  String get moduleDesc_VaseBreakerPresetProperties => '配置花瓶内容';
 
   @override
-  String get moduleTitle_VaseBreakerArcadeModuleProperties => 'Vase Breaker Mode';
+  String get moduleTitle_VaseBreakerArcadeModuleProperties => '砸罐子模式';
 
   @override
-  String get moduleDesc_VaseBreakerArcadeModuleProperties => 'Enable vase breaker UI';
+  String get moduleDesc_VaseBreakerArcadeModuleProperties => '启用砸罐子界面';
 
   @override
-  String get moduleTitle_VaseBreakerFlowModuleProperties => 'Vase Animation';
+  String get moduleTitle_VaseBreakerFlowModuleProperties => '花瓶动画';
 
   @override
-  String get moduleDesc_VaseBreakerFlowModuleProperties => 'Control vase drop animation';
+  String get moduleDesc_VaseBreakerFlowModuleProperties => '控制花瓶掉落动画';
 
   @override
-  String get moduleTitle_EvilDaveProperties => 'I, Zombie';
+  String get moduleTitle_EvilDaveProperties => '我是僵尸';
 
   @override
-  String get moduleDesc_EvilDaveProperties => 'Enable I, Zombie mode';
+  String get moduleDesc_EvilDaveProperties => '启用我是僵尸模式';
 
   @override
-  String get moduleTitle_ZombossBattleModuleProperties => 'Zomboss Battle';
+  String get moduleTitle_ZombossBattleModuleProperties => '僵王战';
 
   @override
-  String get moduleDesc_ZombossBattleModuleProperties => 'Boss battle parameters';
+  String get moduleDesc_ZombossBattleModuleProperties => 'Boss战参数';
 
   @override
-  String get moduleTitle_ZombossBattleIntroProperties => 'Zomboss Intro';
+  String get moduleTitle_ZombossBattleIntroProperties => '僵王开场';
 
   @override
-  String get moduleDesc_ZombossBattleIntroProperties => 'Boss intro and health bar';
+  String get moduleDesc_ZombossBattleIntroProperties => 'Boss开场与血条';
 
   @override
-  String get moduleTitle_SeedRainProperties => 'Seed Rain';
+  String get moduleTitle_SeedRainProperties => '种子雨';
 
   @override
-  String get moduleDesc_SeedRainProperties => 'Falling plants/zombies/items';
+  String get moduleDesc_SeedRainProperties => '掉落植物/僵尸/物品';
 
   @override
-  String get moduleTitle_LastStandMinigameProperties => 'Last Stand';
+  String get moduleTitle_LastStandMinigameProperties => '坚不可摧';
 
   @override
-  String get moduleDesc_LastStandMinigameProperties => 'Initial resources and setup phase';
+  String get moduleDesc_LastStandMinigameProperties => '初始资源与准备阶段';
 
   @override
-  String get moduleTitle_PVZ1OverwhelmModuleProperties => 'Overwhelm';
+  String get moduleTitle_PVZ1OverwhelmModuleProperties => 'overwhelm';
 
   @override
-  String get moduleDesc_PVZ1OverwhelmModuleProperties => 'Overwhelm minigame';
+  String get moduleDesc_PVZ1OverwhelmModuleProperties => 'overwhelm 小游戏';
 
   @override
-  String get moduleTitle_SunBombChallengeProperties => 'Sun Bombs';
+  String get moduleTitle_SunBombChallengeProperties => '阳光炸弹';
 
   @override
-  String get moduleDesc_SunBombChallengeProperties => 'Falling sun bomb config';
+  String get moduleDesc_SunBombChallengeProperties => '掉落阳光炸弹配置';
 
   @override
-  String get moduleTitle_IncreasedCostModuleProperties => 'Inflation';
+  String get moduleTitle_IncreasedCostModuleProperties => '通货膨胀';
 
   @override
-  String get moduleDesc_IncreasedCostModuleProperties => 'Sun cost increases with planting';
+  String get moduleDesc_IncreasedCostModuleProperties => '种植后阳光消耗增加';
 
   @override
-  String get moduleTitle_DeathHoleModuleProperties => 'Death Holes';
+  String get moduleTitle_DeathHoleModuleProperties => '死亡坑洞';
 
   @override
-  String get moduleDesc_DeathHoleModuleProperties => 'Plants leave unplantable holes';
+  String get moduleDesc_DeathHoleModuleProperties => '植物留下不可种植坑洞';
 
   @override
-  String get moduleTitle_ZombieMoveFastModuleProperties => 'Fast Entry';
+  String get moduleTitle_ZombieMoveFastModuleProperties => '快速入场';
 
   @override
-  String get moduleDesc_ZombieMoveFastModuleProperties => 'Zombies move fast on entry';
+  String get moduleDesc_ZombieMoveFastModuleProperties => '僵尸入场加速';
 
   @override
-  String get moduleTitle_InitialPlantEntryProperties => 'Initial Plants';
+  String get moduleTitle_InitialPlantEntryProperties => '初始植物';
 
   @override
-  String get moduleDesc_InitialPlantEntryProperties => 'Plants present at start';
+  String get moduleDesc_InitialPlantEntryProperties => '开局已有植物';
 
   @override
-  String get moduleTitle_InitialZombieProperties => 'Initial Zombies';
+  String get moduleTitle_InitialZombieProperties => '初始僵尸';
 
   @override
-  String get moduleDesc_InitialZombieProperties => 'Zombies present at start';
+  String get moduleDesc_InitialZombieProperties => '开局已有僵尸';
 
   @override
-  String get moduleTitle_InitialGridItemProperties => 'Initial Grid Items';
+  String get moduleTitle_InitialGridItemProperties => '初始格点物品';
 
   @override
-  String get moduleDesc_InitialGridItemProperties => 'Grid items present at start';
+  String get moduleDesc_InitialGridItemProperties => '开局已有格点物品';
 
   @override
-  String get moduleTitle_ProtectThePlantChallengeProperties => 'Protect Plants';
+  String get moduleTitle_ProtectThePlantChallengeProperties => '保护植物';
 
   @override
-  String get moduleDesc_ProtectThePlantChallengeProperties => 'Plants that must be protected';
+  String get moduleDesc_ProtectThePlantChallengeProperties => '必须保护的植物';
 
   @override
-  String get moduleTitle_ProtectTheGridItemChallengeProperties => 'Protect Items';
+  String get moduleTitle_ProtectTheGridItemChallengeProperties => '保护物品';
 
   @override
-  String get moduleDesc_ProtectTheGridItemChallengeProperties => 'Items that must be protected';
+  String get moduleDesc_ProtectTheGridItemChallengeProperties => '必须保护的物品';
 
   @override
-  String get moduleTitle_ZombiePotionModuleProperties => 'Zombie Potions';
+  String get moduleTitle_ZombiePotionModuleProperties => '僵尸药水';
 
   @override
-  String get moduleDesc_ZombiePotionModuleProperties => 'Dark Ages potion generation';
+  String get moduleDesc_ZombiePotionModuleProperties => '黑暗时代药水生成';
 
   @override
-  String get moduleTitle_PiratePlankProperties => 'Pirate Planks';
+  String get moduleTitle_PiratePlankProperties => '海盗木板';
 
   @override
-  String get moduleDesc_PiratePlankProperties => 'Pirate Seas plank rows';
+  String get moduleDesc_PiratePlankProperties => '海盗海域木板行';
 
   @override
-  String get moduleTitle_RailcartProperties => 'Railcarts';
+  String get moduleTitle_RailcartProperties => '矿车';
 
   @override
-  String get moduleDesc_RailcartProperties => 'Minecart and track layout';
+  String get moduleDesc_RailcartProperties => '矿车与轨道布局';
 
   @override
-  String get moduleTitle_PowerTileProperties => 'Power Tiles';
+  String get moduleTitle_PowerTileProperties => '电力格';
 
   @override
-  String get moduleDesc_PowerTileProperties => 'Future power tile layout';
+  String get moduleDesc_PowerTileProperties => '未来电力格布局';
 
   @override
-  String get moduleTitle_ManholePipelineModuleProperties => 'Manholes';
+  String get moduleTitle_ManholePipelineModuleProperties => '井盖管道';
 
   @override
-  String get moduleDesc_ManholePipelineModuleProperties => 'Steam Age pipelines';
+  String get moduleDesc_ManholePipelineModuleProperties => '蒸汽时代管道';
 
   @override
-  String get moduleTitle_RoofProperties => 'Roof Pots';
+  String get moduleTitle_RoofProperties => '屋顶花盆';
 
   @override
-  String get moduleDesc_RoofProperties => 'Roof level pot columns';
+  String get moduleDesc_RoofProperties => '屋顶关卡花盆列';
 
   @override
-  String get moduleTitle_TideProperties => 'Tide System';
+  String get moduleTitle_TideProperties => '潮汐系统';
 
   @override
-  String get moduleDesc_TideProperties => 'Enable tide system';
+  String get moduleDesc_TideProperties => '启用潮汐系统';
 
   @override
-  String get moduleTitle_WarMistProperties => 'War Mist';
+  String get moduleTitle_WarMistProperties => '战争迷雾';
 
   @override
-  String get moduleDesc_WarMistProperties => 'Fog of war system';
+  String get moduleDesc_WarMistProperties => '战争迷雾系统';
 
   @override
-  String get moduleTitle_RainDarkProperties => 'Weather';
+  String get moduleTitle_RainDarkProperties => '天气';
 
   @override
-  String get moduleDesc_RainDarkProperties => 'Rain, snow, storm effects';
+  String get moduleDesc_RainDarkProperties => '雨、雪、风暴效果';
 
   @override
   String get eventTitle_SpawnZombiesFromGroundSpawnerProps => '地底出怪';
@@ -1063,28 +1222,34 @@ class AppLocalizationsZh extends AppLocalizations {
   String get eventDesc_BlackHoleWaveActionProps => '黑洞吸引植物';
 
   @override
+  String get eventTitle_MagicMirrorWaveActionProps => '魔镜';
+
+  @override
+  String get eventDesc_MagicMirrorWaveActionProps => '镜子传送门';
+
+  @override
   String get eventTitle_WaveActionMagicMirrorTeleportationArrayProps2 => '魔镜';
 
   @override
   String get eventDesc_WaveActionMagicMirrorTeleportationArrayProps2 => '镜子传送门';
 
   @override
-  String get weatherOption_DefaultSnow_label => 'Frostbite Caves (DefaultSnow)';
+  String get weatherOption_DefaultSnow_label => '冰河洞穴 (DefaultSnow)';
 
   @override
-  String get weatherOption_DefaultSnow_desc => 'Snowing effect from Frostbite Caves';
+  String get weatherOption_DefaultSnow_desc => '冰河洞穴下雪效果';
 
   @override
-  String get weatherOption_LightningRain_label => 'Thunderstorm (LightningRain)';
+  String get weatherOption_LightningRain_label => '雷暴 (LightningRain)';
 
   @override
-  String get weatherOption_LightningRain_desc => 'Rain and lightning from Dark Ages Day 8';
+  String get weatherOption_LightningRain_desc => '黑暗时代第8天雨与闪电';
 
   @override
-  String get weatherOption_DefaultRainDark_label => 'Dark Ages (DefaultRainDark)';
+  String get weatherOption_DefaultRainDark_label => '黑暗时代 (DefaultRainDark)';
 
   @override
-  String get weatherOption_DefaultRainDark_desc => 'Rain effect from Dark Ages';
+  String get weatherOption_DefaultRainDark_desc => '黑暗时代雨天效果';
 
   @override
   String get iZombiePlantReserveLabel => '植物预留列（PlantDistance）';
@@ -1168,4 +1333,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get clearAll => '清空所有配置';
+
+  @override
+  String get moduleCategoryBase => '基础';
+
+  @override
+  String get moduleCategoryMode => '游戏模式';
+
+  @override
+  String get moduleCategoryScene => '场景';
 }

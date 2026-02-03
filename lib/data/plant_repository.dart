@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:z_editor/data/asset_loader.dart';
@@ -92,6 +91,47 @@ extension PlantTagExtension on PlantTag {
         return s.plantTagOriginal;
       case PlantTag.parallel:
         return s.plantTagParallel;
+    }
+  }
+
+  String? get iconName {
+    switch (this) {
+      case PlantTag.white:
+        return 'Plant_White.webp';
+      case PlantTag.green:
+        return 'Plant_Green.webp';
+      case PlantTag.blue:
+        return 'Plant_Blue.webp';
+      case PlantTag.purple:
+        return 'Plant_Purple.webp';
+      case PlantTag.orange:
+        return 'Plant_Orange.webp';
+      case PlantTag.assist:
+        return 'Plant_Assist.webp';
+      case PlantTag.remote:
+        return 'Plant_Remote.webp';
+      case PlantTag.productor:
+        return 'Plant_Productor.webp';
+      case PlantTag.defence:
+        return 'Plant_Defence.webp';
+      case PlantTag.vanguard:
+        return 'Plant_Vanguard.webp';
+      case PlantTag.trapper:
+        return 'Plant_Trapper.webp';
+      case PlantTag.fire:
+        return 'Plant_Fire.webp';
+      case PlantTag.ice:
+        return 'Plant_Ice.webp';
+      case PlantTag.magic:
+        return 'Plant_Magic.webp';
+      case PlantTag.poison:
+        return 'Plant_Poison.webp';
+      case PlantTag.electric:
+        return 'Plant_Electric.webp';
+      case PlantTag.physics:
+        return 'Plant_Physics.webp';
+      default:
+        return null;
     }
   }
 
@@ -230,6 +270,28 @@ class PlantRepository {
     } catch (_) {
       return null;
     }
+  }
+
+  bool isFavorite(String id) => _favoriteIds.contains(id);
+
+  List<PlantInfo> search(String query, PlantTag? tag, PlantCategory category) {
+    if (!_isLoaded) return [];
+    final baseList =
+        category == PlantCategory.collection
+            ? _allPlants.where((p) => _favoriteIds.contains(p.id)).toList()
+            : (tag != null && tag != PlantTag.all
+                ? _allPlants.where((p) => p.tags.contains(tag)).toList()
+                : _allPlants);
+
+    if (query.trim().isEmpty) return baseList;
+    final lower = query.toLowerCase();
+    return baseList
+        .where(
+          (p) =>
+              p.id.toLowerCase().contains(lower) ||
+              p.name.toLowerCase().contains(lower),
+        )
+        .toList();
   }
 
   Future<void> toggleFavorite(String id) async {

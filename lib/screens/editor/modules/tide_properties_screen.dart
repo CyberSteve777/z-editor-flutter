@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
+import 'package:z_editor/widgets/editor_components.dart';
 
 /// Tide properties editor. Ported from Z-Editor-master TidePropertiesEP.kt
 class TidePropertiesScreen extends StatefulWidget {
@@ -26,8 +27,6 @@ class _TidePropertiesScreenState extends State<TidePropertiesScreen> {
   late PvzObject _moduleObj;
   late TidePropertiesData _data;
   late TextEditingController _startLocCtrl;
-  late TextEditingController _wavesPerFlagCtrl;
-  late TextEditingController _spawnDelayCtrl;
 
   @override
   void initState() {
@@ -59,8 +58,6 @@ class _TidePropertiesScreenState extends State<TidePropertiesScreen> {
       _data = TidePropertiesData();
     }
     _startLocCtrl = TextEditingController(text: '${_data.startingWaveLocation}');
-    _wavesPerFlagCtrl = TextEditingController(text: '${_data.wavesPerFlag}');
-    _spawnDelayCtrl = TextEditingController(text: '${_data.waveSpawnDelay}');
   }
 
   void _sync() {
@@ -72,83 +69,141 @@ class _TidePropertiesScreenState extends State<TidePropertiesScreen> {
   @override
   void dispose() {
     _startLocCtrl.dispose();
-    _wavesPerFlagCtrl.dispose();
-    _spawnDelayCtrl.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final waterStart = 9 - _data.startingWaveLocation;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: widget.onBack),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: widget.onBack,
+        ),
         title: const Text('Tide'),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Tide params',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.help_outline),
+            onPressed: () => showEditorHelpDialog(
+              context,
+              title: 'Tide',
+              sections: const [
+                HelpSectionData(
+                  title: 'Overview',
+                  body: 'Enables tide system and sets initial tide position.',
                 ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _startLocCtrl,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    labelText: 'Starting wave location',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (v) {
-                    final n = int.tryParse(v);
-                    if (n != null) {
-                      _data.startingWaveLocation = n;
-                      _sync();
-                    }
-                  },
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _wavesPerFlagCtrl,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    labelText: 'Waves per flag',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (v) {
-                    final n = int.tryParse(v);
-                    if (n != null) {
-                      _data.wavesPerFlag = n;
-                      _sync();
-                    }
-                  },
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: _spawnDelayCtrl,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    labelText: 'Wave spawn delay',
-                    border: OutlineInputBorder(),
-                  ),
-                  onChanged: (v) {
-                    final n = int.tryParse(v);
-                    if (n != null) {
-                      _data.waveSpawnDelay = n;
-                      _sync();
-                    }
-                  },
+                HelpSectionData(
+                  title: 'Position',
+                  body: 'Right edge is 0, left edge is 9. Negative values allowed.',
                 ),
               ],
             ),
           ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Initial tide position',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: _startLocCtrl,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: 'Starting wave location',
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (v) {
+                        final n = int.tryParse(v);
+                        if (n != null) {
+                          _data.startingWaveLocation = n;
+                          _sync();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Preview',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    scaleTableForDesktop(
+                      context: context,
+                      child: Container(
+                        constraints: const BoxConstraints(maxWidth: 480),
+                        child: AspectRatio(
+                          aspectRatio: 1.8,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: theme.brightness == Brightness.dark
+                                  ? const Color(0xFF2A2A2A)
+                                  : const Color(0xFFE0F2F1),
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(color: theme.dividerColor),
+                            ),
+                            child: Column(
+                              children: List.generate(5, (row) {
+                                return Expanded(
+                                  child: Row(
+                                    children: List.generate(9, (col) {
+                                      final isWater = col >= waterStart;
+                                      return Expanded(
+                                        child: Container(
+                                          margin: const EdgeInsets.all(0.5),
+                                          decoration: BoxDecoration(
+                                            color: isWater
+                                                ? Colors.blue.withValues(alpha: 0.4)
+                                                : Colors.transparent,
+                                            border: Border.all(
+                                              color: theme.dividerColor,
+                                              width: 0.5,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                );
+                              }),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

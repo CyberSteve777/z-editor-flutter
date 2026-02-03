@@ -46,7 +46,7 @@ class ZombiePropertiesRepository {
               weight: sheet.weight,
               speed: sheet.speed,
               eatDPS: sheet.eatDPS,
-              sizeType: sheet.sizeType,
+              sizeType: sheet.sizeType ?? 'unknown',
             );
           }
         } catch (_) {}
@@ -78,7 +78,7 @@ class ZombiePropertiesRepository {
  
   static ZombieStats getStats(String typeName) {
     return instance._statsCache[typeName] ??
-        ZombieStats(id: typeName, hp: 0.0, cost: 0, weight: 0.0, speed: 0.0, eatDPS: 0.0, sizeType: 'unknown');
+        ZombieStats(id: typeName, hp: 0.0, cost: 0, weight: 0, speed: 0.0, eatDPS: 0.0, sizeType: 'unknown');
   }
  
   static bool isValidAlias(String alias) {

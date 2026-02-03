@@ -1,0 +1,389 @@
+import 'package:flutter/material.dart';
+import 'package:z_editor/data/pvz_models.dart';
+import 'package:z_editor/l10n/app_localizations.dart';
+import 'package:z_editor/widgets/editor_components.dart';
+
+/// Wave manager settings. Ported from Z-Editor-master WaveManagerPropertiesEP.kt
+class WaveManagerSettingsScreen extends StatefulWidget {
+  const WaveManagerSettingsScreen({
+    super.key,
+    required this.levelFile,
+    required this.hasConveyor,
+    required this.onChanged,
+    required this.onBack,
+  });
+
+  final PvzLevelFile levelFile;
+  final bool hasConveyor;
+  final VoidCallback onChanged;
+  final VoidCallback onBack;
+
+  @override
+  State<WaveManagerSettingsScreen> createState() =>
+      _WaveManagerSettingsScreenState();
+}
+
+class _WaveManagerSettingsScreenState extends State<WaveManagerSettingsScreen> {
+  late PvzObject _wmObj;
+  late WaveManagerData _wm;
+  late TextEditingController _flagIntervalController;
+  late TextEditingController _firstWaveController;
+  late TextEditingController _hugeWaveController;
+  late TextEditingController _maxHealthController;
+  late TextEditingController _minHealthController;
+
+  static const _defaultFirstWave = 12;
+  static const _defaultFirstWaveConveyor = 5;
+  static const _defaultHugeDelay = 5;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  void _loadData() {
+    _wmObj = widget.levelFile.objects.firstWhere(
+      (o) => o.objClass == 'WaveManagerProperties',
+      orElse: () => PvzObject(
+        aliases: ['WaveManager'],
+        objClass: 'WaveManagerProperties',
+        objData: WaveManagerData().toJson(),
+      ),
+    );
+    _wm = WaveManagerData.fromJson(
+      Map<String, dynamic>.from(_wmObj.objData as Map),
+    );
+    _flagIntervalController =
+        TextEditingController(text: '${_wm.flagWaveInterval}');
+    final firstVal = widget.hasConveyor
+        ? (_wm.zombieCountDownFirstWaveConveyorSecs ?? _defaultFirstWaveConveyor)
+        : (_wm.zombieCountDownFirstWaveSecs ?? _defaultFirstWave);
+    final hugeVal = _wm.zombieCountDownHugeWaveDelay ?? _defaultHugeDelay;
+    _firstWaveController = TextEditingController(text: '$firstVal');
+    _hugeWaveController = TextEditingController(text: '$hugeVal');
+    _maxHealthController = TextEditingController(
+      text: _wm.maxNextWaveHealthPercentage.toString(),
+    );
+    _minHealthController = TextEditingController(
+      text: _wm.minNextWaveHealthPercentage.toString(),
+    );
+  }
+
+  void _save() {
+    _wmObj.objData = _wm.toJson();
+    widget.onChanged();
+  }
+
+  void _updateFlagInterval(String v) {
+    final n = int.tryParse(v);
+    if (n != null && n > 0) {
+      _wm.flagWaveInterval = n;
+      _save();
+    }
+  }
+
+  void _updateTimeSettings() {
+    final first = int.tryParse(_firstWaveController.text) ??
+        (widget.hasConveyor ? _defaultFirstWaveConveyor : _defaultFirstWave);
+    final huge =
+        int.tryParse(_hugeWaveController.text) ?? _defaultHugeDelay;
+    if (widget.hasConveyor) {
+      _wm.zombieCountDownFirstWaveSecs = null;
+      _wm.zombieCountDownFirstWaveConveyorSecs =
+          first == _defaultFirstWaveConveyor ? null : first;
+      _wm.zombieCountDownHugeWaveDelay =
+          huge == _defaultHugeDelay ? null : huge;
+    } else {
+      _wm.zombieCountDownFirstWaveSecs =
+          first == _defaultFirstWave ? null : first;
+      _wm.zombieCountDownFirstWaveConveyorSecs = null;
+      _wm.zombieCountDownHugeWaveDelay =
+          huge == _defaultHugeDelay ? null : huge;
+    }
+    _save();
+  }
+
+  @override
+  void dispose() {
+    _flagIntervalController.dispose();
+    _firstWaveController.dispose();
+    _hugeWaveController.dispose();
+    _maxHealthController.dispose();
+    _minHealthController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    final themeColor = theme.colorScheme.primary;
+    final jamOptions = [
+      (null, l10n?.jamNone ?? 'None'),
+      ('jam_pop', l10n?.jamPop ?? 'Pop'),
+      ('jam_rap', l10n?.jamRap ?? 'Rap'),
+      ('jam_metal', l10n?.jamMetal ?? 'Metal'),
+      ('jam_punk', l10n?.jamPunk ?? 'Punk'),
+      ('jam_8bit', l10n?.jam8Bit ?? '8-Bit'),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n?.waveManagerSettings ?? 'Wave manager settings'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: widget.onBack,
+        ),
+        backgroundColor: themeColor,
+        foregroundColor: theme.colorScheme.onPrimary,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.help_outline),
+            onPressed: () => showEditorHelpDialog(
+              context,
+              title: l10n?.waveManagerHelpTitle ?? 'Wave manager',
+              sections: [
+                HelpSectionData(
+                  title: l10n?.waveManagerHelpOverviewTitle ?? 'Overview',
+                  body: l10n?.waveManagerHelpOverviewBody ??
+                      'Global parameters for wave events and health thresholds.',
+                ),
+                HelpSectionData(
+                  title: l10n?.waveManagerHelpFlagTitle ?? 'Flag interval',
+                  body: l10n?.waveManagerHelpFlagBody ??
+                      'Every N waves is a flag wave; the final wave is always flag.',
+                ),
+                HelpSectionData(
+                  title: l10n?.waveManagerHelpTimeTitle ?? 'Time control',
+                  body: l10n?.waveManagerHelpTimeBody ??
+                      'First wave delay changes when a conveyor is present.',
+                ),
+                HelpSectionData(
+                  title: l10n?.waveManagerHelpMusicTitle ?? 'Music type',
+                  body: l10n?.waveManagerHelpMusicBody ??
+                      'Modern world only; provides fixed background jam type.',
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n?.waveManagerBasicParams ?? 'Basic params',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: themeColor,
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _flagIntervalController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText:
+                    l10n?.flagInterval ?? 'Flag interval (FlagWaveInterval)',
+                border: const OutlineInputBorder(),
+              ),
+              onChanged: _updateFlagInterval,
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _maxHealthController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      labelText: l10n?.waveManagerMaxHealthThreshold ??
+                          'Max health threshold',
+                      border: const OutlineInputBorder(),
+                    ),
+                    onChanged: (v) {
+                      final n = double.tryParse(v);
+                      if (n != null && n >= 0 && n <= 1) {
+                        _wm.maxNextWaveHealthPercentage = n;
+                        _save();
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: TextField(
+                    controller: _minHealthController,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      labelText: l10n?.waveManagerMinHealthThreshold ??
+                          'Min health threshold',
+                      border: const OutlineInputBorder(),
+                    ),
+                    onChanged: (v) {
+                      final n = double.tryParse(v);
+                      if (n != null && n >= 0 && n <= 1) {
+                        _wm.minNextWaveHealthPercentage = n;
+                        _save();
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              l10n?.waveManagerThresholdHint ??
+                  'Threshold must be between 0 and 1.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Divider(color: theme.colorScheme.onSurfaceVariant),
+            const SizedBox(height: 8),
+            Text(
+              l10n?.waveManagerTimeControl ?? 'Time control',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: themeColor,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _firstWaveController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: widget.hasConveyor
+                          ? (l10n?.waveManagerFirstWaveDelayConveyor ??
+                              'First wave delay (conveyor)')
+                          : (l10n?.waveManagerFirstWaveDelayNormal ??
+                              'First wave delay (normal)'),
+                      border: const OutlineInputBorder(),
+                    ),
+                    onChanged: (_) => _updateTimeSettings(),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: TextField(
+                    controller: _hugeWaveController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: l10n?.waveManagerFlagWaveDelay ??
+                          'Flag wave delay',
+                      border: const OutlineInputBorder(),
+                    ),
+                    onChanged: (_) => _updateTimeSettings(),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              widget.hasConveyor
+                  ? (l10n?.waveManagerConveyorDetected ??
+                      'Conveyor module detected; conveyor delay applied.')
+                  : (l10n?.waveManagerConveyorNotDetected ??
+                      'No conveyor module; normal delay applied.'),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Divider(color: theme.colorScheme.onSurfaceVariant),
+            const SizedBox(height: 8),
+            Text(
+              l10n?.waveManagerSpecial ?? 'Special',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: themeColor,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Card(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            l10n?.waveManagerSuppressFlagZombieTitle ??
+                                'Suppress flag zombie',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            l10n?.waveManagerSuppressFlagZombieField ??
+                                'SuppressFlagZombie',
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Switch(
+                      value: _wm.suppressFlagZombie == true,
+                      onChanged: (v) {
+                        _wm.suppressFlagZombie = v ? true : null;
+                        _save();
+                        setState(() {});
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              l10n?.waveManagerSuppressFlagZombieHint ??
+                  'When enabled, flag waves won’t spawn a flag zombie.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 16),
+            DropdownButtonFormField<String?>(
+              value: _wm.levelJam,
+              decoration: InputDecoration(
+                labelText: l10n?.waveManagerLevelJam ?? 'Level Jam',
+                prefixIcon: const Icon(Icons.music_note),
+                border: const OutlineInputBorder(),
+              ),
+              items: jamOptions.map((e) {
+                return DropdownMenuItem<String?>(
+                  value: e.$1,
+                  child: Text(e.$2),
+                );
+              }).toList(),
+              onChanged: (v) {
+                setState(() {
+                  _wm.levelJam = v;
+                  _save();
+                });
+              },
+            ),
+            const SizedBox(height: 6),
+            Text(
+              l10n?.waveManagerLevelJamHint ??
+                  'Only applies to Modern world; provides fixed background music.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

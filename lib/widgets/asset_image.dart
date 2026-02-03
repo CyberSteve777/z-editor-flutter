@@ -46,6 +46,7 @@ class AssetImageWidget extends StatefulWidget {
 class _AssetImageWidgetState extends State<AssetImageWidget> {
   String? _resolvedPath;
   bool _resolving = false;
+  int _requestId = 0;
 
   @override
   void initState() {
@@ -63,14 +64,18 @@ class _AssetImageWidgetState extends State<AssetImageWidget> {
   }
 
   Future<void> _resolveAsset() async {
-    setState(() {
-      _resolving = true;
-      _resolvedPath = null;
-    });
+    final currentId = ++_requestId;
+    if (mounted) {
+      setState(() {
+        _resolving = true;
+        _resolvedPath = null;
+      });
+    }
     final candidates = <String>[widget.assetPath, ...?widget.altCandidates];
     for (final path in candidates) {
       try {
         await rootBundle.load(path);
+        if (!mounted || currentId != _requestId) return;
         setState(() {
           _resolvedPath = path;
           _resolving = false;
@@ -80,19 +85,28 @@ class _AssetImageWidgetState extends State<AssetImageWidget> {
         // try next
       }
     }
+    if (!mounted || currentId != _requestId) return;
     setState(() {
       _resolving = false;
       _resolvedPath = null;
     });
   }
 
+  static const String _unknownIconPath = 'assets/images/others/unknown.webp';
+
   @override
   Widget build(BuildContext context) {
     final placeholder = widget.errorWidget ??
-        Icon(
-          Icons.image_not_supported,
-          size: widget.width ?? widget.height ?? 48,
-          color: Theme.of(context).colorScheme.outline,
+        Image.asset(
+          _unknownIconPath,
+          width: widget.width,
+          height: widget.height,
+          fit: widget.fit,
+          errorBuilder: (_, __, ___) => Icon(
+            Icons.image_not_supported,
+            size: widget.width ?? widget.height ?? 48,
+            color: Theme.of(context).colorScheme.outline,
+          ),
         );
     if (_resolving) {
       return SizedBox(

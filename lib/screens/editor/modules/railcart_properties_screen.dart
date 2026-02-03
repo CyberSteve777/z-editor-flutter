@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
+import 'package:z_editor/widgets/editor_components.dart';
+import 'package:z_editor/widgets/asset_image.dart'
+    show AssetImageWidget, imageAltCandidates;
 
 /// Railcart properties editor. Ported from Z-Editor-master RailcartPropertiesEP.kt
 enum _RailEditMode { rails, carts }
@@ -40,6 +43,8 @@ class _RailcartPropertiesScreenState extends State<RailcartPropertiesScreen> {
     ('railcart_pirate', 'Pirate (railcart_pirate)'),
     ('railcart_worldcup', 'World Cup (railcart_worldcup)'),
   ];
+  static const _railsAssetPath = 'assets/images/others/rails.webp';
+  static const _cartsAssetPath = 'assets/images/others/railcarts.webp';
 
   @override
   void initState() {
@@ -149,7 +154,6 @@ class _RailcartPropertiesScreenState extends State<RailcartPropertiesScreen> {
     final l10n = AppLocalizations.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final gridColor = isDark ? const Color(0xFF503C34) : const Color(0xFFD7CCC8);
-    final railColor = const Color(0xFF8D6E63);
     final borderColor = isDark ? Colors.grey.shade700 : Colors.grey.shade400;
 
     return Scaffold(
@@ -227,61 +231,78 @@ class _RailcartPropertiesScreenState extends State<RailcartPropertiesScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            Container(
-              decoration: BoxDecoration(
-                color: gridColor,
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(color: borderColor),
-              ),
-              child: AspectRatio(
-                aspectRatio: 1.8,
-                child: Column(
-                  children: List.generate(5, (r) {
-                    return Expanded(
-                      child: Row(
-                        children: List.generate(9, (c) {
-                          final hasRail = _railsGrid[c][r];
-                          final hasCart = _cartSet.contains('$c,$r');
-                          return Expanded(
-                            child: GestureDetector(
-                              onTap: () => _handleGridClick(c, r),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    right: BorderSide(
-                                        color: borderColor, width: 0.5),
-                                    bottom: BorderSide(
-                                        color: borderColor, width: 0.5),
+            scaleTableForDesktop(
+              context: context,
+              desktopScale: 0.5,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: gridColor,
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(color: borderColor),
+                ),
+                child: AspectRatio(
+                  aspectRatio: 1.8,
+                  child: Column(
+                    children: List.generate(5, (r) {
+                      return Expanded(
+                        child: Row(
+                          children: List.generate(9, (c) {
+                            final hasRail = _railsGrid[c][r];
+                            final hasCart = _cartSet.contains('$c,$r');
+                            return Expanded(
+                              child: GestureDetector(
+                                onTap: () => _handleGridClick(c, r),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      right: BorderSide(
+                                          color: borderColor, width: 0.5),
+                                      bottom: BorderSide(
+                                          color: borderColor, width: 0.5),
+                                    ),
                                   ),
-                                ),
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    if (hasRail)
-                                      Container(
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        margin: const EdgeInsets.all(4),
-                                        color: railColor.withValues(alpha: 0.3),
-                                      ),
-                                    if (hasCart)
-                                      Container(
-                                        width: 24,
-                                        height: 24,
-                                        decoration: BoxDecoration(
-                                          color: theme.colorScheme.primary,
-                                          shape: BoxShape.circle,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      if (hasRail)
+                                      Positioned.fill(
+                                        child: Opacity(
+                                          opacity: 0.85,
+                                          child: AssetImageWidget(
+                                            assetPath: _railsAssetPath,
+                                            altCandidates: imageAltCandidates(
+                                              _railsAssetPath,
+                                            ),
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
-                                  ],
+                                      if (hasCart)
+                                        Positioned.fill(
+                                          child: Center(
+                                            child: Transform.scale(
+                                              scale: 0.9,
+                                              child: AssetImageWidget(
+                                                assetPath: _cartsAssetPath,
+                                                altCandidates:
+                                                    imageAltCandidates(
+                                                  _cartsAssetPath,
+                                                ),
+                                                fit: BoxFit.contain,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }),
-                      ),
-                    );
-                  }),
+                            );
+                          }),
+                        ),
+                      );
+                    }),
+                  ),
                 ),
               ),
             ),

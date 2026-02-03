@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/zomboss_repository.dart';
 import 'package:z_editor/screens/editor/modules/zomboss_selection_screen.dart';
+import 'package:z_editor/widgets/asset_image.dart';
 
 class ZombossBattleTab extends StatefulWidget {
   const ZombossBattleTab({
@@ -192,23 +193,17 @@ class _ZombossBattleTabState extends State<ZombossBattleTab> {
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  Container(
+                  SizedBox(
                     width: 48,
                     height: 48,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: theme.colorScheme.outlineVariant),
-                    ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(11),
+                      borderRadius: BorderRadius.circular(12),
                       child: currentBossInfo?.icon != null
-                        ? Image.asset(
-                            'assets/images/zombies/${currentBossInfo!.icon}',
+                        ? AssetImageWidget(
+                            assetPath: 'assets/images/zombies/${currentBossInfo!.icon}',
+                            width: 48,
+                            height: 48,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => Icon(
-                              Icons.warning_amber,
-                              color: theme.colorScheme.outline,
-                            ),
                           )
                         : Icon(
                             Icons.warning_amber,

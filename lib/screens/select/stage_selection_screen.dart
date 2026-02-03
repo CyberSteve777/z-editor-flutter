@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/stage_repository.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
-import 'package:z_editor/widgets/asset_image.dart';
+import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
 
 /// Full-screen stage selection. Ported from Z-Editor-master StageSelectionScreen.kt
 class StageSelectionScreen extends StatefulWidget {
@@ -159,24 +159,26 @@ class _StageGridItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              stage.iconName != null
-                  ? ClipOval(
-                      child: SizedBox(
-                        width: 64,
-                        height: 64,
-                        child: AssetImageWidget(
+              ClipOval(
+                child: SizedBox(
+                  width: 64,
+                  height: 64,
+                  child: stage.iconName != null
+                      ? AssetImageWidget(
                           assetPath: 'assets/images/stages/${stage.iconName!}',
+                          altCandidates: imageAltCandidates('assets/images/stages/${stage.iconName!}'),
+                          width: 64,
+                          height: 64,
+                          fit: BoxFit.cover,
+                        )
+                      : AssetImageWidget(
+                          assetPath: 'assets/images/others/unknown.webp',
                           width: 64,
                           height: 64,
                           fit: BoxFit.cover,
                         ),
-                      ),
-                    )
-                  : Icon(
-                      Icons.image,
-                      size: 64,
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
+                ),
+              ),
               const SizedBox(height: 8),
               Text(
                 stage.name,

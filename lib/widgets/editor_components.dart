@@ -32,9 +32,9 @@ class EventChipWidget extends StatelessWidget {
         : (isDark ? (meta?.darkColor ?? theme.colorScheme.primary) : (meta?.color ?? theme.colorScheme.primary));
 
     String? summaryText;
-    if (!isInvalid && meta?.summaryProvider != null) {
+    if (!isInvalid) {
       try {
-        summaryText = meta!.summaryProvider!(obj!);
+        summaryText = meta?.summaryProvider?.call(obj);
       } catch (_) {}
     }
 
@@ -66,7 +66,7 @@ class EventChipWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              if (summaryText != null && summaryText!.isNotEmpty) ...[
+              if (summaryText != null && summaryText.isNotEmpty) ...[
                 const SizedBox(width: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
@@ -75,7 +75,7 @@ class EventChipWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    summaryText!,
+                    summaryText,
                     style: TextStyle(color: theme.colorScheme.onPrimary, fontSize: 10),
                     maxLines: 1,
                   ),
@@ -155,4 +155,22 @@ class HelpSectionData {
   const HelpSectionData({required this.title, required this.body});
   final String title;
   final String body;
+}
+
+bool isDesktopPlatform(BuildContext context) {
+  final platform = Theme.of(context).platform;
+  return platform == TargetPlatform.windows ||
+      platform == TargetPlatform.macOS ||
+      platform == TargetPlatform.linux;
+}
+
+Widget scaleTableForDesktop({
+  required BuildContext context,
+  required Widget child,
+  double desktopScale = 0.6,
+}) {
+  if (!isDesktopPlatform(context)) return child;
+  return Center(
+    child: FractionallySizedBox(widthFactor: desktopScale, child: child),
+  );
 }

@@ -7,7 +7,7 @@ enum ZombossTag {
   challenge,
   pvz1;
 
-  String getLabel(AppLocalizations l10n) {
+  String getLabel(AppLocalizations? l10n) {
     switch (this) {
       case ZombossTag.all:
         return '全部僵王'; // TODO: Localize

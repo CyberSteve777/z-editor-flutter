@@ -5,6 +5,7 @@ import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/zombie_repository.dart';
 import 'package:z_editor/screens/select/plant_selection_screen.dart';
+import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/screens/select/zombie_selection_screen.dart';
 
 /// Seed bank properties. Ported from Z-Editor-master SeedBankPropertiesEP.kt
@@ -157,7 +158,7 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildBasicRulesCard(theme as BuildContext, isZombieMode),
+              _buildBasicRulesCard(context, isZombieMode),
               const SizedBox(height: 16),
               if (isZombieMode)
                 _ResourceListEditor(
@@ -222,10 +223,10 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
                   ),
                 ),
               const SizedBox(height: 16),
-              _buildZombieModeSwitch(theme as BuildContext, isZombieMode),
+              _buildZombieModeSwitch(context, isZombieMode),
               const SizedBox(height: 16),
               if (isZombieMode)
-                _buildReversedZombieSwitch(theme as BuildContext, isReversedZombie),
+                _buildReversedZombieSwitch(context, isReversedZombie),
               const SizedBox(height: 32),
             ],
           ),

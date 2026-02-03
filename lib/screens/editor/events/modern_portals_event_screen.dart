@@ -4,6 +4,7 @@ import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/portal_repository.dart';
 import 'package:z_editor/data/zombie_repository.dart';
 import 'package:z_editor/data/pvz_models.dart';
+import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/widgets/asset_image.dart';
 import 'package:z_editor/widgets/editor_components.dart';
 

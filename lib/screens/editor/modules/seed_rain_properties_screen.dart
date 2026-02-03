@@ -223,7 +223,7 @@ class _SeedRainPropertiesScreenState extends State<SeedRainPropertiesScreen> {
         return StatefulBuilder(
           builder: (ctx, setDialogState) {
             return AlertDialog(
-              title: Text('Edit: ${_getItemName(item)}'),
+              title: Text('Edit: ${_getItemName(ctx, item)}'),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -385,6 +385,7 @@ class _SeedRainPropertiesScreenState extends State<SeedRainPropertiesScreen> {
                   item: item,
                   onTap: () => _openEditDialog(item),
                   onDelete: () => _openDeleteDialog(item),
+                  getItemName: _getItemName,
                 ),
               ),
           ],
@@ -445,7 +446,7 @@ class _SeedRainRowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final typeName = _getItemName(item);
+    final typeName = getItemName(context, item);
     final displayType = _getDisplayType(item);
     final iconPath = _getIconPath(item);
 

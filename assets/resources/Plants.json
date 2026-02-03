@@ -7,7 +7,7 @@
             "Productor",
             "Original"
         ],
-        "icon": "icon_sunflower.jpg"
+        "icon": "icon_sunflower.webp"
     },
     {
         "id": "peashooter",
@@ -17,7 +17,7 @@
             "Remote",
             "Original"
         ],
-        "icon": "icon_peashooter.jpg"
+        "icon": "icon_peashooter.webp"
     },
     {
         "id": "wallnut",
@@ -27,7 +27,7 @@
             "Defence",
             "Original"
         ],
-        "icon": "icon_wallnut.jpg"
+        "icon": "icon_wallnut.webp"
     },
     {
         "id": "potatomine",
@@ -38,7 +38,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_potatomine.jpg"
+        "icon": "icon_potatomine.webp"
     },
     {
         "id": "gravebuster",
@@ -49,7 +49,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_gravebuster.jpg"
+        "icon": "icon_gravebuster.webp"
     },
     {
         "id": "iceburg",
@@ -59,7 +59,7 @@
             "Trapper",
             "Ice"
         ],
-        "icon": "icon_iceburg.jpg"
+        "icon": "icon_iceburg.webp"
     },
     {
         "id": "bloomerang",
@@ -69,7 +69,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_bloomerang.jpg"
+        "icon": "icon_bloomerang.webp"
     },
     {
         "id": "cabbagepult",
@@ -80,7 +80,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_cabbagepult.jpg"
+        "icon": "icon_cabbagepult.webp"
     },
     {
         "id": "repeater",
@@ -91,7 +91,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_repeater.jpg"
+        "icon": "icon_repeater.webp"
     },
     {
         "id": "twinsunflower",
@@ -101,7 +101,7 @@
             "Productor",
             "Original"
         ],
-        "icon": "icon_twinsunflower.jpg"
+        "icon": "icon_twinsunflower.webp"
     },
     {
         "id": "bonkchoy",
@@ -111,7 +111,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_bonkchoy.jpg"
+        "icon": "icon_bonkchoy.webp"
     },
     {
         "id": "cherry_bomb",
@@ -122,7 +122,7 @@
             "Fire",
             "Original"
         ],
-        "icon": "icon_cherry_bomb.jpg"
+        "icon": "icon_cherry_bomb.webp"
     },
     {
         "id": "snowpea",
@@ -133,7 +133,7 @@
             "Ice",
             "Original"
         ],
-        "icon": "icon_snowpea.jpg"
+        "icon": "icon_snowpea.webp"
     },
     {
         "id": "torchwood",
@@ -144,7 +144,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_torchwood.jpg"
+        "icon": "icon_torchwood.webp"
     },
     {
         "id": "snapdragon",
@@ -155,7 +155,7 @@
             "Fire",
             "Magic"
         ],
-        "icon": "icon_snapdragon.jpg"
+        "icon": "icon_snapdragon.webp"
     },
     {
         "id": "coconutcannon",
@@ -165,7 +165,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_coconutcannon.jpg"
+        "icon": "icon_coconutcannon.webp"
     },
     {
         "id": "powerlily",
@@ -175,7 +175,7 @@
             "Assist",
             "Magic"
         ],
-        "icon": "icon_powerlily.jpg"
+        "icon": "icon_powerlily.webp"
     },
     {
         "id": "tallnut",
@@ -186,7 +186,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_tallnut.jpg"
+        "icon": "icon_tallnut.webp"
     },
     {
         "id": "spikeweed",
@@ -197,7 +197,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_spikeweed.jpg"
+        "icon": "icon_spikeweed.webp"
     },
     {
         "id": "spikerock",
@@ -208,7 +208,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_spikerock.jpg"
+        "icon": "icon_spikerock.webp"
     },
     {
         "id": "springbean",
@@ -217,7 +217,7 @@
             "White",
             "Trapper"
         ],
-        "icon": "icon_springbean.jpg"
+        "icon": "icon_springbean.webp"
     },
     {
         "id": "kernelpult",
@@ -228,7 +228,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_kernelpult.jpg"
+        "icon": "icon_kernelpult.webp"
     },
     {
         "id": "iceweed",
@@ -238,7 +238,7 @@
             "Trapper",
             "Ice"
         ],
-        "icon": "icon_iceweed.jpg"
+        "icon": "icon_iceweed.webp"
     },
     {
         "id": "threepeater",
@@ -249,7 +249,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_threepeater.jpg"
+        "icon": "icon_threepeater.webp"
     },
     {
         "id": "melonpult",
@@ -260,7 +260,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_melonpult.jpg"
+        "icon": "icon_melonpult.webp"
     },
     {
         "id": "wintermelon",
@@ -281,7 +281,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_lightningreed.jpg"
+        "icon": "icon_lightningreed.webp"
     },
     {
         "id": "peapod",
@@ -291,7 +291,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_peapod.jpg"
+        "icon": "icon_peapod.webp"
     },
     {
         "id": "squash",
@@ -302,7 +302,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_squash.jpg"
+        "icon": "icon_squash.webp"
     },
     {
         "id": "chilibean",
@@ -312,7 +312,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_chilibean.jpg"
+        "icon": "icon_chilibean.webp"
     },
     {
         "id": "splitpea",
@@ -323,7 +323,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_splitpea.jpg"
+        "icon": "icon_splitpea.webp"
     },
     {
         "id": "jalapeno",
@@ -334,7 +334,7 @@
             "Fire",
             "Original"
         ],
-        "icon": "icon_jalapeno.jpg"
+        "icon": "icon_jalapeno.webp"
     },
     {
         "id": "imitater",
@@ -345,7 +345,7 @@
             "Magic",
             "Original"
         ],
-        "icon": "icon_imitater.jpg"
+        "icon": "icon_imitater.webp"
     },
     {
         "id": "turnip",
@@ -355,7 +355,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_turnip.jpg"
+        "icon": "icon_turnip.webp"
     },
     {
         "id": "firegourd",
@@ -365,7 +365,7 @@
             "Vanguard",
             "Fire"
         ],
-        "icon": "icon_firegourd.jpg"
+        "icon": "icon_firegourd.webp"
     },
     {
         "id": "peach",
@@ -375,7 +375,7 @@
             "Assist",
             "Magic"
         ],
-        "icon": "icon_peach.jpg"
+        "icon": "icon_peach.webp"
     },
     {
         "id": "bamboo",
@@ -385,7 +385,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_bamboo.jpg"
+        "icon": "icon_bamboo.webp"
     },
     {
         "id": "kiwifruit",
@@ -395,7 +395,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_kiwifruit.jpg"
+        "icon": "icon_kiwifruit.webp"
     },
     {
         "id": "mapleblade",
@@ -405,7 +405,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_mapleblade.jpg"
+        "icon": "icon_mapleblade.webp"
     },
     {
         "id": "dracaena",
@@ -415,7 +415,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_dracaena.jpg"
+        "icon": "icon_dracaena.webp"
     },
     {
         "id": "rheumnobile",
@@ -425,7 +425,7 @@
             "Defence",
             "Magic"
         ],
-        "icon": "icon_rheumnobile.jpg"
+        "icon": "icon_rheumnobile.webp"
     },
     {
         "id": "laser_bean",
@@ -435,7 +435,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_laser_bean.jpg"
+        "icon": "icon_laser_bean.webp"
     },
     {
         "id": "blover",
@@ -446,7 +446,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_blover.jpg"
+        "icon": "icon_blover.webp"
     },
     {
         "id": "citron",
@@ -456,7 +456,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_citron.jpg"
+        "icon": "icon_citron.webp"
     },
     {
         "id": "empea",
@@ -466,7 +466,7 @@
             "Trapper",
             "Electric"
         ],
-        "icon": "icon_empea.jpg"
+        "icon": "icon_empea.webp"
     },
     {
         "id": "holonut",
@@ -475,7 +475,7 @@
             "Blue",
             "Defence"
         ],
-        "icon": "icon_holonut.jpg"
+        "icon": "icon_holonut.webp"
     },
     {
         "id": "magnifyinggrass",
@@ -485,7 +485,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_magnifyinggrass.jpg"
+        "icon": "icon_magnifyinggrass.webp"
     },
     {
         "id": "powerplant",
@@ -495,7 +495,7 @@
             "Assist",
             "Magic"
         ],
-        "icon": "icon_powerplant.jpg"
+        "icon": "icon_powerplant.webp"
     },
     {
         "id": "starfruit",
@@ -507,7 +507,7 @@
             "Magic",
             "Original"
         ],
-        "icon": "icon_starfruit.jpg"
+        "icon": "icon_starfruit.webp"
     },
     {
         "id": "sunshroom",
@@ -528,7 +528,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_puffshroom.jpg"
+        "icon": "icon_puffshroom.webp"
     },
     {
         "id": "fumeshroom",
@@ -539,7 +539,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_fumeshroom.jpg"
+        "icon": "icon_fumeshroom.webp"
     },
     {
         "id": "hypnoshroom",
@@ -550,7 +550,7 @@
             "Magic",
             "Original"
         ],
-        "icon": "icon_hypnoshroom.jpg"
+        "icon": "icon_hypnoshroom.webp"
     },
     {
         "id": "sunbean",
@@ -560,7 +560,7 @@
             "Productor",
             "Magic"
         ],
-        "icon": "icon_sunbean.jpg"
+        "icon": "icon_sunbean.webp"
     },
     {
         "id": "peanut",
@@ -570,7 +570,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_peanut.jpg"
+        "icon": "icon_peanut.webp"
     },
     {
         "id": "magnetshroom",
@@ -580,7 +580,7 @@
             "Trapper",
             "Original"
         ],
-        "icon": "icon_magnetshroom.jpg"
+        "icon": "icon_magnetshroom.webp"
     },
     {
         "id": "oakshooter",
@@ -590,7 +590,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_oakshooter.jpg"
+        "icon": "icon_oakshooter.webp"
     },
     {
         "id": "streetlamp",
@@ -601,7 +601,7 @@
             "Magic",
             "Original"
         ],
-        "icon": "icon_streetlamp.jpg"
+        "icon": "icon_streetlamp.webp"
     },
     {
         "id": "coffeebean",
@@ -612,7 +612,7 @@
             "Magic",
             "Original"
         ],
-        "icon": "icon_coffeebean.jpg"
+        "icon": "icon_coffeebean.webp"
     },
     {
         "id": "iceshroom",
@@ -622,7 +622,7 @@
             "Remote",
             "Ice"
         ],
-        "icon": "icon_iceshroom.jpg"
+        "icon": "icon_iceshroom.webp"
     },
     {
         "id": "fireshroom",
@@ -632,7 +632,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_fireshroom.jpg"
+        "icon": "icon_fireshroom.webp"
     },
     {
         "id": "guardshroom",
@@ -642,7 +642,7 @@
             "Defence",
             "Magic"
         ],
-        "icon": "icon_guardshroom.jpg"
+        "icon": "icon_guardshroom.webp"
     },
     {
         "id": "lilypad",
@@ -653,7 +653,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_lilypad.jpg"
+        "icon": "icon_lilypad.webp"
     },
     {
         "id": "tanglekelp",
@@ -663,7 +663,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_tanglekelp.jpg"
+        "icon": "icon_tanglekelp.webp"
     },
     {
         "id": "chomper",
@@ -674,7 +674,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_chomper.jpg"
+        "icon": "icon_chomper.webp"
     },
     {
         "id": "lemon",
@@ -684,7 +684,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_lemon.jpg"
+        "icon": "icon_lemon.webp"
     },
     {
         "id": "lotusshower",
@@ -694,7 +694,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_lotusshower.jpg"
+        "icon": "icon_lotusshower.webp"
     },
     {
         "id": "bowlingbulb",
@@ -704,7 +704,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_bowlingbulb.jpg"
+        "icon": "icon_bowlingbulb.webp"
     },
     {
         "id": "banana",
@@ -714,7 +714,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_banana.jpg"
+        "icon": "icon_banana.webp"
     },
     {
         "id": "guacodile",
@@ -724,7 +724,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_guacodile.jpg"
+        "icon": "icon_guacodile.webp"
     },
     {
         "id": "homingthistle",
@@ -734,7 +734,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_homingthistle.jpg"
+        "icon": "icon_homingthistle.webp"
     },
     {
         "id": "hurrikale",
@@ -744,7 +744,7 @@
             "Trapper",
             "Ice"
         ],
-        "icon": "icon_hurrikale.jpg"
+        "icon": "icon_hurrikale.webp"
     },
     {
         "id": "firepeashooter",
@@ -754,7 +754,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_firepeashooter.jpg"
+        "icon": "icon_firepeashooter.webp"
     },
     {
         "id": "pepperpult",
@@ -764,7 +764,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_pepperpult.jpg"
+        "icon": "icon_pepperpult.webp"
     },
     {
         "id": "hotpotato",
@@ -774,7 +774,7 @@
             "Assist",
             "Fire"
         ],
-        "icon": "icon_hotpotato.jpg"
+        "icon": "icon_hotpotato.webp"
     },
     {
         "id": "chardguard",
@@ -783,7 +783,7 @@
             "Purple",
             "Defence"
         ],
-        "icon": "icon_chardguard.jpg"
+        "icon": "icon_chardguard.webp"
     },
     {
         "id": "stunion",
@@ -793,7 +793,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_stunion.jpg"
+        "icon": "icon_stunion.webp"
     },
     {
         "id": "rafflesia",
@@ -803,7 +803,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_rafflesia.jpg"
+        "icon": "icon_rafflesia.webp"
     },
     {
         "id": "acorn",
@@ -813,7 +813,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_acorn.jpg"
+        "icon": "icon_acorn.webp"
     },
     {
         "id": "winterrambutan",
@@ -823,7 +823,7 @@
             "Vanguard",
             "Ice"
         ],
-        "icon": "icon_winterrambutan.jpg"
+        "icon": "icon_winterrambutan.webp"
     },
     {
         "id": "xshot",
@@ -833,7 +833,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_xshot.jpg"
+        "icon": "icon_xshot.webp"
     },
     {
         "id": "doublesamara",
@@ -843,7 +843,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_doublesamara.jpg"
+        "icon": "icon_doublesamara.webp"
     },
     {
         "id": "asparagus",
@@ -853,7 +853,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_asparagus.jpg"
+        "icon": "icon_asparagus.webp"
     },
     {
         "id": "saucer",
@@ -863,7 +863,7 @@
             "Trapper",
             "Magic"
         ],
-        "icon": "icon_saucer.jpg"
+        "icon": "icon_saucer.webp"
     },
     {
         "id": "horsebean",
@@ -873,7 +873,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_horsebean.jpg"
+        "icon": "icon_horsebean.webp"
     },
     {
         "id": "groundcherry",
@@ -883,7 +883,7 @@
             "Trapper",
             "Magic"
         ],
-        "icon": "icon_groundcherry.jpg"
+        "icon": "icon_groundcherry.webp"
     },
     {
         "id": "anthurium",
@@ -893,7 +893,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_anthurium.jpg"
+        "icon": "icon_anthurium.webp"
     },
     {
         "id": "pineapple",
@@ -903,7 +903,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_pineapple.jpg"
+        "icon": "icon_pineapple.webp"
     },
     {
         "id": "endurian",
@@ -913,7 +913,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_endurian.jpg"
+        "icon": "icon_endurian.webp"
     },
     {
         "id": "toadstool",
@@ -923,7 +923,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_toadstool.jpg"
+        "icon": "icon_toadstool.webp"
     },
     {
         "id": "goldleaf",
@@ -933,7 +933,7 @@
             "Productor",
             "Magic"
         ],
-        "icon": "icon_goldleaf.jpg"
+        "icon": "icon_goldleaf.webp"
     },
     {
         "id": "akee",
@@ -943,7 +943,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_akee.jpg"
+        "icon": "icon_akee.webp"
     },
     {
         "id": "lavaguava",
@@ -953,7 +953,7 @@
             "Trapper",
             "Fire"
         ],
-        "icon": "icon_lavaguava.jpg"
+        "icon": "icon_lavaguava.webp"
     },
     {
         "id": "redstinger",
@@ -963,7 +963,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_redstinger.jpg"
+        "icon": "icon_redstinger.webp"
     },
     {
         "id": "stallia",
@@ -973,7 +973,7 @@
             "Trapper",
             "Poison"
         ],
-        "icon": "icon_stallia.jpg"
+        "icon": "icon_stallia.webp"
     },
     {
         "id": "jackfruit",
@@ -983,7 +983,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_jackfruit.jpg"
+        "icon": "icon_jackfruit.webp"
     },
     {
         "id": "morningglory",
@@ -993,7 +993,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_morningglory.jpg"
+        "icon": "icon_morningglory.webp"
     },
     {
         "id": "nekotail",
@@ -1014,7 +1014,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_phatbeet.jpg"
+        "icon": "icon_phatbeet.webp"
     },
     {
         "id": "thymewarp",
@@ -1024,7 +1024,7 @@
             "Trapper",
             "Magic"
         ],
-        "icon": "icon_thymewarp.jpg"
+        "icon": "icon_thymewarp.webp"
     },
     {
         "id": "celerystalker",
@@ -1034,7 +1034,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_celerystalker.jpg"
+        "icon": "icon_celerystalker.webp"
     },
     {
         "id": "sporeshroom",
@@ -1044,7 +1044,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_sporeshroom.jpg"
+        "icon": "icon_sporeshroom.webp"
     },
     {
         "id": "garlic",
@@ -1055,7 +1055,7 @@
             "Original",
             "Physics"
         ],
-        "icon": "icon_garlic.jpg"
+        "icon": "icon_garlic.webp"
     },
     {
         "id": "intensivecarrot",
@@ -1065,7 +1065,7 @@
             "Assist",
             "Magic"
         ],
-        "icon": "icon_intensivecarrot.jpg"
+        "icon": "icon_intensivecarrot.webp"
     },
     {
         "id": "cactus",
@@ -1076,7 +1076,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_cactus.jpg"
+        "icon": "icon_cactus.webp"
     },
     {
         "id": "electricblueberry",
@@ -1086,7 +1086,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_electricblueberry.jpg"
+        "icon": "icon_electricblueberry.webp"
     },
     {
         "id": "gatlingpea",
@@ -1097,7 +1097,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_gatlingpea.jpg"
+        "icon": "icon_gatlingpea.webp"
     },
     {
         "id": "primalpeashooter",
@@ -1107,7 +1107,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_primalpeashooter.jpg"
+        "icon": "icon_primalpeashooter.webp"
     },
     {
         "id": "primalwallnut",
@@ -1117,7 +1117,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_primalwallnut.jpg"
+        "icon": "icon_primalwallnut.webp"
     },
     {
         "id": "perfumeshroom",
@@ -1127,7 +1127,7 @@
             "Trapper",
             "Poison"
         ],
-        "icon": "icon_perfumeshroom.jpg"
+        "icon": "icon_perfumeshroom.webp"
     },
     {
         "id": "primalsunflower",
@@ -1136,7 +1136,7 @@
             "Blue",
             "Productor"
         ],
-        "icon": "icon_primalsunflower.jpg"
+        "icon": "icon_primalsunflower.webp"
     },
     {
         "id": "primalpotatomine",
@@ -1146,7 +1146,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_primalpotatomine.jpg"
+        "icon": "icon_primalpotatomine.webp"
     },
     {
         "id": "grapeshot",
@@ -1156,7 +1156,7 @@
             "Trapper",
             "Fire"
         ],
-        "icon": "icon_grapeshot.jpg"
+        "icon": "icon_grapeshot.webp"
     },
     {
         "id": "coldsnapdragon",
@@ -1166,7 +1166,7 @@
             "Vanguard",
             "Ice"
         ],
-        "icon": "icon_coldsnapdragon.jpg"
+        "icon": "icon_coldsnapdragon.webp"
     },
     {
         "id": "primalrafflesia",
@@ -1176,7 +1176,7 @@
             "Remote",
             "Poison"
         ],
-        "icon": "icon_primalrafflesia.jpg"
+        "icon": "icon_primalrafflesia.webp"
     },
     {
         "id": "dragonroar",
@@ -1186,7 +1186,7 @@
             "Vanguard",
             "Poison"
         ],
-        "icon": "icon_dragonroar.jpg"
+        "icon": "icon_dragonroar.webp"
     },
     {
         "id": "bramble",
@@ -1195,7 +1195,7 @@
             "White",
             "Trapper"
         ],
-        "icon": "icon_bramble.jpg"
+        "icon": "icon_bramble.webp"
     },
     {
         "id": "dragoncane",
@@ -1205,7 +1205,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_dragoncane.jpg"
+        "icon": "icon_dragoncane.webp"
     },
     {
         "id": "cobcannon",
@@ -1216,7 +1216,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_cobcannon.jpg"
+        "icon": "icon_cobcannon.webp"
     },
     {
         "id": "meteorflower",
@@ -1226,7 +1226,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_meteorflower.jpg"
+        "icon": "icon_meteorflower.webp"
     },
     {
         "id": "shrinkingviolet",
@@ -1235,7 +1235,7 @@
             "Purple",
             "Trapper"
         ],
-        "icon": "icon_shrinkingviolet.jpg"
+        "icon": "icon_shrinkingviolet.webp"
     },
     {
         "id": "moonflower",
@@ -1244,7 +1244,7 @@
             "Green",
             "Assist"
         ],
-        "icon": "icon_moonflower.jpg"
+        "icon": "icon_moonflower.webp"
     },
     {
         "id": "shadowshroom",
@@ -1254,7 +1254,7 @@
             "Trapper",
             "Poison"
         ],
-        "icon": "icon_shadowshroom.jpg"
+        "icon": "icon_shadowshroom.webp"
     },
     {
         "id": "caulipower",
@@ -1264,7 +1264,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_caulipower.jpg"
+        "icon": "icon_caulipower.webp"
     },
     {
         "id": "grimrose",
@@ -1274,7 +1274,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_grimrose.jpg"
+        "icon": "icon_grimrose.webp"
     },
     {
         "id": "nightshade",
@@ -1284,7 +1284,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_nightshade.jpg"
+        "icon": "icon_nightshade.webp"
     },
     {
         "id": "dusklobber",
@@ -1294,7 +1294,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_dusklobber.jpg"
+        "icon": "icon_dusklobber.webp"
     },
     {
         "id": "bloominghearts",
@@ -1304,7 +1304,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_bloominghearts.jpg"
+        "icon": "icon_bloominghearts.webp"
     },
     {
         "id": "marigold",
@@ -1314,7 +1314,7 @@
             "Assist",
             "Original"
         ],
-        "icon": "icon_marigold.jpg"
+        "icon": "icon_marigold.webp"
     },
     {
         "id": "flowerpot",
@@ -1324,7 +1324,7 @@
             "Assist",
             "Original"
         ],
-        "icon": "icon_flowerpot.jpg"
+        "icon": "icon_flowerpot.webp"
     },
     {
         "id": "shadowpeashooter",
@@ -1334,7 +1334,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_shadowpeashooter.jpg"
+        "icon": "icon_shadowpeashooter.webp"
     },
     {
         "id": "goldbloom",
@@ -1343,7 +1343,7 @@
             "White",
             "Productor"
         ],
-        "icon": "icon_goldbloom.jpg"
+        "icon": "icon_goldbloom.webp"
     },
     {
         "id": "flattenedshroom",
@@ -1352,7 +1352,7 @@
             "White",
             "Trapper"
         ],
-        "icon": "icon_flattenedshroom.jpg"
+        "icon": "icon_flattenedshroom.webp"
     },
     {
         "id": "lotusshooter",
@@ -1362,7 +1362,7 @@
             "Remote",
             "Ice"
         ],
-        "icon": "icon_lotusshooter.jpg"
+        "icon": "icon_lotusshooter.webp"
     },
     {
         "id": "vanilla",
@@ -1372,7 +1372,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_vanilla.jpg"
+        "icon": "icon_vanilla.webp"
     },
     {
         "id": "passionflower",
@@ -1382,7 +1382,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_passionflower.jpg"
+        "icon": "icon_passionflower.webp"
     },
     {
         "id": "convallariachemist",
@@ -1403,7 +1403,7 @@
             "Physics",
             "Poison"
         ],
-        "icon": "icon_mulberry.jpg"
+        "icon": "icon_mulberry.webp"
     },
     {
         "id": "aloes",
@@ -1412,7 +1412,7 @@
             "Purple",
             "Assist"
         ],
-        "icon": "icon_aloes.jpg"
+        "icon": "icon_aloes.webp"
     },
     {
         "id": "bearberry",
@@ -1422,7 +1422,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_bearberry.jpg"
+        "icon": "icon_bearberry.webp"
     },
     {
         "id": "waxgourd",
@@ -1432,7 +1432,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_waxgourd.jpg"
+        "icon": "icon_waxgourd.webp"
     },
     {
         "id": "olive",
@@ -1442,7 +1442,7 @@
             "Trapper",
             "Fire"
         ],
-        "icon": "icon_olive.jpg"
+        "icon": "icon_olive.webp"
     },
     {
         "id": "pomegranatejeweler",
@@ -1452,7 +1452,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_pomegranatejeweler.jpg"
+        "icon": "icon_pomegranatejeweler.webp"
     },
     {
         "id": "dartichoke",
@@ -1462,7 +1462,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_dartichoke.jpg"
+        "icon": "icon_dartichoke.webp"
     },
     {
         "id": "pokra",
@@ -1472,7 +1472,7 @@
             "Vanguard",
             "Poison"
         ],
-        "icon": "icon_pokra.jpg"
+        "icon": "icon_pokra.webp"
     },
     {
         "id": "roseswordman",
@@ -1482,7 +1482,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_roseswordman.jpg"
+        "icon": "icon_roseswordman.webp"
     },
     {
         "id": "hotdate",
@@ -1492,7 +1492,7 @@
             "Trapper",
             "Fire"
         ],
-        "icon": "icon_hotdate.jpg"
+        "icon": "icon_hotdate.webp"
     },
     {
         "id": "whitemelon",
@@ -1502,7 +1502,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_whitemelon.jpg"
+        "icon": "icon_whitemelon.webp"
     },
     {
         "id": "eggplantninja",
@@ -1512,7 +1512,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_eggplantninja.jpg"
+        "icon": "icon_eggplantninja.webp"
     },
     {
         "id": "icelotus",
@@ -1522,7 +1522,7 @@
             "Trapper",
             "Ice"
         ],
-        "icon": "icon_icelotus.jpg"
+        "icon": "icon_icelotus.webp"
     },
     {
         "id": "stephania",
@@ -1532,7 +1532,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_stephania.jpg"
+        "icon": "icon_stephania.webp"
     },
     {
         "id": "tupistrastalker",
@@ -1542,7 +1542,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_tupistrastalker.jpg"
+        "icon": "icon_tupistrastalker.webp"
     },
     {
         "id": "dendrobiumguard",
@@ -1552,7 +1552,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_dendrobiumguard.jpg"
+        "icon": "icon_dendrobiumguard.webp"
     },
     {
         "id": "cypripedium",
@@ -1562,7 +1562,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_cypripedium.jpg"
+        "icon": "icon_cypripedium.webp"
     },
     {
         "id": "boophonegeisha",
@@ -1572,7 +1572,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_boophonegeisha.jpg"
+        "icon": "icon_boophonegeisha.webp"
     },
     {
         "id": "stickybombrice",
@@ -1582,7 +1582,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_stickybombrice.jpg"
+        "icon": "icon_stickybombrice.webp"
     },
     {
         "id": "wasabiwhip",
@@ -1592,7 +1592,7 @@
             "Vanguard",
             "Fire"
         ],
-        "icon": "icon_wasabiwhip.jpg"
+        "icon": "icon_wasabiwhip.webp"
     },
     {
         "id": "slingpea",
@@ -1602,7 +1602,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_slingpea.jpg"
+        "icon": "icon_slingpea.webp"
     },
     {
         "id": "bubblecoral",
@@ -1612,7 +1612,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_bubblecoral.jpg"
+        "icon": "icon_bubblecoral.webp"
     },
     {
         "id": "oxygenalgae",
@@ -1621,7 +1621,7 @@
             "White",
             "Productor"
         ],
-        "icon": "icon_oxygenalgae.jpg"
+        "icon": "icon_oxygenalgae.webp"
     },
     {
         "id": "seashroom",
@@ -1632,7 +1632,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_seashroom.jpg"
+        "icon": "icon_seashroom.webp"
     },
     {
         "id": "kelpguard",
@@ -1642,7 +1642,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_kelpguard.jpg"
+        "icon": "icon_kelpguard.webp"
     },
     {
         "id": "aquaweed",
@@ -1652,7 +1652,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_aquaweed.jpg"
+        "icon": "icon_aquaweed.webp"
     },
     {
         "id": "seashooter",
@@ -1662,7 +1662,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_seashooter.jpg"
+        "icon": "icon_seashooter.webp"
     },
     {
         "id": "seaderris",
@@ -1671,7 +1671,7 @@
             "Green",
             "Trapper"
         ],
-        "icon": "icon_seaderris.jpg"
+        "icon": "icon_seaderris.webp"
     },
     {
         "id": "ents",
@@ -1681,7 +1681,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_ents.jpg"
+        "icon": "icon_ents.webp"
     },
     {
         "id": "heathseeker",
@@ -1691,7 +1691,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_heathseeker.jpg"
+        "icon": "icon_heathseeker.webp"
     },
     {
         "id": "hatmushroom",
@@ -1702,7 +1702,7 @@
             "Physics",
             "Magic"
         ],
-        "icon": "icon_hatmushroom.jpg"
+        "icon": "icon_hatmushroom.webp"
     },
     {
         "id": "hocuscrocus",
@@ -1712,7 +1712,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_hocuscrocus.jpg"
+        "icon": "icon_hocuscrocus.webp"
     },
     {
         "id": "springprincess",
@@ -1722,7 +1722,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_springprincess.jpg"
+        "icon": "icon_springprincess.webp"
     },
     {
         "id": "riflebamboo",
@@ -1732,7 +1732,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_riflebamboo.jpg"
+        "icon": "icon_riflebamboo.webp"
     },
     {
         "id": "wizardthorns",
@@ -1743,7 +1743,7 @@
             "Poison",
             "Magic"
         ],
-        "icon": "icon_wizardthorns.jpg"
+        "icon": "icon_wizardthorns.webp"
     },
     {
         "id": "tristerixaphyllus",
@@ -1754,7 +1754,7 @@
             "Poison",
             "Magic"
         ],
-        "icon": "icon_tristerixaphyllus.jpg"
+        "icon": "icon_tristerixaphyllus.webp"
     },
     {
         "id": "scaredyshroom",
@@ -1765,7 +1765,7 @@
             "Physics",
             "Original"
         ],
-        "icon": "icon_scaredyshroom.jpg"
+        "icon": "icon_scaredyshroom.webp"
     },
     {
         "id": "pumpkin",
@@ -1775,7 +1775,7 @@
             "Defence",
             "Original"
         ],
-        "icon": "icon_pumpkin.jpg"
+        "icon": "icon_pumpkin.webp"
     },
     {
         "id": "peavine",
@@ -1785,7 +1785,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_peavine.jpg"
+        "icon": "icon_peavine.webp"
     },
     {
         "id": "shinevine",
@@ -1795,7 +1795,7 @@
             "Productor",
             "Electric"
         ],
-        "icon": "icon_shinevine.jpg"
+        "icon": "icon_shinevine.webp"
     },
     {
         "id": "pyrevine",
@@ -1805,7 +1805,7 @@
             "Vanguard",
             "Fire"
         ],
-        "icon": "icon_pyrevine.jpg"
+        "icon": "icon_pyrevine.webp"
     },
     {
         "id": "gloomvine",
@@ -1814,7 +1814,7 @@
             "Orange",
             "Vanguard"
         ],
-        "icon": "icon_gloomvine.jpg"
+        "icon": "icon_gloomvine.webp"
     },
     {
         "id": "aquavine",
@@ -1823,7 +1823,7 @@
             "Orange",
             "Remote"
         ],
-        "icon": "icon_aquavine.jpg"
+        "icon": "icon_aquavine.webp"
     },
     {
         "id": "powervine",
@@ -1833,7 +1833,7 @@
             "Remote",
             "Remote"
         ],
-        "icon": "icon_powervine.jpg"
+        "icon": "icon_powervine.webp"
     },
     {
         "id": "poisonvine",
@@ -1843,7 +1843,7 @@
             "Remote",
             "Poison"
         ],
-        "icon": "icon_poisonvine.jpg"
+        "icon": "icon_poisonvine.webp"
     },
     {
         "id": "electricpeashooter",
@@ -1853,7 +1853,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_electricpeashooter.jpg"
+        "icon": "icon_electricpeashooter.webp"
     },
     {
         "id": "poisonpeashooter",
@@ -1863,7 +1863,7 @@
             "Remote",
             "Poison"
         ],
-        "icon": "icon_poisonpeashooter.jpg"
+        "icon": "icon_poisonpeashooter.webp"
     },
     {
         "id": "snappea",
@@ -1873,7 +1873,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_snappea.jpg"
+        "icon": "icon_snappea.webp"
     },
     {
         "id": "beanchemist",
@@ -1883,7 +1883,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_beanchemist.jpg"
+        "icon": "icon_beanchemist.webp"
     },
     {
         "id": "megagatling",
@@ -1893,7 +1893,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_megagatling.jpg"
+        "icon": "icon_megagatling.webp"
     },
     {
         "id": "ghostpepper",
@@ -1903,7 +1903,7 @@
             "Trapper",
             "Physics"
         ],
-        "icon": "icon_ghostpepper.jpg"
+        "icon": "icon_ghostpepper.webp"
     },
     {
         "id": "witchhazel",
@@ -1913,7 +1913,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_witchhazel.jpg"
+        "icon": "icon_witchhazel.webp"
     },
     {
         "id": "vamporcini",
@@ -1923,7 +1923,7 @@
             "Defence",
             "Magic"
         ],
-        "icon": "icon_vamporcini.jpg"
+        "icon": "icon_vamporcini.webp"
     },
     {
         "id": "zoybeanpod",
@@ -1932,7 +1932,7 @@
             "Orange",
             "Trapper"
         ],
-        "icon": "icon_zoybeanpod.jpg"
+        "icon": "icon_zoybeanpod.webp"
     },
     {
         "id": "jackolantern",
@@ -1943,7 +1943,7 @@
             "Magic",
             "Fire"
         ],
-        "icon": "icon_jackolantern.jpg"
+        "icon": "icon_jackolantern.webp"
     },
     {
         "id": "inferno",
@@ -1953,7 +1953,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_inferno.jpg"
+        "icon": "icon_inferno.webp"
     },
     {
         "id": "pumpkinwitch",
@@ -1963,7 +1963,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_pumpkinwitch.jpg"
+        "icon": "icon_pumpkinwitch.webp"
     },
     {
         "id": "birthsunflower",
@@ -1972,7 +1972,7 @@
             "Purple",
             "Productor"
         ],
-        "icon": "icon_birthsunflower.jpg"
+        "icon": "icon_birthsunflower.webp"
     },
     {
         "id": "plantain",
@@ -1982,7 +1982,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_plantain.jpg"
+        "icon": "icon_plantain.webp"
     },
     {
         "id": "hydrocotyledrummer",
@@ -1992,7 +1992,7 @@
             "Assist",
             "Magic"
         ],
-        "icon": "icon_hydrocotyledrummer.jpg"
+        "icon": "icon_hydrocotyledrummer.webp"
     },
     {
         "id": "boomflower",
@@ -2002,7 +2002,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_boomflower.jpg"
+        "icon": "icon_boomflower.webp"
     },
     {
         "id": "beercoconut",
@@ -2012,7 +2012,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_beercoconut.jpg"
+        "icon": "icon_beercoconut.webp"
     },
     {
         "id": "buttercup",
@@ -2022,7 +2022,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_buttercup.jpg"
+        "icon": "icon_buttercup.webp"
     },
     {
         "id": "hoyacordata",
@@ -2031,7 +2031,7 @@
             "Orange",
             "Assist"
         ],
-        "icon": "icon_hoyacordata.jpg"
+        "icon": "icon_hoyacordata.webp"
     },
     {
         "id": "heavendatura",
@@ -2041,7 +2041,7 @@
             "Vanguard",
             "Magic"
         ],
-        "icon": "icon_heavendatura.jpg"
+        "icon": "icon_heavendatura.webp"
     },
     {
         "id": "firecrackerflower",
@@ -2051,7 +2051,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_firecrackerflower.jpg"
+        "icon": "icon_firecrackerflower.webp"
     },
     {
         "id": "actinostemma",
@@ -2061,7 +2061,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_actinostemma.jpg"
+        "icon": "icon_actinostemma.webp"
     },
     {
         "id": "carrotlauncher",
@@ -2071,7 +2071,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_carrotlauncher.jpg"
+        "icon": "icon_carrotlauncher.webp"
     },
     {
         "id": "dandelion",
@@ -2081,7 +2081,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_dandelion.jpg"
+        "icon": "icon_dandelion.webp"
     },
     {
         "id": "broccoli",
@@ -2091,7 +2091,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_broccoli.jpg"
+        "icon": "icon_broccoli.webp"
     },
     {
         "id": "pamegranate",
@@ -2101,7 +2101,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_pamegranate.jpg"
+        "icon": "icon_pamegranate.webp"
     },
     {
         "id": "sweetpotato",
@@ -2110,7 +2110,7 @@
             "Green",
             "Defence"
         ],
-        "icon": "icon_sweetpotato.jpg"
+        "icon": "icon_sweetpotato.webp"
     },
     {
         "id": "cracker",
@@ -2120,7 +2120,7 @@
             "Vanguard",
             "Fire"
         ],
-        "icon": "icon_cracker.jpg"
+        "icon": "icon_cracker.webp"
     },
     {
         "id": "sapfling",
@@ -2130,7 +2130,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_sapfling.jpg"
+        "icon": "icon_sapfling.webp"
     },
     {
         "id": "chestnut",
@@ -2140,7 +2140,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_chestnut.jpg"
+        "icon": "icon_chestnut.webp"
     },
     {
         "id": "sugarcane",
@@ -2150,7 +2150,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_sugarcane.jpg"
+        "icon": "icon_sugarcane.webp"
     },
     {
         "id": "magicshroom",
@@ -2161,7 +2161,7 @@
             "Physics",
             "Magic"
         ],
-        "icon": "icon_magicshroom.jpg"
+        "icon": "icon_magicshroom.webp"
     },
     {
         "id": "greenturnip",
@@ -2171,7 +2171,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_greenturnip.jpg"
+        "icon": "icon_greenturnip.webp"
     },
     {
         "id": "cottonyeti",
@@ -2182,7 +2182,7 @@
             "Magic",
             "Ice"
         ],
-        "icon": "icon_cottonyeti.jpg"
+        "icon": "icon_cottonyeti.webp"
     },
     {
         "id": "agave",
@@ -2192,7 +2192,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_agave.jpg"
+        "icon": "icon_agave.webp"
     },
     {
         "id": "wintersweet",
@@ -2202,7 +2202,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_wintersweet.jpg"
+        "icon": "icon_wintersweet.webp"
     },
     {
         "id": "dragonfruit",
@@ -2212,7 +2212,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_dragonfruit.jpg"
+        "icon": "icon_dragonfruit.webp"
     },
     {
         "id": "pinkstarfruit",
@@ -2223,7 +2223,7 @@
             "Electric",
             "Magic"
         ],
-        "icon": "icon_pinkstarfruit.jpg"
+        "icon": "icon_pinkstarfruit.webp"
     },
     {
         "id": "flamelady",
@@ -2234,7 +2234,7 @@
             "Fire",
             "Magic"
         ],
-        "icon": "icon_flamelady.jpg"
+        "icon": "icon_flamelady.webp"
     },
     {
         "id": "matchflower",
@@ -2244,7 +2244,7 @@
             "Vanguard",
             "Fire"
         ],
-        "icon": "icon_matchflower.jpg"
+        "icon": "icon_matchflower.webp"
     },
     {
         "id": "applemortar",
@@ -2254,7 +2254,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_applemortar.jpg"
+        "icon": "icon_applemortar.webp"
     },
     {
         "id": "escaperoot",
@@ -2274,7 +2274,7 @@
             "Vanguard",
             "Electric"
         ],
-        "icon": "icon_electriccurrant.jpg"
+        "icon": "icon_electriccurrant.webp"
     },
     {
         "id": "explodeonut",
@@ -2284,7 +2284,7 @@
             "Defence",
             "Fire"
         ],
-        "icon": "icon_explodeonut.jpg"
+        "icon": "icon_explodeonut.webp"
     },
     {
         "id": "parsnip",
@@ -2294,7 +2294,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_parsnip.jpg"
+        "icon": "icon_parsnip.webp"
     },
     {
         "id": "missiletoe",
@@ -2305,7 +2305,7 @@
             "Magic",
             "Ice"
         ],
-        "icon": "icon_missiletoe.jpg"
+        "icon": "icon_missiletoe.webp"
     },
     {
         "id": "kiwibeast",
@@ -2315,7 +2315,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_kiwibeast.jpg"
+        "icon": "icon_kiwibeast.webp"
     },
     {
         "id": "icycurrant",
@@ -2325,7 +2325,7 @@
             "Trapper",
             "Ice"
         ],
-        "icon": "icon_icycurrant.jpg"
+        "icon": "icon_icycurrant.webp"
     },
     {
         "id": "tuliptrumpeter",
@@ -2336,7 +2336,7 @@
             "Magic",
             "Physics"
         ],
-        "icon": "icon_tuliptrumpeter.jpg"
+        "icon": "icon_tuliptrumpeter.webp"
     },
     {
         "id": "electricitea",
@@ -2346,7 +2346,7 @@
             "Vanguard",
             "Electric"
         ],
-        "icon": "icon_electricitea.jpg"
+        "icon": "icon_electricitea.webp"
     },
     {
         "id": "imppear",
@@ -2355,7 +2355,7 @@
             "Purple",
             "Trapper"
         ],
-        "icon": "icon_imppear.jpg"
+        "icon": "icon_imppear.webp"
     },
     {
         "id": "pinecone",
@@ -2365,7 +2365,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_pinecone.jpg"
+        "icon": "icon_pinecone.webp"
     },
     {
         "id": "narcissusshooter",
@@ -2375,7 +2375,7 @@
             "Vanguard",
             "Ice"
         ],
-        "icon": "icon_narcissusshooter.jpg"
+        "icon": "icon_narcissusshooter.webp"
     },
     {
         "id": "alarmsagittifolia",
@@ -2385,7 +2385,7 @@
             "Trapper",
             "Electric"
         ],
-        "icon": "icon_alarmsagittifolia.jpg"
+        "icon": "icon_alarmsagittifolia.webp"
     },
     {
         "id": "hollyknight",
@@ -2395,7 +2395,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_hollyknight.jpg"
+        "icon": "icon_hollyknight.webp"
     },
     {
         "id": "thundersnapdragon",
@@ -2417,7 +2417,7 @@
             "Ice",
             "Magic"
         ],
-        "icon": "icon_monotropa.jpg"
+        "icon": "icon_monotropa.webp"
     },
     {
         "id": "egretflower",
@@ -2427,7 +2427,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_egretflower.jpg"
+        "icon": "icon_egretflower.webp"
     },
     {
         "id": "strawburst",
@@ -2437,7 +2437,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_strawburst.jpg"
+        "icon": "icon_strawburst.webp"
     },
     {
         "id": "elaeocarpus",
@@ -2447,7 +2447,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_elaeocarpus.jpg"
+        "icon": "icon_elaeocarpus.webp"
     },
     {
         "id": "eleocurling",
@@ -2457,7 +2457,7 @@
             "Remote",
             "Ice"
         ],
-        "icon": "icon_eleocurling.jpg"
+        "icon": "icon_eleocurling.webp"
     },
     {
         "id": "ultomato",
@@ -2467,7 +2467,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_ultomato.jpg"
+        "icon": "icon_ultomato.webp"
     },
     {
         "id": "shadowvanilla",
@@ -2477,7 +2477,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_shadowvanilla.jpg"
+        "icon": "icon_shadowvanilla.webp"
     },
     {
         "id": "bromelblade",
@@ -2487,7 +2487,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_bromelblade.jpg"
+        "icon": "icon_bromelblade.webp"
     },
     {
         "id": "gumnut",
@@ -2496,7 +2496,7 @@
             "Orange",
             "Trapper"
         ],
-        "icon": "icon_gumnut.jpg"
+        "icon": "icon_gumnut.webp"
     },
     {
         "id": "olivepit",
@@ -2505,7 +2505,7 @@
             "Orange",
             "Trapper"
         ],
-        "icon": "icon_olivepit.jpg"
+        "icon": "icon_olivepit.webp"
     },
     {
         "id": "nukelauncher",
@@ -2515,7 +2515,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_nukelauncher.jpg"
+        "icon": "icon_nukelauncher.webp"
     },
     {
         "id": "headbutterlettuce",
@@ -2525,7 +2525,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_headbutterlettuce.jpg"
+        "icon": "icon_headbutterlettuce.webp"
     },
     {
         "id": "dazeychain",
@@ -2535,7 +2535,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_dazeychain.jpg"
+        "icon": "icon_dazeychain.webp"
     },
     {
         "id": "clawgloriosa",
@@ -2545,7 +2545,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_clawgloriosa.jpg"
+        "icon": "icon_clawgloriosa.webp"
     },
     {
         "id": "impatiensshooter",
@@ -2555,7 +2555,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_impatiensshooter.jpg"
+        "icon": "icon_impatiensshooter.webp"
     },
     {
         "id": "turkeypult",
@@ -2565,7 +2565,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_turkeypult.jpg"
+        "icon": "icon_turkeypult.webp"
     },
     {
         "id": "hammerflower",
@@ -2575,7 +2575,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_hammerflower.jpg"
+        "icon": "icon_hammerflower.webp"
     },
     {
         "id": "tigerstool",
@@ -2585,7 +2585,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_tigerstool.jpg"
+        "icon": "icon_tigerstool.webp"
     },
     {
         "id": "draftodil",
@@ -2595,7 +2595,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_draftodil.jpg"
+        "icon": "icon_draftodil.webp"
     },
     {
         "id": "mangosteen",
@@ -2605,7 +2605,7 @@
             "Vanguard",
             "Electric"
         ],
-        "icon": "icon_mangosteen.jpg"
+        "icon": "icon_mangosteen.webp"
     },
     {
         "id": "gardenergrass",
@@ -2615,7 +2615,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_gardenergrass.jpg"
+        "icon": "icon_gardenergrass.webp"
     },
     {
         "id": "fishhookgrass",
@@ -2625,7 +2625,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_fishhookgrass.jpg"
+        "icon": "icon_fishhookgrass.webp"
     },
     {
         "id": "byttneriameteorhammer",
@@ -2635,7 +2635,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_byttneriameteorhammer.jpg"
+        "icon": "icon_byttneriameteorhammer.webp"
     },
     {
         "id": "crownflower",
@@ -2645,7 +2645,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_crownflower.jpg"
+        "icon": "icon_crownflower.webp"
     },
     {
         "id": "jewelrabbit",
@@ -2665,7 +2665,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_burdockbatter.jpg"
+        "icon": "icon_burdockbatter.webp"
     },
     {
         "id": "orchidmage",
@@ -2675,7 +2675,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_orchidmage.jpg"
+        "icon": "icon_orchidmage.webp"
     },
     {
         "id": "lancerhoya",
@@ -2685,7 +2685,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_lancerhoya.jpg"
+        "icon": "icon_lancerhoya.webp"
     },
     {
         "id": "deodarcedar",
@@ -2695,7 +2695,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_deodarcedar.jpg"
+        "icon": "icon_deodarcedar.webp"
     },
     {
         "id": "geraniifencer",
@@ -2705,7 +2705,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_geraniifencer.jpg"
+        "icon": "icon_geraniifencer.webp"
     },
     {
         "id": "sarracenia",
@@ -2715,7 +2715,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_sarracenia.jpg"
+        "icon": "icon_sarracenia.webp"
     },
     {
         "id": "mandrake",
@@ -2725,7 +2725,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_mandrake.jpg"
+        "icon": "icon_mandrake.webp"
     },
     {
         "id": "cthulhuactinia",
@@ -2735,7 +2735,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_cthulhuactinia.jpg"
+        "icon": "icon_cthulhuactinia.webp"
     },
     {
         "id": "devilsflower",
@@ -2745,7 +2745,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_devilsflower.jpg"
+        "icon": "icon_devilsflower.webp"
     },
     {
         "id": "maybee",
@@ -2755,7 +2755,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_maybee.jpg"
+        "icon": "icon_maybee.webp"
     },
     {
         "id": "rapeflower",
@@ -2765,7 +2765,7 @@
             "Remote",
             "Fire"
         ],
-        "icon": "icon_rapeflower.jpg"
+        "icon": "icon_rapeflower.webp"
     },
     {
         "id": "spartanbamboo",
@@ -2775,7 +2775,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_spartanbamboo.jpg"
+        "icon": "icon_spartanbamboo.webp"
     },
     {
         "id": "nightcap",
@@ -2795,7 +2795,7 @@
             "Productor",
             "Physics"
         ],
-        "icon": "icon_happyleek.jpg"
+        "icon": "icon_happyleek.webp"
     },
     {
         "id": "gluttonydragon",
@@ -2805,7 +2805,7 @@
             "Vanguard",
             "Fire"
         ],
-        "icon": "icon_gluttonydragon.jpg"
+        "icon": "icon_gluttonydragon.webp"
     },
     {
         "id": "waterrabbit",
@@ -2815,7 +2815,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_waterrabbit.jpg"
+        "icon": "icon_waterrabbit.webp"
     },
     {
         "id": "heliconiagunner",
@@ -2825,7 +2825,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_heliconiagunner.jpg"
+        "icon": "icon_heliconiagunner.webp"
     },
     {
         "id": "electricpeel",
@@ -2835,7 +2835,7 @@
             "Vanguard",
             "Electric"
         ],
-        "icon": "icon_electricpeel.jpg"
+        "icon": "icon_electricpeel.webp"
     },
     {
         "id": "chainsawburmannii",
@@ -2845,7 +2845,7 @@
             "Vanguard",
             "Fire"
         ],
-        "icon": "icon_chainsawburmannii.jpg"
+        "icon": "icon_chainsawburmannii.webp"
     },
     {
         "id": "dragonbruit",
@@ -2854,7 +2854,7 @@
             "Orange",
             "Remote"
         ],
-        "icon": "icon_dragonbruit.jpg"
+        "icon": "icon_dragonbruit.webp"
     },
     {
         "id": "eagleclaw",
@@ -2864,7 +2864,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_eagleclaw.jpg"
+        "icon": "icon_eagleclaw.webp"
     },
     {
         "id": "twinshoneysuckle",
@@ -2876,7 +2876,7 @@
             "Ice",
             "Magic"
         ],
-        "icon": "icon_twinshoneysuckle.jpg"
+        "icon": "icon_twinshoneysuckle.webp"
     },
     {
         "id": "rhubarbarian",
@@ -2886,7 +2886,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_rhubarbarian.jpg"
+        "icon": "icon_rhubarbarian.webp"
     },
     {
         "id": "wiregelsemium",
@@ -2896,7 +2896,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_wiregelsemium.jpg"
+        "icon": "icon_wiregelsemium.webp"
     },
     {
         "id": "eywa",
@@ -2906,7 +2906,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_eywa.jpg"
+        "icon": "icon_eywa.webp"
     },
     {
         "id": "paphiopedilum",
@@ -2916,7 +2916,7 @@
             "Remote",
             "Electric"
         ],
-        "icon": "icon_paphiopedilum.jpg"
+        "icon": "icon_paphiopedilum.webp"
     },
     {
         "id": "buduhboom",
@@ -2926,7 +2926,7 @@
             "Vanguard",
             "Physics"
         ],
-        "icon": "icon_buduhboom.jpg"
+        "icon": "icon_buduhboom.webp"
     },
     {
         "id": "animnuts",
@@ -2937,7 +2937,7 @@
             "Physics",
             "Magic"
         ],
-        "icon": "icon_animnuts.jpg"
+        "icon": "icon_animnuts.webp"
     },
     {
         "id": "aeonium",
@@ -2947,7 +2947,7 @@
             "Remote",
             "Magic"
         ],
-        "icon": "icon_aeonium.jpg"
+        "icon": "icon_aeonium.webp"
     },
     {
         "id": "peonychi",
@@ -2957,7 +2957,7 @@
             "Defence",
             "Physics"
         ],
-        "icon": "icon_peonychi.jpg"
+        "icon": "icon_peonychi.webp"
     },
     {
         "id": "doomshroom",
@@ -2978,7 +2978,7 @@
             "Assist",
             "Original"
         ],
-        "icon": "icon_umbrellaleaf.jpg"
+        "icon": "icon_umbrellaleaf.webp"
     },
     {
         "id": "duckpear",
@@ -2988,7 +2988,7 @@
             "Remote",
             "Physics"
         ],
-        "icon": "icon_duckpear.jpg"
+        "icon": "icon_duckpear.webp"
     },
     {
         "id": "parallel_sunflower",
@@ -2996,7 +2996,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_sunflower.jpg"
+        "icon": "icon_sunflower.webp"
     },
     {
         "id": "parallel_peashooter",
@@ -3004,7 +3004,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_peashooter.jpg"
+        "icon": "icon_peashooter.webp"
     },
     {
         "id": "parallel_wallnut",
@@ -3012,7 +3012,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_wallnut.jpg"
+        "icon": "icon_wallnut.webp"
     },
     {
         "id": "parallel_potatomine",
@@ -3020,7 +3020,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_potatomine.jpg"
+        "icon": "icon_potatomine.webp"
     },
     {
         "id": "parallel_chomper",
@@ -3028,7 +3028,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_chomper.jpg"
+        "icon": "icon_chomper.webp"
     },
     {
         "id": "parallel_cherry_bomb",
@@ -3036,7 +3036,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_cherry_bomb.jpg"
+        "icon": "icon_cherry_bomb.webp"
     },
     {
         "id": "parallel_iceburg",
@@ -3044,7 +3044,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_iceburg.jpg"
+        "icon": "icon_iceburg.webp"
     },
     {
         "id": "parallel_bonkchoy",
@@ -3052,7 +3052,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_bonkchoy.jpg"
+        "icon": "icon_bonkchoy.webp"
     },
     {
         "id": "parallel_moonflower",
@@ -3060,7 +3060,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_moonflower.jpg"
+        "icon": "icon_moonflower.webp"
     },
     {
         "id": "parallel_shadowshroom",
@@ -3068,7 +3068,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_shadowshroom.jpg"
+        "icon": "icon_shadowshroom.webp"
     },
     {
         "id": "parallel_grimrose",
@@ -3076,7 +3076,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_grimrose.jpg"
+        "icon": "icon_grimrose.webp"
     },
     {
         "id": "parallel_nightshade",
@@ -3084,7 +3084,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_nightshade.jpg"
+        "icon": "icon_nightshade.webp"
     },
     {
         "id": "parallel_dusklobber",
@@ -3092,7 +3092,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_dusklobber.jpg"
+        "icon": "icon_dusklobber.webp"
     },
     {
         "id": "parallel_shadowpeashooter",
@@ -3100,7 +3100,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_shadowpeashooter.jpg"
+        "icon": "icon_shadowpeashooter.webp"
     },
     {
         "id": "parallel_shadowvanilla",
@@ -3108,7 +3108,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_shadowvanilla.jpg"
+        "icon": "icon_shadowvanilla.webp"
     },
     {
         "id": "parallel_primalsunflower",
@@ -3116,7 +3116,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_primalsunflower.jpg"
+        "icon": "icon_primalsunflower.webp"
     },
     {
         "id": "parallel_primalpeashooter",
@@ -3124,7 +3124,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_primalpeashooter.jpg"
+        "icon": "icon_primalpeashooter.webp"
     },
     {
         "id": "parallel_primalwallnut",
@@ -3132,7 +3132,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_primalwallnut.jpg"
+        "icon": "icon_primalwallnut.webp"
     },
     {
         "id": "parallel_primalpotatomine",
@@ -3140,7 +3140,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_primalpotatomine.jpg"
+        "icon": "icon_primalpotatomine.webp"
     },
     {
         "id": "parallel_pumpkin",
@@ -3148,7 +3148,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_pumpkin.jpg"
+        "icon": "icon_pumpkin.webp"
     },
     {
         "id": "parallel_nekotail",
@@ -3164,7 +3164,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_kernelpult.jpg"
+        "icon": "icon_kernelpult.webp"
     },
     {
         "id": "parallel_cobcannon",
@@ -3172,7 +3172,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_cobcannon.jpg"
+        "icon": "icon_cobcannon.webp"
     },
     {
         "id": "parallel_spikeweed",
@@ -3180,7 +3180,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_spikeweed.jpg"
+        "icon": "icon_spikeweed.webp"
     },
     {
         "id": "parallel_splitpea",
@@ -3188,7 +3188,7 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_splitpea.jpg"
+        "icon": "icon_splitpea.webp"
     },
     {
         "id": "parallel_wintermelon",
@@ -3204,6 +3204,6 @@
         "tags": [
             "Parallel"
         ],
-        "icon": "icon_moonflower.jpg"
+        "icon": "icon_moonflower.webp"
     }
 ]

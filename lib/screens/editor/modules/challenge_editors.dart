@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/pvz_models.dart';
-import 'package:z_editor/data/reference_repository.dart';
-import 'package:z_editor/l10n/app_localizations.dart';
 
 class ChallengeEditorScreen extends StatefulWidget {
   const ChallengeEditorScreen({
@@ -18,11 +16,34 @@ class ChallengeEditorScreen extends StatefulWidget {
 }
 
 class _ChallengeEditorScreenState extends State<ChallengeEditorScreen> {
+  String _friendlyTitle() {
+    switch (widget.object.objClass) {
+      case 'ProtectThePlantChallengeProperties':
+        return 'Protect plants';
+      case 'ProtectTheGridItemChallengeProperties':
+        return 'Protect grid items';
+      case 'SunBombChallengeProperties':
+        return 'Sun bomb';
+      case 'ZombiePotionModuleProperties':
+        return 'Zombie potion';
+      case 'PennyClassroomModuleProperties':
+        return 'Penny classroom';
+      case 'ManholePipelineModuleProperties':
+        return 'Manhole pipeline';
+      default:
+        return widget.object.objClass;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.object.objClass),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.maybePop(context),
+        ),
+        title: Text(_friendlyTitle()),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -37,7 +58,9 @@ class _ChallengeEditorScreenState extends State<ChallengeEditorScreen> {
         return _BeatTheLevelEditor(object: widget.object, onChanged: widget.onChanged);
       case 'StarChallengeSaveMowerProps':
       case 'StarChallengePlantFoodNonuseProps':
-        return const Center(child: Text('No properties to configure'));
+        return const Center(
+          child: Text("This challenge doesn't support configuration."),
+        );
       case 'StarChallengePlantSurviveProps':
         return _SimpleCountEditor(
           object: widget.object,
@@ -130,6 +153,12 @@ class _ChallengeEditorScreenState extends State<ChallengeEditorScreen> {
         return _ProtectTheGridItemEditor(object: widget.object, onChanged: widget.onChanged);
       case 'SunBombChallengeProperties':
         return _SunBombEditor(object: widget.object, onChanged: widget.onChanged);
+      case 'ZombiePotionModuleProperties':
+        return _ZombiePotionModuleEditor(object: widget.object, onChanged: widget.onChanged);
+      case 'PennyClassroomModuleProperties':
+        return _PennyClassroomEditor(object: widget.object, onChanged: widget.onChanged);
+      case 'ManholePipelineModuleProperties':
+        return _ManholePipelineEditor(object: widget.object, onChanged: widget.onChanged);
       default:
         return const Text('Unknown challenge type');
     }
@@ -596,6 +625,195 @@ class _SunBombEditorState extends State<_SunBombEditor> {
             _save();
           },
         ),
+      ],
+    );
+  }
+}
+
+class _ZombiePotionModuleEditor extends StatefulWidget {
+  const _ZombiePotionModuleEditor({required this.object, required this.onChanged});
+  final PvzObject object;
+  final VoidCallback onChanged;
+
+  @override
+  State<_ZombiePotionModuleEditor> createState() =>
+      _ZombiePotionModuleEditorState();
+}
+
+class _ZombiePotionModuleEditorState extends State<_ZombiePotionModuleEditor> {
+  late ZombiePotionModulePropertiesData _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = ZombiePotionModulePropertiesData.fromJson(
+      widget.object.objData as Map<String, dynamic>,
+    );
+  }
+
+  void _save() {
+    widget.object.objData = _data.toJson();
+    widget.onChanged();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextFormField(
+          initialValue: _data.initialPotionCount.toString(),
+          decoration: const InputDecoration(labelText: 'Initial Potion Count'),
+          keyboardType: TextInputType.number,
+          onChanged: (val) {
+            _data.initialPotionCount = int.tryParse(val) ?? 10;
+            _save();
+          },
+        ),
+        TextFormField(
+          initialValue: _data.maxPotionCount.toString(),
+          decoration: const InputDecoration(labelText: 'Max Potion Count'),
+          keyboardType: TextInputType.number,
+          onChanged: (val) {
+            _data.maxPotionCount = int.tryParse(val) ?? 60;
+            _save();
+          },
+        ),
+        const SizedBox(height: 8),
+        const Text('Spawn Timer (Min/Max seconds)', style: TextStyle(fontWeight: FontWeight.bold)),
+        Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                initialValue: _data.potionSpawnTimer.min.toString(),
+                decoration: const InputDecoration(labelText: 'Min'),
+                keyboardType: TextInputType.number,
+                onChanged: (val) {
+                  _data.potionSpawnTimer.min = int.tryParse(val) ?? 12;
+                  _save();
+                },
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: TextFormField(
+                initialValue: _data.potionSpawnTimer.max.toString(),
+                decoration: const InputDecoration(labelText: 'Max'),
+                keyboardType: TextInputType.number,
+                onChanged: (val) {
+                  _data.potionSpawnTimer.max = int.tryParse(val) ?? 16;
+                  _save();
+                },
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Text('Potion types: ${_data.potionTypes.length} configured', style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
+      ],
+    );
+  }
+}
+
+class _PennyClassroomEditor extends StatefulWidget {
+  const _PennyClassroomEditor({required this.object, required this.onChanged});
+  final PvzObject object;
+  final VoidCallback onChanged;
+
+  @override
+  State<_PennyClassroomEditor> createState() => _PennyClassroomEditorState();
+}
+
+class _PennyClassroomEditorState extends State<_PennyClassroomEditor> {
+  late PennyClassroomModuleData _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = PennyClassroomModuleData.fromJson(
+      widget.object.objData as Map<String, dynamic>,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Plant levels: ${_data.plantMap.length}',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        ..._data.plantMap.entries.map((e) {
+          return Card(
+            margin: const EdgeInsets.only(bottom: 8),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  Expanded(child: Text(e.key)),
+                  Text('Lv ${e.value}'),
+                ],
+              ),
+            ),
+          );
+        }),
+      ],
+    );
+  }
+}
+
+class _ManholePipelineEditor extends StatefulWidget {
+  const _ManholePipelineEditor({required this.object, required this.onChanged});
+  final PvzObject object;
+  final VoidCallback onChanged;
+
+  @override
+  State<_ManholePipelineEditor> createState() => _ManholePipelineEditorState();
+}
+
+class _ManholePipelineEditorState extends State<_ManholePipelineEditor> {
+  late ManholePipelineModuleData _data;
+
+  @override
+  void initState() {
+    super.initState();
+    _data = ManholePipelineModuleData.fromJson(
+      widget.object.objData as Map<String, dynamic>,
+    );
+  }
+
+  void _save() {
+    widget.object.objData = _data.toJson();
+    widget.onChanged();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextFormField(
+          initialValue: _data.operationTimePerGrid.toString(),
+          decoration: const InputDecoration(labelText: 'Operation Time Per Grid'),
+          keyboardType: TextInputType.number,
+          onChanged: (val) {
+            _data.operationTimePerGrid = int.tryParse(val) ?? 1;
+            _save();
+          },
+        ),
+        TextFormField(
+          initialValue: _data.damagePerSecond.toString(),
+          decoration: const InputDecoration(labelText: 'Damage Per Second'),
+          keyboardType: TextInputType.number,
+          onChanged: (val) {
+            _data.damagePerSecond = int.tryParse(val) ?? 30;
+            _save();
+          },
+        ),
+        const SizedBox(height: 8),
+        Text('Pipelines: ${_data.pipelineList.length}', style: const TextStyle(fontWeight: FontWeight.bold)),
       ],
     );
   }

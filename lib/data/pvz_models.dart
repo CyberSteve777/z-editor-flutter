@@ -112,10 +112,10 @@ class LevelDefinitionData {
 
 class WaveManagerModuleData {
   WaveManagerModuleData({
-    this.dynamicZombies = const [],
+    List<DynamicZombieGroup>? dynamicZombies,
     this.waveManagerProps,
     this.manualStartup,
-  });
+  }) : dynamicZombies = dynamicZombies ?? [];
 
   List<DynamicZombieGroup> dynamicZombies;
   String? waveManagerProps;
@@ -123,13 +123,12 @@ class WaveManagerModuleData {
 
   factory WaveManagerModuleData.fromJson(Map<String, dynamic> json) {
     return WaveManagerModuleData(
-      dynamicZombies:
-          (json['DynamicZombies'] as List<dynamic>?)
+      dynamicZombies: (json['DynamicZombies'] as List<dynamic>?)
               ?.map(
                 (e) => DynamicZombieGroup.fromJson(e as Map<String, dynamic>),
               )
               .toList() ??
-          [],
+          <DynamicZombieGroup>[],
       waveManagerProps: json['WaveManagerProps'] as String?,
       manualStartup: json['ManualStartup'] as bool?,
     );
@@ -147,9 +146,10 @@ class DynamicZombieGroup {
     this.pointIncrement = 0,
     this.startingPoints = 0,
     this.startingWave = 0,
-    this.zombiePool = const [],
-    this.zombieLevel = const [],
-  });
+    List<String>? zombiePool,
+    List<int>? zombieLevel,
+  })  : zombiePool = zombiePool ?? [],
+        zombieLevel = zombieLevel ?? [];
 
   int pointIncrement;
   int startingPoints;
@@ -796,8 +796,8 @@ class SunBombChallengeData {
 class StarChallengeModuleData {
   StarChallengeModuleData({
     this.challengesAlwaysAvailable = true,
-    this.challenges = const [],
-  });
+    List<dynamic>? challenges,
+  }) : challenges = challenges ?? [];
 
   bool challengesAlwaysAvailable;
   List<dynamic> challenges; // Can be any challenge type
@@ -806,7 +806,7 @@ class StarChallengeModuleData {
     return StarChallengeModuleData(
       challengesAlwaysAvailable:
           json['ChallengesAlwaysAvailable'] as bool? ?? true,
-      challenges: (json['Challenges'] as List<dynamic>?) ?? [],
+      challenges: List<dynamic>.from(json['Challenges'] as List<dynamic>? ?? []),
     );
   }
 
@@ -1041,26 +1041,18 @@ class PiratePlankPropertiesData {
 class TidePropertiesData {
   TidePropertiesData({
     this.startingWaveLocation = 5,
-    this.wavesPerFlag = 1,
-    this.waveSpawnDelay = 10,
   });
 
   int startingWaveLocation;
-  int wavesPerFlag;
-  int waveSpawnDelay;
 
   factory TidePropertiesData.fromJson(Map<String, dynamic> json) {
     return TidePropertiesData(
       startingWaveLocation: json['StartingWaveLocation'] as int? ?? 5,
-      wavesPerFlag: json['WavesPerFlag'] as int? ?? 1,
-      waveSpawnDelay: json['WaveSpawnDelay'] as int? ?? 10,
     );
   }
 
   Map<String, dynamic> toJson() => {
     'StartingWaveLocation': startingWaveLocation,
-    'WavesPerFlag': wavesPerFlag,
-    'WaveSpawnDelay': waveSpawnDelay,
   };
 }
 
@@ -1558,85 +1550,52 @@ class ManholePipelineModuleData {
 
 class PipelineData {
   PipelineData({
-    this.startGridX = 0,
-    this.startGridY = 0,
-    this.endGridX = 0,
-    this.endGridY = 0,
-    this.pipelineType = 'portal_kid',
+    this.startX = 0,
+    this.startY = 0,
+    this.endX = 0,
+    this.endY = 0,
   });
 
-  int startGridX;
-  int startGridY;
-  int endGridX;
-  int endGridY;
-  String pipelineType;
+  int startX;
+  int startY;
+  int endX;
+  int endY;
 
   factory PipelineData.fromJson(Map<String, dynamic> json) {
     return PipelineData(
-      startGridX: json['StartGridX'] as int? ?? 0,
-      startGridY: json['StartGridY'] as int? ?? 0,
-      endGridX: json['EndGridX'] as int? ?? 0,
-      endGridY: json['EndGridY'] as int? ?? 0,
-      pipelineType: json['PipelineType'] as String? ?? 'portal_kid',
+      startX: json['StartX'] as int? ?? 0,
+      startY: json['StartY'] as int? ?? 0,
+      endX: json['EndX'] as int? ?? 0,
+      endY: json['EndY'] as int? ?? 0,
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'StartGridX': startGridX,
-    'StartGridY': startGridY,
-    'EndGridX': endGridX,
-    'EndGridY': endGridY,
-    'PipelineType': pipelineType,
+    'StartX': startX,
+    'StartY': startY,
+    'EndX': endX,
+    'EndY': endY,
   };
 }
 
 // === Penny Classroom ===
 
 class PennyClassroomModuleData {
-  PennyClassroomModuleData({this.questions = const []});
+  PennyClassroomModuleData({this.plantMap = const {}});
 
-  List<PennyQuestionData> questions;
+  Map<String, int> plantMap;
 
   factory PennyClassroomModuleData.fromJson(Map<String, dynamic> json) {
+    final raw = json['PlantMap'] as Map<String, dynamic>? ?? {};
     return PennyClassroomModuleData(
-      questions:
-          (json['Questions'] as List<dynamic>?)
-              ?.map(
-                (e) => PennyQuestionData.fromJson(e as Map<String, dynamic>),
-              )
-              .toList() ??
-          [],
+      plantMap: raw.map(
+        (key, value) => MapEntry(key, (value as num?)?.toInt() ?? 0),
+      ),
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'Questions': questions.map((e) => e.toJson()).toList(),
-  };
-}
-
-class PennyQuestionData {
-  PennyQuestionData({
-    this.question = '',
-    this.answers = const [],
-    this.correctAnswerIndex = 0,
-  });
-
-  String question;
-  List<String> answers;
-  int correctAnswerIndex;
-
-  factory PennyQuestionData.fromJson(Map<String, dynamic> json) {
-    return PennyQuestionData(
-      question: json['Question'] as String? ?? '',
-      answers: (json['Answers'] as List<dynamic>?)?.cast<String>() ?? [],
-      correctAnswerIndex: json['CorrectAnswerIndex'] as int? ?? 0,
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-    'Question': question,
-    'Answers': answers,
-    'CorrectAnswerIndex': correctAnswerIndex,
+    'PlantMap': plantMap,
   };
 }
 
@@ -2756,59 +2715,224 @@ class ParsedLevelData {
 // === Zombie Properties ===
 
 class ZombieTypeData {
-  ZombieTypeData({this.typeName = '', this.properties = ''});
+  ZombieTypeData({
+    this.typeName = '',
+    this.properties = '',
+    this.resistences,
+  });
 
   String typeName;
   String properties;
+  List<double>? resistences;
 
   factory ZombieTypeData.fromJson(Map<String, dynamic> json) {
     return ZombieTypeData(
       typeName: json['TypeName'] as String? ?? '',
       properties: json['Properties'] as String? ?? '',
+      resistences:
+          (json['Resistences'] as List<dynamic>?)
+              ?.map((e) => (e as num?)?.toDouble() ?? 0.0)
+              .toList(),
     );
   }
 
   Map<String, dynamic> toJson() => {
     'TypeName': typeName,
     'Properties': properties,
+    if (resistences != null) 'Resistences': resistences,
   };
+}
+
+class RectData {
+  RectData({this.mX = 0, this.mY = 0, this.mWidth = 0, this.mHeight = 0});
+
+  int mX;
+  int mY;
+  int mWidth;
+  int mHeight;
+
+  factory RectData.fromJson(Map<String, dynamic> json) {
+    return RectData(
+      mX: json['mX'] as int? ?? 0,
+      mY: json['mY'] as int? ?? 0,
+      mWidth: json['mWidth'] as int? ?? 0,
+      mHeight: json['mHeight'] as int? ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'mX': mX,
+    'mY': mY,
+    'mWidth': mWidth,
+    'mHeight': mHeight,
+  };
+}
+
+class Point2D {
+  Point2D({this.x = 0, this.y = 0});
+
+  int x;
+  int y;
+
+  factory Point2D.fromJson(Map<String, dynamic> json) {
+    return Point2D(
+      x: json['x'] as int? ?? 0,
+      y: json['y'] as int? ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'x': x, 'y': y};
+}
+
+class Point3DDouble {
+  Point3DDouble({this.x = 0.0, this.y = 0.0, this.z = 0.0});
+
+  double x;
+  double y;
+  double z;
+
+  factory Point3DDouble.fromJson(Map<String, dynamic> json) {
+    return Point3DDouble(
+      x: (json['x'] as num?)?.toDouble() ?? 0.0,
+      y: (json['y'] as num?)?.toDouble() ?? 0.0,
+      z: (json['z'] as num?)?.toDouble() ?? 0.0,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'x': x, 'y': y, 'z': z};
 }
 
 class ZombiePropertySheetData {
   ZombiePropertySheetData({
     this.hitpoints = 0.0,
-    this.wavePointCost = 0,
-    this.weight = 0.0,
     this.speed = 0.0,
+    this.speedVariance,
     this.eatDPS = 0.0,
-    this.sizeType = '',
+    this.weight = 0,
+    this.wavePointCost = 0,
+    this.sizeType,
+    this.hitRect,
+    this.attackRect,
+    this.artCenter,
+    this.shadowOffset,
+    this.groundTrackName = '',
+    this.canSpawnPlantFood = false,
+    this.canSurrender,
+    this.enableShowHealthBarByDamage,
+    this.canBePlantTossedweak,
+    this.canBePlantTossedStrong,
+    this.canBeLaunchedByPlants,
+    this.drawHealthBarTime,
+    this.enableEliteImmunities,
+    this.enableEliteScale,
+    this.canTriggerZombieWin,
+    this.chillInsteadOfFreeze,
+    this.eliteScale,
+    this.armDropFraction,
+    this.headDropFraction,
   });
 
   double hitpoints;
-  int wavePointCost;
-  double weight;
   double speed;
+  double? speedVariance;
   double eatDPS;
-  String sizeType;
+  int weight;
+  int wavePointCost;
+  String? sizeType;
+  RectData? hitRect;
+  RectData? attackRect;
+  Point2D? artCenter;
+  Point3DDouble? shadowOffset;
+  String groundTrackName;
+  bool canSpawnPlantFood;
+  bool? canSurrender;
+  bool? enableShowHealthBarByDamage;
+  bool? canBePlantTossedweak;
+  bool? canBePlantTossedStrong;
+  bool? canBeLaunchedByPlants;
+  double? drawHealthBarTime;
+  bool? enableEliteImmunities;
+  bool? enableEliteScale;
+  bool? canTriggerZombieWin;
+  bool? chillInsteadOfFreeze;
+  double? eliteScale;
+  int? armDropFraction;
+  int? headDropFraction;
 
   factory ZombiePropertySheetData.fromJson(Map<String, dynamic> json) {
     return ZombiePropertySheetData(
       hitpoints: (json['Hitpoints'] as num?)?.toDouble() ?? 0.0,
-      wavePointCost: json['WavePointCost'] as int? ?? 0,
-      weight: (json['Weight'] as num?)?.toDouble() ?? 0.0,
       speed: (json['Speed'] as num?)?.toDouble() ?? 0.0,
+      speedVariance: (json['SpeedVariance'] as num?)?.toDouble(),
       eatDPS: (json['EatDPS'] as num?)?.toDouble() ?? 0.0,
-      sizeType: json['SizeType'] as String? ?? '',
+      weight: (json['Weight'] as num?)?.toInt() ?? 0,
+      wavePointCost: json['WavePointCost'] as int? ?? 0,
+      sizeType: json['SizeType'] as String?,
+      hitRect: json['HitRect'] is Map<String, dynamic>
+          ? RectData.fromJson(json['HitRect'] as Map<String, dynamic>)
+          : null,
+      attackRect: json['AttackRect'] is Map<String, dynamic>
+          ? RectData.fromJson(json['AttackRect'] as Map<String, dynamic>)
+          : null,
+      artCenter: json['ArtCenter'] is Map<String, dynamic>
+          ? Point2D.fromJson(json['ArtCenter'] as Map<String, dynamic>)
+          : null,
+      shadowOffset: json['ShadowOffset'] is Map<String, dynamic>
+          ? Point3DDouble.fromJson(json['ShadowOffset'] as Map<String, dynamic>)
+          : null,
+      groundTrackName: json['GroundTrackName'] as String? ?? '',
+      canSpawnPlantFood: json['CanSpawnPlantFood'] as bool? ?? false,
+      canSurrender: json['CanSurrender'] as bool?,
+      enableShowHealthBarByDamage:
+          json['EnableShowHealthBarByDamage'] as bool?,
+      canBePlantTossedweak: json['CanBePlantTossedweak'] as bool?,
+      canBePlantTossedStrong: json['CanBePlantTossedStrong'] as bool?,
+      canBeLaunchedByPlants: json['CanBeLaunchedByPlants'] as bool?,
+      drawHealthBarTime: (json['DrawHealthBarTime'] as num?)?.toDouble(),
+      enableEliteImmunities: json['EnableEliteImmunities'] as bool?,
+      enableEliteScale: json['EnableEliteScale'] as bool?,
+      canTriggerZombieWin: json['CanTriggerZombieWin'] as bool?,
+      chillInsteadOfFreeze: json['ChillInsteadOfFreeze'] as bool?,
+      eliteScale: (json['EliteScale'] as num?)?.toDouble(),
+      armDropFraction: json['ArmDropFraction'] as int?,
+      headDropFraction: json['HeadDropFraction'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() => {
     'Hitpoints': hitpoints,
-    'WavePointCost': wavePointCost,
-    'Weight': weight,
     'Speed': speed,
+    if (speedVariance != null) 'SpeedVariance': speedVariance,
     'EatDPS': eatDPS,
-    'SizeType': sizeType,
+    'Weight': weight,
+    'WavePointCost': wavePointCost,
+    if (sizeType != null) 'SizeType': sizeType,
+    if (hitRect != null) 'HitRect': hitRect!.toJson(),
+    if (attackRect != null) 'AttackRect': attackRect!.toJson(),
+    if (artCenter != null) 'ArtCenter': artCenter!.toJson(),
+    if (shadowOffset != null) 'ShadowOffset': shadowOffset!.toJson(),
+    'GroundTrackName': groundTrackName,
+    'CanSpawnPlantFood': canSpawnPlantFood,
+    if (canSurrender != null) 'CanSurrender': canSurrender,
+    if (enableShowHealthBarByDamage != null)
+      'EnableShowHealthBarByDamage': enableShowHealthBarByDamage,
+    if (canBePlantTossedweak != null)
+      'CanBePlantTossedweak': canBePlantTossedweak,
+    if (canBePlantTossedStrong != null)
+      'CanBePlantTossedStrong': canBePlantTossedStrong,
+    if (canBeLaunchedByPlants != null)
+      'CanBeLaunchedByPlants': canBeLaunchedByPlants,
+    if (drawHealthBarTime != null) 'DrawHealthBarTime': drawHealthBarTime,
+    if (enableEliteImmunities != null)
+      'EnableEliteImmunities': enableEliteImmunities,
+    if (enableEliteScale != null) 'EnableEliteScale': enableEliteScale,
+    if (canTriggerZombieWin != null)
+      'CanTriggerZombieWin': canTriggerZombieWin,
+    if (chillInsteadOfFreeze != null)
+      'ChillInsteadOfFreeze': chillInsteadOfFreeze,
+    if (eliteScale != null) 'EliteScale': eliteScale,
+    if (armDropFraction != null) 'ArmDropFraction': armDropFraction,
+    if (headDropFraction != null) 'HeadDropFraction': headDropFraction,
   };
 }
 
@@ -2817,7 +2941,7 @@ class ZombieStats {
     this.id = '',
     this.hp = 0.0,
     this.cost = 0,
-    this.weight = 0.0,
+    this.weight = 0,
     this.speed = 0.0,
     this.eatDPS = 0.0,
     this.sizeType = '',
@@ -2826,7 +2950,7 @@ class ZombieStats {
   String id;
   double hp;
   int cost;
-  double weight;
+  int weight;
   double speed;
   double eatDPS;
   String sizeType;

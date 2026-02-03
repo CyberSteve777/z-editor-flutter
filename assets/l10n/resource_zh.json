@@ -800,5 +800,15 @@
   "zombie_journey_to_the_west_miner": "土地公僵尸",
   "zombie_journey_to_the_west_poncho": "铁锅僵尸",
   "zombie_journey_to_the_west_red_boy": "红孩儿僵尸",
-  "zombie_journey_to_the_west_huangmei": "黄眉大亡僵尸"
+  "zombie_journey_to_the_west_huangmei": "黄眉大亡僵尸",
+  "zombie_mausoleum_basic": "地宫普通僵尸",
+  "zombie_mausoleum_armor1": "地宫路障僵尸",
+  "zombie_mausoleum_armor2": "地宫铁桶僵尸",
+  "zombie_mausoleum_flag": "地宫旗帜僵尸",
+  "zombie_mausoleum_gargantuar": "百夫长巨人僵尸",
+  "zombie_mausoleum_imp": "校尉小鬼僵尸",
+  "zombie_mausoleum_vendor": "小贩僵尸",
+  "zombie_mausoleum_piggy": "僵尸猪",
+  "zombie_mausoleum_cavalry": "木马骑兵僵尸",
+  "zombie_mausoleum_archer": "弓箭手僵尸"
 }
