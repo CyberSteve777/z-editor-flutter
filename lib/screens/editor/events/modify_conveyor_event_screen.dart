@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/data/plant_repository.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
-import 'package:z_editor/screens/select/plant_selection_screen.dart';
 import 'package:z_editor/widgets/asset_image.dart';
 import 'package:z_editor/widgets/editor_components.dart';
 

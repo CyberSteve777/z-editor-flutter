@@ -16,7 +16,7 @@ void main() {
     final prefs = await SharedPreferences.getInstance();
 
     const localeCode = 'en';
-    const locale = localeCode == 'en' ? const Locale('en') : const Locale('zh');
+    const locale = localeCode == 'en' ? Locale('en') : Locale('zh');
 
     final isDark = prefs.getBool('dark_theme') ?? false;
     final uiScale = prefs.getDouble('ui_scale') ?? 1.0;

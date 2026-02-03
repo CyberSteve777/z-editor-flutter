@@ -267,7 +267,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      color: Theme.of(context).colorScheme.surfaceVariant,
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
       child: Row(
         children: [
           SizedBox(
@@ -410,7 +410,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
               ),
           ],
         ),
-        Divider(height: 1, color: Theme.of(context).colorScheme.surfaceVariant),
+        Divider(height: 1, color: Theme.of(context).colorScheme.surfaceContainerHighest),
       ],
     );
   }

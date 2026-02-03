@@ -160,7 +160,7 @@ class _LevelSettingsTabState extends State<LevelSettingsTab> {
             if (miscModules.isNotEmpty) ...[
               Text(
                 l10n?.parameterModules ?? 'Parameter modules',
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                   color: Colors.grey,

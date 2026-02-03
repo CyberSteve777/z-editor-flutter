@@ -1,5 +1,6 @@
 /// PVZ2 level file and object models
 /// Ported from Z-Editor-master PvzDataModels.kt
+library;
 
 class PvzLevelFile {
   PvzLevelFile({required this.objects, this.version = 1});
@@ -1772,8 +1773,9 @@ class VaseDefinition {
     final Map<String, dynamic> data = {'Count': count};
     if (zombieTypeName != null) data['ZombieTypeName'] = zombieTypeName;
     if (plantTypeName != null) data['PlantTypeName'] = plantTypeName;
-    if (collectableTypeName != null)
+    if (collectableTypeName != null) {
       data['CollectableTypeName'] = collectableTypeName;
+    }
     return data;
   }
 }

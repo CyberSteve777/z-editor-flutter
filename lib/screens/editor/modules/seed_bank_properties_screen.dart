@@ -420,11 +420,11 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Seed bank help'),
-        content: SingleChildScrollView(
+        content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text(
                   'Seed bank lets players choose plants. In courtyard mode you can set global level and all plants.'),
               SizedBox(height: 8),

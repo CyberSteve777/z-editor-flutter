@@ -233,7 +233,7 @@ class _SeedRainPropertiesScreenState extends State<SeedRainPropertiesScreen> {
                       labelText: 'Weight',
                       border: OutlineInputBorder(),
                     ),
-                    initialValue: '${tempWeight}',
+                    initialValue: '$tempWeight',
                     onChanged: (v) {
                       final n = int.tryParse(v);
                       if (n != null) tempWeight = n;
@@ -246,7 +246,7 @@ class _SeedRainPropertiesScreenState extends State<SeedRainPropertiesScreen> {
                       labelText: 'Max count',
                       border: OutlineInputBorder(),
                     ),
-                    initialValue: '${tempMaxCount}',
+                    initialValue: '$tempMaxCount',
                     onChanged: (v) {
                       final n = int.tryParse(v);
                       if (n != null) tempMaxCount = n;

@@ -427,7 +427,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                     children: [
                       Expanded(
                         child: DropdownButtonFormField<int>(
-                          value: rowValue,
+                          initialValue: rowValue,
                           decoration: const InputDecoration(
                             labelText: 'Row',
                             border: OutlineInputBorder(),
@@ -788,7 +788,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<String?>(
-              value: current,
+              initialValue: current,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
@@ -1216,7 +1216,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
             SizedBox(
               width: 70,
               child: DropdownButtonFormField<int?>(
-                value: z.row,
+                initialValue: z.row,
                 decoration: const InputDecoration(
                   labelText: 'Row',
                   isDense: true,

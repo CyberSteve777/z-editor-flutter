@@ -516,7 +516,7 @@ class _CustomZombiePropertiesScreenState
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: DropdownButtonFormField<String>(
-                        value: _propsData.groundTrackName,
+                        initialValue: _propsData.groundTrackName,
                         decoration: const InputDecoration(
                           labelText: 'GroundTrackName',
                           border: OutlineInputBorder(),

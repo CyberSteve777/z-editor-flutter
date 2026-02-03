@@ -287,11 +287,11 @@ class _ConveyorSeedBankPropertiesScreenState
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Conveyor belt help'),
-        content: SingleChildScrollView(
+        content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text('Conveyor mode randomly generates cards by weight. Configure plant pool and refresh delay.'),
               SizedBox(height: 8),
               Text('Plant pool & weight: Probability = weight / total weight. Use thresholds to adjust dynamically.'),
@@ -420,7 +420,7 @@ class _PlantRow extends StatelessWidget {
     final plantInfo = PlantRepository().getPlantInfoById(plant.plantType);
     final displayName = toolInfo?.name ?? PlantRepository().getName(plant.plantType);
     final iconPath = isTool
-        ? (toolInfo!.icon != null ? 'assets/images/tools/${toolInfo!.icon}' : null)
+        ? (toolInfo.icon != null ? 'assets/images/tools/${toolInfo.icon}' : null)
         : plantInfo?.iconAssetPath;
 
     return Padding(

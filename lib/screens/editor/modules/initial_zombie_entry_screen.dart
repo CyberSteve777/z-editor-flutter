@@ -519,7 +519,7 @@ class _InitialZombieEditDialogState extends State<_InitialZombieEditDialog> {
               ),
             ] else ...[
               DropdownButtonFormField<String>(
-                value: _InitialZombieEntryScreenState._zombieConditions
+                initialValue: _InitialZombieEntryScreenState._zombieConditions
                         .any((e) => e.$1 == _condition)
                     ? _condition
                     : _InitialZombieEntryScreenState._zombieConditions.first.$1,

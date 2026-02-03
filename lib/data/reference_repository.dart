@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'pvz_models.dart';
-import 'rtid_parser.dart';
 
 /// Loads reference LevelModules from assets and provides alias -> objClass lookup.
 /// Ported from Z-Editor-master ReferenceRepository.kt
