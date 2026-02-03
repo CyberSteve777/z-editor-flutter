@@ -4,9 +4,7 @@ import 'package:z_editor/data/plant_repository.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/zombie_repository.dart';
-import 'package:z_editor/screens/select/plant_selection_screen.dart';
 import 'package:z_editor/l10n/resource_names.dart';
-import 'package:z_editor/screens/select/zombie_selection_screen.dart';
 
 /// Seed bank properties. Ported from Z-Editor-master SeedBankPropertiesEP.kt
 class SeedBankPropertiesScreen extends StatefulWidget {
