@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/tool_repository.dart';
-import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
+import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget;
 
 /// Tool selection. Ported from Z-Editor-master ToolSelectionScreen.kt
 class ToolSelectionScreen extends StatelessWidget {
@@ -15,9 +15,8 @@ class ToolSelectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final tools = ToolRepository.getAll();
-    final isDark = theme.brightness == Brightness.dark;
+    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(

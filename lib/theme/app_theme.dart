@@ -5,15 +5,12 @@ const Color _pvzGreenPrimary = Color(0xFF4CAF50);
 const Color _pvzGreenDark = Color(0xFF2E7D32);
 const Color _pvzGreenContainer = Color(0xFFC8E6C9);
 const Color _pvzBluePrimary = Color(0xFF2196F3);
-const Color _pvzBlueDark = Color(0xFF1565C0);
 
-const Color _darkBg = Color(0xFF121212);
 const Color _darkSurface = Color(0xFF1E1E1E);
 const Color _darkSurfaceVariant = Color(0xFF2C2C2C);
 const Color _darkOnSurface = Color(0xFFE0E0E0);
 const Color _darkOnSurfaceVariant = Color(0xFFB0B0B0);
 
-const Color _lightBg = Color(0xFFF5F5F5);
 const Color _lightSurface = Colors.white;
 const Color _lightSurfaceVariant = Color(0xFFE8E8E8);
 const Color _lightOnSurface = Color(0xFF212121);

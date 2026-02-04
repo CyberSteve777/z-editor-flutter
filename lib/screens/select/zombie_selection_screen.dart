@@ -60,7 +60,7 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
 
   void _toggleFavorite(BuildContext context, String id) async {
     await ZombieRepository().toggleFavorite(id);
-    if (!mounted) return;
+    if (!context.mounted) return;
     final isFav = ZombieRepository().isFavorite(id);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

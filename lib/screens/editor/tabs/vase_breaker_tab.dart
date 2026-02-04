@@ -215,11 +215,11 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
 
                           Color color;
                           if (!isInRange) {
-                            color = Colors.grey.withOpacity(0.3);
+                            color = Colors.grey.withValues(alpha: 0.3);
                           } else if (isBlacklisted) {
-                            color = Colors.red.withOpacity(0.5);
+                            color = Colors.red.withValues(alpha: 0.5);
                           } else {
-                            color = Colors.green.withOpacity(0.5);
+                            color = Colors.green.withValues(alpha: 0.5);
                           }
 
                           return GestureDetector(

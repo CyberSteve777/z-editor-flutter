@@ -285,7 +285,7 @@ class _EditorScreenState extends State<EditorScreen> {
           FilledButton(
             onPressed: () async {
               await _save();
-              if (mounted) Navigator.pop(ctx, true);
+              if (ctx.mounted) Navigator.pop(ctx, true);
             },
             child: Text(l10n?.confirm ?? 'Save'),
           ),
@@ -1701,7 +1701,7 @@ class _EditorScreenState extends State<EditorScreen> {
     final l10n = AppLocalizations.of(context);
     return PopScope(
       canPop: !_hasChanges,
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
         final leave = await _confirmLeave();
         if (leave && mounted) widget.onBack();

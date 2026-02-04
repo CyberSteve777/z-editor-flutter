@@ -108,16 +108,6 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
     _sync();
   }
 
-  void _removeArray(int index) {
-    final arrays = List<MagicMirrorArrayData>.from(_data.arrays)
-      ..removeAt(index);
-    _data = MagicMirrorWaveActionData(arrays: arrays);
-    if (_selectedIndex >= arrays.length) {
-      _selectedIndex = (arrays.length - 1).clamp(0, arrays.length);
-    }
-    _sync();
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

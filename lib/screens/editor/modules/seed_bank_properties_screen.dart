@@ -360,8 +360,6 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
   }
 
   Widget _buildZombieModeSwitch(BuildContext context, bool isZombieMode) {
-    final theme = Theme.of(context);
-
     return Card(
       child: SwitchListTile(
         title: const Text(
@@ -390,8 +388,6 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
 
   Widget _buildReversedZombieSwitch(
       BuildContext context, bool isReversedZombie) {
-    final theme = Theme.of(context);
-
     return Card(
       child: SwitchListTile(
         title: const Text(

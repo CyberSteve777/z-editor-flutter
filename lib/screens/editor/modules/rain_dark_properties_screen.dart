@@ -118,74 +118,76 @@ class _RainDarkPropertiesScreenState extends State<RainDarkPropertiesScreen> {
           ),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Text(
-            'Select weather type',
-            style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: theme.colorScheme.primary,
+      body: RadioGroup<String>(
+        groupValue: activeAlias,
+        onChanged: (val) {
+          if (val != null) _selectOption(val);
+        },
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            Text(
+              'Select weather type',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: theme.colorScheme.primary,
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          ...options.map((opt) {
-            final isSelected = opt.alias == activeAlias;
-            return Card(
-              elevation: 2,
-              color: isSelected
-                  ? theme.colorScheme.surfaceTint.withValues(alpha: 0.12)
-                  : theme.cardColor,
-              child: InkWell(
-                onTap: () => _selectOption(opt.alias),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Radio<String>(
-                        value: opt.alias,
-                        groupValue: activeAlias,
-                        onChanged: (val) {
-                          if (val != null) _selectOption(val);
-                        },
-                      ),
-                      const SizedBox(width: 8),
-                      Icon(
-                        opt.icon,
-                        color: isSelected
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.onSurfaceVariant,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              opt.label,
-                              style: theme.textTheme.bodyLarge?.copyWith(
-                                fontWeight: isSelected
-                                    ? FontWeight.bold
-                                    : FontWeight.normal,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              opt.description,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: theme.colorScheme.onSurfaceVariant,
-                              ),
-                            ),
-                          ],
+            const SizedBox(height: 12),
+            ...options.map((opt) {
+              final isSelected = opt.alias == activeAlias;
+              return Card(
+                elevation: 2,
+                color: isSelected
+                    ? theme.colorScheme.surfaceTint.withValues(alpha: 0.12)
+                    : theme.cardColor,
+                child: InkWell(
+                  onTap: () => _selectOption(opt.alias),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Radio<String>(
+                          value: opt.alias,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        Icon(
+                          opt.icon,
+                          color: isSelected
+                              ? theme.colorScheme.primary
+                              : theme.colorScheme.onSurfaceVariant,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                opt.label,
+                                style: theme.textTheme.bodyLarge?.copyWith(
+                                  fontWeight: isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.normal,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                opt.description,
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
-          }),
-        ],
+              );
+            }),
+          ],
+        ),
       ),
     );
   }

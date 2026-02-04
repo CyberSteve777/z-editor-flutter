@@ -248,19 +248,21 @@ class _CustomZombiePropertiesScreenState
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Select size'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: options.map((opt) {
-            return RadioListTile<String?>(
-              value: opt,
-              groupValue: selected,
-              title: Text(opt ?? 'null'),
-              onChanged: (val) {
-                selected = val;
-                setState(() {});
-              },
-            );
-          }).toList(),
+        content: RadioGroup<String?>(
+          groupValue: selected,
+          onChanged: (val) {
+            selected = val;
+            setState(() {});
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: options.map((opt) {
+              return RadioListTile<String?>(
+                value: opt,
+                title: Text(opt ?? 'null'),
+              );
+            }).toList(),
+          ),
         ),
         actions: [
           TextButton(

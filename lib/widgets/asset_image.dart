@@ -27,6 +27,8 @@ class AssetImageWidget extends StatefulWidget {
     this.fit = BoxFit.cover,
     this.errorWidget,
     this.altCandidates,
+    this.cacheWidth,
+    this.cacheHeight,
   });
 
   /// Path relative to assets folder, e.g. 'images/stages/Stage_Modern.png'
@@ -39,6 +41,9 @@ class AssetImageWidget extends StatefulWidget {
   /// Useful for multi-extension fallback (e.g., .gif, .png, .jpg).
   final List<String>? altCandidates;
 
+  final int? cacheWidth;
+  final int? cacheHeight;
+
   @override
   State<AssetImageWidget> createState() => _AssetImageWidgetState();
 }
@@ -47,6 +52,9 @@ class _AssetImageWidgetState extends State<AssetImageWidget> {
   String? _resolvedPath;
   bool _resolving = false;
   int _requestId = 0;
+
+  // Cache resolved paths to avoid repeated file system checks
+  static final Map<String, String?> _pathCache = {};
 
   @override
   void initState() {
@@ -64,6 +72,17 @@ class _AssetImageWidgetState extends State<AssetImageWidget> {
   }
 
   Future<void> _resolveAsset() async {
+    final cacheKey = '${widget.assetPath}|${widget.altCandidates?.join(",")}';
+    if (_pathCache.containsKey(cacheKey)) {
+      if (mounted) {
+        setState(() {
+          _resolvedPath = _pathCache[cacheKey];
+          _resolving = false;
+        });
+      }
+      return;
+    }
+
     final currentId = ++_requestId;
     if (mounted) {
       setState(() {
@@ -76,6 +95,8 @@ class _AssetImageWidgetState extends State<AssetImageWidget> {
       try {
         await rootBundle.load(path);
         if (!mounted || currentId != _requestId) return;
+        
+        _pathCache[cacheKey] = path;
         setState(() {
           _resolvedPath = path;
           _resolving = false;
@@ -85,7 +106,10 @@ class _AssetImageWidgetState extends State<AssetImageWidget> {
         // try next
       }
     }
+    
     if (!mounted || currentId != _requestId) return;
+    
+    _pathCache[cacheKey] = null;
     setState(() {
       _resolving = false;
       _resolvedPath = null;
@@ -123,6 +147,8 @@ class _AssetImageWidgetState extends State<AssetImageWidget> {
       width: widget.width,
       height: widget.height,
       fit: widget.fit,
+      cacheWidth: widget.cacheWidth,
+      cacheHeight: widget.cacheHeight,
     );
   }
 }

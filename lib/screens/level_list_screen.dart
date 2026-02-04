@@ -36,18 +36,14 @@ class _LevelListScreenState extends State<LevelListScreen> {
   FileItem? _itemToDelete;
   FileItem? _itemToRename;
   FileItem? _itemToCopy;
-  final bool _confirmCheckbox = false;
   String _renameInput = '';
   String _copyInput = '';
   bool _showNewFolderDialog = false;
   String _newFolderNameInput = '';
-  final bool _showTemplateDialog = false;
-  bool _showCreateNameDialog = false;
   List<String> _templates = [];
   String _selectedTemplate = '';
   String _newLevelNameInput = '';
   bool _showUiScaleDialog = false;
-  bool _showMenu = false;
 
   @override
   void initState() {
@@ -290,7 +286,6 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(content: Text(AppLocalizations.of(context)!.levelCreated)),
         );
         setState(() {
-          _showCreateNameDialog = false;
           _newLevelNameInput = '';
         });
         _loadCurrentDirectory();
@@ -317,8 +312,6 @@ class _LevelListScreenState extends State<LevelListScreen> {
             onPressed: widget.onToggleTheme,
           ),
           PopupMenuButton<String>(
-            onOpened: () => _showMenu = true,
-            onCanceled: () => _showMenu = false,
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: 'folder',
@@ -366,17 +359,21 @@ class _LevelListScreenState extends State<LevelListScreen> {
                 _pickFolder();
               } else if (value == 'cache') {
                 final count = await LevelRepository.clearAllInternalCache();
-                if (mounted) {
+                if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(l10n.cacheCleared(count))),
                   );
                 }
               } else if (value == 'ui') {
                 setState(() => _showUiScaleDialog = true);
-                WidgetsBinding.instance.addPostFrameCallback((_) => _showUiScaleDialogImpl());
+                WidgetsBinding.instance.addPostFrameCallback(
+                  (_) => _showUiScaleDialogImpl(),
+                );
+              } else if (value == 'lang') {
+                widget.onLanguageTap(context);
+              } else if (value == 'about') {
+                widget.onAboutClick();
               }
-              else if (value == 'lang') widget.onLanguageTap(context);
-              else if (value == 'about') widget.onAboutClick();
             },
           ),
         ],
