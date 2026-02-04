@@ -4,9 +4,7 @@ import 'package:z_editor/data/plant_repository.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/zombie_repository.dart';
-import 'package:z_editor/screens/select/plant_selection_screen.dart';
 import 'package:z_editor/l10n/resource_names.dart';
-import 'package:z_editor/screens/select/zombie_selection_screen.dart';
 
 /// Seed bank properties. Ported from Z-Editor-master SeedBankPropertiesEP.kt
 class SeedBankPropertiesScreen extends StatefulWidget {
@@ -420,11 +418,11 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Seed bank help'),
-        content: SingleChildScrollView(
+        content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text(
                   'Seed bank lets players choose plants. In courtyard mode you can set global level and all plants.'),
               SizedBox(height: 8),

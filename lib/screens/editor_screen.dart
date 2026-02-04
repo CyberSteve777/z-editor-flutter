@@ -147,14 +147,17 @@ class _EditorScreenState extends State<EditorScreen> {
       }),
     };
     final tabs = <EditorTabType>[EditorTabType.settings];
-    if (classes.contains('WaveManagerModuleProperties'))
+    if (classes.contains('WaveManagerModuleProperties')) {
       tabs.add(EditorTabType.timeline);
+    }
     if (classes.contains('EvilDaveProperties')) tabs.add(EditorTabType.iZombie);
     if (classes.contains('VaseBreakerPresetProperties') ||
-        classes.contains('VaseBreakerArcadeModuleProperties'))
+        classes.contains('VaseBreakerArcadeModuleProperties')) {
       tabs.add(EditorTabType.vaseBreaker);
-    if (classes.contains('ZombossBattleModuleProperties'))
+    }
+    if (classes.contains('ZombossBattleModuleProperties')) {
       tabs.add(EditorTabType.zomboss);
+    }
     _availableTabs = tabs;
   }
 
@@ -315,8 +318,9 @@ class _EditorScreenState extends State<EditorScreen> {
   void _openStageSelection() {
     if (_levelFile == null ||
         _parsedData == null ||
-        _parsedData!.levelDef == null)
+        _parsedData!.levelDef == null) {
       return;
+    }
     final current = _parsedData!.levelDef!.stageModule;
     Navigator.push(
       context,

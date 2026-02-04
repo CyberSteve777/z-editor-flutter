@@ -110,7 +110,7 @@ class _GridItemSelectionScreenState extends State<GridItemSelectionScreen> {
                                           altCandidates: imageAltCandidates(iconPath),
                                           fit: BoxFit.contain,
                                         )
-                                      : AssetImageWidget(
+                                      : const AssetImageWidget(
                                           assetPath: 'assets/images/others/unknown.webp',
                                           fit: BoxFit.contain,
                                         ),

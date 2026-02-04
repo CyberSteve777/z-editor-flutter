@@ -358,7 +358,7 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
                                   fit: BoxFit.cover,
                                 )
                               : Container(
-                                  color: theme.colorScheme.surfaceVariant,
+                                  color: theme.colorScheme.surfaceContainerHighest,
                                   alignment: Alignment.center,
                                   child: Text(
                                     displayName.isNotEmpty

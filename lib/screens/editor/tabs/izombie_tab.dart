@@ -122,7 +122,7 @@ class _IZombieTabState extends State<IZombieTab> {
 
   Widget _buildInfoCard(AppLocalizations? l10n) {
     return Card(
-      color: Theme.of(context).colorScheme.surfaceVariant,
+      color: Theme.of(context).colorScheme.surfaceContainerHighest,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(

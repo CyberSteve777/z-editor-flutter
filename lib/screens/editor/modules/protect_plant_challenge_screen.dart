@@ -142,7 +142,7 @@ class _ProtectPlantChallengeScreenState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
-              color: theme.colorScheme.surfaceVariant,
+              color: theme.colorScheme.surfaceContainerHighest,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Row(

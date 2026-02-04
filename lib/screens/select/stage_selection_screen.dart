@@ -171,7 +171,7 @@ class _StageGridItem extends StatelessWidget {
                           height: 64,
                           fit: BoxFit.cover,
                         )
-                      : AssetImageWidget(
+                      : const AssetImageWidget(
                           assetPath: 'assets/images/others/unknown.webp',
                           width: 64,
                           height: 64,

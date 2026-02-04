@@ -5,8 +5,6 @@ import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/tool_repository.dart';
 import 'package:z_editor/l10n/resource_names.dart';
-import 'package:z_editor/screens/select/plant_selection_screen.dart';
-import 'package:z_editor/screens/select/tool_selection_screen.dart';
 import 'package:z_editor/widgets/asset_image.dart';
 
 /// Conveyor belt properties. Ported from Z-Editor-master ConveyorSeedBankPropertiesEP.kt
@@ -287,11 +285,11 @@ class _ConveyorSeedBankPropertiesScreenState
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Conveyor belt help'),
-        content: SingleChildScrollView(
+        content: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text('Conveyor mode randomly generates cards by weight. Configure plant pool and refresh delay.'),
               SizedBox(height: 8),
               Text('Plant pool & weight: Probability = weight / total weight. Use thresholds to adjust dynamically.'),
@@ -420,7 +418,7 @@ class _PlantRow extends StatelessWidget {
     final plantInfo = PlantRepository().getPlantInfoById(plant.plantType);
     final displayName = toolInfo?.name ?? PlantRepository().getName(plant.plantType);
     final iconPath = isTool
-        ? (toolInfo!.icon != null ? 'assets/images/tools/${toolInfo!.icon}' : null)
+        ? (toolInfo.icon != null ? 'assets/images/tools/${toolInfo.icon}' : null)
         : plantInfo?.iconAssetPath;
 
     return Padding(

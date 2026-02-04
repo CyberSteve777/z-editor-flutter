@@ -1,5 +1,6 @@
 /// RTID parser: RTID(Alias@Source) e.g. RTID(DefaultSunDropper@LevelModules)
 /// Ported from Z-Editor-master data/RtidParser.kt
+library;
 
 class RtidInfo {
   RtidInfo({

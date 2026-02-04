@@ -139,7 +139,7 @@ class _FairyTaleFogEventScreenState extends State<FairyTaleFogEventScreen> {
                       ),
                       const SizedBox(height: 16),
                       DropdownButtonFormField<String>(
-                        value: _fogOptions
+                        initialValue: _fogOptions
                                 .any((e) => e.$1 == _data.fogType)
                             ? _data.fogType
                             : null,

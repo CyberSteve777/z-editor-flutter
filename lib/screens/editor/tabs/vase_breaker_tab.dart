@@ -442,18 +442,21 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
 
   String _getVaseSubtitle(VaseDefinition vase) {
     final parts = <String>[];
-    if (vase.plantTypeName != null)
+    if (vase.plantTypeName != null) {
       parts.add(
         '${AppLocalizations.of(context)?.plantLabel ?? "Plant"}: ${vase.plantTypeName}',
       );
-    if (vase.zombieTypeName != null)
+    }
+    if (vase.zombieTypeName != null) {
       parts.add(
         '${AppLocalizations.of(context)?.zombieLabel ?? "Zombie"}: ${vase.zombieTypeName}',
       );
-    if (vase.collectableTypeName != null)
+    }
+    if (vase.collectableTypeName != null) {
       parts.add(
         '${AppLocalizations.of(context)?.itemLabel ?? "Item"}: ${_collectableTypes.firstWhereOrNull((e) => e.id == vase.collectableTypeName)?.name ?? vase.collectableTypeName}',
       );
+    }
     return parts.isEmpty ? '${vase.count} vase(s)' : parts.join(', ');
   }
 

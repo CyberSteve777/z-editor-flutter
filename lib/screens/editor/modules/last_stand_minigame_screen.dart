@@ -101,9 +101,9 @@ class _LastStandMinigameScreenState extends State<LastStandMinigameScreen> {
                     TextField(
                       controller: _sunController,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Starting sun',
-                        border: const OutlineInputBorder(),
+                        border: OutlineInputBorder(),
                       ),
                       onChanged: (v) {
                         final n = int.tryParse(v);
@@ -117,9 +117,9 @@ class _LastStandMinigameScreenState extends State<LastStandMinigameScreen> {
                     TextField(
                       controller: _plantfoodController,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Starting plant food',
-                        border: const OutlineInputBorder(),
+                        border: OutlineInputBorder(),
                       ),
                       onChanged: (v) {
                         final n = int.tryParse(v);

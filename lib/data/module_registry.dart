@@ -349,7 +349,7 @@ class ModuleRegistry {
       initialDataFactory: () => ConveyorBeltData(),
       routeId: 'ConveyorBelt',
     ),
-    'SunDropperProperties': ModuleMetadata(
+    'SunDropperProperties': const ModuleMetadata(
       titleKey: 'moduleTitle_SunDropperProperties',
       descriptionKey: 'moduleDesc_SunDropperProperties',
       icon: Icons.wb_sunny,

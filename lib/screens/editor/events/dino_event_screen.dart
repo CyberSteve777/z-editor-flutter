@@ -139,7 +139,7 @@ class _DinoEventScreenState extends State<DinoEventScreen> {
                       ),
                       const SizedBox(height: 16),
                       DropdownButtonFormField<String>(
-                        value: _dinoOptions
+                        initialValue: _dinoOptions
                                 .any((e) => e.$1 == _data.dinoType)
                             ? _data.dinoType
                             : null,

@@ -2,7 +2,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
-import 'package:z_editor/screens/select/zombie_selection_screen.dart';
 import 'package:z_editor/widgets/editor_components.dart';
 
 /// Beach stage / low tide event editor. Ported from Z-Editor-master BeachStageEventEP.kt

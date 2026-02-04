@@ -370,7 +370,7 @@ class _PlantGridItem extends StatelessWidget {
                               height: 44,
                               fit: BoxFit.cover,
                             )
-                          : AssetImageWidget(
+                          : const AssetImageWidget(
                               assetPath: 'assets/images/others/unknown.webp',
                               width: 44,
                               height: 44,

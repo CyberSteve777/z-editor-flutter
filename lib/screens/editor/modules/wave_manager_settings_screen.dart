@@ -354,7 +354,7 @@ class _WaveManagerSettingsScreenState extends State<WaveManagerSettingsScreen> {
             ),
             const SizedBox(height: 16),
             DropdownButtonFormField<String?>(
-              value: _wm.levelJam,
+              initialValue: _wm.levelJam,
               decoration: InputDecoration(
                 labelText: l10n?.waveManagerLevelJam ?? 'Level Jam',
                 prefixIcon: const Icon(Icons.music_note),

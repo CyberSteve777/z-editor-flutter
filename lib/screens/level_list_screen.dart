@@ -36,12 +36,12 @@ class _LevelListScreenState extends State<LevelListScreen> {
   FileItem? _itemToDelete;
   FileItem? _itemToRename;
   FileItem? _itemToCopy;
-  bool _confirmCheckbox = false;
+  final bool _confirmCheckbox = false;
   String _renameInput = '';
   String _copyInput = '';
   bool _showNewFolderDialog = false;
   String _newFolderNameInput = '';
-  bool _showTemplateDialog = false;
+  final bool _showTemplateDialog = false;
   bool _showCreateNameDialog = false;
   List<String> _templates = [];
   String _selectedTemplate = '';
@@ -87,10 +87,12 @@ class _LevelListScreenState extends State<LevelListScreen> {
     if (currentPath == null) return;
     setState(() => _isLoading = true);
     final items = await LevelRepository.getDirectoryContents(currentPath);
-    if (mounted) setState(() {
+    if (mounted) {
+      setState(() {
       _fileItems = items;
       _isLoading = false;
     });
+    }
   }
 
   void _navigateToFolder(FileItem folder) {
@@ -275,7 +277,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
     // Load template from assets
     String content;
     try {
-      content = await rootBundle.loadString('assets/template/${_selectedTemplate}');
+      content = await rootBundle.loadString('assets/template/$_selectedTemplate');
     } catch (_) {
       content = '{"objects":[{"objclass":"LevelDefinition","objdata":{"Name":"","LevelNumber":1,"Description":"","StageModule":"RTID(TutorialStage@LevelModules)","Loot":"RTID(DefaultLoot@LevelModules)","StartingSun":200,"VictoryModule":"RTID(VictoryOutro@LevelModules)","MusicType":"","Modules":[]}}],"version":1}';
     }
@@ -360,8 +362,9 @@ class _LevelListScreenState extends State<LevelListScreen> {
               ),
             ],
             onSelected: (value) async {
-              if (value == 'folder') _pickFolder();
-              else if (value == 'cache') {
+              if (value == 'folder') {
+                _pickFolder();
+              } else if (value == 'cache') {
                 final count = await LevelRepository.clearAllInternalCache();
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
