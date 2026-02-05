@@ -24,7 +24,7 @@ class WaveTimelineTab extends StatefulWidget {
   final PvzLevelFile levelFile;
   final ParsedLevelData parsed;
   final VoidCallback onChanged;
-  final void Function(String rtid, int waveIndex) onEditEvent;
+  final Future<void> Function(String rtid, int waveIndex) onEditEvent;
   final void Function(int waveIndex) onAddEvent;
   final VoidCallback onEditWaveManagerSettings;
   final void Function(String rtid)? onEditCustomZombie;
@@ -645,6 +645,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     required BuildContext context,
     required int waveIndex,
     required String rtid,
+    VoidCallback? onEditFinished,
   }) {
     final l10n = AppLocalizations.of(context);
     final alias = LevelParser.extractAlias(rtid);
@@ -686,9 +687,10 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
               children: [
                 Expanded(
                   child: FilledButton.icon(
-                    onPressed: () {
+                    onPressed: () async {
                       Navigator.pop(ctx);
-                      widget.onEditEvent(rtid, waveIndex);
+                      await widget.onEditEvent(rtid, waveIndex);
+                      onEditFinished?.call();
                     },
                     icon: const Icon(Icons.edit),
                     label: Text(l10n?.editProperties ?? 'Edit properties'),
@@ -809,6 +811,8 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                         context: context,
                         waveIndex: waveIndex,
                         rtid: rtid,
+                        onEditFinished: () =>
+                            _showWaveManageSheet(context, waveIndex),
                       );
                     },
                     trailing: IconButton(

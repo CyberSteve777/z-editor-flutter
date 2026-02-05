@@ -70,7 +70,9 @@ void main() async {
     await zombiesJson.writeAsString(const JsonEncoder.withIndent('    ').convert(list));
   }
 
+  // ignore: avoid_print
   print('Generated resource_zh.json, resource_en.json, resource_ru.json');
+  // ignore: avoid_print
   print('Updated Plants.json and Zombies.json with name keys');
 }
 

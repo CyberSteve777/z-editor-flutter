@@ -285,7 +285,7 @@ class _EditorScreenState extends State<EditorScreen> {
           FilledButton(
             onPressed: () async {
               await _save();
-              if (mounted) Navigator.pop(ctx, true);
+              if (ctx.mounted) Navigator.pop(ctx, true);
             },
             child: Text(l10n?.confirm ?? 'Save'),
           ),
@@ -425,13 +425,13 @@ class _EditorScreenState extends State<EditorScreen> {
     _recalculateTabs();
   }
 
-  void _handleEditEvent(String rtid, int waveIndex) {
+  Future<void> _handleEditEvent(String rtid, int waveIndex) async {
     if (_levelFile == null || _parsedData == null) return;
     final alias = LevelParser.extractAlias(rtid);
     final obj = _parsedData!.objectMap[alias];
 
     if (obj == null) {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => InvalidEventScreen(
@@ -447,7 +447,7 @@ class _EditorScreenState extends State<EditorScreen> {
 
     final objClass = obj.objClass;
     if (objClass == 'SpawnGravestonesWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => SpawnGraveStonesEventScreen(
@@ -483,7 +483,7 @@ class _EditorScreenState extends State<EditorScreen> {
           : objClass == 'SpiderRainZombieSpawnerProps'
               ? 'Event: Spider rain'
               : 'Event: Parachute rain';
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ParachuteRainEventScreen(
@@ -515,7 +515,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'TidalChangeWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => TidalChangeEventScreen(
@@ -530,7 +530,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'SpawnZombiesJitteredWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ZombieSpawnEventScreen(
@@ -590,7 +590,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'SpawnZombiesFromGroundSpawnerProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ZombieSpawnEventScreen(
@@ -650,7 +650,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'ModifyConveyorWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ModifyConveyorEventScreen(
@@ -681,7 +681,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'BeachStageEventZombieSpawnerProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => BeachStageEventScreen(
@@ -712,7 +712,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'StormZombieSpawnerProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => StormEventScreen(
@@ -751,7 +751,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'RaidingPartyZombieSpawnerProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => RaidingPartyEventScreen(
@@ -766,7 +766,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'BlackHoleWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => BlackHoleEventScreen(
@@ -781,7 +781,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'FrostWindWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => FrostWindEventScreen(
@@ -796,7 +796,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'DinoWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => DinoEventScreen(
@@ -811,7 +811,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'SpawnZombiesFromGridItemSpawnerProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => GridItemSpawnEventScreen(
@@ -867,7 +867,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'ZombiePotionActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ZombiePotionEventScreen(
@@ -896,7 +896,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'MagicMirrorWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => MagicMirrorEventScreen(
@@ -911,7 +911,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'FairyTaleFogWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => FairyTaleFogEventScreen(
@@ -926,7 +926,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'FairyTaleWindWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => FairyTaleWindEventScreen(
@@ -941,7 +941,7 @@ class _EditorScreenState extends State<EditorScreen> {
     }
 
     if (objClass == 'SpawnModernPortalsWaveActionProps') {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => ModernPortalsEventScreen(
@@ -1701,7 +1701,7 @@ class _EditorScreenState extends State<EditorScreen> {
     final l10n = AppLocalizations.of(context);
     return PopScope(
       canPop: !_hasChanges,
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
         final leave = await _confirmLeave();
         if (leave && mounted) widget.onBack();

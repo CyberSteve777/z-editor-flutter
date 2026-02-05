@@ -25,7 +25,6 @@ class FileItem {
 
 class LevelRepository {
   static const _prefsFolderKey = 'folder_path';
-  static const _prefsCacheKey = 'level_cache_dir';
 
   static Future<String?> getSavedFolderPath() async {
     final prefs = await SharedPreferences.getInstance();

@@ -4,7 +4,7 @@ import 'zombie_properties_repository.dart';
  
 class WavePointAnalysis {
   static Map<String, double> calculate(
-    List<_InputEntry> entries,
+    List<InputEntry> entries,
     int totalPoints,
   ) {
     if (totalPoints <= 0 || entries.isEmpty) {
@@ -68,15 +68,15 @@ class WavePointAnalysis {
       final alias = RtidParser.parse(rtid)?.alias ?? rtid;
       final typeName = ZombiePropertiesRepository.getTypeNameByAlias(alias);
       final stats = ZombiePropertiesRepository.getStats(typeName);
-      return _InputEntry(id: typeName, cost: stats.cost, weight: stats.weight.toDouble());
+      return InputEntry(id: typeName, cost: stats.cost, weight: stats.weight.toDouble());
     }).toList();
- 
+
     return calculate(inputs, points);
   }
 }
- 
-class _InputEntry {
-  _InputEntry({required this.id, required this.cost, required this.weight});
+
+class InputEntry {
+  InputEntry({required this.id, required this.cost, required this.weight});
   final String id;
   final int cost;
   final double weight;

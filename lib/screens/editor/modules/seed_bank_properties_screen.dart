@@ -111,14 +111,41 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
   }
 
   void _addToZombieList() {
-    widget.onRequestZombieSelection((ids) {
-      setState(() {
-        for (final id in ids) {
-          _data.presetPlantList.add(ZombieRepository().buildZombieAliases(id));
-        }
-        _sync();
-      });
-    });
+    showDialog(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        title: const Text('Add type'),
+        children: [
+          SimpleDialogOption(
+            onPressed: () {
+              Navigator.pop(ctx);
+              widget.onRequestZombieSelection((ids) {
+                setState(() {
+                  for (final id in ids) {
+                    _data.presetPlantList
+                        .add(ZombieRepository().buildZombieAliases(id));
+                  }
+                  _sync();
+                });
+              });
+            },
+            child: const Text('Zombie'),
+          ),
+          SimpleDialogOption(
+            onPressed: () {
+              Navigator.pop(ctx);
+              widget.onRequestPlantSelection((ids) {
+                setState(() {
+                  _data.presetPlantList.addAll(ids);
+                  _sync();
+                });
+              });
+            },
+            child: const Text('Plant (Fun/Experimental)'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _removeFromList(List<String> list, int index) {
@@ -360,8 +387,6 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
   }
 
   Widget _buildZombieModeSwitch(BuildContext context, bool isZombieMode) {
-    final theme = Theme.of(context);
-
     return Card(
       child: SwitchListTile(
         title: const Text(
@@ -390,8 +415,6 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
 
   Widget _buildReversedZombieSwitch(
       BuildContext context, bool isReversedZombie) {
-    final theme = Theme.of(context);
-
     return Card(
       child: SwitchListTile(
         title: const Text(

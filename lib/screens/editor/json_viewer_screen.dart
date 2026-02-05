@@ -22,6 +22,15 @@ class JsonViewerScreen extends StatefulWidget {
 
 class _JsonViewerScreenState extends State<JsonViewerScreen> {
   double _fontSize = 12;
+  final _verticalController = ScrollController();
+  final _horizontalController = ScrollController();
+
+  @override
+  void dispose() {
+    _verticalController.dispose();
+    _horizontalController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,16 +69,34 @@ class _JsonViewerScreenState extends State<JsonViewerScreen> {
             ),
           ),
           Expanded(
-            child: InteractiveViewer(
-              constrained: false,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: SelectableText(
-                  pretty,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontFamily: 'monospace',
-                    fontSize: _fontSize,
-                    height: 1.3,
+            child: SelectionArea(
+              child: Scrollbar(
+                controller: _verticalController,
+                thumbVisibility: true,
+                trackVisibility: true,
+                child: SingleChildScrollView(
+                  controller: _verticalController,
+                  scrollDirection: Axis.vertical,
+                  child: Scrollbar(
+                    controller: _horizontalController,
+                    thumbVisibility: true,
+                    trackVisibility: true,
+                    notificationPredicate: (notif) => notif.depth == 1,
+                    child: SingleChildScrollView(
+                      controller: _horizontalController,
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(
+                          pretty,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                fontFamily: 'monospace',
+                                fontSize: _fontSize,
+                                height: 1.3,
+                              ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

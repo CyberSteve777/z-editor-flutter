@@ -118,9 +118,10 @@ void showEditorHelpDialog(
                       children: [
                         Text(
                           '• ${s.title}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
+                            color: themeColor ?? Theme.of(ctx).colorScheme.primary,
                           ),
                         ),
                         const SizedBox(height: 4),

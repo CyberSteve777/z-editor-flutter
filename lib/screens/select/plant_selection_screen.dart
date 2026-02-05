@@ -60,7 +60,7 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
 
   void _toggleFavorite(BuildContext context, String id) async {
     await PlantRepository().toggleFavorite(id);
-    if (!mounted) return;
+    if (!context.mounted) return;
     final isFav = PlantRepository().isFavorite(id);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -213,6 +213,8 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
                                   height: 18,
                                   altCandidates:
                                       imageAltCandidates('assets/images/tags/$iconName'),
+                                  cacheWidth: 36,
+                                  cacheHeight: 36,
                                 ),
                                 const SizedBox(width: 6),
                               ],
@@ -363,19 +365,23 @@ class _PlantGridItem extends StatelessWidget {
                       width: 44,
                       height: 44,
                       child: iconPath != null
-                          ? AssetImageWidget(
-                              assetPath: iconPath,
-                              altCandidates: imageAltCandidates(iconPath),
-                              width: 44,
-                              height: 44,
-                              fit: BoxFit.cover,
-                            )
-                          : const AssetImageWidget(
-                              assetPath: 'assets/images/others/unknown.webp',
-                              width: 44,
-                              height: 44,
-                              fit: BoxFit.cover,
-                            ),
+                              ? AssetImageWidget(
+                                  assetPath: iconPath,
+                                  altCandidates: imageAltCandidates(iconPath),
+                                  width: 44,
+                                  height: 44,
+                                  fit: BoxFit.cover,
+                                  cacheWidth: 88,
+                                  cacheHeight: 88,
+                                )
+                              : const AssetImageWidget(
+                                  assetPath: 'assets/images/others/unknown.webp',
+                                  width: 44,
+                                  height: 44,
+                                  fit: BoxFit.cover,
+                                  cacheWidth: 88,
+                                  cacheHeight: 88,
+                                ),
                     ),
                   ),
                   if (isFavorite)

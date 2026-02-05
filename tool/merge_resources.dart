@@ -17,7 +17,6 @@ void main() async {
   if (File(plants1Path).existsSync()) {
     final plants = json.decode(await File(plantsPath).readAsString()) as List;
     final plants1 = json.decode(await File(plants1Path).readAsString()) as List;
-    final existingIds = plants.map((e) => (e as Map)['id'] as String).toSet();
     final plantZh = <String, String>{};
 
     for (final item1 in plants1) {
@@ -96,6 +95,8 @@ void main() async {
     }
   }
 
+  // ignore: avoid_print
   print('Merged Plants_1.json and Zombies_1.json into main files');
+  // ignore: avoid_print
   print('Deleted Plants_1.json and Zombies_1.json');
 }

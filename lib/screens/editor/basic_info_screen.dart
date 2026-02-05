@@ -124,29 +124,25 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(child: Text(l10n?.disablePeavine ?? 'Disable peavine', style: Theme.of(context).textTheme.bodyMedium)),
-                Switch(
-                  value: def.disablePeavine ?? false,
-                  onChanged: (v) {
-                    def.disablePeavine = v;
-                    _sync();
-                  },
-                ),
-              ],
+            SwitchListTile(
+              title: Text(l10n?.disablePeavine ?? 'Disable peavine', style: Theme.of(context).textTheme.bodyMedium),
+              value: def.disablePeavine ?? false,
+              onChanged: (v) {
+                setState(() {
+                  def.disablePeavine = v;
+                  _sync();
+                });
+              },
             ),
-            Row(
-              children: [
-                Expanded(child: Text(l10n?.disableArtifact ?? 'Disable artifact', style: Theme.of(context).textTheme.bodyMedium)),
-                Switch(
-                  value: def.isArtifactDisabled ?? false,
-                  onChanged: (v) {
-                    def.isArtifactDisabled = v;
-                    _sync();
-                  },
-                ),
-              ],
+            SwitchListTile(
+              title: Text(l10n?.disableArtifact ?? 'Disable artifact', style: Theme.of(context).textTheme.bodyMedium),
+              value: def.isArtifactDisabled ?? false,
+              onChanged: (v) {
+                setState(() {
+                  def.isArtifactDisabled = v;
+                  _sync();
+                });
+              },
             ),
           ],
         ),
