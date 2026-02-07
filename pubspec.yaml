@@ -49,14 +49,9 @@ flutter:
 
 flutter_launcher_icons:
   android: true
-  ios: false
+  ios: true
   image_path: "assets/icon.png"
   min_sdk_android: 21
-  web:
-    generate: true
-    image_path: "assets/icon.png"
-    background_color: "#ffffff"
-    theme_color: "#1976d2"
   windows:
     generate: true
     image_path: "assets/icon.png"
