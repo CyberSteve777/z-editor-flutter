@@ -9679,6 +9679,174 @@
 			}
 		},
 		{
+			"objclass": "ZombossTeamBossIdleActionDefinition",
+			"aliases": [
+				"ZombossTeamBossIdle"
+			],
+			"objdata": {}
+		},
+		{
+			"objclass": "ZombossTeamBossTauntActionDefinition",
+			"aliases": [
+				"ZombossTeamBossTaunt"
+			],
+			"objdata": {
+				"SummonInfo": {
+					"SpawnNum": 3,
+					"SpawnCol": 6,
+					"ZombieList": [
+						"tutorial",
+						"lny",
+						"tutorial_armor2",
+						"lny_armor1",
+						"lny_armor2",
+						"lny_imp",
+						"lny_flag",
+						"kongfu_basic_armor2",
+						"kongfu_basic_armor1",
+						"kongfu_basic_armor3"
+					]
+				}
+			}
+		},
+		{
+			"objclass": "ZombossTeamBossFireActionDefinition",
+			"aliases": [
+				"ZombossTeamBossFire1"
+			],
+			"objdata": {
+				"Weight": 9,
+				"RepeatMin": 0,
+				"RepeatMax": 1,
+				"FireMinColumn": 2,
+				"FireMaxColumn": 5,
+				"FireRowRange": 3,
+				"FireTargetTileWeight": 0,
+				"FireTargetPlantWeight": 1,
+				"FireTargetEmptyWeight": 99,
+				"FireRocketHitTime": 0.75,
+				"FireRocketSpeed": 500,
+				"FireRocketDropSound": "Play_Zomb_Egypt_Zomboss_Attack_Projectile_Impact_Whistle",
+				"FireRocketCount": {
+					"Min": 3,
+					"Max": 3
+				},
+				"FireRocketCountOverload": {
+					"Min": 5,
+					"Max": 5
+				}
+			}
+		},
+		{
+			"objclass": "ZombossTeamBossJumpActionDefinition",
+			"aliases": [
+				"ZombossTeamBossJump"
+			],
+			"objdata": {
+				"JumpHeight": 150,
+				"JumpHangTime": 1.2,
+				"JumpAnimRateModifier": 1,
+				"JumpTarget": {
+					"mX": 7,
+					"mY": 2
+				}
+			}
+		},
+		{
+			"objclass": "ZombossTeamBossThrowActionDefinition",
+			"aliases": [
+				"ZombossTeamBossThrow1"
+			],
+			"objdata": {
+				"FirstJumpAction": "RTID(ZombossTeamBossJump@.)",
+				"TargetColumn": 2,
+				"ColumnGap": 2,
+				"ProjectileSpawnOffset": {
+					"x": -50,
+					"y": 0,
+					"z": 50
+				},
+				"Projectile": "RTID(ThrowFireworkDefault@ProjectileTypes)",
+				"ProjectileTimeOfFlight": 1.2,
+				"ProjectileLobHeight": 350.0
+			}
+		},
+		{
+			"objclass": "ZombossTeamBossOverloadActionDefinition",
+			"aliases": [
+				"ZombossTeamBossOverload"
+			],
+			"objdata": {
+				"OverloadInfo": {
+					"SpawnInterval": 4.0,
+					"SpawnNum": 2,
+					"SpawnCol": 8,
+					"ZombieList": [
+						"tutorial",
+						"lny",
+						"tutorial_armor2",
+						"lny_armor1",
+						"lny_armor2",
+						"lny_imp",
+						"lny_flag",
+						"kongfu_basic_armor2",
+						"kongfu_basic_armor1",
+						"kongfu_basic_armor3"
+					],
+					"SpawnHealthIncreasedPercent": 1.0,
+					"SpawnSizeIncreasedPercent": 0.2,
+					"SpawnSpeedIncreasedPercent": 0.25,
+					"BossDamageTakenIncreasedPercent": 0.25
+				}
+			}
+		},
+		{
+			"objclass": "ZombossTeamBossAbsorbActionDefinition",
+			"aliases": [
+				"ZombossTeamBossAbsorb"
+			],
+			"objdata": {
+				"FirstJumpAction": "RTID(ZombossTeamBossJump@.)",
+				"ColPerIncreased": 1,
+				"OverloadColPerIncreased": 2,
+				"Duration": 6.0,
+				"Interval": 2.0,
+				"AbsorbDamageInfos": [
+					{
+						"Tag": "explode",
+						"Plants": [
+							"cherry_bomb",
+							"grapeshot",
+							"potatomine",
+							"primalpotatomine",
+							"doomshroom",
+							"cracker"
+						],
+						"RequiredNum": 1,
+						"Damage": 30000.0,
+						"ResilienceDamagePercent": 0.3
+					},
+					{
+						"Tag": "burn",
+						"Plants": [
+							"jalapeno",
+							"fireshroom",
+							"firepeashooter",
+							"pepperpult",
+							"dragonfruit",
+							"matchflower",
+							"flamelady",
+							"meteorflower",
+							"pyrevine"
+						],
+						"RequiredNum": 1,
+						"Damage": 20000.0,
+						"ResilienceDamagePercent": 0.2
+					}
+				]
+			}
+		},
+		{
 			"objclass": "ZombieRomanHealerHealActionDefinition",
 			"aliases": [
 				"ZombieRomanHealerHeal"

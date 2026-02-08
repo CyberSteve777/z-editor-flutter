@@ -92,7 +92,7 @@ class AboutScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Text(
-              l10n.version('1.1.5'),
+              l10n.version('1.1.7'),
               textAlign: TextAlign.center,
               style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
             ),
