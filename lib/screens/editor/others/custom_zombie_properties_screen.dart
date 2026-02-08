@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
+import 'package:z_editor/theme/app_theme.dart';
 import 'package:z_editor/widgets/asset_image.dart';
 import 'package:z_editor/widgets/editor_components.dart';
 
@@ -298,9 +299,13 @@ class _CustomZombiePropertiesScreenState
     );
   }
 
+  Color get _themeColor =>
+      Theme.of(context).brightness == Brightness.dark ? pvzOrangeDark : pvzOrangeLight;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final themeColor = _themeColor;
     if (_typeObj == null) {
       return Scaffold(
         appBar: AppBar(
@@ -319,33 +324,37 @@ class _CustomZombiePropertiesScreenState
       );
     }
     if (_propsObj == null) {
+      final propsAlias = RtidParser.parse(_typeData.properties)?.alias ?? '';
       return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: widget.onBack,
           ),
-          title: const Text('Custom zombie'),
+          title: const Text('Custom zombie properties'),
+          backgroundColor: themeColor,
+          foregroundColor: theme.colorScheme.onPrimary,
         ),
         body: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.warning, size: 64, color: theme.colorScheme.primary),
+              Icon(Icons.warning, size: 80, color: themeColor),
               const SizedBox(height: 16),
               Text(
-                'Missing property sheet',
+                'Property object not found',
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
-                'This custom zombie does not reference a local property sheet.',
+                'The custom zombie\'s property object ($propsAlias) was not found in the level. The property definition does not point to level internals, so it cannot be edited here.',
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
+                  height: 1.4,
                 ),
               ),
             ],
@@ -361,7 +370,8 @@ class _CustomZombiePropertiesScreenState
           onPressed: widget.onBack,
         ),
         title: const Text('Custom zombie properties'),
-        backgroundColor: theme.colorScheme.primaryContainer,
+        backgroundColor: themeColor,
+        foregroundColor: theme.colorScheme.onPrimary,
         actions: [
           IconButton(
             icon: const Icon(Icons.help_outline),
@@ -370,14 +380,24 @@ class _CustomZombiePropertiesScreenState
               title: 'Custom zombie',
               sections: const [
                 HelpSectionData(
-                  title: 'Overview',
+                  title: 'Brief introduction',
                   body:
-                      'Adjust common zombie properties. Special attributes may still require manual JSON edits.',
+                      'This screen edits custom zombie parameters injected into the level. Only common properties are supported; many special attributes require manual JSON editing.',
                 ),
                 HelpSectionData(
-                  title: 'Hit/Attack',
+                  title: 'Base properties',
                   body:
-                      'X/Y are offsets, W/H are sizes. ArtCenter can hide the sprite.',
+                      'Custom zombies can modify base stats (HP, speed, eat damage). Custom zombies do not appear in the level preview pool.',
+                ),
+                HelpSectionData(
+                  title: 'Hit/position',
+                  body:
+                      'X and Y are offsets; W and H are width and height. Offsetting ArtCenter can hide the zombie sprite. Leaving ground track empty lets the zombie walk in place.',
+                ),
+                HelpSectionData(
+                  title: 'Manual editing',
+                  body:
+                      'Custom injection auto-fills all properties from game files. You can further edit the JSON file manually if needed.',
                 ),
               ],
             ),
@@ -394,7 +414,7 @@ class _CustomZombiePropertiesScreenState
               Text('Base stats',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
+                    color: themeColor,
                   )),
               const SizedBox(height: 8),
               Card(
@@ -453,7 +473,7 @@ class _CustomZombiePropertiesScreenState
               Text('Hit / position',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
+                    color: themeColor,
                   )),
               const SizedBox(height: 8),
               Card(
@@ -522,19 +542,21 @@ class _CustomZombiePropertiesScreenState
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: DropdownButtonFormField<String>(
-                        initialValue: _propsData.groundTrackName,
+                        value: _propsData.groundTrackName == 'ground_swatch'
+                            ? 'ground_swatch'
+                            : '',
                         decoration: const InputDecoration(
-                          labelText: 'GroundTrackName',
+                          labelText: 'GroundTrackName (行进轨迹)',
                           border: OutlineInputBorder(),
                         ),
                         items: const [
                           DropdownMenuItem(
                             value: 'ground_swatch',
-                            child: Text('ground_swatch'),
+                            child: Text('Normal ground (ground_swatch)'),
                           ),
                           DropdownMenuItem(
                             value: '',
-                            child: Text('null'),
+                            child: Text('None (null)'),
                           ),
                         ],
                         onChanged: (val) {
@@ -551,7 +573,7 @@ class _CustomZombiePropertiesScreenState
               Text('Appearance & behavior',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
+                    color: themeColor,
                   )),
               const SizedBox(height: 8),
               Card(
@@ -699,7 +721,7 @@ class _CustomZombiePropertiesScreenState
               Text('Resistences',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
+                    color: themeColor,
                   )),
               const SizedBox(height: 8),
               Card(
@@ -827,13 +849,14 @@ class _CustomZombiePropertiesScreenState
     required IconData icon,
     required VoidCallback onTap,
   }) {
+    final themeColor = _themeColor;
     return InkWell(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
           children: [
-            Icon(icon, color: Theme.of(context).colorScheme.primary),
+            Icon(icon, color: themeColor),
             const SizedBox(width: 12),
             Expanded(
               child: Column(

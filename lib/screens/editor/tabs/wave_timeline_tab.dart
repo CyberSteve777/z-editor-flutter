@@ -6,6 +6,7 @@ import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/wave_point_analysis.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
+import 'package:z_editor/theme/app_theme.dart';
 import 'package:z_editor/widgets/editor_components.dart';
 
 /// Wave timeline tab with events. Ported from Z-Editor-master WaveTimelineTab.kt
@@ -19,6 +20,7 @@ class WaveTimelineTab extends StatefulWidget {
     required this.onAddEvent,
     required this.onEditWaveManagerSettings,
     this.onEditCustomZombie,
+    this.openWaveSheetNotifier,
   });
 
   final PvzLevelFile levelFile;
@@ -28,12 +30,50 @@ class WaveTimelineTab extends StatefulWidget {
   final void Function(int waveIndex) onAddEvent;
   final VoidCallback onEditWaveManagerSettings;
   final void Function(String rtid)? onEditCustomZombie;
+  final ValueNotifier<({int waveIndex, String? rtid})?>? openWaveSheetNotifier;
 
   @override
   State<WaveTimelineTab> createState() => _WaveTimelineTabState();
 }
 
 class _WaveTimelineTabState extends State<WaveTimelineTab> {
+  VoidCallback? _notifierListener;
+
+  @override
+  void initState() {
+    super.initState();
+    _notifierListener = () {
+      final payload = widget.openWaveSheetNotifier?.value;
+      if (payload != null && mounted) {
+        widget.openWaveSheetNotifier!.value = null;
+        _showWaveManageSheet(context, payload.waveIndex);
+      }
+    };
+    widget.openWaveSheetNotifier?.addListener(_notifierListener!);
+  }
+
+  @override
+  void didUpdateWidget(covariant WaveTimelineTab oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.openWaveSheetNotifier != widget.openWaveSheetNotifier) {
+      oldWidget.openWaveSheetNotifier?.removeListener(_notifierListener!);
+      _notifierListener = () {
+        final payload = widget.openWaveSheetNotifier?.value;
+        if (payload != null && mounted) {
+          widget.openWaveSheetNotifier!.value = null;
+          _showWaveManageSheet(context, payload.waveIndex);
+        }
+      };
+      widget.openWaveSheetNotifier?.addListener(_notifierListener!);
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.openWaveSheetNotifier?.removeListener(_notifierListener!);
+    super.dispose();
+  }
+
   int _pointsAtWave(
     WaveManagerModuleData module,
     int waveIndex,
@@ -51,38 +91,39 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
 
   Widget _buildHintCard(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final scheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final bgColor = isDark ? usageGuideDarkBg : usageGuideLightBg;
+    final onBg = isDark ? Colors.white : usageGuideLightOnBg;
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      color: scheme.secondaryContainer,
+      color: bgColor,
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Row(
           children: [
-            Icon(
-              Icons.lightbulb,
-              color: scheme.onSecondaryContainer,
-            ),
+            Icon(Icons.lightbulb, color: onBg),
             const SizedBox(width: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  l10n?.waveTimelineGuideTitle ?? 'Usage guide',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: scheme.onSecondaryContainer,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n?.waveTimelineGuideTitle ?? 'Usage guide',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: onBg,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  l10n?.waveTimelineGuideBody ??
-                      'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view expectation',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: scheme.onSecondaryContainer.withValues(alpha: 0.8),
-                      ),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n?.waveTimelineGuideBody ??
+                        'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view expectation',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: onBg.withValues(alpha: 0.9),
+                        ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -155,9 +196,12 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     List<_CustomZombieUsage> customZombies,
   ) {
     final l10n = AppLocalizations.of(context);
+    final themeColor = Theme.of(context).brightness == Brightness.dark
+        ? pvzPurpleDark
+        : pvzPurpleLight;
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      color: Theme.of(context).colorScheme.tertiary,
+      color: themeColor,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -165,13 +209,13 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
           children: [
             Row(
               children: [
-                Icon(Icons.science, color: Theme.of(context).colorScheme.onTertiary),
+                Icon(Icons.science, color: Colors.white),
                 const SizedBox(width: 8),
                 Text(
                   l10n?.customZombieManagerTitle ?? 'Custom zombie management',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onTertiary,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -180,7 +224,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
             if (customZombies.isEmpty)
               Text(
                 l10n?.customZombieEmpty ?? 'No custom zombie data',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: TextStyle(color: Colors.white.withValues(alpha: 0.9)),
               )
             else
               Wrap(
@@ -189,7 +233,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                 children: customZombies.map((info) {
                   final icon = info.isUnused ? Icons.warning : Icons.check_circle;
                   final color = info.isUnused
-                      ? Theme.of(context).colorScheme.onTertiary
+                      ? Colors.amber.shade700
                       : Theme.of(context).colorScheme.primary;
                   return InputChip(
                     label: Text(info.alias),
@@ -415,8 +459,61 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     );
   }
 
+  Map<String, List<int>> _collectCustomZombieWaveUsage() {
+    final result = <String, Set<int>>{};
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return {};
+    final aliasToObj = <String, PvzObject>{};
+    for (final obj in widget.levelFile.objects) {
+      if (obj.aliases?.isNotEmpty == true) {
+        for (final a in obj.aliases!) {
+          aliasToObj[a] = obj;
+        }
+      }
+    }
+    for (var i = 0; i < wm.waves.length; i++) {
+      final waveIndex = i + 1;
+      for (final eventRtid in wm.waves[i]) {
+        final alias = LevelParser.extractAlias(eventRtid);
+        final obj = aliasToObj[alias];
+        if (obj == null) continue;
+        final usedAliases = <String>{};
+        if (obj.objClass == 'SpawnZombiesJitteredWaveActionProps') {
+          try {
+            final data = WaveActionData.fromJson(
+              Map<String, dynamic>.from(obj.objData as Map),
+            );
+            for (final z in data.zombies) {
+              final info = RtidParser.parse(z.type);
+              if (info?.source == 'CurrentLevel') {
+                usedAliases.add(info!.alias);
+              }
+            }
+          } catch (_) {}
+        } else if (obj.objClass == 'SpawnZombiesFromGroundSpawnerProps') {
+          try {
+            final data = SpawnZombiesFromGroundData.fromJson(
+              Map<String, dynamic>.from(obj.objData as Map),
+            );
+            for (final z in data.zombies) {
+              final info = RtidParser.parse(z.type);
+              if (info?.source == 'CurrentLevel') {
+                usedAliases.add(info!.alias);
+              }
+            }
+          } catch (_) {}
+        }
+        for (final a in usedAliases) {
+          final set = result.putIfAbsent(a, () => <int>{});
+          set.add(waveIndex);
+        }
+      }
+    }
+    return result.map((k, v) => MapEntry(k, (v.toList()..sort())));
+  }
+
   List<_CustomZombieUsage> _collectCustomZombies() {
-    final usedAliases = _collectUsedCustomZombieAliases();
+    final waveUsage = _collectCustomZombieWaveUsage();
     final customObjects = widget.levelFile.objects
         .where((o) => o.objClass == 'ZombieType')
         .where((o) => o.aliases?.isNotEmpty == true)
@@ -424,48 +521,19 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     return customObjects.map((o) {
       final alias = o.aliases!.first;
       final rtid = RtidParser.build(alias, 'CurrentLevel');
+      final waveIndices = waveUsage[alias] ?? [];
       return _CustomZombieUsage(
         alias: alias,
         rtid: rtid,
-        isUnused: !usedAliases.contains(alias),
+        isUnused: waveIndices.isEmpty,
+        waveIndices: waveIndices,
       );
     }).toList();
   }
 
-  Set<String> _collectUsedCustomZombieAliases() {
-    final used = <String>{};
-    for (final obj in widget.levelFile.objects) {
-      if (obj.objClass == 'SpawnZombiesJitteredWaveActionProps') {
-        try {
-          final data = WaveActionData.fromJson(
-            Map<String, dynamic>.from(obj.objData as Map),
-          );
-          for (final z in data.zombies) {
-            final info = RtidParser.parse(z.type);
-            if (info?.source == 'CurrentLevel') {
-              used.add(info!.alias);
-            }
-          }
-        } catch (_) {}
-      }
-      if (obj.objClass == 'SpawnZombiesFromGroundSpawnerProps') {
-        try {
-          final data = SpawnZombiesFromGroundData.fromJson(
-            Map<String, dynamic>.from(obj.objData as Map),
-          );
-          for (final z in data.zombies) {
-            final info = RtidParser.parse(z.type);
-            if (info?.source == 'CurrentLevel') {
-              used.add(info!.alias);
-            }
-          }
-        } catch (_) {}
-      }
-    }
-    return used;
-  }
-
   void _showCustomZombieSheet(BuildContext context, _CustomZombieUsage info) {
+    final l10n = AppLocalizations.of(context);
+    final canDelete = info.isUnused;
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
@@ -482,6 +550,23 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                   .titleMedium
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
+            const SizedBox(height: 8),
+            Text(
+              l10n?.customZombieAppearanceLocation ?? 'Appearance location:',
+              style: Theme.of(ctx).textTheme.titleSmall?.copyWith(
+                    color: Theme.of(ctx).colorScheme.onSurfaceVariant,
+                  ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              info.waveIndices.isEmpty
+                  ? (l10n?.customZombieNotUsed ??
+                      'This custom zombie is not used by any wave or module.')
+                  : info.waveIndices
+                      .map((n) => l10n?.customZombieWaveItem(n) ?? 'Wave $n')
+                      .join(', '),
+              style: Theme.of(ctx).textTheme.bodyMedium,
+            ),
             const SizedBox(height: 12),
             if (widget.onEditCustomZombie != null)
               FilledButton.icon(
@@ -490,38 +575,43 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                   widget.onEditCustomZombie!(info.rtid);
                 },
                 icon: const Icon(Icons.edit),
-                label: const Text('编辑属性'),
+                label: Text(l10n?.editProperties ?? 'Edit properties'),
               ),
-            const SizedBox(height: 8),
+            if (widget.onEditCustomZombie != null) const SizedBox(height: 8),
             FilledButton.icon(
               style: FilledButton.styleFrom(
                 backgroundColor: Theme.of(ctx).colorScheme.error,
               ),
-              onPressed: () async {
-                Navigator.pop(ctx);
-                final ok = await showDialog<bool>(
-                  context: context,
-                  builder: (dctx) => AlertDialog(
-                    title: const Text('删除自定义僵尸？'),
-                    content: const Text('将移除僵尸实体及其属性数据。'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(dctx, false),
-                        child: const Text('取消'),
-                      ),
-                      FilledButton(
-                        onPressed: () => Navigator.pop(dctx, true),
-                        child: const Text('删除'),
-                      ),
-                    ],
-                  ),
-                );
-                if (ok == true) {
-                  _deleteCustomZombie(info);
-                }
-              },
+              onPressed: canDelete
+                  ? () async {
+                      Navigator.pop(ctx);
+                      final ok = await showDialog<bool>(
+                        context: context,
+                        builder: (dctx) => AlertDialog(
+                          title: Text(l10n?.deleteEntity ?? 'Delete entity'),
+                          content: Text(
+                            l10n?.customZombieDeleteConfirm ??
+                                'Remove this custom zombie and its property data.',
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(dctx, false),
+                              child: Text(l10n?.cancel ?? 'Cancel'),
+                            ),
+                            FilledButton(
+                              onPressed: () => Navigator.pop(dctx, true),
+                              child: Text(l10n?.confirm ?? 'Confirm'),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (ok == true) {
+                        _deleteCustomZombie(info);
+                      }
+                    }
+                  : null,
               icon: const Icon(Icons.delete),
-              label: const Text('删除实体'),
+              label: Text(l10n?.deleteEntity ?? 'Delete entity'),
             ),
           ],
         ),
@@ -702,22 +792,6 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
             Row(
               children: [
                 Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.pop(ctx);
-                      _removeEventFromWave(waveIndex, rtid);
-                    },
-                    icon: const Icon(Icons.remove_circle_outline),
-                    label:
-                        Text(l10n?.removeFromWave ?? 'Remove from wave'),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
                   child: FilledButton.icon(
                     style: FilledButton.styleFrom(
                       backgroundColor: Theme.of(ctx).colorScheme.error,
@@ -728,12 +802,12 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                         context: context,
                         builder: (dctx) => AlertDialog(
                           title: Text(
-                            l10n?.deleteEventEntityTitle ??
-                                'Delete event entity?',
+                            l10n?.confirmRemoveRef ??
+                                'Remove reference',
                           ),
                           content: Text(
-                            l10n?.deleteEventEntityBody ??
-                                'This will remove the event object from the level.',
+                            l10n?.confirmRemoveRefMessage ??
+                                'Remove this reference? The entity data will remain until all references are removed.',
                           ),
                           actions: [
                             TextButton(
@@ -742,7 +816,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                             ),
                             FilledButton(
                               onPressed: () => Navigator.pop(dctx, true),
-                              child: Text(l10n?.delete ?? 'Delete'),
+                              child: Text(l10n?.confirmRemoveRef ?? 'Remove reference'),
                             ),
                           ],
                         ),
@@ -751,8 +825,8 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                         _smartDeleteEvent(waveIndex, rtid);
                       }
                     },
-                    icon: const Icon(Icons.delete),
-                    label: Text(l10n?.deleteEntity ?? 'Delete entity'),
+                    icon: const Icon(Icons.remove_circle_outline),
+                    label: Text(l10n?.removeFromWave ?? 'Remove from wave'),
                   ),
                 ),
               ],
@@ -1067,9 +1141,11 @@ class _CustomZombieUsage {
     required this.alias,
     required this.rtid,
     required this.isUnused,
+    required this.waveIndices,
   });
 
   final String alias;
   final String rtid;
   final bool isUnused;
+  final List<int> waveIndices;
 }

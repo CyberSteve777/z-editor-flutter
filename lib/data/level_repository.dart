@@ -216,6 +216,19 @@ class LevelRepository {
     }
   }
 
+  /// Load level directly from file path. Use when cache-based load fails
+  /// (e.g. after switching to another directory).
+  static Future<PvzLevelFile?> loadLevelFromPath(String filePath) async {
+    final file = File(filePath);
+    if (!await file.exists()) return null;
+    try {
+      final json = jsonDecode(await file.readAsString()) as Map<String, dynamic>;
+      return PvzLevelFile.fromJson(json);
+    } catch (_) {
+      return null;
+    }
+  }
+
   static Future<void> saveAndExport(String filePath, PvzLevelFile levelData) async {
     final file = File(filePath);
     await file.writeAsString(

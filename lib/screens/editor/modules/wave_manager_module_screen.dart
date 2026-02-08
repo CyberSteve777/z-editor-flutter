@@ -3,6 +3,7 @@ import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/zombie_properties_repository.dart';
 import 'package:z_editor/data/zombie_repository.dart';
+import 'package:z_editor/theme/app_theme.dart';
 import 'package:z_editor/widgets/asset_image.dart'
     show AssetImageWidget, imageAltCandidates;
 import 'package:z_editor/widgets/editor_components.dart';
@@ -157,6 +158,22 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    // Light: light green card, purple section titles. Dark: vibrant green card, purplish-pink titles.
+    final propsCardColor = isDark
+        ? const Color(0xFF2E7D32)
+        : const Color(0xFFE8F5E9);
+    final propsTextColor = isDark ? Colors.white : const Color(0xFF1B5E20);
+    final propsSubtextColor = isDark
+        ? Colors.white.withValues(alpha: 0.9)
+        : const Color(0xFF689F38);
+    final sectionTitleColor = isDark
+        ? pvzPurpleDark
+        : pvzPurpleLight;
+    final contentCardColor = isDark
+        ? theme.colorScheme.surfaceContainerHighest
+        : theme.colorScheme.surface;
+
     final propsObj = widget.levelFile.objects.firstWhere(
       (o) => o.objClass == 'WaveManagerProperties',
       orElse: () => PvzObject(objClass: '', objData: {}),
@@ -176,6 +193,8 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
           icon: const Icon(Icons.arrow_back),
           onPressed: widget.onBack,
         ),
+        backgroundColor: sectionTitleColor,
+        foregroundColor: Colors.white,
         title: const Text('Wave manager module'),
         actions: [
           IconButton(
@@ -205,9 +224,7 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
-              color: isPropsValid
-                  ? theme.colorScheme.outlineVariant
-                  : theme.colorScheme.error,
+              color: isPropsValid ? propsCardColor : theme.colorScheme.error,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -218,13 +235,16 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
                         Icon(
                           isPropsValid ? Icons.check_circle : Icons.warning,
                           color: isPropsValid
-                              ? theme.colorScheme.primary
+                              ? (isDark ? Colors.white : const Color(0xFF2E7D32))
                               : theme.colorScheme.onError,
                         ),
                         const SizedBox(width: 8),
-                        const Text(
+                        Text(
                           'WaveManagerProps',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: isPropsValid ? propsTextColor : theme.colorScheme.onError,
+                          ),
                         ),
                       ],
                     ),
@@ -232,7 +252,7 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
                     Text(
                       'Current: ${_data.waveManagerProps ?? "null"}',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
+                        color: isPropsValid ? propsSubtextColor : theme.colorScheme.onError,
                       ),
                     ),
                     if (actualWaveMgrAlias == null)
@@ -271,11 +291,12 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
               'Point settings',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: theme.colorScheme.primary,
+                color: sectionTitleColor,
               ),
             ),
             const SizedBox(height: 8),
             Card(
+              color: contentCardColor,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
@@ -317,7 +338,7 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
                   'Zombie pool',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: theme.colorScheme.primary,
+                    color: sectionTitleColor,
                   ),
                 ),
                 const Spacer(),
@@ -340,6 +361,7 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
               final iconPath = info?.iconAssetPath;
               return Card(
                 margin: const EdgeInsets.only(bottom: 8),
+                color: contentCardColor,
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Row(

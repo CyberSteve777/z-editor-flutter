@@ -106,6 +106,8 @@ class _EditorScreenState extends State<EditorScreen> {
   bool _hasChanges = false;
   List<EditorTabType> _availableTabs = [EditorTabType.settings];
   TabController? _tabController;
+  final ValueNotifier<({int waveIndex, String? rtid})?> _openWaveSheetNotifier =
+      ValueNotifier<({int waveIndex, String? rtid})?>(null);
 
   @override
   void initState() {
@@ -119,7 +121,13 @@ class _EditorScreenState extends State<EditorScreen> {
     await ZombiePropertiesRepository.init();
     await PlantRepository().init();
     await ZombieRepository().init();
-    final level = await LevelRepository.loadLevel(widget.fileName);
+    var level = await LevelRepository.loadLevel(widget.fileName);
+    if (level == null && widget.filePath.isNotEmpty) {
+      level = await LevelRepository.loadLevelFromPath(widget.filePath);
+      if (level != null) {
+        await LevelRepository.prepareInternalCache(widget.filePath, widget.fileName);
+      }
+    }
     if (mounted && level != null) {
       final parsed = LevelParser.parseLevel(level);
       setState(() {
@@ -556,10 +564,7 @@ class _EditorScreenState extends State<EditorScreen> {
                       onSelected(id);
                     },
                     onMultiPlantSelected: (_) {},
-                    onBack: () {
-                      _setActiveTab(EditorTabType.timeline);
-                      Navigator.pop(context);
-                    },
+                    onBack: () => Navigator.pop(context),
                   ),
                 ),
               );
@@ -575,10 +580,7 @@ class _EditorScreenState extends State<EditorScreen> {
                       onSelected(id);
                     },
                     onMultiZombieSelected: (_) {},
-                    onBack: () {
-                      _setActiveTab(EditorTabType.timeline);
-                      Navigator.pop(context);
-                    },
+                    onBack: () => Navigator.pop(context),
                   ),
                 ),
               );
@@ -616,10 +618,7 @@ class _EditorScreenState extends State<EditorScreen> {
                       onSelected(id);
                     },
                     onMultiPlantSelected: (_) {},
-                    onBack: () {
-                      _setActiveTab(EditorTabType.timeline);
-                      Navigator.pop(context);
-                    },
+                    onBack: () => Navigator.pop(context),
                   ),
                 ),
               );
@@ -635,10 +634,7 @@ class _EditorScreenState extends State<EditorScreen> {
                       onSelected(id);
                     },
                     onMultiZombieSelected: (_) {},
-                    onBack: () {
-                      _setActiveTab(EditorTabType.timeline);
-                      Navigator.pop(context);
-                    },
+                    onBack: () => Navigator.pop(context),
                   ),
                 ),
               );
@@ -736,10 +732,7 @@ class _EditorScreenState extends State<EditorScreen> {
                       onSelected(id);
                     },
                     onMultiZombieSelected: (_) {},
-                    onBack: () {
-                      _setActiveTab(EditorTabType.timeline);
-                      Navigator.pop(context);
-                    },
+                    onBack: () => Navigator.pop(context),
                   ),
                 ),
               );
@@ -833,10 +826,7 @@ class _EditorScreenState extends State<EditorScreen> {
                       Navigator.pop(context);
                       onSelected(id);
                     },
-                    onBack: () {
-                      _setActiveTab(EditorTabType.timeline);
-                      Navigator.pop(context);
-                    },
+                    onBack: () => Navigator.pop(context),
                   ),
                 ),
               );
@@ -852,10 +842,7 @@ class _EditorScreenState extends State<EditorScreen> {
                       onSelected(id);
                     },
                     onMultiZombieSelected: (_) {},
-                    onBack: () {
-                      _setActiveTab(EditorTabType.timeline);
-                      Navigator.pop(context);
-                    },
+                    onBack: () => Navigator.pop(context),
                   ),
                 ),
               );
@@ -1729,8 +1716,14 @@ class _EditorScreenState extends State<EditorScreen> {
                       MaterialPageRoute(
                         builder: (_) => JsonViewerScreen(
                           fileName: widget.fileName,
+                          filePath: widget.filePath,
                           levelFile: _levelFile!,
                           onBack: () => Navigator.pop(context),
+                          onSaved: () {
+                            _markDirty();
+                            _parsedData = LevelParser.parseLevel(_levelFile!);
+                            setState(() {});
+                          },
                         ),
                       ),
                     )
@@ -1819,6 +1812,7 @@ class _EditorScreenState extends State<EditorScreen> {
                                     onEditWaveManagerSettings:
                                         _handleEditWaveManagerSettings,
                                     onEditCustomZombie: _handleEditCustomZombie,
+                                    openWaveSheetNotifier: _openWaveSheetNotifier,
                                   );
                                 case EditorTabType.iZombie:
                                   return IZombieTab(

@@ -102,11 +102,12 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
           child: SafeArea(
             bottom: false,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
-                    vertical: 12,
+                    vertical: 8,
                   ),
                   child: Row(
                     children: [
@@ -143,12 +144,13 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
                     ],
                   ),
                 ),
-                DefaultTabController(
-                  key: ValueKey(_selectedCategory),
-                  length: ZombieCategory.values.length,
-                  initialIndex:
-                      ZombieCategory.values.indexOf(_selectedCategory),
-                  child: TabBar(
+                Flexible(
+                  child: DefaultTabController(
+                    key: ValueKey(_selectedCategory),
+                    length: ZombieCategory.values.length,
+                    initialIndex:
+                        ZombieCategory.values.indexOf(_selectedCategory),
+                    child: TabBar(
                     isScrollable: true,
                     indicatorColor: theme.colorScheme.surface,
                     labelColor: theme.colorScheme.surface,
@@ -184,14 +186,16 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
                         ),
                       );
                     }).toList(),
+                    ),
                   ),
                 ),
                 if (_selectedCategory != ZombieCategory.collection)
-                  DefaultTabController(
-                    key: ValueKey('${_selectedCategory.name}_tags'),
-                    length: visibleTags.length,
-                    initialIndex: safeTagIndex,
-                    child: TabBar(
+                  Flexible(
+                    child: DefaultTabController(
+                      key: ValueKey('${_selectedCategory.name}_tags'),
+                      length: visibleTags.length,
+                      initialIndex: safeTagIndex,
+                      child: TabBar(
                       isScrollable: true,
                       indicatorColor:
                           theme.colorScheme.surface.withValues(alpha: 0.8),
@@ -229,6 +233,7 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
                           ),
                         );
                       }).toList(),
+                      ),
                     ),
                   ),
               ],
@@ -240,7 +245,6 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
           ? FloatingActionButton(
               onPressed: () {
                 widget.onMultiZombieSelected?.call(_selectedIds.toList());
-                widget.onBack();
               },
               child: const Icon(Icons.check),
             )
@@ -302,7 +306,6 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
                                 });
                               } else {
                                 widget.onZombieSelected(zombie.id);
-                                widget.onBack();
                               }
                             },
                             onLongPress: () => _toggleFavorite(context, zombie.id),

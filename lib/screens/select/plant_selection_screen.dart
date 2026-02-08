@@ -242,7 +242,6 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
           ? FloatingActionButton(
               onPressed: () {
                 widget.onMultiPlantSelected?.call(_selectedIds.toList());
-                widget.onBack();
               },
               child: const Icon(Icons.check),
             )
@@ -303,7 +302,6 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
                                 });
                               } else {
                                 widget.onPlantSelected(plant.id);
-                                widget.onBack();
                               }
                             },
                             onLongPress: () => _toggleFavorite(context, plant.id),

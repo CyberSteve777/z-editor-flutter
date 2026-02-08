@@ -118,7 +118,8 @@ class _WaveManagerSettingsScreenState extends State<WaveManagerSettingsScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final themeColor = theme.colorScheme.primary;
+    // Use secondary (blue) to match Kotlin WaveManagerPropertiesEP PvzBlueLight/Dark
+    final themeColor = theme.colorScheme.secondary;
     final jamOptions = [
       (null, l10n?.jamNone ?? 'None'),
       ('jam_pop', l10n?.jamPop ?? 'Pop'),
