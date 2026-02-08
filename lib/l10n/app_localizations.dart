@@ -1162,6 +1162,54 @@ abstract class AppLocalizations {
   /// **'No custom zombie data'**
   String get customZombieEmpty;
 
+  /// No description provided for @switchCustomZombie.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch custom zombie'**
+  String get switchCustomZombie;
+
+  /// No description provided for @customZombieAppearanceLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance location:'**
+  String get customZombieAppearanceLocation;
+
+  /// No description provided for @customZombieNotUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'This custom zombie is not used by any wave or module.'**
+  String get customZombieNotUsed;
+
+  /// No description provided for @customZombieWaveItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Wave {n}'**
+  String customZombieWaveItem(int n);
+
+  /// No description provided for @customZombieDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove this custom zombie entity and its property data.'**
+  String get customZombieDeleteConfirm;
+
+  /// No description provided for @editCustomZombieProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit custom zombie properties'**
+  String get editCustomZombieProperties;
+
+  /// No description provided for @makeZombieAsCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Make zombie as custom'**
+  String get makeZombieAsCustom;
+
+  /// No description provided for @customLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get customLabel;
+
   /// No description provided for @waveManagerGlobalParams.
   ///
   /// In en, this message translates to:
@@ -1491,6 +1539,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete entity'**
   String get deleteEntity;
+
+  /// No description provided for @deleteObjectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete object?'**
+  String get deleteObjectTitle;
+
+  /// No description provided for @deleteObjectConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove this object from the level file? This action cannot be undone.'**
+  String get deleteObjectConfirmMessage;
+
+  /// No description provided for @objectDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Object deleted'**
+  String get objectDeleted;
 
   /// No description provided for @moduleEditorInProgress.
   ///

@@ -563,6 +563,35 @@ class AppLocalizationsRu extends AppLocalizations {
   String get customZombieEmpty => 'Нет данных о пользовательских зомби';
 
   @override
+  String get switchCustomZombie => 'Сменить пользовательского зомби';
+
+  @override
+  String get customZombieAppearanceLocation => 'Появление:';
+
+  @override
+  String get customZombieNotUsed =>
+      'Этот пользовательский зомби не используется ни в одной волне.';
+
+  @override
+  String customZombieWaveItem(int n) {
+    return 'Волна $n';
+  }
+
+  @override
+  String get customZombieDeleteConfirm =>
+      'Удалить этого пользовательского зомби и его данные.';
+
+  @override
+  String get editCustomZombieProperties =>
+      'Редактировать свойства пользовательского зомби';
+
+  @override
+  String get makeZombieAsCustom => 'Сделать зомби пользовательским';
+
+  @override
+  String get customLabel => 'Пользовательский';
+
+  @override
   String get waveManagerGlobalParams => 'Глобальные параметры волн';
 
   @override
@@ -749,6 +778,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get deleteEntity => 'Удалить объект';
+
+  @override
+  String get deleteObjectTitle => 'Удалить объект?';
+
+  @override
+  String get deleteObjectConfirmMessage =>
+      'Удалить этот объект из файла уровня? Это действие нельзя отменить.';
+
+  @override
+  String get objectDeleted => 'Объект удалён';
 
   @override
   String get moduleEditorInProgress => 'Редактор модуля в разработке';

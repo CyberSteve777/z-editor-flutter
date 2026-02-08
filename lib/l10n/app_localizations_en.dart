@@ -562,6 +562,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get customZombieEmpty => 'No custom zombie data';
 
   @override
+  String get switchCustomZombie => 'Switch custom zombie';
+
+  @override
+  String get customZombieAppearanceLocation => 'Appearance location:';
+
+  @override
+  String get customZombieNotUsed =>
+      'This custom zombie is not used by any wave or module.';
+
+  @override
+  String customZombieWaveItem(int n) {
+    return 'Wave $n';
+  }
+
+  @override
+  String get customZombieDeleteConfirm =>
+      'Remove this custom zombie entity and its property data.';
+
+  @override
+  String get editCustomZombieProperties => 'Edit custom zombie properties';
+
+  @override
+  String get makeZombieAsCustom => 'Make zombie as custom';
+
+  @override
+  String get customLabel => 'Custom';
+
+  @override
   String get waveManagerGlobalParams => 'Wave manager parameters';
 
   @override
@@ -747,6 +775,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteEntity => 'Delete entity';
+
+  @override
+  String get deleteObjectTitle => 'Delete object?';
+
+  @override
+  String get deleteObjectConfirmMessage =>
+      'Remove this object from the level file? This action cannot be undone.';
+
+  @override
+  String get objectDeleted => 'Object deleted';
 
   @override
   String get moduleEditorInProgress => 'Module editor in development';

@@ -555,6 +555,32 @@ class AppLocalizationsZh extends AppLocalizations {
   String get customZombieEmpty => '暂无自定义僵尸数据';
 
   @override
+  String get switchCustomZombie => '切换自定义僵尸';
+
+  @override
+  String get customZombieAppearanceLocation => '出现位置：';
+
+  @override
+  String get customZombieNotUsed => '此自定义僵尸当前未被任何波次或模块使用。';
+
+  @override
+  String customZombieWaveItem(int n) {
+    return '第 $n 波';
+  }
+
+  @override
+  String get customZombieDeleteConfirm => '将移除僵尸实体及其属性数据。';
+
+  @override
+  String get editCustomZombieProperties => '编辑自定义属性数值';
+
+  @override
+  String get makeZombieAsCustom => '注入为自定义僵尸';
+
+  @override
+  String get customLabel => '自定义';
+
+  @override
   String get waveManagerGlobalParams => '波次管理器全局参数';
 
   @override
@@ -730,6 +756,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get deleteEntity => '删除实体';
+
+  @override
+  String get deleteObjectTitle => '删除对象？';
+
+  @override
+  String get deleteObjectConfirmMessage => '从关卡文件中移除此对象？此操作不可撤销。';
+
+  @override
+  String get objectDeleted => '对象已删除';
 
   @override
   String get moduleEditorInProgress => '模块编辑器开发中';
