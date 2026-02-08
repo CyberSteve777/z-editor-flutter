@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:z_editor/data/level_repository.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 
@@ -51,7 +54,41 @@ class _LevelListScreenState extends State<LevelListScreen> {
     _loadSavedPathAndList();
   }
 
+  Future<void> _ensureStoragePermission() async {
+    if (!Platform.isAndroid) return;
+    // Try storage first (works on Android 10-12)
+    var status = await Permission.storage.status;
+    if (status.isDenied) {
+      status = await Permission.storage.request();
+    }
+    if (status.isGranted) return;
+    // On Android 13+, storage is deprecated. Use manageExternalStorage for file access.
+    final manageStatus = await Permission.manageExternalStorage.status;
+    if (manageStatus.isGranted) return;
+    if (manageStatus.isDenied) {
+      await Permission.manageExternalStorage.request();
+    }
+    // manageExternalStorage opens Settings; guide user if still not granted
+    if (!(await Permission.manageExternalStorage.isGranted) && mounted) {
+      final l10n = AppLocalizations.of(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            l10n?.storagePermissionHint ??
+                'Storage permission required. Enable "All files access" in Settings.',
+          ),
+          duration: const Duration(seconds: 5),
+          action: SnackBarAction(
+            label: l10n?.settings ?? 'Settings',
+            onPressed: () => openAppSettings(),
+          ),
+        ),
+      );
+    }
+  }
+
   Future<void> _loadSavedPathAndList() async {
+    await _ensureStoragePermission();
     final path = await LevelRepository.getSavedFolderPath();
     if (path != null && mounted) {
       setState(() {
@@ -66,6 +103,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
   }
 
   Future<void> _pickFolder() async {
+    await _ensureStoragePermission();
     final result = await FilePicker.platform.getDirectoryPath();
     if (result != null && mounted) {
       await LevelRepository.setSavedFolderPath(result);

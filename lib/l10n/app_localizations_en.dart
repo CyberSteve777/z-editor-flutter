@@ -39,6 +39,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectFolder => 'Select folder';
 
   @override
+  String get storagePermissionHint =>
+      'Storage permission required. Enable \"All files access\" in Settings to open level files.';
+
+  @override
   String get initSetup => 'Initial setup';
 
   @override

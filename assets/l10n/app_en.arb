@@ -9,6 +9,7 @@
   "uiSize": "UI size",
   "aboutSoftware": "About",
   "selectFolder": "Select folder",
+  "storagePermissionHint": "Storage permission required. Enable \"All files access\" in Settings to open level files.",
   "initSetup": "Initial setup",
   "selectFolderPrompt": "Please select a folder as the level storage directory.",
   "selectFolderButton": "Select folder",

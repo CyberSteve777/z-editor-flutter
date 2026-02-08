@@ -39,6 +39,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get selectFolder => '选择文件夹';
 
   @override
+  String get storagePermissionHint => '需要存储权限。请在设置中开启「允许管理所有文件」以打开关卡文件。';
+
+  @override
   String get initSetup => '初始化设置';
 
   @override

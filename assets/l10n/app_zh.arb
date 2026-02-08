@@ -9,6 +9,7 @@
   "uiSize": "界面大小",
   "aboutSoftware": "关于软件",
   "selectFolder": "选择文件夹",
+  "storagePermissionHint": "需要存储权限。请在设置中开启「允许管理所有文件」以打开关卡文件。",
   "initSetup": "初始化设置",
   "selectFolderPrompt": "请选择一个文件夹作为关卡存储目录。",
   "selectFolderButton": "选择文件夹",

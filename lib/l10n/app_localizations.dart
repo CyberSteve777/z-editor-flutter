@@ -160,6 +160,12 @@ abstract class AppLocalizations {
   /// **'Select folder'**
   String get selectFolder;
 
+  /// No description provided for @storagePermissionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage permission required. Enable \"All files access\" in Settings to open level files.'**
+  String get storagePermissionHint;
+
   /// No description provided for @initSetup.
   ///
   /// In en, this message translates to:

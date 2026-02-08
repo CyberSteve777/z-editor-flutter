@@ -39,6 +39,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get selectFolder => 'Выбрать папку';
 
   @override
+  String get storagePermissionHint =>
+      'Требуется разрешение на доступ к хранилищу. Включите «Разрешить управление всеми файлами» в настройках.';
+
+  @override
   String get initSetup => 'Начальная настройка';
 
   @override
