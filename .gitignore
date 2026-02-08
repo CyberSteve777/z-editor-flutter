@@ -45,7 +45,7 @@ app.*.map.json
 /android/app/release
 
 # Other
-/Z-Editor-master/
+/z-editor-original
 #/assets/
 report.txt
 /ANDROID_LASTEST_BUILD
