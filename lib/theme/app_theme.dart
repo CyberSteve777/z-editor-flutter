@@ -6,6 +6,19 @@ const Color _pvzGreenDark = Color(0xFF2E7D32);
 const Color _pvzGreenContainer = Color(0xFFC8E6C9);
 const Color _pvzBluePrimary = Color(0xFF2196F3);
 
+/// Orange accent for Custom Zombie Properties (matches Kotlin PvzOrangeLight/Dark)
+const Color pvzOrangeLight = Color(0xFFE8A000);
+const Color pvzOrangeDark = Color(0xFFD5925E);
+
+/// Purple for Custom Zombie card in Wave Timeline (matches Kotlin PvzPurpleLight/Dark)
+const Color pvzPurpleLight = Color(0xFF673AB7);
+const Color pvzPurpleDark = Color(0xFF8F76BB);
+
+/// Usage guide card: dark blue in dark mode, light blue in light mode
+const Color usageGuideDarkBg = Color(0xFF1C4D7C);
+const Color usageGuideLightBg = Color(0xFFB3E5FC);
+const Color usageGuideLightOnBg = Color(0xFF01579B);
+
 const Color _darkSurface = Color(0xFF1E1E1E);
 const Color _darkSurfaceVariant = Color(0xFF2C2C2C);
 const Color _darkOnSurface = Color(0xFFE0E0E0);
