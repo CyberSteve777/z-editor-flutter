@@ -810,5 +810,12 @@
   "zombie_mausoleum_vendor": "小贩僵尸",
   "zombie_mausoleum_piggy": "僵尸猪",
   "zombie_mausoleum_cavalry": "木马骑兵僵尸",
-  "zombie_mausoleum_archer": "弓箭手僵尸"
+  "zombie_mausoleum_archer": "弓箭手僵尸",
+  "zombie_qin_shield_segment": "单盾盾卫僵尸",
+  "zombie_qin_shield_pair": "双盾盾卫僵尸",
+  "zombie_qin_shield_triad": "多盾盾卫僵尸",
+  "zombie_qin_jingke": "刺客僵尸",
+  "zombie_qin_taoist": "方士僵尸",
+  "zombie_qin_terracotta_small": "兵马俑僵尸",
+  "zombie_qin_terracotta_mid": "秦俑将军僵尸"
 }

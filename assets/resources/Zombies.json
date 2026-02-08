@@ -4498,5 +4498,68 @@
             "Basic"
         ],
         "icon": "zombie_mausoleum_archer.webp"
+    },
+    {
+        "id": "qin_shield_segment",
+        "name": "zombie_qin_shield_segment",
+        "tags": [
+            "Tothewest",
+            "Basic"
+        ],
+        "icon": "zombie_qin_shield_segment.webp"
+    },
+    {
+        "id": "qin_shield_pair",
+        "name": "zombie_qin_shield_pair",
+        "tags": [
+            "Tothewest",
+            "Basic"
+        ],
+        "icon": "zombie_qin_shield_segment.webp"
+    },
+    {
+        "id": "qin_shield_triad",
+        "name": "zombie_qin_shield_triad",
+        "tags": [
+            "Tothewest",
+            "Basic"
+        ],
+        "icon": "zombie_qin_shield_segment.webp"
+    },
+    {
+        "id": "qin_jingke",
+        "name": "zombie_qin_jingke",
+        "tags": [
+            "Tothewest",
+            "Basic"
+        ],
+        "icon": "zombie_qin_jingke.webp"
+    },
+    {
+        "id": "qin_taoist",
+        "name": "zombie_qin_taoist",
+        "tags": [
+            "Tothewest",
+            "Basic"
+        ],
+        "icon": "zombie_qin_taoist.webp"
+    },
+    {
+        "id": "qin_terracotta_small",
+        "name": "zombie_qin_terracotta_small",
+        "tags": [
+            "Tothewest",
+            "Basic"
+        ],
+        "icon": "zombie_qin_terracotta_mid.webp"
+    },
+    {
+        "id": "qin_terracotta_mid",
+        "name": "zombie_qin_terracotta_mid",
+        "tags": [
+            "Tothewest",
+            "Strong"
+        ],
+        "icon": "zombie_qin_terracotta_mid.webp"
     }
 ]

@@ -2414,6 +2414,499 @@
 		{
 			"objclass": "StageModuleProperties",
 			"aliases": [
+				"UnchartedMausoleumStage"
+			],
+			"objdata": {
+				"ResourceGroupNames": [
+					"Game_Tombstones_Dynamic",
+					"AudioModern",
+					"Uncharted_Music",
+					"DelayLoad_Background_Uncharted_Mausoleum",
+					"Game_Tombstones_Dynamic"
+				],
+				"StagePrefix": "uncharted_mausoleum",
+				"BackgroundImagePrefix": "IMAGE_BACKGROUNDS_UNCHARTED_MAUSOLEUM",
+				"BackgroundImageLeft": "TEXTURE_LEFT",
+				"BackgroundImageMiddle": "TEXTURE",
+				"BackgroundImageRight": "TEXTURE_RIGHT",
+				"BasicZombieTypeName": "mausoleum_basic",
+				"FlagZombieTypeName": "mausoleum_flag",
+				"Armor1ZombieTypeName": "mausoleum_armor1",
+				"Armor2ZombieTypeName": "mausoleum_armor2",
+				"MusicSuffix": "Uncharted",
+				"RailcartDefaultTypeName": "railcart_egypt",
+				"DirtSpawnEffectName": "POPANIM_EFFECTS_TOMB_DIRT",
+				"ZombieEventType": "sandstorm",
+				"DisabledStreetCells": [
+					{
+						"mX": 0,
+						"mY": 0
+					},
+					{
+						"mX": 0,
+						"mY": 1
+					},
+					{
+						"mX": 0,
+						"mY": 2
+					},
+					{
+						"mX": 0,
+						"mY": 3
+					},
+					{
+						"mX": 0,
+						"mY": 4
+					},
+					{
+						"mX": 0,
+						"mY": 5
+					},
+					{
+						"mX": 0,
+						"mY": 6
+					},
+					{
+						"mX": 0,
+						"mY": 7
+					},
+					{
+						"mX": 0,
+						"mY": 8
+					},
+					{
+						"mX": 0,
+						"mY": 9
+					},
+					{
+						"mX": 1,
+						"mY": 0
+					},
+					{
+						"mX": 1,
+						"mY": 1
+					},
+					{
+						"mX": 1,
+						"mY": 2
+					},
+					{
+						"mX": 1,
+						"mY": 3
+					},
+					{
+						"mX": 1,
+						"mY": 4
+					},
+					{
+						"mX": 1,
+						"mY": 5
+					},
+					{
+						"mX": 1,
+						"mY": 6
+					},
+					{
+						"mX": 1,
+						"mY": 7
+					},
+					{
+						"mX": 1,
+						"mY": 8
+					},
+					{
+						"mX": 1,
+						"mY": 9
+					},
+					{
+						"mX": 2,
+						"mY": 0
+					},
+					{
+						"mX": 2,
+						"mY": 1
+					},
+					{
+						"mX": 2,
+						"mY": 2
+					},
+					{
+						"mX": 2,
+						"mY": 3
+					},
+					{
+						"mX": 2,
+						"mY": 4
+					},
+					{
+						"mX": 2,
+						"mY": 5
+					},
+					{
+						"mX": 2,
+						"mY": 6
+					},
+					{
+						"mX": 2,
+						"mY": 7
+					},
+					{
+						"mX": 2,
+						"mY": 8
+					},
+					{
+						"mX": 2,
+						"mY": 9
+					},
+					{
+						"mX": 3,
+						"mY": 9
+					},
+					{
+						"mX": 3,
+						"mY": 8
+					},
+					{
+						"mX": 3,
+						"mY": 7
+					},
+					{
+						"mX": 4,
+						"mY": 9
+					},
+					{
+						"mX": 4,
+						"mY": 8
+					},
+					{
+						"mX": 5,
+						"mY": 9
+					},
+					{
+						"mX": 5,
+						"mY": 8
+					},
+					{
+						"mX": 5,
+						"mY": 7
+					},
+					{
+						"mX": 6,
+						"mY": 9
+					},
+					{
+						"mX": 6,
+						"mY": 8
+					},
+					{
+						"mX": 7,
+						"mY": 9
+					},
+					{
+						"mX": 7,
+						"mY": 8
+					},
+					{
+						"mX": 7,
+						"mY": 7
+					},
+					{
+						"mX": 7,
+						"mY": 6
+					},
+					{
+						"mX": 7,
+						"mY": 0
+					},
+					{
+						"mX": 7,
+						"mY": 1
+					},
+					{
+						"mX": 7,
+						"mY": 2
+					},
+					{
+						"mX": 8,
+						"mY": 9
+					},
+					{
+						"mX": 8,
+						"mY": 8
+					},
+					{
+						"mX": 8,
+						"mY": 7
+					},
+					{
+						"mX": 8,
+						"mY": 6
+					},
+					{
+						"mX": 8,
+						"mY": 2
+					},
+					{
+						"mX": 8,
+						"mY": 1
+					},
+					{
+						"mX": 8,
+						"mY": 0
+					}
+				]
+			}
+		},
+		{
+			"objclass": "StageModuleProperties",
+			"aliases": [
+				"UnchartedMausoleumBossStage"
+			],
+			"objdata": {
+				"ResourceGroupNames": [
+					"Game_Tombstones_Dynamic",
+					"AudioModern",
+					"MausoleumAudio",
+					"Uncharted_Music",
+					"DelayLoad_Background_Uncharted_Mausoleum",
+					"Game_Tombstones_Dynamic"
+				],
+				"StagePrefix": "uncharted_mausoleum",
+				"BackgroundImagePrefix": "IMAGE_BACKGROUNDS_UNCHARTED_MAUSOLEUM",
+				"BackgroundImageLeft": "TEXTURE_LEFT",
+				"BackgroundImageMiddle": "TEXTURE",
+				"BackgroundImageRight": "TEXTURE_RIGHT",
+				"BasicZombieTypeName": "mausoleum_basic",
+				"FlagZombieTypeName": "mausoleum_flag",
+				"Armor1ZombieTypeName": "mausoleum_armor1",
+				"Armor2ZombieTypeName": "mausoleum_armor2",
+				"MusicSuffix": "Mausoleum",
+				"RailcartDefaultTypeName": "railcart_egypt",
+				"DirtSpawnEffectName": "POPANIM_EFFECTS_TOMB_DIRT",
+				"ZombieEventType": "sandstorm",
+				"DisabledStreetCells": [
+					{
+						"mX": 0,
+						"mY": 0
+					},
+					{
+						"mX": 0,
+						"mY": 1
+					},
+					{
+						"mX": 0,
+						"mY": 2
+					},
+					{
+						"mX": 0,
+						"mY": 3
+					},
+					{
+						"mX": 0,
+						"mY": 4
+					},
+					{
+						"mX": 0,
+						"mY": 5
+					},
+					{
+						"mX": 0,
+						"mY": 6
+					},
+					{
+						"mX": 0,
+						"mY": 7
+					},
+					{
+						"mX": 0,
+						"mY": 8
+					},
+					{
+						"mX": 0,
+						"mY": 9
+					},
+					{
+						"mX": 1,
+						"mY": 0
+					},
+					{
+						"mX": 1,
+						"mY": 1
+					},
+					{
+						"mX": 1,
+						"mY": 2
+					},
+					{
+						"mX": 1,
+						"mY": 3
+					},
+					{
+						"mX": 1,
+						"mY": 4
+					},
+					{
+						"mX": 1,
+						"mY": 5
+					},
+					{
+						"mX": 1,
+						"mY": 6
+					},
+					{
+						"mX": 1,
+						"mY": 7
+					},
+					{
+						"mX": 1,
+						"mY": 8
+					},
+					{
+						"mX": 1,
+						"mY": 9
+					},
+					{
+						"mX": 2,
+						"mY": 0
+					},
+					{
+						"mX": 2,
+						"mY": 1
+					},
+					{
+						"mX": 2,
+						"mY": 2
+					},
+					{
+						"mX": 2,
+						"mY": 3
+					},
+					{
+						"mX": 2,
+						"mY": 4
+					},
+					{
+						"mX": 2,
+						"mY": 5
+					},
+					{
+						"mX": 2,
+						"mY": 6
+					},
+					{
+						"mX": 2,
+						"mY": 7
+					},
+					{
+						"mX": 2,
+						"mY": 8
+					},
+					{
+						"mX": 2,
+						"mY": 9
+					},
+					{
+						"mX": 3,
+						"mY": 9
+					},
+					{
+						"mX": 3,
+						"mY": 8
+					},
+					{
+						"mX": 3,
+						"mY": 7
+					},
+					{
+						"mX": 4,
+						"mY": 9
+					},
+					{
+						"mX": 4,
+						"mY": 8
+					},
+					{
+						"mX": 5,
+						"mY": 9
+					},
+					{
+						"mX": 5,
+						"mY": 8
+					},
+					{
+						"mX": 5,
+						"mY": 7
+					},
+					{
+						"mX": 6,
+						"mY": 9
+					},
+					{
+						"mX": 6,
+						"mY": 8
+					},
+					{
+						"mX": 7,
+						"mY": 9
+					},
+					{
+						"mX": 7,
+						"mY": 8
+					},
+					{
+						"mX": 7,
+						"mY": 7
+					},
+					{
+						"mX": 7,
+						"mY": 6
+					},
+					{
+						"mX": 7,
+						"mY": 0
+					},
+					{
+						"mX": 7,
+						"mY": 1
+					},
+					{
+						"mX": 7,
+						"mY": 2
+					},
+					{
+						"mX": 8,
+						"mY": 9
+					},
+					{
+						"mX": 8,
+						"mY": 8
+					},
+					{
+						"mX": 8,
+						"mY": 7
+					},
+					{
+						"mX": 8,
+						"mY": 6
+					},
+					{
+						"mX": 8,
+						"mY": 2
+					},
+					{
+						"mX": 8,
+						"mY": 1
+					},
+					{
+						"mX": 8,
+						"mY": 0
+					}
+				]
+			}
+		},
+		{
+			"objclass": "StageModuleProperties",
+			"aliases": [
 				"WhackAMoleStage"
 			],
 			"objdata": {
@@ -9215,6 +9708,30 @@
 							"OutputType": "MegaGatlingPrimalDefault",
 							"AdvOutputType": "MegaGatlingPrimalDefault",
 							"AudioEventName": ""
+						},
+						{
+							"InputType": "RepeaterFirePeaDefault",
+							"OutputType": "RepeaterDefault",
+							"AdvOutputType": "RepeaterDefault",
+							"AudioEventName": ""
+						},
+						{
+							"InputType": "UltraRepeaterFirePeaDefault",
+							"OutputType": "RepeaterDefault",
+							"AdvOutputType": "RepeaterDefault",
+							"AudioEventName": ""
+						},
+						{
+							"InputType": "RepeaterGiantFirePeaDefault",
+							"OutputType": "RepeaterGiantPeaDefault",
+							"AdvOutputType": "RepeaterGiantPeaDefault",
+							"AudioEventName": ""
+						},
+						{
+							"InputType": "RepeaterGiantUltraFirePeaDefault",
+							"OutputType": "RepeaterGiantPeaDefault",
+							"AdvOutputType": "RepeaterGiantPeaDefault",
+							"AudioEventName": ""
 						}
 					]
 				},
@@ -9617,6 +10134,30 @@
 							"InputType": "UltraMegaGatlingFirePrimalDefault",
 							"OutputType": "MegaGatlingPrimalDefault",
 							"AdvOutputType": "MegaGatlingPrimalDefault",
+							"AudioEventName": ""
+						},
+						{
+							"InputType": "RepeaterFirePeaDefault",
+							"OutputType": "RepeaterDefault",
+							"AdvOutputType": "RepeaterDefault",
+							"AudioEventName": ""
+						},
+						{
+							"InputType": "UltraRepeaterFirePeaDefault",
+							"OutputType": "RepeaterDefault",
+							"AdvOutputType": "RepeaterDefault",
+							"AudioEventName": ""
+						},
+						{
+							"InputType": "RepeaterGiantFirePeaDefault",
+							"OutputType": "RepeaterGiantPeaDefault",
+							"AdvOutputType": "RepeaterGiantPeaDefault",
+							"AudioEventName": ""
+						},
+						{
+							"InputType": "RepeaterGiantUltraFirePeaDefault",
+							"OutputType": "RepeaterGiantPeaDefault",
+							"AdvOutputType": "RepeaterGiantPeaDefault",
 							"AudioEventName": ""
 						}
 					]
@@ -12279,6 +12820,20 @@
 						"mY": 7
 					}
 				]
+			}
+		},
+		{
+			"objclass": "TeamBossIntroProperties",
+			"aliases": [
+				"TeamBossIntro"
+			],
+			"objdata": {
+				"PanStartOffset": 78,
+				"PanEndOffset": 468,
+				"PanRightDuration": 1.5,
+				"PanLeftDuration": 1.5,
+				"ZombossPhaseCount": 1,
+				"SkipShowingStreetBossBattle": true
 			}
 		},
 		{
@@ -15049,6 +15604,190 @@
 			}
 		},
 		{
+			"objclass": "PowerTileTeamBossProperties",
+			"aliases": [
+				"PowerTileTeamBoss"
+			],
+			"objdata": {
+				"InitialGridItemPlacementsCollection": [
+					[
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 0,
+								"mY": 1
+							},
+							"PropagationDelay": 1.5
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 0,
+								"mY": 3
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 3,
+								"mY": 1
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 3,
+								"mY": 3
+							},
+							"PropagationDelay": 1.5
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 1,
+								"mY": 2
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 2,
+								"mY": 0
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 2,
+								"mY": 4
+							},
+							"PropagationDelay": 1.5
+						}
+					],
+					[
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 0,
+								"mY": 0
+							},
+							"PropagationDelay": 1.5
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 0,
+								"mY": 2
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 0,
+								"mY": 4
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 2,
+								"mY": 2
+							},
+							"PropagationDelay": 1.5
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 1,
+								"mY": 1
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 1,
+								"mY": 3
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 3,
+								"mY": 2
+							},
+							"PropagationDelay": 1.5
+						}
+					],
+					[
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 0,
+								"mY": 0
+							},
+							"PropagationDelay": 1.5
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 0,
+								"mY": 4
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 2,
+								"mY": 0
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "beta",
+							"Location": {
+								"mX": 2,
+								"mY": 4
+							},
+							"PropagationDelay": 1.5
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 0,
+								"mY": 2
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 2,
+								"mY": 2
+							},
+							"PropagationDelay": 0.25
+						},
+						{
+							"Group": "gamma",
+							"Location": {
+								"mX": 3,
+								"mY": 2
+							},
+							"PropagationDelay": 1.5
+						}
+					]
+				]
+			}
+		},
+		{
 			"objclass": "PVZ1ModeOutroProperties",
 			"aliases": [
 				"PVZ1ModeOutro"
@@ -15073,6 +15812,24 @@
 			"objclass": "TrainingOutroProperties",
 			"aliases": [
 				"TrainingOutro"
+			],
+			"objdata": {}
+		},
+		{
+			"objclass": "MausoleumOutroProperties",
+			"aliases": [
+				"MausoleumOutro"
+			],
+			"objdata": {
+				"Modes": [
+					"TUNNEL"
+				]
+			}
+		},
+		{
+			"objclass": "SpaceTimeTearOutroProperties",
+			"aliases": [
+				"SpaceTimeTearOutro"
 			],
 			"objdata": {}
 		},
@@ -15305,6 +16062,28 @@
 			"objdata": {
 				"Modes": [
 					"ICEAGE10"
+				]
+			}
+		},
+		{
+			"objclass": "PVZ2UnchartedModeOutroProperties",
+			"aliases": [
+				"PVZ2UnchartedModeOutroCHRISTMAS5"
+			],
+			"objdata": {
+				"Modes": [
+					"CHRISTMAS5"
+				]
+			}
+		},
+		{
+			"objclass": "PVZ2UnchartedModeOutroProperties",
+			"aliases": [
+				"PVZ2UnchartedModeOutroCHRISTMAS10"
+			],
+			"objdata": {
+				"Modes": [
+					"CHRISTMAS10"
 				]
 			}
 		},
@@ -16941,6 +17720,15 @@
 			],
 			"objdata": {
 				"ZombieWinPositionX": -80.0
+			}
+		},
+		{
+			"objclass": "ZombossFinalStageTimeLimitedChallengeProperties",
+			"aliases": [
+				"FinalStageTimeLimitedChallenge"
+			],
+			"objdata": {
+				"ZombossTimeLimit": 20.0
 			}
 		},
 		{
@@ -19615,6 +20403,190 @@
 		{
 			"objclass": "StageModuleProperties",
 			"aliases": [
+				"TeamBossStage"
+			],
+			"objdata": {
+				"ResourceGroupNames": [
+					"Egypt_Gravestone",
+					"Game_Tombstones_Dynamic",
+					"Tombstone_Dark_Effects",
+					"DelayLoad_Background_Team_Boss",
+					"AudioTutorial"
+				],
+				"GroupsToUnloadForAds": [
+					"DelayLoad_Background_Team_Boss"
+				],
+				"StagePrefix": "team_boss",
+				"BackgroundResourceGroup": "DelayLoad_Background_Team_Boss",
+				"BackgroundImagePrefix": "IMAGE_BACKGROUNDS_TEAM_BOSS",
+				"LevelPowerupSet": "LevelPowerupsDefault",
+				"BasicZombieTypeName": "tutorial",
+				"FlagZombieTypeName": "tutorial_flag",
+				"Armor1ZombieTypeName": "tutorial_armor1",
+				"Armor2ZombieTypeName": "tutorial_armor2",
+				"MusicSuffix": "TeamBoss",
+				"AmbientAudioSuffix": "Amb_Tutorial_Garden_BG_LP",
+				"RailcartDefaultTypeName": "railcart_tutotial",
+				"GravestoneDefaultTypeName": "gravestone_tutorial",
+				"DisabledStreetCells": [
+					{
+						"mX": 0,
+						"mY": 0
+					},
+					{
+						"mX": 0,
+						"mY": 1
+					},
+					{
+						"mX": 0,
+						"mY": 2
+					},
+					{
+						"mX": 0,
+						"mY": 3
+					},
+					{
+						"mX": 0,
+						"mY": 4
+					},
+					{
+						"mX": 0,
+						"mY": 5
+					},
+					{
+						"mX": 0,
+						"mY": 6
+					},
+					{
+						"mX": 0,
+						"mY": 7
+					},
+					{
+						"mX": 0,
+						"mY": 8
+					},
+					{
+						"mX": 0,
+						"mY": 9
+					},
+					{
+						"mX": 1,
+						"mY": 0
+					},
+					{
+						"mX": 1,
+						"mY": 1
+					},
+					{
+						"mX": 1,
+						"mY": 2
+					},
+					{
+						"mX": 1,
+						"mY": 3
+					},
+					{
+						"mX": 1,
+						"mY": 4
+					},
+					{
+						"mX": 1,
+						"mY": 5
+					},
+					{
+						"mX": 1,
+						"mY": 6
+					},
+					{
+						"mX": 1,
+						"mY": 7
+					},
+					{
+						"mX": 1,
+						"mY": 8
+					},
+					{
+						"mX": 1,
+						"mY": 9
+					},
+					{
+						"mX": 2,
+						"mY": 0
+					},
+					{
+						"mX": 2,
+						"mY": 1
+					},
+					{
+						"mX": 2,
+						"mY": 2
+					},
+					{
+						"mX": 2,
+						"mY": 3
+					},
+					{
+						"mX": 2,
+						"mY": 4
+					},
+					{
+						"mX": 2,
+						"mY": 5
+					},
+					{
+						"mX": 2,
+						"mY": 6
+					},
+					{
+						"mX": 2,
+						"mY": 7
+					},
+					{
+						"mX": 2,
+						"mY": 8
+					},
+					{
+						"mX": 2,
+						"mY": 9
+					},
+					{
+						"mX": 3,
+						"mY": 9
+					},
+					{
+						"mX": 5,
+						"mY": 9
+					},
+					{
+						"mX": 7,
+						"mY": 9
+					},
+					{
+						"mX": 7,
+						"mY": 8
+					},
+					{
+						"mX": 7,
+						"mY": 7
+					},
+					{
+						"mX": 8,
+						"mY": 9
+					},
+					{
+						"mX": 8,
+						"mY": 8
+					},
+					{
+						"mX": 8,
+						"mY": 7
+					}
+				]
+			}
+		},
+		{
+			"objclass": "StageModuleProperties",
+			"aliases": [
 				"Birthday9DaylightStage"
 			],
 			"objdata": {
@@ -20632,6 +21604,2306 @@
 						"LaneToSpawnMax": 3
 					}
 				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault0"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [],
+				"TunnelSequenceInterval": 0.4
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefaultX"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 0,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault1"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 7,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault2"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault3"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_DOWN_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_6"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault4"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 2,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault5"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_6"
+					},
+					{
+						"GridX": 2,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault6"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 6,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_5"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault7"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 0,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDefault8"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 8,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_DOWN"
+					},
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 0,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 0,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 0,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_6"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendDangerRoom"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 0,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_DOWN_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_6"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 7,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_DOWN_2"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 8,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard0"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 6,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_5"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard1"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard2"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 1,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 0,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 0,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard3"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 2,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_LEFT_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard4"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 5,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard5"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_3"
+					},
+					{
+						"GridX": 5,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_7"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_3"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard6"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN_2"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_3"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_2"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_2"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard7"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 8,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 8,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 7,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 6,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendHard8"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [
+					{
+						"GridX": 5,
+						"GridY": 0,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_DOWN"
+					},
+					{
+						"GridX": 5,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_6"
+					},
+					{
+						"GridX": 5,
+						"GridY": 2,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP_DOWN"
+					},
+					{
+						"GridX": 5,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT_6"
+					},
+					{
+						"GridX": 5,
+						"GridY": 4,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_UP"
+					},
+					{
+						"GridX": 4,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 1,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 4,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 3,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 2,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 1,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					},
+					{
+						"GridX": 0,
+						"GridY": 3,
+						"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+					}
+				]
+			}
+		},
+		{
+			"aliases": [
+				"TunnelDefendTestDefault"
+			],
+			"objclass": "TunnelDefendModuleProperties",
+			"objdata": {
+				"Roads": [],
+				"RandomRoads": [
+					[
+						{
+							"GridX": 7,
+							"GridY": 0,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						},
+						{
+							"GridX": 6,
+							"GridY": 0,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						},
+						{
+							"GridX": 5,
+							"GridY": 0,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						}
+					],
+					[
+						{
+							"GridX": 7,
+							"GridY": 2,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						},
+						{
+							"GridX": 6,
+							"GridY": 2,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						},
+						{
+							"GridX": 5,
+							"GridY": 2,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						}
+					],
+					[
+						{
+							"GridX": 7,
+							"GridY": 4,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						},
+						{
+							"GridX": 6,
+							"GridY": 4,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						},
+						{
+							"GridX": 5,
+							"GridY": 4,
+							"Img": "IMAGE_UI_MAUSOLEUM_TUNNEL_LEFT"
+						}
+					]
+				]
+			}
+		},
+		{
+			"objclass": "LawnMowerProperties",
+			"aliases": [
+				"MausoleumMowers"
+			],
+			"objdata": {
+				"ResourceGroupNames": [
+					"MausoleumMowerGroup"
+				],
+				"MowerEntryAnimDuration": 2.5,
+				"MowerActivatedAudioEvent": "Play_Egypt_Lawnmower",
+				"MowerPopAnim": "POPANIM_MOWERS_MOWER_MAUSOLEUM"
+			}
+		},
+		{
+			"objclass": "PVZ2MausoleumModuleUnchartedModeProperties",
+			"aliases": [
+				"PVZ2MausoleumModuleUnchartedMode"
+			],
+			"objdata": {
+				"PlantBanLists": [
+					"wintermelon",
+					"twinsunflower",
+					"spikerock",
+					"gatlingpea",
+					"cobcannon"
+				]
+			}
+		},
+		{
+			"aliases": [
+				"ZombieRushFever"
+			],
+			"objclass": "ZombieFeverModuleProperties",
+			"objdata": {
+				"MaxFever": 1500
 			}
 		}
 	]

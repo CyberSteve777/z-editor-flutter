@@ -185,6 +185,70 @@
 			}
 		},
 		{
+			"objclass": "PlantType",
+			"aliases": [
+				"moton"
+			],
+			"objdata": {
+				"TypeName": "moton",
+				"PlantFramework": "PlantMoton",
+				"Profession": "shooter",
+				"Rare": 2,
+				"PlantResourceGroups": [
+					"PlantMotonAudio"
+				],
+				"Properties": "RTID(MotonDefault@PropertySheets)",
+				"AnimRigClass": "PlantAnimRig",
+				"PopAnim": "POPANIM_PLANT_MOTON",
+				"HomeWorld": "gacha",
+				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_MOTON",
+				"AvatarPieceImageName": "IMAGE_UI_FRAGMENT_AVATAR_AVATAR_MOTON",
+				"AdventureFlags": [
+					"green"
+				],
+				"Avatars": [
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_01a",
+							"custom_01b"
+						]
+					}
+				],
+				"Attribute": {
+					"Attributes": [
+						{
+							"Type": "hp",
+							"Rank": "C"
+						},
+						{
+							"Type": "plant",
+							"Rank": "B"
+						},
+						{
+							"Type": "attack",
+							"Rank": "A"
+						},
+						{
+							"Type": "range",
+							"Rank": "C"
+						},
+						{
+							"Type": "support",
+							"Rank": "none"
+						},
+						{
+							"Type": "control",
+							"Rank": "none"
+						}
+					],
+					"Tags": [
+						"lightning"
+					]
+				}
+			}
+		},
+		{
 			"uid": "1.3.2",
 			"objclass": "PlantType",
 			"aliases": [
@@ -1577,7 +1641,8 @@
 				"PlantFramework": "PlantRepeater",
 				"Rare": 2,
 				"PlantResourceGroups": [
-					"PlantRepeaterAudio"
+					"PlantRepeaterAudio",
+					"FreezonEffectGroup"
 				],
 				"Properties": "RTID(RepeaterDefault@PropertySheets)",
 				"AnimRigClass": "PlantAnimRig",
@@ -1593,7 +1658,7 @@
 					{
 						"AvatarType": "normal",
 						"AvatarLayers": [
-							"custom_03"
+							"custom_04"
 						]
 					},
 					{
@@ -1606,6 +1671,12 @@
 						"AvatarType": "normal",
 						"AvatarLayers": [
 							"custom_01"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_06"
 						]
 					}
 				]
@@ -3976,7 +4047,7 @@
 		},
 		{
 			"uid": "1.34.2",
-			"objclass": "PlantType",
+			"objclass": "PlantTypeWinterMelon",
 			"aliases": [
 				"wintermelon"
 			],
@@ -4146,7 +4217,7 @@
 		},
 		{
 			"uid": "1.35.2",
-			"objclass": "PlantType",
+			"objclass": "PlantTypeTwinSunflower",
 			"aliases": [
 				"twinsunflower"
 			],
@@ -4192,7 +4263,8 @@
 				"AnimRigClass": "PlantAnimRig_TwinSunflower",
 				"PopAnim": "POPANIM_PLANT_SUNFLOWER_TWIN",
 				"SecondPopAnimRare": [
-					"rare1"
+					"rare1",
+					"rare2"
 				],
 				"HomeWorld": "egypt",
 				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_TWINSUNFLOWER",
@@ -4214,6 +4286,10 @@
 						"AvatarLayers": [
 							"custom_04"
 						]
+					},
+					{
+						"AvatarType": "none",
+						"AvatarLayers": []
 					},
 					{
 						"AvatarType": "none",
@@ -4287,7 +4363,7 @@
 		},
 		{
 			"uid": "1.37.2",
-			"objclass": "PlantType",
+			"objclass": "PlantTypeSpikerock",
 			"aliases": [
 				"spikerock"
 			],
@@ -5061,6 +5137,73 @@
 			}
 		},
 		{
+			"objclass": "PlantType",
+			"aliases": [
+				"uncharted_carrotlauncher"
+			],
+			"objdata": {
+				"Profession": "shooter",
+				"Attribute": {
+					"Attributes": [
+						{
+							"Type": "hp",
+							"Rank": "C"
+						},
+						{
+							"Type": "plant",
+							"Rank": "C"
+						},
+						{
+							"Type": "attack",
+							"Rank": "C"
+						},
+						{
+							"Type": "range",
+							"Rank": "C"
+						},
+						{
+							"Type": "support",
+							"Rank": "none"
+						},
+						{
+							"Type": "control",
+							"Rank": "none"
+						}
+					],
+					"Tags": [
+						"physical"
+					]
+				},
+				"TypeName": "uncharted_carrotlauncher",
+				"PlantFramework": "PlantUnchartedCarrotLauncher",
+				"Rare": 2,
+				"PlantResourceGroups": [
+					"PlantCabbagepultAudio",
+					"PlantSquashAudio",
+					"PlantCarrotLauncher"
+				],
+				"Properties": "RTID(UnchartedCarrotLauncherDefault@PropertySheets)",
+				"AnimRigClass": "PlantAnimRig_UnchartedCarrotLauncher",
+				"PopAnim": "POPANIM_PLANT_CARROTLAUNCHER",
+				"HomeWorld": "gacha",
+				"Enabled": false,
+				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_CARROTLAUNCHER",
+				"AvatarPieceImageName": "IMAGE_UI_FRAGMENT_AVATAR_AVATAR_CARROTLAUNCHER",
+				"AdventureFlags": [
+					"weapon",
+					"orange"
+				],
+				"Avatars": [
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_01"
+						]
+					}
+				]
+			}
+		},
+		{
 			"uid": "1.50.2",
 			"objclass": "PlantType",
 			"aliases": [
@@ -5184,6 +5327,13 @@
 						"AvatarType": "normal",
 						"AvatarLayers": [
 							"custom_02"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_03a",
+							"custom_03b"
 						]
 					}
 				]
@@ -6106,6 +6256,12 @@
 						"AvatarLayers": [
 							"custom_02"
 						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_03"
+						]
 					}
 				]
 			}
@@ -6363,6 +6519,7 @@
 				"TypeName": "flowerpot",
 				"PlantFramework": "PlantFlowerPot",
 				"Rare": 0,
+				"ExchangeAvatarCost": 600,
 				"PlantResourceGroups": [],
 				"Properties": "RTID(FlowerPotDefault@PropertySheets)",
 				"AnimRigClass": "PlantAnimRig",
@@ -8198,7 +8355,7 @@
 				"Properties": "RTID(BashoPultDefault@PropertySheets)",
 				"AnimRigClass": "PlantAnimRig_BashoPult",
 				"PopAnim": "POPANIM_PLANT_BASHOPULT",
-				"HomeWorld": "egypt",
+				"HomeWorld": "gacha",
 				"Enabled": false,
 				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_BASHOPULT",
 				"AvatarPieceImageName": "IMAGE_UI_FRAGMENT_AVATAR_AVATAR_BASHOPULT",
@@ -8987,6 +9144,9 @@
 					"yellow",
 					"sun"
 				],
+				"SecondPopAnimRare": [
+					"rare1"
+				],
 				"Avatars": [
 					{
 						"AvatarType": "normal",
@@ -9013,6 +9173,10 @@
 						"AvatarLayers": [
 							"custom_04"
 						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": []
 					}
 				]
 			}
@@ -10188,7 +10352,7 @@
 		},
 		{
 			"uid": "1.117.2",
-			"objclass": "PlantType",
+			"objclass": "KiwiFruitPlantType",
 			"aliases": [
 				"kiwifruit"
 			],
@@ -10350,6 +10514,12 @@
 						"AvatarType": "normal",
 						"AvatarLayers": [
 							"custom_02"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_03"
 						]
 					}
 				]
@@ -10663,7 +10833,7 @@
 		},
 		{
 			"uid": "1.123.2",
-			"objclass": "PlantType",
+			"objclass": "PlantTypeGatlingPea",
 			"aliases": [
 				"gatlingpea"
 			],
@@ -10972,6 +11142,80 @@
 				],
 				"Properties": "RTID(PhatBeetDefault@PropertySheets)",
 				"AnimRigClass": "PlantAnimRig_PhatBeet",
+				"PopAnim": "POPANIM_PLANT_PHATBEET",
+				"SeedChooserBigVerticalOffset": 0.35,
+				"HomeWorld": "eighties",
+				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_PHATBEET",
+				"AvatarPieceImageName": "IMAGE_UI_FRAGMENT_AVATAR_AVATAR_PHATBEET",
+				"AdventureFlags": [
+					"red"
+				],
+				"Avatars": [
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_01"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_03"
+						]
+					}
+				]
+			}
+		},
+		{
+			"objclass": "PlantType",
+			"aliases": [
+				"uncharted_phatbeet"
+			],
+			"objdata": {
+				"DisplayFamilyId": 50029,
+				"Profession": "warrior",
+				"Attribute": {
+					"Attributes": [
+						{
+							"Type": "hp",
+							"Rank": "C"
+						},
+						{
+							"Type": "plant",
+							"Rank": "A"
+						},
+						{
+							"Type": "attack",
+							"Rank": "A"
+						},
+						{
+							"Type": "range",
+							"Rank": "B"
+						},
+						{
+							"Type": "support",
+							"Rank": "none"
+						},
+						{
+							"Type": "control",
+							"Rank": "none"
+						}
+					],
+					"Tags": [
+						"physical",
+						"aoe"
+					]
+				},
+				"TypeName": "uncharted_phatbeet",
+				"PlantFramework": "PlantUnchartedPhatBeet",
+				"Rare": 2,
+				"PlantResourceGroups": [
+					"PlantPhatBeet",
+					"PlantPhatBeetAudio"
+				],
+				"Enabled": false,
+				"Properties": "RTID(UnchartedPhatBeetDefault@PropertySheets)",
+				"AnimRigClass": "PlantAnimRig_UnchartedPhatBeet",
 				"PopAnim": "POPANIM_PLANT_PHATBEET",
 				"SeedChooserBigVerticalOffset": 0.35,
 				"HomeWorld": "eighties",
@@ -12662,7 +12906,8 @@
 					"rare1"
 				],
 				"PlantResourceGroups": [
-					"PlantAppleMortarAudio"
+					"PlantAppleMortarAudio",
+					"PlantAppleMortarIceAudio"
 				],
 				"Properties": "RTID(AppleMortarDefault@PropertySheets)",
 				"AnimRigClass": "PlantAnimRig_AppleMortar",
@@ -15136,6 +15381,77 @@
 			}
 		},
 		{
+			"objclass": "LongmaLilyPlantType",
+			"aliases": [
+				"longmalily"
+			],
+			"objdata": {
+				"Profession": "shooter",
+				"DisplayFamilyId": 50027,
+				"Attribute": {
+					"Attributes": [
+						{
+							"Type": "hp",
+							"Rank": "C"
+						},
+						{
+							"Type": "plant",
+							"Rank": "C"
+						},
+						{
+							"Type": "attack",
+							"Rank": "B"
+						},
+						{
+							"Type": "range",
+							"Rank": "C"
+						},
+						{
+							"Type": "support",
+							"Rank": "none"
+						},
+						{
+							"Type": "control",
+							"Rank": "A"
+						}
+					],
+					"Tags": [
+						"control",
+						"aoe"
+					]
+				},
+				"TypeName": "longmalily",
+				"PlantFramework": "PlantLongmaLily",
+				"PlantResourceGroups": [
+					"PlantLongmaLily",
+					"PlantLongmaLilyAudio",
+					"FreezonEffectGroup"
+				],
+				"Properties": "RTID(LongmaLilyDefault@PropertySheets)",
+				"AnimRigClass": "PlantAnimRig_LongmaLily",
+				"PopAnim": "POPANIM_PLANT_LONGMALILY",
+				"SeedChooserBigScale": 1.2,
+				"SeedChooserBigVerticalOffset": 0.5,
+				"AlmanacBackdropName": "homeless",
+				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_LONGMALILY",
+				"AvatarPieceImageName": "IMAGE_UI_FRAGMENT_AVATAR_AVATAR_LONGMALILY",
+				"Rare": 4,
+				"AdventureFlags": [
+					"yellow"
+				],
+				"Avatars": [
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_01"
+						]
+					}
+				],
+				"HomeWorld": "gacha",
+				"Enabled": true
+			}
+		},
+		{
 			"objclass": "PlantType",
 			"aliases": [
 				"beercoconut"
@@ -16248,6 +16564,7 @@
 				"AvatarEnabled": true,
 				"HomeWorld": "gacha",
 				"Rare": 4,
+				"ExchangeAvatarCost": 400,
 				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_DEODARCEDAR",
 				"AvatarPieceImageName": "IMAGE_UI_FRAGMENT_AVATAR_AVATAR_DEODARCEDAR",
 				"AdventureFlags": [
@@ -17102,7 +17419,14 @@
 					{
 						"AvatarType": "normal",
 						"AvatarLayers": [
-							"custom_01"
+							"custom_01",
+							"custom_02"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_03"
 						]
 					}
 				],
@@ -18526,6 +18850,28 @@
 							"custom_04d",
 							"custom_04e"
 						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_05acolor1",
+							"custom_05bcolor1",
+							"custom_05ccolor1",
+							"custom_05dcolor1",
+							"custom_05ecolor1",
+							"custom_05fcolor1"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_05acolor2",
+							"custom_05bcolor2",
+							"custom_05ccolor2",
+							"custom_05dcolor2",
+							"custom_05ecolor2",
+							"custom_05fcolor2"
+						]
 					}
 				]
 			}
@@ -18819,6 +19165,13 @@
 						"AvatarType": "normal",
 						"AvatarLayers": [
 							"custom_02"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_03a",
+							"custom_03b"
 						]
 					}
 				]
@@ -19337,6 +19690,7 @@
 					"PlantOlivePitAudio"
 				],
 				"Rare": 4,
+				"ExchangeAvatarCost": 400,
 				"Properties": "RTID(OlivePitDefault@PropertySheets)",
 				"AnimRigClass": "PlantAnimRig_OlivePit",
 				"PopAnim": "POPANIM_PLANT_OLIVEPIT",
@@ -20272,7 +20626,8 @@
 						"AvatarType": "normal",
 						"AvatarLayers": [
 							"custom_01front",
-							"custom_01back"
+							"custom_01back",
+							"custom_lower"
 						]
 					},
 					{
@@ -20327,6 +20682,7 @@
 				"TypeName": "devilsflower",
 				"PlantFramework": "PlantDevilsFlower",
 				"Rare": 4,
+				"ExchangeAvatarCost": 400,
 				"PlantResourceGroups": [
 					"PlantDevilsFlower",
 					"PlantCthulhuActinia",
@@ -21720,6 +22076,70 @@
 				"HomeWorld": "gacha",
 				"AdventureFlags": [
 					"green"
+				],
+				"Avatars": [
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_01"
+						]
+					}
+				]
+			}
+		},
+		{
+			"objclass": "PlantType",
+			"aliases": [
+				"goldencassia"
+			],
+			"objdata": {
+				"Profession": "protector",
+				"Attribute": {
+					"Attributes": [
+						{
+							"Type": "hp",
+							"Rank": "A"
+						},
+						{
+							"Type": "plant",
+							"Rank": "A"
+						},
+						{
+							"Type": "attack",
+							"Rank": "none"
+						},
+						{
+							"Type": "range",
+							"Rank": "none"
+						},
+						{
+							"Type": "support",
+							"Rank": "A"
+						},
+						{
+							"Type": "control",
+							"Rank": "B"
+						}
+					],
+					"Tags": [
+						"defence",
+						"teleport"
+					]
+				},
+				"TypeName": "goldencassia",
+				"PlantFramework": "PlantGoldenCassia",
+				"Rare": 4,
+				"PlantResourceGroups": [
+					"PlantGoldenCassiaAudio"
+				],
+				"Properties": "RTID(GoldenCassiaDefault@PropertySheets)",
+				"AnimRigClass": "PlantAnimRig_GoldenCassia",
+				"PopAnim": "POPANIM_PLANT_GOLDENCASSIA",
+				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_GOLDENCASSIA",
+				"AvatarPieceImageName": "IMAGE_UI_FRAGMENT_AVATAR_AVATAR_GOLDENCASSIA",
+				"HomeWorld": "gacha",
+				"AdventureFlags": [
+					"yellow"
 				],
 				"Avatars": [
 					{
@@ -23273,11 +23693,7 @@
 					],
 					"Tags": [
 						"dps",
-						"pea",
-						"burn",
-						"lightning",
-						"poison",
-						"cold"
+						"pea"
 					]
 				},
 				"TypeName": "megagatling",
@@ -23294,7 +23710,7 @@
 					"PlantLightningReed",
 					"PlantGatlingPea",
 					"PlantIcyCurrant",
-					"PlantPeapodAudio",
+					"PlantMegagatlingAudio",
 					"FreezonEffectGroup"
 				],
 				"Rare": 4,
@@ -23312,7 +23728,8 @@
 					"weapon"
 				],
 				"SecondPopAnimRare": [
-					"rare0"
+					"rare0",
+					"rare2"
 				],
 				"Avatars": [
 					{
@@ -23326,6 +23743,10 @@
 							"custom_01super",
 							"custom_01thr"
 						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": []
 					},
 					{
 						"AvatarType": "normal",
@@ -23588,6 +24009,12 @@
 							"custom_02q",
 							"custom_02r"
 						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_03"
+						]
 					}
 				]
 			}
@@ -23732,6 +24159,12 @@
 						"AvatarLayers": [
 							"custom_01"
 						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_02"
+						]
 					}
 				]
 			}
@@ -23809,6 +24242,13 @@
 							"custom_01b",
 							"custom_01c",
 							"custom_01d"
+						]
+					},
+					{
+						"AvatarType": "normal",
+						"AvatarLayers": [
+							"custom_02a",
+							"custom_02b"
 						]
 					}
 				]
@@ -24671,6 +25111,7 @@
 				"TypeName": "paphiopedilum",
 				"PlantFramework": "PlantPaphiopedilum",
 				"Rare": 4,
+				"ExchangeAvatarCost": 400,
 				"PlantResourceGroups": [
 					"PlantPaphiopedilum",
 					"PlantPaphiopedilumAudio",
@@ -24822,6 +25263,7 @@
 					"PlantMaplebladeAudio"
 				],
 				"Rare": 4,
+				"ExchangeAvatarCost": 400,
 				"Properties": "RTID(MaplebladeDefault@PropertySheets)",
 				"AnimRigClass": "PlantAnimRig_Mapleblade",
 				"PopAnim": "POPANIM_PLANT_MAPLEBLADE",
@@ -26328,6 +26770,64 @@
 						]
 					}
 				]
+			}
+		},
+		{
+			"objclass": "PlantTypeUnchartedHaystack",
+			"aliases": [
+				"uncharted_haystack"
+			],
+			"objdata": {
+				"Profession": "supporter",
+				"Attribute": {
+					"Attributes": [
+						{
+							"Type": "hp",
+							"Rank": "D"
+						},
+						{
+							"Type": "plant",
+							"Rank": "S"
+						},
+						{
+							"Type": "attack",
+							"Rank": "none"
+						},
+						{
+							"Type": "range",
+							"Rank": "none"
+						},
+						{
+							"Type": "support",
+							"Rank": "C"
+						},
+						{
+							"Type": "control",
+							"Rank": "none"
+						}
+					],
+					"Tags": [
+						"support"
+					]
+				},
+				"TypeName": "uncharted_haystack",
+				"PlantFramework": "PlantUnchartedHaystack",
+				"Rare": 0,
+				"ExchangeAvatarCost": 600,
+				"PlantResourceGroups": [
+					"PlantUnchartedHaystack"
+				],
+				"Properties": "RTID(UnchartedHaystackDefault@PropertySheets)",
+				"AnimRigClass": "PlantAnimRig",
+				"PopAnim": "POPANIM_PLANT_UNCHARTED_HAYSTACK",
+				"HomeWorld": "gacha",
+				"AlmanacBackdropName": "beach_water",
+				"PlantPieceImageName": "IMAGE_UI_FRAGMENT_PIECES_PACKETS_UNCHARTED_HAYSTACK",
+				"AdventureFlags": [
+					"short",
+					"brown"
+				],
+				"Avatars": []
 			}
 		}
 	]

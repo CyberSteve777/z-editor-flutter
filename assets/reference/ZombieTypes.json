@@ -5724,7 +5724,8 @@
 				"ZombieClass": "ZombieLionDance",
 				"Properties": "RTID(ZombieLionDance@PropertySheets)",
 				"ResourceGroups": [
-					"ZombieLionDanceGroup"
+					"ZombieLionDanceGroup",
+					"ZombieEgyptExplorerGroup"
 				],
 				"AudioGroups": [
 					"PlantFireGourdAudio"
@@ -5732,7 +5733,6 @@
 				"AnimRigClass": "ZombieAnimRig",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LION_DANCE",
 				"BoardAlmanac": false,
-				"Enabled": false,
 				"RecommendPlants": [
 					"cherry_bomb"
 				],
@@ -9177,6 +9177,29 @@
 			}
 		},
 		{
+			"uid": "1.225.1",
+			"objclass": "ZombieType",
+			"aliases": [
+				"pirate_imp"
+			],
+			"objdata": {
+				"TypeName": "pvp_cannonimp",
+				"ZombieClass": "ZombieImp",
+				"Properties": "RTID(ZombiePVPCannonImpDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombiePirateImpGroup"
+				],
+				"AnimRigClass": "ZombieAnimRig_Imp",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_PIRATE_IMP",
+				"Placeable": false,
+				"BoardAlmanac": false,
+				"RecommendPlants": [
+					"cherry_bomb"
+				],
+				"HomeWorld": "pvp"
+			}
+		},
+		{
 			"uid": "1.226.1",
 			"objclass": "ZombieType",
 			"aliases": [
@@ -10581,6 +10604,34 @@
 		{
 			"objclass": "ZombieType",
 			"aliases": [
+				"zomboss_teamboss"
+			],
+			"objdata": {
+				"TypeName": "zomboss_teamboss",
+				"ZombieClass": "ZombieZombossTeamBoss",
+				"Properties": "RTID(ZombieZombossTeamBoss@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieTeamBossZombossGroup",
+					"ZombossCommonGroup",
+					"ZombieTeamBossAudio"
+				],
+				"AudioGroups": [
+					"ZombossGlobalAudio",
+					"ZombossCowboyAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_ZombossTeamBoss",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_ZOMBOSS_TEAM_BOSS",
+				"BoardAlmanac": false,
+				"RecommendPlants": [
+					"cherry_bomb"
+				],
+				"HomeWorld": "tutorial",
+				"Placeable": false
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
 				"vase_gargantuar"
 			],
 			"objdata": {
@@ -11927,6 +11978,158 @@
 		{
 			"objclass": "ZombieType",
 			"aliases": [
+				"qin_shield_segment"
+			],
+			"objdata": {
+				"TypeName": "qin_shield_segment",
+				"DisplayTypeName": "qin_shield_almanac",
+				"ZombieClass": "ZombieQinShield",
+				"Properties": "RTID(ZombieQinShieldDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinShieldGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "ZombieAnimRig_QinShield",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_QIN_SHIELD",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum",
+				"AlmanacBackdropName": "warp"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"qin_shield_pair"
+			],
+			"objdata": {
+				"TypeName": "qin_shield_pair",
+				"DisplayTypeName": "qin_shield_almanac",
+				"ZombieClass": "ZombieQinShield",
+				"Properties": "RTID(ZombieQinShieldDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinShieldGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "ZombieAnimRig_QinShield",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_QIN_SHIELD",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum",
+				"AlmanacBackdropName": "warp"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"qin_shield_triad"
+			],
+			"objdata": {
+				"TypeName": "qin_shield_triad",
+				"DisplayTypeName": "qin_shield_almanac",
+				"ZombieClass": "ZombieQinShield",
+				"Properties": "RTID(ZombieQinShieldDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinShieldGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "ZombieAnimRig_QinShield",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_QIN_SHIELD",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum",
+				"AlmanacBackdropName": "warp"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"qin_jingke"
+			],
+			"objdata": {
+				"TypeName": "qin_jingke",
+				"ZombieClass": "ZombieQinJingke",
+				"Properties": "RTID(ZombieQinJingkeDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinJingkeGroup"
+				],
+				"AudioGroups": [
+					"ZombieQinJingkeAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_QinJingke",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_QIN_JINGKE",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum",
+				"AlmanacBackdropName": "warp"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"qin_taoist"
+			],
+			"objdata": {
+				"TypeName": "qin_taoist",
+				"ZombieClass": "ZombieQinTaoist",
+				"Properties": "RTID(ZombieQinTaoistDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinTaoistGroup",
+					"ZombieQinTerracottaGroup"
+				],
+				"AudioGroups": [
+					"ZombieQinTaoistAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_QinTaoist",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_QIN_TAOIST",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum",
+				"AlmanacBackdropName": "warp"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"qin_terracotta_small"
+			],
+			"objdata": {
+				"TypeName": "qin_terracotta_small",
+				"ZombieClass": "ZombieQinTerracotta",
+				"Properties": "RTID(ZombieQinTerracottaSmall@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinTerracottaGroup"
+				],
+				"AudioGroups": [
+					"ZombieQinTerracottaAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_Terracotta",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_QIN_TERRACOTTA_SMALL",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum",
+				"AlmanacBackdropName": "warp"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"qin_terracotta_mid"
+			],
+			"objdata": {
+				"TypeName": "qin_terracotta_mid",
+				"ZombieClass": "ZombieQinTerracotta",
+				"Properties": "RTID(ZombieQinTerracottaMid@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinTerracottaGroup"
+				],
+				"AudioGroups": [
+					"ZombieQinTerracottaAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_Terracotta",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_QIN_TERRACOTTA_MID",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum",
+				"AlmanacBackdropName": "warp"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
 				"lny"
 			],
 			"objdata": {
@@ -11940,7 +12143,7 @@
 				"AnimRigClass": "ZombieAnimRig_TutorialSpring",
 				"BoardAlmanac": true,
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_BASIC",
-				"HomeWorld": "tutorial",
+				"HomeWorld": "newyear",
 				"IsBasicZombie": true
 			}
 		},
@@ -11960,7 +12163,7 @@
 				"AudioGroups": [],
 				"AnimRigClass": "ZombieAnimRig_TutorialSpring",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_FLAG",
-				"HomeWorld": "tutorial",
+				"HomeWorld": "newyear",
 				"BoardAlmanac": true,
 				"IsBasicZombie": true,
 				"FlagType": "flag_normal"
@@ -11983,7 +12186,7 @@
 				"AnimRigClass": "ZombieAnimRig_TutorialSpring",
 				"BoardAlmanac": true,
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_BASIC",
-				"HomeWorld": "tutorial",
+				"HomeWorld": "newyear",
 				"IsBasicZombie": true
 			}
 		},
@@ -12004,7 +12207,7 @@
 				"AnimRigClass": "ZombieAnimRig_TutorialSpring",
 				"BoardAlmanac": true,
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_BASIC",
-				"HomeWorld": "tutorial",
+				"HomeWorld": "newyear",
 				"IsBasicZombie": true
 			}
 		},
@@ -12029,7 +12232,7 @@
 				"AnimRigClass": "ZombieAnimRig_Camel",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_WALL",
 				"BoardAlmanac": false,
-				"HomeWorld": "tutorial"
+				"HomeWorld": "newyear"
 			}
 		},
 		{
@@ -12053,7 +12256,7 @@
 				"AnimRigClass": "ZombieAnimRig_Camel",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_WALL",
 				"BoardAlmanac": false,
-				"HomeWorld": "tutorial"
+				"HomeWorld": "newyear"
 			}
 		},
 		{
@@ -12077,7 +12280,7 @@
 				"AnimRigClass": "ZombieAnimRig_Camel",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_WALL",
 				"BoardAlmanac": false,
-				"HomeWorld": "tutorial"
+				"HomeWorld": "newyear"
 			}
 		},
 		{
@@ -12102,7 +12305,7 @@
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_WALL",
 				"BoardAlmanac": false,
 				"Placeable": false,
-				"HomeWorld": "tutorial"
+				"HomeWorld": "newyear"
 			}
 		},
 		{
@@ -12121,7 +12324,7 @@
 				"AnimRigClass": "ZombieAnimRig_FutureImp",
 				"BoardAlmanac": true,
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_LNY_SUPERFAN",
-				"HomeWorld": "tutorial",
+				"HomeWorld": "newyear",
 				"Placeable": true
 			}
 		},
@@ -13710,7 +13913,7 @@
 				"AnimRigClass": "ZombieAnimRig_MoneyTree",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MONEYTREE",
 				"BoardAlmanac": true,
-				"HomeWorld": "tutorial",
+				"HomeWorld": "newyear",
 				"IsBasicZombie": false
 			}
 		},
@@ -13730,7 +13933,7 @@
 				"AnimRigClass": "ZombieAnimRig_YearMonster",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_YEARMONSTER",
 				"BoardAlmanac": true,
-				"HomeWorld": "tutorial",
+				"HomeWorld": "newyear",
 				"IsBasicZombie": false
 			}
 		},
@@ -20761,9 +20964,11 @@
 					"ZombiePoleVaultingAudio"
 				],
 				"AnimRigClass": "ZombieAnimRig_PoleVaulting",
+				"RecommendPlants": [
+					"tallnut"
+				],
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_POLE_VAULTING",
 				"HomeWorld": "modern",
-				"IsBasicZombie": true,
 				"BoardAlmanac": true,
 				"AlmanacBackdropName": "warp"
 			}
@@ -20785,9 +20990,11 @@
 					"ZombiePoleVaultingAudio"
 				],
 				"AnimRigClass": "ZombieAnimRig_PoleVaulting",
+				"RecommendPlants": [
+					"tallnut"
+				],
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_POLE_VAULTING_FEASTIVUS",
 				"HomeWorld": "christmas",
-				"IsBasicZombie": true,
 				"BoardAlmanac": true,
 				"AlmanacBackdropName": "warp"
 			}
@@ -21060,7 +21267,11 @@
 				],
 				"AnimRigClass": "ZombieAnimRig_Bobsled",
 				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_BOBSLED",
-				"RecommendPlants": [],
+				"RecommendPlants": [
+					"iceweed",
+					"spikeweed",
+					"spikerock"
+				],
 				"BoardAlmanac": true,
 				"HomeWorld": "christmas"
 			}
@@ -21110,6 +21321,249 @@
 				],
 				"HomeWorld": "christmas",
 				"IsBasicZombie": true
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_basic"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_basic",
+				"ZombieClass": "ZombieBasic",
+				"Properties": "RTID(ZombieMausoleumDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumGroup"
+				],
+				"AnimRigClass": "ZombieAnimRig_Tutorial",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_BASIC",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_flag"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_flag",
+				"ZombieClass": "ZombieBasic",
+				"Properties": "RTID(ZombieMausoleumFlagDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "ZombieAnimRig_Tutorial",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_FLAG",
+				"HomeWorld": "mausoleum",
+				"IsBasicZombie": true,
+				"IsFlagZombie": true
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_armor1"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_armor1",
+				"ZombieClass": "ZombieBasic",
+				"Properties": "RTID(ZombieMausoleumArmor1Default@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumGroup"
+				],
+				"AnimRigClass": "ZombieAnimRig_Tutorial",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_BASIC",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_armor2"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_armor2",
+				"ZombieClass": "ZombieBasic",
+				"Properties": "RTID(ZombieMausoleumArmor2Default@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumGroup"
+				],
+				"AnimRigClass": "ZombieAnimRig_Tutorial",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_BASIC",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_gargantuar"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_gargantuar",
+				"ZombieClass": "ZombieGargantuar",
+				"Properties": "RTID(ZombieMausoleumGargantuar@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumGargantuarGroup",
+					"ZombieMausoleumImpGroup",
+					"ZombieGargantuarEffects",
+					"ZombieBronzeEffects"
+				],
+				"AudioGroups": [
+					"ZombieGlobalGargantuarAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_Gargantuar",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_GARGANTUAR",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_imp"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_imp",
+				"ZombieClass": "ZombieImp",
+				"Properties": "RTID(ZombieMausoleumImpDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumImpGroup"
+				],
+				"AnimRigClass": "ZombieAnimRig_MausoleumImp",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_IMP",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_vendor"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_vendor",
+				"ZombieClass": "ZombieMausoleumVendor",
+				"Properties": "RTID(ZombieMausoleumVendorDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumVendorGroup"
+				],
+				"AnimRigClass": "ZombieAnimRig_MausoleumVendor",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_VENDOR",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_piggy"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_piggy",
+				"ZombieClass": "ZombieMausoleumPiggy",
+				"Properties": "RTID(ZombieMausoleumPiggyDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumPiggyGroup",
+					"ZombieMausoleumPiggyAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_MausoleumPiggy",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_PIGGY",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_cavalry"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_cavalry",
+				"ZombieClass": "ZombieMausoleumCavalry",
+				"Properties": "RTID(ZombieMausoleumCavalryDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumCavalryGroup",
+					"ZombieMausoleumCavalryAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_MausoleumCavalry",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_CAVALRY",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"mausoleum_archer"
+			],
+			"objdata": {
+				"TypeName": "mausoleum_archer",
+				"ZombieClass": "ZombieMausoleumArcher",
+				"Properties": "RTID(ZombieMausoleumArcherDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieMausoleumArcherGroup",
+					"ZombieMausoleumArcherAudio"
+				],
+				"AnimRigClass": "ZombieAnimRig_MausoleumArcher",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_MAUSOLEUM_ARCHER",
+				"BoardAlmanac": true,
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"zomboss_qinshihuang"
+			],
+			"objdata": {
+				"TypeName": "zomboss_qinshihuang",
+				"ZombieClass": "ZombieZombossQinShiHuang",
+				"Properties": "RTID(ZombieZombossQinShiHuangDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombossQinShiHuangGroup",
+					"PlantSeaderris",
+					"ZombiePVZ1RobotZombossGroup",
+					"PlantFlamelady",
+					"FreezonEffectGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "ZombieAnimRig_ZombossQinShiHuang",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_ZOMBOSS_QINSHIHUANG",
+				"BoardAlmanac": false,
+				"RecommendPlants": [
+					""
+				],
+				"HomeWorld": "mausoleum"
+			}
+		},
+		{
+			"objclass": "ZombieType",
+			"aliases": [
+				"zomboss_qinshihuang_hard"
+			],
+			"objdata": {
+				"TypeName": "zomboss_qinshihuang_hard",
+				"ZombieClass": "ZombieZombossQinShiHuang",
+				"Properties": "RTID(ZombieZombossQinShiHuangHard@PropertySheets)",
+				"ResourceGroups": [
+					"ZombossQinShiHuangGroup",
+					"PlantSeaderris",
+					"ZombiePVZ1RobotZombossGroup",
+					"PlantFlamelady",
+					"FreezonEffectGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "ZombieAnimRig_ZombossQinShiHuang",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_ZOMBOSS_QINSHIHUANG",
+				"BoardAlmanac": false,
+				"RecommendPlants": [
+					""
+				],
+				"HomeWorld": "mausoleum"
 			}
 		}
 	]

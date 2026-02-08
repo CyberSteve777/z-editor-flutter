@@ -882,6 +882,20 @@
 		{
 			"objclass": "GridItemType",
 			"aliases": [
+				"frozen_grid"
+			],
+			"objdata": {
+				"TypeName": "frozen_grid",
+				"GridItemClass": "GridItemFrozenGrid",
+				"Properties": "RTID(GridItemFrozenGridDefault@PropertySheets)",
+				"ResourceGroups": [
+					"PlantLongmaLily"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
 				"BowlingJackfruitDefault"
 			],
 			"objdata": {
@@ -1258,6 +1272,20 @@
 				"GridItemClass": "GridItemPlantConditionTarget",
 				"Properties": "RTID(GridItemPlantConditionTarget_Icecube@PropertySheets)",
 				"ResourceGroups": []
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"jade_seal"
+			],
+			"objdata": {
+				"TypeName": "jade_seal",
+				"GridItemClass": "GridItemJadeSeal",
+				"Properties": "RTID(GridItemJadeSealDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombossQinShiHuangGroup"
+				]
 			}
 		},
 		{
@@ -1739,6 +1767,34 @@
 		{
 			"objclass": "GridItemType",
 			"aliases": [
+				"team_boss_gold"
+			],
+			"objdata": {
+				"TypeName": "team_boss_gold",
+				"GridItemClass": "GridItemGold",
+				"Properties": "RTID(GridItemGoldDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieTeamBossZombossGroup"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"team_boss_gold_overload"
+			],
+			"objdata": {
+				"TypeName": "team_boss_gold_overload",
+				"GridItemClass": "GridItemGold",
+				"Properties": "RTID(GridItemGoldDefaultOverload@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieTeamBossZombossGroup"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
 				"speaker"
 			],
 			"objdata": {
@@ -1817,6 +1873,20 @@
 				"Properties": "RTID(GridItemRenaiRoller@PropertySheets)",
 				"ResourceGroups": [
 					"RenaiRoller"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"team_boss_firework"
+			],
+			"objdata": {
+				"TypeName": "team_boss_firework",
+				"GridItemClass": "GridItemTeamBossFirework",
+				"Properties": "RTID(GridItemTeamBossFirework@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieTeamBossZombossGroup"
 				]
 			}
 		},
@@ -1987,6 +2057,48 @@
 				"Properties": "RTID(GridItemRenaiZombossStatue_Zombie1Half@PropertySheets)",
 				"ResourceGroups": [
 					"RenaiStatue"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"terracottaArmy"
+			],
+			"objdata": {
+				"TypeName": "terracottaArmy",
+				"GridItemClass": "GridItemTerracottaArmy",
+				"Properties": "RTID(GridItemTerracottaArmyDefault@PropertySheets)",
+				"ResourceGroups": [
+					"ZombieQinTerracottaGroup"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"flame_trail"
+			],
+			"objdata": {
+				"TypeName": "flame_trail",
+				"GridItemClass": "GridItemFlameTrail",
+				"Properties": "RTID(GridItemFlameTrailDefault@PropertySheets)",
+				"ResourceGroups": [
+					"PlantFlamelady"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"sword"
+			],
+			"objdata": {
+				"TypeName": "sword",
+				"GridItemClass": "GridItemSword",
+				"Properties": "RTID(GridItemSwordDefault@PropertySheets)",
+				"ResourceGroups": [
+					"PlantFlamelady"
 				]
 			}
 		},
@@ -3232,6 +3344,22 @@
 				"ResourceGroups": [
 					"UI_WHACKZOMBIE",
 					"UI_WHACKZOMBIEAudio"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"gingle_liondance"
+			],
+			"objdata": {
+				"TypeName": "gingle_liondance",
+				"GridItemClass": "PVZ2GingleLiondanceGridItem",
+				"Properties": "RTID(PVZ2GingleLiondanceGridItemDefault@PropertySheets)",
+				"ResourceGroups": [
+					"UI_WHACKZOMBIE",
+					"UI_WHACKZOMBIEAudio",
+					"ZombieLionDanceGroup"
 				]
 			}
 		},
@@ -5255,6 +5383,34 @@
 		{
 			"objclass": "GridItemType",
 			"aliases": [
+				"zomboss_fire_element_ball"
+			],
+			"objdata": {
+				"TypeName": "zomboss_fire_element_ball",
+				"GridItemClass": "ZombossElementBall",
+				"Properties": "RTID(GridItemZombossFireElementBall@PropertySheets)",
+				"ResourceGroups": [
+					""
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"zomboss_ice_element_ball"
+			],
+			"objdata": {
+				"TypeName": "zomboss_ice_element_ball",
+				"GridItemClass": "ZombossElementBall",
+				"Properties": "RTID(GridItemZombossIceElementBall@PropertySheets)",
+				"ResourceGroups": [
+					""
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
 				"pumpkin_scarecrow"
 			],
 			"objdata": {
@@ -5991,6 +6147,20 @@
 				"Properties": "RTID(PeriplocaCalophyllaFogGrid@PropertySheets)",
 				"ResourceGroups": [
 					"PlantPoisonvine"
+				]
+			}
+		},
+		{
+			"objclass": "GridItemType",
+			"aliases": [
+				"uncharted_haystack"
+			],
+			"objdata": {
+				"TypeName": "uncharted_haystack",
+				"GridItemClass": "GridItemUnchartedHaystack",
+				"Properties": "RTID(GridItemUnchartedHaystackDefault@PropertySheets)",
+				"ResourceGroups": [
+					"PlantUnchartedHaystack"
 				]
 			}
 		}

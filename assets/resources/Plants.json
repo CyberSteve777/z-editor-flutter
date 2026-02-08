@@ -2991,6 +2991,58 @@
         "icon": "icon_duckpear.webp"
     },
     {
+        "id": "longmalily",
+        "name": "plant_longmalily",
+        "tags": [
+            "Orange",
+            "Remote",
+            "Fire"
+        ],
+        "icon": "icon_longmalily.gif"
+    },
+    {
+        "id": "goldencassia",
+        "name": "plant_goldencassia",
+        "tags": [
+            "Orange",
+            "Defence",
+            "Magic"
+        ],
+        "icon": "icon_goldencassia.webp"
+    },
+    {
+        "id": "moton",
+        "name": "plant_moton",
+        "tags": [
+            "Parallel"
+        ],
+        "icon": "icon_moton.webp"
+    },
+    {
+        "id": "uncharted_haystack",
+        "name": "uncharted_haystack",
+        "tags": [
+            "Parallel"
+        ],
+        "icon": "icon_uncharted_haystack.webp"
+    },
+    {
+        "id": "uncharted_phatbeet",
+        "name": "uncharted_phatbeet",
+        "tags": [
+            "Parallel"
+        ],
+        "icon": "icon_phatbeet.webp"
+    },
+    {
+        "id": "uncharted_carrotlauncher",
+        "name": "uncharted_carrotlauncher",
+        "tags": [
+            "Parallel"
+        ],
+        "icon": "icon_carrotlauncher.webp"
+    },
+    {
         "id": "parallel_sunflower",
         "name": "plant_parallel_sunflower",
         "tags": [
