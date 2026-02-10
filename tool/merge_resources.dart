@@ -1,8 +1,13 @@
 // Run: dart run tool/merge_resources.dart
 // Merges Plants_1.json and Zombies_1.json into main JSON files.
-// Updates icons to webp, keeps name keys (plant_*, zombie_*), updates resource_zh.json.
+// Updates icons/tags, keeps name keys (plant_*, zombie_*), updates resource_zh/en/ru.json.
 import 'dart:convert';
 import 'dart:io';
+
+String _toEnglishFallback(String key) {
+  final id = key.replaceFirst(RegExp(r'^(plant|zombie)_'), '');
+  return id.split('_').map((s) => s.isEmpty ? s : '${s[0].toUpperCase()}${s.substring(1)}').join(' ');
+}
 
 void main() async {
   final baseDir = Directory.current;
@@ -25,7 +30,8 @@ void main() async {
       final nameZh = map1['name'] as String? ?? id;
       final icon = map1['icon'] as String? ?? 'icon_$id.webp';
       final tags = map1['tags'] as List<dynamic>?;
-      plantZh['plant_$id'] = nameZh;
+      final key = 'plant_$id';
+      plantZh[key] = nameZh;
 
       final idx = plants.indexWhere((e) => (e as Map)['id'] == id);
       if (idx >= 0) {
@@ -34,7 +40,7 @@ void main() async {
       } else {
         plants.add({
           'id': id,
-          'name': 'plant_$id',
+          'name': key,
           'tags': tags ?? [],
           'icon': icon,
         });
@@ -44,13 +50,7 @@ void main() async {
     await File(plantsPath).writeAsString(const JsonEncoder.withIndent('    ').convert(plants));
     await File(plants1Path).delete();
 
-    // Update resource_zh.json with plant names
-    final zhPath = '${l10nDir.path}/resource_zh.json';
-    if (File(zhPath).existsSync()) {
-      final zh = Map<String, String>.from(json.decode(await File(zhPath).readAsString()) as Map);
-      zh.addAll(plantZh);
-      await File(zhPath).writeAsString(const JsonEncoder.withIndent('  ').convert(zh));
-    }
+    _updateL10n(l10nDir, plantZh);
   }
 
   // Merge Zombies
@@ -67,7 +67,8 @@ void main() async {
       final nameZh = map1['name'] as String? ?? id;
       final icon = map1['icon'] as String? ?? 'zombie_$id.webp';
       final tags = map1['tags'] as List<dynamic>?;
-      zombieZh['zombie_$id'] = nameZh;
+      final key = 'zombie_$id';
+      zombieZh[key] = nameZh;
 
       final idx = zombies.indexWhere((e) => (e as Map)['id'] == id);
       if (idx >= 0) {
@@ -76,7 +77,7 @@ void main() async {
       } else {
         zombies.add({
           'id': id,
-          'name': 'zombie_$id',
+          'name': key,
           'tags': tags ?? [],
           'icon': icon,
         });
@@ -86,17 +87,32 @@ void main() async {
     await File(zombiesPath).writeAsString(const JsonEncoder.withIndent('    ').convert(zombies));
     await File(zombies1Path).delete();
 
-    // Update resource_zh.json with zombie names
-    final zhPath = '${l10nDir.path}/resource_zh.json';
-    if (File(zhPath).existsSync()) {
-      final zh = Map<String, String>.from(json.decode(await File(zhPath).readAsString()) as Map);
-      zh.addAll(zombieZh);
-      await File(zhPath).writeAsString(const JsonEncoder.withIndent('  ').convert(zh));
-    }
+    _updateL10n(l10nDir, zombieZh);
   }
 
   // ignore: avoid_print
   print('Merged Plants_1.json and Zombies_1.json into main files');
   // ignore: avoid_print
+  print('Updated resource_zh.json, resource_en.json, resource_ru.json');
+  // ignore: avoid_print
   print('Deleted Plants_1.json and Zombies_1.json');
+}
+
+void _updateL10n(Directory l10nDir, Map<String, String> zhEntries) {
+  final zhPath = '${l10nDir.path}/resource_zh.json';
+  if (File(zhPath).existsSync()) {
+    final zh = Map<String, String>.from(json.decode(File(zhPath).readAsStringSync()) as Map);
+    zh.addAll(zhEntries);
+    File(zhPath).writeAsStringSync(const JsonEncoder.withIndent('  ').convert(zh));
+  }
+  for (final locale in ['en', 'ru']) {
+    final path = '${l10nDir.path}/resource_$locale.json';
+    if (File(path).existsSync()) {
+      final map = Map<String, String>.from(json.decode(File(path).readAsStringSync()) as Map);
+      for (final k in zhEntries.keys) {
+        if (!map.containsKey(k)) map[k] = _toEnglishFallback(k);
+      }
+      File(path).writeAsStringSync(const JsonEncoder.withIndent('  ').convert(map));
+    }
+  }
 }
