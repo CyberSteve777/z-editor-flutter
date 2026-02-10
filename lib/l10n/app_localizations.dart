@@ -322,6 +322,48 @@ abstract class AppLocalizations {
   /// **'Rename failed, file already exists'**
   String get renameFail;
 
+  /// No description provided for @copyReferenceOrDeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy reference or make a deep copy?'**
+  String get copyReferenceOrDeep;
+
+  /// No description provided for @copyReference.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy reference'**
+  String get copyReference;
+
+  /// No description provided for @deepCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep copy'**
+  String get deepCopy;
+
+  /// No description provided for @copyEventTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Target wave'**
+  String get copyEventTarget;
+
+  /// No description provided for @targetWaveIndex.
+  ///
+  /// In en, this message translates to:
+  /// **'Target wave index'**
+  String get targetWaveIndex;
+
+  /// No description provided for @moveToWaveIndex.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to wave index'**
+  String get moveToWaveIndex;
+
+  /// No description provided for @invalidWaveIndex.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid wave index'**
+  String get invalidWaveIndex;
+
   /// No description provided for @renamingFailed.
   ///
   /// In en, this message translates to:
@@ -393,6 +435,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Source and target are the same'**
   String get moveSameFolder;
+
+  /// No description provided for @moveFileExistsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'File already exists'**
+  String get moveFileExistsTitle;
+
+  /// No description provided for @moveFileExistsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'A file with this name already exists in the destination folder.'**
+  String get moveFileExistsMessage;
+
+  /// No description provided for @moveOverwrite.
+  ///
+  /// In en, this message translates to:
+  /// **'Overwrite'**
+  String get moveOverwrite;
+
+  /// No description provided for @fileOverwritten.
+  ///
+  /// In en, this message translates to:
+  /// **'File was overwritten: {name}'**
+  String fileOverwritten(Object name);
+
+  /// No description provided for @moveSaveAsCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Save as copy'**
+  String get moveSaveAsCopy;
+
+  /// No description provided for @moveCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Operation cancelled'**
+  String get moveCancelled;
+
+  /// No description provided for @movedAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Moved and saved as {name}'**
+  String movedAs(Object name);
 
   /// No description provided for @folderCreated.
   ///
@@ -1653,6 +1737,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove this reference? The entity data will remain until all references are removed.'**
   String get confirmRemoveRefMessage;
+
+  /// No description provided for @noZombiesInLane.
+  ///
+  /// In en, this message translates to:
+  /// **'No zombies in this lane'**
+  String get noZombiesInLane;
 
   /// No description provided for @code.
   ///

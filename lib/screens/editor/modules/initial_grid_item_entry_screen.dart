@@ -159,10 +159,10 @@ class _InitialGridItemEntryScreenState extends State<InitialGridItemEntryScreen>
                               ],
                             ),
                             const Spacer(),
-                            FilledButton.icon(
+                            PvzAddButton(
                               onPressed: _handleSelectItem,
-                              icon: const Icon(Icons.add, size: 18),
-                              label: const Text('Add item'),
+                              size: 40,
+                              label: 'Add item',
                             ),
                           ],
                         ),

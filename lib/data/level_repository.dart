@@ -25,6 +25,7 @@ class FileItem {
 
 class LevelRepository {
   static const _prefsFolderKey = 'folder_path';
+  static const _prefsLastLevelDirKey = 'last_level_directory';
 
   static Future<String?> getSavedFolderPath() async {
     final prefs = await SharedPreferences.getInstance();
@@ -34,6 +35,16 @@ class LevelRepository {
   static Future<void> setSavedFolderPath(String path) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_prefsFolderKey, path);
+  }
+
+  static Future<void> setLastOpenedLevelDirectory(String path) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_prefsLastLevelDirKey, path);
+  }
+
+  static Future<String?> getLastOpenedLevelDirectory() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_prefsLastLevelDirKey);
   }
 
   static Future<String> getCacheDir() async {
@@ -149,6 +160,26 @@ class LevelRepository {
     }
   }
 
+  /// Returns the next available name for creating a level from template (without .json).
+  /// If defaultBaseName is available, returns it. Otherwise tries defaultBaseName_copy,
+  /// defaultBaseName_copy1, defaultBaseName_copy2, etc.
+  static Future<String> getNextAvailableNameForTemplate(
+    String dirPath,
+    String defaultBaseName,
+  ) async {
+    final items = await getDirectoryContents(dirPath);
+    final existing = items
+        .map((f) => f.name.toLowerCase().replaceFirst(RegExp(r'\.json$'), ''))
+        .toSet();
+    final base = defaultBaseName;
+    if (!existing.contains(base.toLowerCase())) return base;
+    var candidate = '${base}_copy';
+    if (!existing.contains(candidate.toLowerCase())) return candidate;
+    var n = 1;
+    while (existing.contains('${base}_copy$n'.toLowerCase())) n++;
+    return '${base}_copy$n';
+  }
+
   /// Returns the next available name for a copy (without .json).
   /// E.g. "level_copy", "level_copy2", "level_copy3" if earlier ones exist.
   static Future<String> getNextAvailableCopyName(String dirPath, String baseNameWithoutExt) async {
@@ -195,6 +226,58 @@ class LevelRepository {
       return true;
     } catch (_) {
       return false;
+    }
+  }
+
+  /// Moves file, overwriting destination if it exists.
+  static Future<bool> moveFileOverwriting(
+    String srcDirPath,
+    String fileName,
+    String destDirPath,
+  ) async {
+    if (srcDirPath == destDirPath) return false;
+    final srcPath = p.join(srcDirPath, fileName);
+    final destPath = p.join(destDirPath, fileName);
+    try {
+      if (await File(destPath).exists()) await File(destPath).delete();
+      await File(srcPath).rename(destPath);
+      final cacheDir = await getCacheDir();
+      final cacheFile = File(p.join(cacheDir, fileName));
+      if (await cacheFile.exists()) await cacheFile.delete();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Moves file under a new name (using same naming logic as copy). Returns new filename or null on failure.
+  static Future<String?> moveFileAsCopy(
+    String srcDirPath,
+    String fileName,
+    String destDirPath,
+  ) async {
+    final baseName = fileName.replaceFirst(RegExp(r'\.json$', caseSensitive: false), '');
+    final suggested = await getNextAvailableCopyName(destDirPath, baseName);
+    final newFileName = suggested.toLowerCase().endsWith('.json') ? suggested : '$suggested.json';
+    return moveFileWithName(srcDirPath, fileName, destDirPath, newFileName);
+  }
+
+  /// Moves file to destination with the given new file name. Returns new filename on success, null on failure.
+  static Future<String?> moveFileWithName(
+    String srcDirPath,
+    String fileName,
+    String destDirPath,
+    String newFileName,
+  ) async {
+    if (srcDirPath == destDirPath) return null;
+    final srcPath = p.join(srcDirPath, fileName);
+    try {
+      final copied = await copyLevelToTarget(srcPath, destDirPath, newFileName);
+      if (!copied) return null;
+      await deleteItem(srcDirPath, fileName, false);
+      return newFileName;
+    } catch (_) {
+      return null;
     }
   }
 

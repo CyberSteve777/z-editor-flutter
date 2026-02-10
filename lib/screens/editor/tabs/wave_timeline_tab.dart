@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/event_registry.dart';
@@ -7,7 +9,7 @@ import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/wave_point_analysis.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/theme/app_theme.dart';
-import 'package:z_editor/widgets/editor_components.dart';
+import 'package:z_editor/widgets/editor_components.dart' show EventChipWidget, isDesktopPlatform;
 
 /// Wave timeline tab with events. Ported from Z-Editor-master WaveTimelineTab.kt
 class WaveTimelineTab extends StatefulWidget {
@@ -196,12 +198,17 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     List<_CustomZombieUsage> customZombies,
   ) {
     final l10n = AppLocalizations.of(context);
-    final themeColor = Theme.of(context).brightness == Brightness.dark
-        ? pvzPurpleDark
-        : pvzPurpleLight;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardBg = isDark ? pvzOrangeDark : pvzOrangeLight;
+    // Distinct item backgrounds: light cream/beige so pills don't blend with card
+    final itemBg = isDark
+        ? const Color(0xFFE8D4C4) // Light beige-orange (matches reference photos)
+        : const Color(0xFFFFF5D6); // Warm cream (matches reference photos)
+    final onCard = isDark ? Colors.white : Colors.black87;
+    final onItem = Colors.black87; // Dark text for readability on light item bg
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      color: themeColor,
+      color: cardBg,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -209,13 +216,13 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
           children: [
             Row(
               children: [
-                Icon(Icons.science, color: Colors.white),
+                Icon(Icons.science, color: onCard),
                 const SizedBox(width: 8),
                 Text(
                   l10n?.customZombieManagerTitle ?? 'Custom zombie management',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: onCard,
                   ),
                 ),
               ],
@@ -224,7 +231,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
             if (customZombies.isEmpty)
               Text(
                 l10n?.customZombieEmpty ?? 'No custom zombie data',
-                style: TextStyle(color: Colors.white.withValues(alpha: 0.9)),
+                style: TextStyle(color: onCard.withValues(alpha: 0.9)),
               )
             else
               Wrap(
@@ -232,13 +239,34 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                 runSpacing: 8,
                 children: customZombies.map((info) {
                   final icon = info.isUnused ? Icons.warning : Icons.check_circle;
-                  final color = info.isUnused
+                  final iconColor = info.isUnused
                       ? Colors.amber.shade700
-                      : Theme.of(context).colorScheme.primary;
-                  return InputChip(
-                    label: Text(info.alias),
-                    avatar: Icon(icon, size: 16, color: color),
-                    onPressed: () => _showCustomZombieSheet(context, info),
+                      : const Color(0xFF2E7D32); // Dark green for ok
+                  return Material(
+                    color: itemBg,
+                    borderRadius: BorderRadius.circular(20),
+                    child: InkWell(
+                      onTap: () => _showCustomZombieSheet(context, info),
+                      borderRadius: BorderRadius.circular(20),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(icon, size: 18, color: iconColor),
+                            const SizedBox(width: 8),
+                            Text(
+                              info.alias,
+                              style: TextStyle(
+                                color: onItem,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   );
                 }).toList(),
               ),
@@ -356,104 +384,109 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     required Map<String, PvzObject> objectMap,
     required int points,
     required VoidCallback onInfoClick,
+    required VoidCallback? onRowTap,
   }) {
     final l10n = AppLocalizations.of(context);
-    return Column(
+    final rowContent = Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 52,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '$waveIndex',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                    if (isFlagWave)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 2),
-                        child: Icon(
-                          Icons.flag,
-                          size: 12,
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                      ),
-                  ],
+        SizedBox(
+          width: 52,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '$waveIndex',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
-              ),
+                if (isFlagWave)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 2),
+                    child: Icon(
+                      Icons.flag,
+                      size: 12,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+              ],
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (rtidList.isEmpty)
-                      Text(
-                        l10n?.waveEmptyRowHint ??
-                            'Empty wave (swipe left/right)',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurfaceVariant,
-                            ),
-                      )
-                    else
-                      ...rtidList.map(
-                        (rtid) => Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: EventChipWidget(
+          ),
+        ),
+        Expanded(
+          child: InkWell(
+            onTap: onRowTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (rtidList.isEmpty)
+                    Text(
+                      l10n?.waveEmptyRowHint ??
+                          'Empty wave (swipe left/right)',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSurfaceVariant,
+                          ),
+                    )
+                  else
+                    ...rtidList.map(
+                      (rtid) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: EventChipWidget(
+                          rtid: rtid,
+                          objectMap: objectMap,
+                          onTap: () => _showEventActionSheet(
+                            context: context,
+                            waveIndex: waveIndex,
                             rtid: rtid,
-                            objectMap: objectMap,
-                            onTap: () => _showEventActionSheet(
-                              context: context,
-                              waveIndex: waveIndex,
-                              rtid: rtid,
-                            ),
                           ),
                         ),
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
             ),
-            if (points != 0)
-              InkWell(
-                onTap: onInfoClick,
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    children: [
-                      Text(
-                        '${points}pt',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      const SizedBox(width: 2),
-                      Icon(
-                        Icons.info,
-                        size: 14,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .onSurfaceVariant,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-          ],
+          ),
         ),
+        if (points != 0)
+          InkWell(
+            onTap: onInfoClick,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  Text(
+                    '${points}pt',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(width: 2),
+                  Icon(
+                    Icons.info,
+                    size: 14,
+                    color: Theme.of(context)
+                        .colorScheme
+                        .onSurfaceVariant,
+                  ),
+                ],
+              ),
+            ),
+          ),
+      ],
+    );
+    return Column(
+      children: [
+        rowContent,
         Divider(height: 1, color: Theme.of(context).colorScheme.surfaceContainerHighest),
       ],
     );
@@ -574,6 +607,10 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                   Navigator.pop(ctx);
                   widget.onEditCustomZombie!(info.rtid);
                 },
+                style: FilledButton.styleFrom(
+                  backgroundColor: Theme.of(ctx).brightness == Brightness.dark ? pvzYellowDark : pvzYellowLight,
+                  foregroundColor: Colors.black87,
+                ),
                 icon: const Icon(Icons.edit),
                 label: Text(l10n?.editProperties ?? 'Edit properties'),
               ),
@@ -712,6 +749,82 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     setState(() {});
   }
 
+  void _performGlobalRename(String oldRtid, String newAlias) {
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return;
+    final oldAlias = LevelParser.extractAlias(oldRtid);
+    if (oldAlias == newAlias) return;
+    if (widget.levelFile.objects.any((o) => o.aliases?.contains(newAlias) == true)) return;
+    final newRtid = RtidParser.build(newAlias, 'CurrentLevel');
+    final objIdx = widget.levelFile.objects.indexWhere(
+      (o) => o.aliases?.contains(oldAlias) == true,
+    );
+    if (objIdx >= 0) {
+      widget.levelFile.objects[objIdx] = PvzObject(
+        aliases: [newAlias],
+        objClass: widget.levelFile.objects[objIdx].objClass,
+        objData: widget.levelFile.objects[objIdx].objData,
+      );
+    }
+    for (final wave in wm.waves) {
+      for (var i = 0; i < wave.length; i++) {
+        if (wave[i] == oldRtid) wave[i] = newRtid;
+      }
+    }
+    _syncWaves();
+    widget.onChanged();
+    setState(() {});
+  }
+
+  void _performCopyReference(String rtid, int targetWaveIndex) {
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return;
+    if (targetWaveIndex < 1 || targetWaveIndex > wm.waves.length) return;
+    final targetIdx = targetWaveIndex - 1;
+    wm.waves[targetIdx] = [...wm.waves[targetIdx], rtid];
+    _syncWaves();
+    setState(() {});
+  }
+
+  void _performDeepCopy(String rtid, String newAlias, int targetWaveIndex) {
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return;
+    final oldAlias = LevelParser.extractAlias(rtid);
+    final obj = widget.levelFile.objects.firstWhereOrNull(
+      (o) => o.aliases?.contains(oldAlias) == true,
+    );
+    if (obj == null) return;
+    if (widget.levelFile.objects.any((o) => o.aliases?.contains(newAlias) == true)) return;
+    final newRtid = RtidParser.build(newAlias, 'CurrentLevel');
+    final dataCopy = obj.objData is Map
+        ? jsonDecode(jsonEncode(obj.objData)) as Map<String, dynamic>
+        : obj.objData;
+    widget.levelFile.objects.add(PvzObject(
+      aliases: [newAlias],
+      objClass: obj.objClass,
+      objData: dataCopy,
+    ));
+    if (targetWaveIndex >= 1 && targetWaveIndex <= wm.waves.length) {
+      wm.waves[targetWaveIndex - 1] = [...wm.waves[targetWaveIndex - 1], newRtid];
+    }
+    _syncWaves();
+    widget.onChanged();
+    setState(() {});
+  }
+
+  void _performMove(String rtid, int sourceWaveIndex, int targetWaveIndex) {
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return;
+    if (sourceWaveIndex == targetWaveIndex) return;
+    final srcIdx = sourceWaveIndex - 1;
+    final tgtIdx = targetWaveIndex - 1;
+    if (srcIdx < 0 || srcIdx >= wm.waves.length || tgtIdx < 0 || tgtIdx >= wm.waves.length) return;
+    wm.waves[srcIdx] = wm.waves[srcIdx].where((r) => r != rtid).toList();
+    wm.waves[tgtIdx] = [...wm.waves[tgtIdx], rtid];
+    _syncWaves();
+    setState(() {});
+  }
+
   void _smartDeleteEvent(int waveIndex, String rtid) {
     final wm = widget.parsed.waveManager;
     if (wm is! WaveManagerData) return;
@@ -729,6 +842,271 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
         .removeWhere((o) => o.aliases?.contains(alias) == true);
     _syncWaves();
     setState(() {});
+  }
+
+  void _showRenameDialog(
+    BuildContext context,
+    String rtid,
+    String alias,
+    VoidCallback? onEditFinished,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return;
+    final ctrl = TextEditingController(text: alias);
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n?.rename ?? 'Rename'),
+        content: TextField(
+          controller: ctrl,
+          decoration: InputDecoration(
+            labelText: l10n?.newName ?? 'New name',
+          ),
+          onChanged: (_) {},
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.error,
+            ),
+            child: Text(l10n?.cancel ?? 'Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final newAlias = ctrl.text.trim();
+              Navigator.pop(ctx);
+              if (newAlias.isEmpty) return;
+              if (widget.levelFile.objects.any((o) => o.aliases?.contains(newAlias) == true)) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n?.renameFail ?? 'Rename failed, alias already exists')),
+                );
+                return;
+              }
+              _performGlobalRename(rtid, newAlias);
+              onEditFinished?.call();
+            },
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.primary,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(l10n?.confirm ?? 'Confirm'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showCopyChoiceDialog(
+    BuildContext context,
+    String rtid,
+    String alias,
+    int waveIndex,
+    VoidCallback? onEditFinished,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n?.copy ?? 'Copy'),
+        content: Text(
+          l10n?.copyReferenceOrDeep ?? 'Copy reference or make a deep copy?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.error,
+            ),
+            child: Text(l10n?.cancel ?? 'Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _showCopyTargetWaveDialog(context, rtid, null, waveIndex, onEditFinished);
+            },
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.primary,
+            ),
+            child: Text(l10n?.copyReference ?? 'Copy reference'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _showDeepCopyNameDialog(context, rtid, alias, waveIndex, onEditFinished);
+            },
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.primary,
+            ),
+            child: Text(l10n?.deepCopy ?? 'Deep copy'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDeepCopyNameDialog(
+    BuildContext context,
+    String rtid,
+    String alias,
+    int waveIndex,
+    VoidCallback? onEditFinished,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    final defaultName = '${alias}_copy';
+    final ctrl = TextEditingController(text: defaultName);
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n?.deepCopy ?? 'Deep copy'),
+        content: TextField(
+          controller: ctrl,
+          decoration: InputDecoration(
+            labelText: l10n?.newName ?? 'New name',
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.error,
+            ),
+            child: Text(l10n?.cancel ?? 'Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final newAlias = ctrl.text.trim();
+              Navigator.pop(ctx);
+              if (newAlias.isEmpty) return;
+              if (widget.levelFile.objects.any((o) => o.aliases?.contains(newAlias) == true)) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n?.renameFail ?? 'Rename failed, alias already exists')),
+                );
+                return;
+              }
+              _showCopyTargetWaveDialog(context, rtid, newAlias, waveIndex, onEditFinished);
+            },
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.primary,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(l10n?.confirm ?? 'Confirm'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showCopyTargetWaveDialog(
+    BuildContext context,
+    String rtid,
+    String? newAlias,
+    int sourceWaveIndex,
+    VoidCallback? onEditFinished,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return;
+    final ctrl = TextEditingController(text: '1');
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n?.copyEventTarget ?? 'Target wave'),
+        content: TextField(
+          controller: ctrl,
+          decoration: InputDecoration(
+            labelText: l10n?.targetWaveIndex ?? 'Target wave index',
+          ),
+          keyboardType: TextInputType.number,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.error,
+            ),
+            child: Text(l10n?.cancel ?? 'Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final target = int.tryParse(ctrl.text.trim());
+              Navigator.pop(ctx);
+              if (target == null || target < 1 || target > wm.waves.length) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n?.invalidWaveIndex ?? 'Invalid wave index')),
+                );
+                return;
+              }
+              if (newAlias != null) {
+                _performDeepCopy(rtid, newAlias, target);
+              } else {
+                _performCopyReference(rtid, target);
+              }
+              onEditFinished?.call();
+            },
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.primary,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(l10n?.copy ?? 'Copy'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showMoveDialog(
+    BuildContext context,
+    String rtid,
+    int waveIndex,
+    VoidCallback? onEditFinished,
+  ) {
+    final l10n = AppLocalizations.of(context);
+    final wm = widget.parsed.waveManager;
+    if (wm is! WaveManagerData) return;
+    final ctrl = TextEditingController(text: waveIndex.toString());
+    showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n?.move ?? 'Move'),
+        content: TextField(
+          controller: ctrl,
+          decoration: InputDecoration(
+            labelText: l10n?.moveToWaveIndex ?? 'Move to wave index',
+          ),
+          keyboardType: TextInputType.number,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.error,
+            ),
+            child: Text(l10n?.cancel ?? 'Cancel'),
+          ),
+          FilledButton(
+            onPressed: () {
+              final target = int.tryParse(ctrl.text.trim());
+              Navigator.pop(ctx);
+              if (target == null || target < 1 || target > wm.waves.length) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n?.invalidWaveIndex ?? 'Invalid wave index')),
+                );
+                return;
+              }
+              _performMove(rtid, waveIndex, target);
+              onEditFinished?.call();
+            },
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(ctx).colorScheme.primary,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(l10n?.move ?? 'Move'),
+          ),
+        ],
+      ),
+    );
   }
 
   void _showEventActionSheet({
@@ -780,10 +1158,54 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                     onPressed: () async {
                       Navigator.pop(ctx);
                       await widget.onEditEvent(rtid, waveIndex);
-                      onEditFinished?.call();
+                      // Do not re-open wave sheet when exiting event editor
                     },
                     icon: const Icon(Icons.edit),
                     label: Text(l10n?.editProperties ?? 'Edit properties'),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: TextButton.icon(
+                    onPressed: () => _showRenameDialog(context, rtid, alias, onEditFinished),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Theme.of(ctx).colorScheme.primaryContainer,
+                      foregroundColor: Theme.of(ctx).brightness == Brightness.dark
+                          ? Colors.black
+                          : Theme.of(ctx).colorScheme.primary,
+                    ),
+                    icon: const Icon(Icons.drive_file_rename_outline),
+                    label: Text(l10n?.rename ?? 'Rename'),
+                  ),
+                ),
+                Expanded(
+                  child: TextButton.icon(
+                    onPressed: () => _showCopyChoiceDialog(context, rtid, alias, waveIndex, onEditFinished),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Theme.of(ctx).colorScheme.primaryContainer,
+                      foregroundColor: Theme.of(ctx).brightness == Brightness.dark
+                          ? Colors.black
+                          : Theme.of(ctx).colorScheme.primary,
+                    ),
+                    icon: const Icon(Icons.copy),
+                    label: Text(l10n?.copy ?? 'Copy'),
+                  ),
+                ),
+                Expanded(
+                  child: TextButton.icon(
+                    onPressed: () => _showMoveDialog(context, rtid, waveIndex, onEditFinished),
+                    style: TextButton.styleFrom(
+                      backgroundColor: Theme.of(ctx).colorScheme.primaryContainer,
+                      foregroundColor: Theme.of(ctx).brightness == Brightness.dark
+                          ? Colors.black
+                          : Theme.of(ctx).colorScheme.primary,
+                    ),
+                    icon: const Icon(Icons.drive_file_move),
+                    label: Text(l10n?.move ?? 'Move'),
                   ),
                 ),
               ],
@@ -812,10 +1234,17 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(dctx, false),
+                              style: TextButton.styleFrom(
+                                foregroundColor: Theme.of(dctx).colorScheme.primary,
+                              ),
                               child: Text(l10n?.cancel ?? 'Cancel'),
                             ),
                             FilledButton(
                               onPressed: () => Navigator.pop(dctx, true),
+                              style: FilledButton.styleFrom(
+                                backgroundColor: Theme.of(dctx).colorScheme.error,
+                                foregroundColor: Colors.white,
+                              ),
                               child: Text(l10n?.confirmRemoveRef ?? 'Remove reference'),
                             ),
                           ],
@@ -893,7 +1322,8 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                       icon: const Icon(Icons.delete_outline),
                       onPressed: () {
                         Navigator.pop(ctx);
-                        _removeEventFromWave(waveIndex, rtid);
+                        _smartDeleteEvent(waveIndex, rtid);
+                        setState(() {});
                       },
                     ),
                   ),
@@ -913,6 +1343,60 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                style: FilledButton.styleFrom(
+                  backgroundColor: Theme.of(ctx).colorScheme.error,
+                  foregroundColor: Theme.of(ctx).colorScheme.onError,
+                ),
+                onPressed: () async {
+                  Navigator.pop(ctx);
+                  final ok = await showDialog<bool>(
+                    context: context,
+                    builder: (dctx) => AlertDialog(
+                      title: Text(
+                        (l10n?.deleteWave != null && l10n?.waveLabel != null)
+                            ? '${l10n?.deleteWave} ${l10n?.waveLabel} $waveIndex?'
+                            : 'Delete Wave $waveIndex?',
+                      ),
+                      content: Text(
+                        l10n?.deleteWaveConfirm(rtidList.length) ??
+                            'This will remove this wave and its ${rtidList.length} events.',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(dctx, false),
+                          style: TextButton.styleFrom(
+                            foregroundColor: Theme.of(dctx).colorScheme.error,
+                          ),
+                          child: Text(l10n?.cancel ?? 'Cancel'),
+                        ),
+                        FilledButton(
+                          onPressed: () => Navigator.pop(dctx, true),
+                          style: FilledButton.styleFrom(
+                            backgroundColor: Theme.of(dctx).colorScheme.primary,
+                          ),
+                          child: Text(l10n?.confirm ?? 'Confirm'),
+                        ),
+                      ],
+                    ),
+                  );
+                  if (ok == true && mounted) {
+                    final wm = widget.parsed.waveManager;
+                    if (wm is WaveManagerData && waveIndex >= 1 && waveIndex <= wm.waves.length) {
+                      wm.waves.removeAt(waveIndex - 1);
+                      wm.waveCount = wm.waves.length;
+                      _syncWaves();
+                      setState(() {});
+                    }
+                  }
+                },
+                icon: const Icon(Icons.delete),
+                label: Text(l10n?.deleteWave ?? 'Delete wave'),
+              ),
             ),
           ],
         ),
@@ -1002,6 +1486,21 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
             final points = module != null
                 ? _pointsAtWave(module, waveIndex, isFlagWave)
                 : 0;
+            final isDesktop = isDesktopPlatform(context);
+            final rowWidget = _buildWaveRowItem(
+              context,
+              waveIndex: waveIndex,
+              isFlagWave: isFlagWave,
+              rtidList: waveEvents,
+              objectMap: objectMap,
+              points: points,
+              onInfoClick: () =>
+                  _showExpectationDialog(context, waveIndex, points),
+              onRowTap: isDesktop ? () => _showWaveManageSheet(context, waveIndex) : null,
+            );
+            if (isDesktop) {
+              return rowWidget;
+            }
             return Dismissible(
               key: ValueKey('wave_row_$index'),
               direction: DismissDirection.horizontal,
@@ -1024,6 +1523,9 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(ctx, false),
+                          style: TextButton.styleFrom(
+                            foregroundColor: Theme.of(ctx).colorScheme.error,
+                          ),
                           child: Text(l10n?.cancel ?? 'Cancel'),
                         ),
                         FilledButton(
@@ -1059,16 +1561,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                 color: Theme.of(context).colorScheme.error,
                 icon: Icons.delete,
               ),
-              child: _buildWaveRowItem(
-                context,
-                waveIndex: waveIndex,
-                isFlagWave: isFlagWave,
-                rtidList: waveEvents,
-                objectMap: objectMap,
-                points: points,
-                onInfoClick: () =>
-                    _showExpectationDialog(context, waveIndex, points),
-              ),
+              child: rowWidget,
             );
           }),
         ],
@@ -1093,45 +1586,67 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
     );
     final sorted = expectation.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
-    final top = sorted.take(5).where((e) => e.value > 0.05).toList();
+    final items = sorted.where((e) => e.value > 0).toList();
 
     showDialog<void>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('${AppLocalizations.of(ctx)?.waveLabel ?? "Wave"} $waveIndex ${AppLocalizations.of(ctx)?.expectation ?? "Expectation"}'),
-        content: SingleChildScrollView(
-          child: Column(
+      builder: (ctx) {
+        final scrollController = ScrollController();
+        return AlertDialog(
+          title: Text('${AppLocalizations.of(ctx)?.waveLabel ?? "Wave"} $waveIndex ${AppLocalizations.of(ctx)?.expectation ?? "Expectation"}'),
+          content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('${AppLocalizations.of(ctx)?.pointsLabel ?? "Points"}: $points'),
               const SizedBox(height: 16),
-              if (top.isEmpty)
+              if (items.isEmpty)
                 Text(
                   AppLocalizations.of(ctx)?.noDynamicZombies ?? 'No dynamic zombies',
                   style: Theme.of(ctx).textTheme.bodySmall,
                 )
               else
-                ...top.map((e) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(e.key),
-                          Text(e.value.toStringAsFixed(2)),
-                        ],
-                      ),
-                    )),
+                SizedBox(
+                  width: 360,
+                  height: 320,
+                  child: Scrollbar(
+                    controller: scrollController,
+                    thumbVisibility: true,
+                    child: ListView.builder(
+                      controller: scrollController,
+                      padding: const EdgeInsets.only(right: 14),
+                      itemCount: items.length,
+                      itemBuilder: (_, i) {
+                        final e = items[i];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  e.key,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Text(e.value.toStringAsFixed(2)),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
             ],
           ),
-        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: Text(AppLocalizations.of(ctx)?.close ?? 'Close'),
           ),
         ],
-      ),
+      );
+    },
     );
   }
 }

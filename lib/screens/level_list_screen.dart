@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -58,15 +59,17 @@ class _LevelListScreenState extends State<LevelListScreen> {
 
   Future<void> _ensureStoragePermission() async {
     if (!Platform.isAndroid) return;
-    // Try storage first (works on Android 10-12)
-    var status = await Permission.storage.status;
-    if (status.isDenied) {
-      status = await Permission.storage.request();
-    }
-    if (status.isGranted) return;
-    // On Android 13+, storage is deprecated. Use manageExternalStorage for file access.
+    // On Android 11+, full folder access requires manageExternalStorage; storage alone
+    // may be granted for media only. On Android 10 and below, manageExternalStorage
+    // is not available (returns restricted), so storage (read+write) is sufficient.
     final manageStatus = await Permission.manageExternalStorage.status;
     if (manageStatus.isGranted) return;
+    if (manageStatus.isRestricted) {
+      // Android 10 or below: manageExternalStorage not available, use storage permission
+      var status = await Permission.storage.status;
+      if (status.isDenied) status = await Permission.storage.request();
+      if (status.isGranted) return;
+    }
     if (mounted) {
       final l10n = AppLocalizations.of(context);
       await showDialog<void>(
@@ -86,12 +89,31 @@ class _LevelListScreenState extends State<LevelListScreen> {
   Future<void> _loadSavedPathAndList() async {
     await _ensureStoragePermission();
     final path = await LevelRepository.getSavedFolderPath();
+    final lastLevelDir = await LevelRepository.getLastOpenedLevelDirectory();
     if (path != null && mounted) {
       setState(() {
         _rootFolderPath = path;
         if (_pathStack.isEmpty) {
-          final name = path.split(RegExp(r'[/\\]')).last;
-          _pathStack = [(name: name.isEmpty ? 'Root' : name, path: path)];
+          List<({String name, String path})> stack = [];
+          final rootName = path.split(RegExp(r'[/\\]')).last;
+          stack.add((name: rootName.isEmpty ? 'Root' : rootName, path: path));
+          if (lastLevelDir != null && lastLevelDir != path) {
+            try {
+              final rel = p.relative(lastLevelDir, from: path);
+              if (rel.startsWith('..')) throw ArgumentError('not under root');
+              if (rel.isNotEmpty && rel != '.') {
+                var current = path;
+                for (final segment in p.split(rel)) {
+                  if (segment.isEmpty) continue;
+                  current = p.join(current, segment);
+                  stack.add((name: segment, path: current));
+                }
+              }
+            } catch (_) {
+              /* lastLevelDir not under root, use root only */
+            }
+          }
+          _pathStack = stack;
         }
       });
       _loadCurrentDirectory();
@@ -325,11 +347,18 @@ class _LevelListScreenState extends State<LevelListScreen> {
                 return ListTile(
                   leading: const Icon(Icons.description, color: Colors.grey),
                   title: Text(_templateDisplayName(t, l10n)),
-                  onTap: () {
+                  onTap: () async {
                     Navigator.pop(ctx);
                     _selectedTemplate = t;
-                    _newLevelNameInput = t.replaceFirst(RegExp(r'\.json$'), '');
-                    _methodShowCreateNameDialog();
+                    final defaultBase = t.replaceFirst(RegExp(r'\.json$'), '');
+                    if (_pathStack.isNotEmpty) {
+                      _newLevelNameInput = await LevelRepository.getNextAvailableNameForTemplate(
+                        _pathStack.last.path, defaultBase,
+                      );
+                    } else {
+                      _newLevelNameInput = defaultBase;
+                    }
+                    if (mounted) _methodShowCreateNameDialog();
                   },
                 );
               },
@@ -588,13 +617,39 @@ class _LevelListScreenState extends State<LevelListScreen> {
                           itemBuilder: (context, index) {
                             if (_pathStack.length > 1 && index == 0) {
                               return Card(
-                                child: ListTile(
-                                  leading: const Icon(Icons.folder),
-                                  title: Text(l10n.returnUp, style: const TextStyle(fontWeight: FontWeight.bold)),
+                                margin: const EdgeInsets.only(bottom: 12),
+                                elevation: 2,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: InkWell(
                                   onTap: () {
                                     setState(() => _pathStack = _pathStack.take(_pathStack.length - 1).toList());
                                     _loadCurrentDirectory();
                                   },
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 48,
+                                          height: 48,
+                                          alignment: Alignment.center,
+                                          child: const Icon(Icons.folder, size: 40, color: Color(0xFFFFC107)),
+                                        ),
+                                        const SizedBox(width: 16),
+                                        Expanded(
+                                          child: Text(
+                                            l10n.returnUp,
+                                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               );
                             }
@@ -835,57 +890,193 @@ class _LevelListScreenState extends State<LevelListScreen> {
     );
   }
 
+  void _showMoveSnackbar(String type, {String? newFileName}) {
+    if (!mounted) return;
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
+    Color bgColor;
+    Widget leading;
+    String text;
+    switch (type) {
+      case 'success':
+        bgColor = isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50);
+        leading = const Icon(Icons.check_circle, color: Colors.white, size: 20);
+        text = l10n.movingSuccess;
+        break;
+      case 'renamed':
+        bgColor = isDark ? const Color(0xFF43A047) : const Color(0xFF388E3C);
+        leading = const Icon(Icons.check_circle, color: Colors.white, size: 20);
+        text = l10n.movedAs(newFileName ?? '');
+        break;
+      case 'overwritten':
+        bgColor = isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50);
+        leading = const Icon(Icons.check_circle, color: Colors.white, size: 20);
+        text = l10n.fileOverwritten(newFileName ?? '');
+        break;
+      case 'cancelled':
+        bgColor = isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D);
+        leading = Icon(Icons.warning, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20);
+        text = l10n.moveCancelled;
+        break;
+      case 'sameFolder':
+        bgColor = isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D);
+        leading = Icon(Icons.warning, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20);
+        text = l10n.moveSameFolder;
+        break;
+      case 'fail':
+        bgColor = isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D);
+        leading = Icon(Icons.report_problem, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20);
+        text = l10n.movingFail;
+        break;
+      default:
+        return;
+    }
+    final textColor = (type == 'success' || type == 'renamed' || type == 'overwritten')
+        ? Colors.white
+        : (isDark ? Colors.white : const Color(0xFF5D4E00));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: bgColor,
+        content: Row(
+          children: [
+            leading,
+            const SizedBox(width: 8),
+            Text(text, style: TextStyle(color: textColor)),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<void> _handleMoveConfirm() async {
     final target = _itemToMove;
     final srcPath = _moveSourcePath;
     if (target == null || srcPath == null || _pathStack.isEmpty) return;
     final destPath = _pathStack.last.path;
     if (srcPath == destPath) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(context)?.moveSameFolder ?? 'Source and target are the same')),
-        );
-      }
+      _showMoveSnackbar('sameFolder');
       setState(() {
         _itemToMove = null;
         _moveSourcePath = null;
       });
       return;
     }
-    final ok = await LevelRepository.moveFile(srcPath, target.name, destPath);
-    if (mounted) {
-      final theme = Theme.of(context);
-      final isDark = theme.brightness == Brightness.dark;
-      if (ok) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50),
-            content: Row(
-              children: [
-                const Icon(Icons.check_circle, color: Colors.white, size: 20),
-                const SizedBox(width: 8),
-                Text(AppLocalizations.of(context)!.movingSuccess),
-              ],
+    final destFile = File(p.join(destPath, target.name));
+    final destExists = await destFile.exists();
+    if (destExists) {
+      final l10n = AppLocalizations.of(context)!;
+      final choice = await showDialog<int>(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) => AlertDialog(
+          title: Text(l10n.moveFileExistsTitle),
+          content: Text(l10n.moveFileExistsMessage),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, 0),
+              style: TextButton.styleFrom(foregroundColor: Colors.amber),
+              child: Text(l10n.cancel),
             ),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D),
-            content: Row(
-              children: [
-                Icon(Icons.report_problem, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20),
-                const SizedBox(width: 8),
-                Text(
-                  AppLocalizations.of(context)!.movingFail,
-                  style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, 2),
+              style: TextButton.styleFrom(foregroundColor: Colors.green),
+              child: Text(l10n.moveSaveAsCopy),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, 1),
+              style: TextButton.styleFrom(foregroundColor: Theme.of(ctx).colorScheme.error),
+              child: Text(l10n.moveOverwrite),
+            ),
+          ],
+        ),
+      );
+      if (!mounted) return;
+      if (choice == 0) {
+        _showMoveSnackbar('cancelled');
+        setState(() {
+          _itemToMove = null;
+          _moveSourcePath = null;
+        });
+        return;
+      }
+      if (choice == 1) {
+        final ok = await LevelRepository.moveFileOverwriting(srcPath, target.name, destPath);
+        if (mounted) {
+          _showMoveSnackbar(ok ? 'overwritten' : 'fail', newFileName: target.name);
+          setState(() {
+            _itemToMove = null;
+            _moveSourcePath = null;
+          });
+          _loadCurrentDirectory();
+        }
+        return;
+      }
+      if (choice == 2) {
+        final baseName = target.name.replaceFirst(RegExp(r'\.json$', caseSensitive: false), '');
+        final suggested = await LevelRepository.getNextAvailableCopyName(destPath, baseName);
+        final suggestedFileName = suggested.toLowerCase().endsWith('.json') ? suggested : '$suggested.json';
+        if (!mounted) return;
+        final nameResult = await showDialog<String>(
+          context: context,
+          barrierDismissible: false,
+          builder: (ctx) {
+            final ctrl = TextEditingController(text: suggestedFileName);
+            return AlertDialog(
+              title: Text(l10n.moveSaveAsCopy),
+              content: TextField(
+                controller: ctrl,
+                decoration: InputDecoration(labelText: l10n.newFileName),
+                onSubmitted: (v) => Navigator.pop(ctx, v.trim().isEmpty ? null : v),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx, null),
+                  style: TextButton.styleFrom(foregroundColor: Theme.of(ctx).colorScheme.error),
+                  child: Text(l10n.cancel),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    final v = ctrl.text.trim();
+                    Navigator.pop(ctx, v.isEmpty ? null : v);
+                  },
+                  style: FilledButton.styleFrom(backgroundColor: Colors.green),
+                  child: Text(l10n.confirm),
                 ),
               ],
-            ),
-          ),
+            );
+          },
         );
+        if (!mounted) return;
+        if (nameResult == null) {
+          _showMoveSnackbar('cancelled');
+          setState(() {
+            _itemToMove = null;
+            _moveSourcePath = null;
+          });
+          return;
+        }
+        var finalName = nameResult;
+        if (!finalName.toLowerCase().endsWith('.json')) finalName += '.json';
+        final newName = await LevelRepository.moveFileWithName(srcPath, target.name, destPath, finalName);
+        if (mounted) {
+          if (newName != null) {
+            _showMoveSnackbar('renamed', newFileName: newName);
+          } else {
+            _showMoveSnackbar('fail');
+          }
+          setState(() {
+            _itemToMove = null;
+            _moveSourcePath = null;
+          });
+          _loadCurrentDirectory();
+        }
+        return;
       }
+    }
+    final ok = await LevelRepository.moveFile(srcPath, target.name, destPath);
+    if (mounted) {
+      _showMoveSnackbar(ok ? 'success' : 'fail');
       setState(() {
         _itemToMove = null;
         _moveSourcePath = null;
@@ -1081,23 +1272,103 @@ class _FileItemRow extends StatelessWidget {
     final displayName = item.isDirectory ? item.name : item.name.replaceFirst(RegExp(r'\.json$'), '');
 
     return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      child: ListTile(
-        leading: Icon(
-          item.isDirectory ? Icons.folder : Icons.description,
-          color: item.isDirectory ? const Color(0xFFFFC107) : theme.colorScheme.primary,
-        ),
-        title: Text(displayName, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: item.isDirectory ? null : Text(l10n.jsonFile),
+      margin: const EdgeInsets.only(bottom: 12),
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: InkWell(
         onTap: onTap,
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(icon: const Icon(Icons.edit), onPressed: onRename),
-            if (!item.isDirectory) IconButton(icon: const Icon(Icons.copy), onPressed: onCopy),
-            if (showMove) IconButton(icon: const Icon(Icons.drive_file_move), onPressed: onMove),
-            IconButton(icon: Icon(Icons.delete, color: theme.colorScheme.error), onPressed: onDelete),
-          ],
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                alignment: Alignment.center,
+                child: Icon(
+                  item.isDirectory ? Icons.folder : Icons.description,
+                  size: 40,
+                  color: item.isDirectory ? const Color(0xFFFFC107) : theme.colorScheme.primary,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      displayName,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    if (!item.isDirectory) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        l10n.jsonFile,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.edit, color: theme.colorScheme.onSurfaceVariant),
+                    onPressed: onRename,
+                    iconSize: 22,
+                    style: IconButton.styleFrom(
+                      padding: const EdgeInsets.all(8),
+                      minimumSize: const Size(36, 36),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                  ),
+                  if (!item.isDirectory)
+                    IconButton(
+                      icon: Icon(Icons.copy, color: theme.colorScheme.onSurfaceVariant),
+                      onPressed: onCopy,
+                      iconSize: 22,
+                      style: IconButton.styleFrom(
+                        padding: const EdgeInsets.all(8),
+                        minimumSize: const Size(36, 36),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    ),
+                  if (showMove)
+                    IconButton(
+                      icon: Icon(Icons.drive_file_move, color: theme.colorScheme.onSurfaceVariant),
+                      onPressed: onMove,
+                      iconSize: 22,
+                      style: IconButton.styleFrom(
+                        padding: const EdgeInsets.all(8),
+                        minimumSize: const Size(36, 36),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    ),
+                  IconButton(
+                    icon: Icon(Icons.delete, color: theme.colorScheme.error, size: 22),
+                    onPressed: onDelete,
+                    iconSize: 22,
+                    style: IconButton.styleFrom(
+                      padding: const EdgeInsets.all(8),
+                      minimumSize: const Size(36, 36),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -1140,7 +1411,13 @@ class _StoragePermissionDialogState extends State<_StoragePermissionDialog>
   }
 
   Future<void> _checkAndDismissIfGranted() async {
-    if (await Permission.manageExternalStorage.isGranted && mounted) {
+    final manageStatus = await Permission.manageExternalStorage.status;
+    if (manageStatus.isGranted && mounted) {
+      Navigator.of(context).pop();
+      return;
+    }
+    // Android 10: manageExternalStorage is restricted; storage is sufficient
+    if (manageStatus.isRestricted && await Permission.storage.isGranted && mounted) {
       Navigator.of(context).pop();
     }
   }

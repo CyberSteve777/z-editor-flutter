@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:path/path.dart' as p;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
+import 'package:z_editor/data/level_repository.dart';
 import 'package:z_editor/screens/about_screen.dart';
 import 'package:z_editor/screens/editor_screen.dart';
 import 'package:z_editor/screens/level_list_screen.dart';
@@ -38,6 +40,7 @@ class _ZEditorAppState extends State<ZEditorApp> {
   Future<bool> Function()? _editorBackHandler;
 
   void _openLevel(String fileName, String filePath) {
+    LevelRepository.setLastOpenedLevelDirectory(p.dirname(filePath));
     setState(() {
       _editorFileName = fileName;
       _editorFilePath = filePath;

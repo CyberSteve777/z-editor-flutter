@@ -176,7 +176,7 @@ class _ModifyConveyorEventScreenState extends State<ModifyConveyorEventScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                FilledButton.icon(
+                PvzAddButton(
                   onPressed: () {
                     widget.onRequestPlantSelection((id) {
                       final rtid = _wrapRtid(id);
@@ -198,8 +198,8 @@ class _ModifyConveyorEventScreenState extends State<ModifyConveyorEventScreen> {
                       _sync();
                     });
                   },
-                  icon: const Icon(Icons.add, size: 18),
-                  label: const Text('Add'),
+                  size: 40,
+                  label: 'Add',
                 ),
               ],
             ),
@@ -261,7 +261,7 @@ class _ModifyConveyorEventScreenState extends State<ModifyConveyorEventScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                FilledButton.icon(
+                PvzAddButton(
                   onPressed: () {
                     widget.onRequestPlantSelection((id) {
                       final rtid = _wrapRtid(id);
@@ -271,8 +271,8 @@ class _ModifyConveyorEventScreenState extends State<ModifyConveyorEventScreen> {
                       }
                     });
                   },
-                  icon: const Icon(Icons.add, size: 18),
-                  label: const Text('Add'),
+                  size: 40,
+                  label: 'Add',
                 ),
               ],
             ),

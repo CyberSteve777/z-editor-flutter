@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/grid_item_repository.dart';
+import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/widgets/asset_image.dart';
@@ -224,50 +225,59 @@ class _SpawnGraveStonesEventScreenState
               ),
             ),
             const SizedBox(height: 16),
-            AspectRatio(
-              aspectRatio: 1.8,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: gridColor,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: borderColor),
-                ),
-                child: Column(
-                  children: List.generate(5, (row) {
-                    return Expanded(
-                      child: Row(
-                        children: List.generate(9, (col) {
-                          final isSelected = _data.spawnPositionsPool
-                              .any((p) => p.x == col && p.y == row);
-                          return Expanded(
-                            child: GestureDetector(
+            scaleTableForDesktop(
+              context: context,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final parsed = LevelParser.parseLevel(widget.levelFile);
+                  final isDeepSea = LevelParser.isDeepSeaLawn(parsed.levelDef);
+                  final cols = isDeepSea ? 10 : 9;
+                  final rows = isDeepSea ? 6 : 5;
+                  final cellSize = (constraints.maxWidth / cols).floorToDouble();
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: gridColor,
+                      borderRadius: BorderRadius.circular(6),
+                      border: Border.all(color: borderColor),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(rows, (row) {
+                        return Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(cols, (col) {
+                            final isSelected = _data.spawnPositionsPool
+                                .any((p) => p.x == col && p.y == row);
+                            return GestureDetector(
                               onTap: () => _togglePosition(col, row),
                               child: Container(
-                                margin: const EdgeInsets.all(0.5),
+                                width: cellSize,
+                                height: cellSize,
                                 decoration: BoxDecoration(
                                   color: isSelected
-                                      ? Colors.green.withValues(alpha: 0.8)
+                                      ? const Color(0xFF2E7D32)
                                       : Colors.transparent,
                                   border: Border.all(
                                     color: borderColor.withValues(alpha: 0.5),
                                     width: 0.5,
                                   ),
                                 ),
+                                alignment: Alignment.center,
                                 child: isSelected
-                                    ? const Icon(
-                                        Icons.check_circle,
+                                    ? Icon(
+                                        Icons.check,
                                         color: Colors.white,
-                                        size: 16,
+                                        size: (cellSize * 0.85).clamp(28, 56),
                                       )
                                     : null,
                               ),
-                            ),
-                          );
-                        }),
-                      ),
-                    );
-                  }),
-                ),
+                            );
+                          }),
+                        );
+                      }),
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(height: 8),

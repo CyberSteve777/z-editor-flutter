@@ -5,6 +5,8 @@ import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/zombie_repository.dart';
 import 'package:z_editor/l10n/resource_names.dart';
+import 'package:z_editor/theme/app_theme.dart';
+import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
 
 /// Seed bank properties. Ported from Z-Editor-master SeedBankPropertiesEP.kt
 class SeedBankPropertiesScreen extends StatefulWidget {
@@ -175,6 +177,10 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
     final isReversedZombie =
         _data.seedPacketType == 'UIIZombieSeedPacket';
 
+    final izombieColor = theme.brightness == Brightness.dark
+        ? pvzPurpleDark
+        : pvzPurpleLight;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -182,6 +188,11 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
           onPressed: widget.onBack,
         ),
         title: Text(isZombieMode ? 'Seed bank (I, Zombie)' : 'Seed bank'),
+        backgroundColor: isZombieMode ? izombieColor : null,
+        foregroundColor: isZombieMode ? theme.colorScheme.surface : null,
+        iconTheme: isZombieMode
+            ? IconThemeData(color: theme.colorScheme.surface)
+            : null,
         actions: [
           IconButton(
             icon: const Icon(Icons.help_outline),
@@ -203,7 +214,7 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
                   title: 'Available zombies',
                   description: 'Zombies available for I, Zombie mode',
                   items: _data.presetPlantList,
-                  accentColor: theme.colorScheme.secondary,
+                  accentColor: izombieColor,
                   isZombie: true,
                   onAdd: _addToZombieList,
                   onRemove: (i) => _removeFromList(_data.presetPlantList, i),
@@ -247,7 +258,7 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
                       children: [
                         Icon(
                           Icons.info_outline,
-                          color: theme.colorScheme.primary,
+                          color: izombieColor,
                         ),
                         const SizedBox(width: 12),
                         Expanded(
@@ -261,10 +272,11 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
                   ),
                 ),
               const SizedBox(height: 16),
-              _buildZombieModeSwitch(context, isZombieMode),
+              _buildZombieModeSwitch(context, isZombieMode, izombieColor),
               const SizedBox(height: 16),
               if (isZombieMode)
-                _buildReversedZombieSwitch(context, isReversedZombie),
+                _buildReversedZombieSwitch(
+                    context, isReversedZombie, izombieColor),
               const SizedBox(height: 32),
             ],
           ),
@@ -275,6 +287,9 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
 
   Widget _buildBasicRulesCard(BuildContext context, bool isZombieMode) {
     final theme = Theme.of(context);
+    final izombieColor = theme.brightness == Brightness.dark
+        ? pvzPurpleDark
+        : pvzPurpleLight;
 
     return Card(
       child: Padding(
@@ -287,7 +302,7 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
                 Icon(
                   Icons.yard,
                   color: isZombieMode
-                      ? theme.colorScheme.onSurfaceVariant
+                      ? izombieColor
                       : theme.colorScheme.primary,
                 ),
                 const SizedBox(width: 12),
@@ -399,18 +414,34 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
     );
   }
 
-  Widget _buildZombieModeSwitch(BuildContext context, bool isZombieMode) {
+  Widget _buildZombieModeSwitch(
+      BuildContext context, bool isZombieMode, Color izombieColor) {
     return Card(
-      child: SwitchListTile(
-        title: const Text(
-          'I, Zombie mode',
-          style: TextStyle(fontWeight: FontWeight.bold),
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          switchTheme: SwitchThemeData(
+            trackColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) return izombieColor;
+              return null;
+            }),
+            thumbColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
+                return Theme.of(context).colorScheme.surface;
+              }
+              return null;
+            }),
+          ),
         ),
-        subtitle: const Text(
-          'Enable to place zombies. Locks selection method.',
-        ),
-        value: isZombieMode,
-        onChanged: (v) {
+        child: SwitchListTile(
+          title: const Text(
+            'I, Zombie mode',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          subtitle: const Text(
+            'Enable to place zombies. Locks selection method.',
+          ),
+          value: isZombieMode,
+          onChanged: (v) {
           setState(() {
             _data.zombieMode = v;
             if (v) {
@@ -422,14 +453,30 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
             _sync();
           });
         },
+        ),
       ),
     );
   }
 
   Widget _buildReversedZombieSwitch(
-      BuildContext context, bool isReversedZombie) {
+      BuildContext context, bool isReversedZombie, Color izombieColor) {
     return Card(
-      child: SwitchListTile(
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          switchTheme: SwitchThemeData(
+            trackColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) return izombieColor;
+              return null;
+            }),
+            thumbColor: WidgetStateProperty.resolveWith((states) {
+              if (states.contains(WidgetState.selected)) {
+                return Theme.of(context).colorScheme.surface;
+              }
+              return null;
+            }),
+          ),
+        ),
+        child: SwitchListTile(
         title: const Text(
           'Reverse zombie faction',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -445,6 +492,7 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
             _sync();
           });
         },
+        ),
       ),
     );
   }
@@ -481,6 +529,19 @@ class _SeedBankPropertiesScreenState extends State<SeedBankPropertiesScreen> {
       ),
     );
   }
+}
+
+/// For plant list: use plant name if known, else zombie name if known, else id as-is (no plant_ prefix).
+String _plantOrZombieDisplayName(BuildContext context, String id) {
+  final plant = PlantRepository().getPlantInfoById(id);
+  if (plant != null) {
+    return ResourceNames.lookup(context, plant.name);
+  }
+  final zombie = ZombieRepository().getZombieById(id);
+  if (zombie != null) {
+    return _zombieDisplayName(context, id);
+  }
+  return id;
 }
 
 /// For I-zombie mode: show only translated name, never raw codename with zombie_ prefix.
@@ -579,16 +640,64 @@ class _ResourceListEditor extends StatelessWidget {
                   final id = items[i];
                   final name = isZombie
                       ? _zombieDisplayName(context, id)
-                      : ResourceNames.lookup(context, PlantRepository().getName(id));
-                  return InputChip(
-                    label: Text(name),
-                    deleteIcon: const Icon(Icons.close, size: 16),
-                    onDeleted: () => onRemove(i),
-                    backgroundColor:
-                        accentColor.withValues(alpha: 0.1),
-                    side: BorderSide(
-                      color: accentColor.withValues(alpha: 0.3),
+                      : _plantOrZombieDisplayName(context, id);
+                  final zombie = isZombie ? ZombieRepository().getZombieById(id) : null;
+                  final plant = !isZombie ? PlantRepository().getPlantInfoById(id) : null;
+                  final iconPath = isZombie
+                      ? (zombie?.iconAssetPath ?? 'assets/images/others/unknown.webp')
+                      : (plant?.iconAssetPath ?? 'assets/images/others/unknown.webp');
+                  const iconSize = 48.0;
+                  return Container(
+                    padding: const EdgeInsets.only(
+                      left: 4,
+                      top: 4,
+                      bottom: 4,
+                      right: 4,
                     ),
+                    decoration: BoxDecoration(
+                      color: accentColor.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: accentColor.withValues(alpha: 0.3),
+                      ),
+                    ),
+                    child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: SizedBox(
+                                width: iconSize,
+                                height: iconSize,
+                                child: AssetImageWidget(
+                                  assetPath: iconPath,
+                                  width: iconSize,
+                                  height: iconSize,
+                                  fit: BoxFit.cover,
+                                  altCandidates: imageAltCandidates(iconPath),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                name,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            IconButton(
+                              icon: const Icon(Icons.close, size: 18),
+                              onPressed: () => onRemove(i),
+                              style: IconButton.styleFrom(
+                                padding: const EdgeInsets.all(4),
+                                minimumSize: const Size(28, 28),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
+                            ),
+                          ],
+                        ),
                   );
                 }),
               ),

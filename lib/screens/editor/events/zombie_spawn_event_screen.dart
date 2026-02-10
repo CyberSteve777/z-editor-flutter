@@ -597,72 +597,91 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                       (isCustom && widget.onEditCustomZombie != null) ||
                       (!isCustom && widget.onInjectCustomZombie != null)) ...[
                     const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        if (compatibleCustom.isNotEmpty)
-                          Expanded(
-                            child: OutlinedButton.icon(
-                              onPressed: () {
-                                Navigator.pop(ctx);
-                                _showCustomZombieSwapDialog(
-                                  context,
-                                  options: compatibleCustom,
-                                  currentRtid: zombie.type,
-                                  zombie: zombie,
-                                  index: index,
-                                );
-                              },
-                              icon: const Icon(Icons.swap_horiz),
-                              label: Text(
-                                '${AppLocalizations.of(context)?.switchCustomZombie ?? 'Switch'} (${compatibleCustom.length})',
+                    Builder(
+                      builder: (ctx) {
+                        final isDark = Theme.of(ctx).brightness == Brightness.dark;
+                        final primaryYellow = isDark ? pvzYellowDark : pvzYellowLight;
+                        final secondaryYellow = isDark ? pvzYellowDarkMuted : pvzYellowLightMuted;
+                        return Row(
+                          children: [
+                            if (compatibleCustom.isNotEmpty)
+                              Expanded(
+                                child: OutlinedButton.icon(
+                                  onPressed: () {
+                                    Navigator.pop(ctx);
+                                    _showCustomZombieSwapDialog(
+                                      context,
+                                      options: compatibleCustom,
+                                      currentRtid: zombie.type,
+                                      zombie: zombie,
+                                      index: index,
+                                    );
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: secondaryYellow,
+                                    side: BorderSide(color: secondaryYellow),
+                                  ),
+                                  icon: const Icon(Icons.swap_horiz),
+                                  label: Text(
+                                    '${AppLocalizations.of(context)?.switchCustomZombie ?? 'Switch'} (${compatibleCustom.length})',
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        if (compatibleCustom.isNotEmpty &&
-                            ((isCustom && widget.onEditCustomZombie != null) ||
-                                (!isCustom && widget.onInjectCustomZombie != null)))
-                          const SizedBox(width: 8),
-                        if (isCustom && widget.onEditCustomZombie != null)
-                          Expanded(
-                            child: FilledButton.icon(
-                              onPressed: () {
-                                Navigator.pop(ctx);
-                                widget.onEditCustomZombie!(zombie.type);
-                              },
-                              icon: const Icon(Icons.edit),
-                              label: Text(
-                                AppLocalizations.of(context)?.editCustomZombieProperties ??
-                                    'Edit properties',
+                            if (compatibleCustom.isNotEmpty &&
+                                ((isCustom && widget.onEditCustomZombie != null) ||
+                                    (!isCustom && widget.onInjectCustomZombie != null)))
+                              const SizedBox(width: 8),
+                            if (isCustom && widget.onEditCustomZombie != null)
+                              Expanded(
+                                child: FilledButton.icon(
+                                  onPressed: () {
+                                    Navigator.pop(ctx);
+                                    widget.onEditCustomZombie!(zombie.type);
+                                  },
+                                  style: FilledButton.styleFrom(
+                                    backgroundColor: primaryYellow,
+                                    foregroundColor: Colors.black87,
+                                  ),
+                                  icon: const Icon(Icons.edit),
+                                  label: Text(
+                                    AppLocalizations.of(context)?.editCustomZombieProperties ??
+                                        'Edit properties',
+                                  ),
+                                ),
+                              )
+                            else if (!isCustom &&
+                                widget.onInjectCustomZombie != null)
+                              Expanded(
+                                child: FilledButton.icon(
+                                  onPressed: () {
+                                    final newRtid =
+                                        widget.onInjectCustomZombie!(baseType);
+                                    if (newRtid != null) {
+                                      _updateZombie(
+                                        index,
+                                        ZombieSpawnData(
+                                          type: newRtid,
+                                          row: zombie.row,
+                                          level: zombie.level,
+                                        ),
+                                      );
+                                    }
+                                    Navigator.pop(ctx);
+                                  },
+                                  style: FilledButton.styleFrom(
+                                    backgroundColor: primaryYellow,
+                                    foregroundColor: Colors.black87,
+                                  ),
+                                  icon: const Icon(Icons.build),
+                                  label: Text(
+                                    AppLocalizations.of(context)?.makeZombieAsCustom ??
+                                        'Make custom',
+                                  ),
+                                ),
                               ),
-                            ),
-                          )
-                        else if (!isCustom &&
-                            widget.onInjectCustomZombie != null)
-                          Expanded(
-                            child: FilledButton.icon(
-                              onPressed: () {
-                                final newRtid =
-                                    widget.onInjectCustomZombie!(baseType);
-                                if (newRtid != null) {
-                                  _updateZombie(
-                                    index,
-                                    ZombieSpawnData(
-                                      type: newRtid,
-                                      row: zombie.row,
-                                      level: zombie.level,
-                                    ),
-                                  );
-                                }
-                                Navigator.pop(ctx);
-                              },
-                              icon: const Icon(Icons.build),
-                              label: Text(
-                                AppLocalizations.of(context)?.makeZombieAsCustom ??
-                                    'Make custom',
-                              ),
-                            ),
-                          ),
-                      ],
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ],
@@ -922,42 +941,43 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                   ),
                 ),
                 const Spacer(),
-                TextButton.icon(
-                  onPressed: () => _addZombie(
-                    row: rowValue == 0 ? null : rowValue,
+                Text(
+                  '${zombies.length}',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
                   ),
-                  icon: const Icon(Icons.add_circle_outline, size: 18),
-                  label: const Text('Add'),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            if (zombies.isEmpty)
-              Text(
-                'No zombies in this lane',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant,
-                ),
-              )
-            else
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: zombies.map((entry) {
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                ...zombies.map((entry) {
                   final idx = entry.key;
                   final z = entry.value;
                   final baseType = _resolveBaseTypeName(z);
                   final info = ZombieRepository().getZombieById(baseType);
                   final iconPath = info?.iconAssetPath;
-                  return _ZombieIconCard(
-                    zombie: z,
+                  final isElite = _isElite(z);
+                  return ZombieIconCard(
                     iconPath: iconPath,
-                    isElite: _isElite(z),
+                    levelDisplay: isElite ? 'E' : (z.level == null ? '0' : '${z.level}'),
+                    isElite: isElite,
                     isCustom: _isCustomZombie(z),
                     onTap: () => _showZombieEditSheet(idx),
                   );
-                }).toList(),
-              ),
+                }),
+                PvzAddButton(
+                  onPressed: () => _addZombie(
+                    row: rowValue == 0 ? null : rowValue,
+                  ),
+                  useSecondaryColor: rowValue == 0,
+                  size: 56,
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -1133,14 +1153,14 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
               ),
             if (widget.onRequestPlantSelection != null) ...[
               const SizedBox(height: 8),
-              OutlinedButton.icon(
+              InputChip(
+                avatar: Icon(Icons.add_circle_outline, size: 18, color: theme.colorScheme.primary),
+                label: Text(ResourceNames.lookup(context, 'Add plant')),
                 onPressed: () {
                   widget.onRequestPlantSelection!.call((id) {
                     _addSpawnPlant(id);
                   });
                 },
-                icon: const Icon(Icons.add),
-                label: const Text('Add plant'),
               ),
             ],
           ],
@@ -1161,117 +1181,3 @@ class _CustomZombieOption {
   final String rtid;
 }
 
-/// Bigger zombie icon card with C (custom) badge in top-left, level badge in top-right.
-class _ZombieIconCard extends StatelessWidget {
-  const _ZombieIconCard({
-    required this.zombie,
-    required this.iconPath,
-    required this.isElite,
-    required this.isCustom,
-    required this.onTap,
-  });
-
-  final ZombieSpawnData zombie;
-  final String? iconPath;
-  final bool isElite;
-  final bool isCustom;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final levelText = isElite
-        ? 'E'
-        : (zombie.level == null ? '0' : '${zombie.level}');
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(8),
-        child: Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: theme.colorScheme.outline.withValues(alpha: 0.5),
-              width: 0.5,
-            ),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                if (iconPath != null)
-                  AssetImageWidget(
-                    assetPath: iconPath!,
-                    altCandidates: imageAltCandidates(iconPath!),
-                    width: 56,
-                    height: 56,
-                    fit: BoxFit.cover,
-                  )
-                else
-                  Center(
-                    child: Icon(
-                      Icons.warning,
-                      size: 24,
-                      color: theme.colorScheme.error,
-                    ),
-                  ),
-                if (isCustom)
-                  Positioned(
-                    top: 2,
-                    left: 2,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 4,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: pvzOrangeLight,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Text(
-                        'C',
-                        style: const TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                Positioned(
-                  top: 2,
-                  right: 2,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 4,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.onSurfaceVariant.withValues(
-                        alpha: 0.9,
-                      ),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      levelText,
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.surface,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}

@@ -126,6 +126,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get renameFail => 'Rename failed, file already exists';
 
   @override
+  String get copyReferenceOrDeep => 'Copy reference or make a deep copy?';
+
+  @override
+  String get copyReference => 'Copy reference';
+
+  @override
+  String get deepCopy => 'Deep copy';
+
+  @override
+  String get copyEventTarget => 'Target wave';
+
+  @override
+  String get targetWaveIndex => 'Target wave index';
+
+  @override
+  String get moveToWaveIndex => 'Move to wave index';
+
+  @override
+  String get invalidWaveIndex => 'Invalid wave index';
+
+  @override
   String get renamingFailed => 'Renaming failed';
 
   @override
@@ -162,6 +183,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moveSameFolder => 'Source and target are the same';
+
+  @override
+  String get moveFileExistsTitle => 'File already exists';
+
+  @override
+  String get moveFileExistsMessage =>
+      'A file with this name already exists in the destination folder.';
+
+  @override
+  String get moveOverwrite => 'Overwrite';
+
+  @override
+  String fileOverwritten(Object name) {
+    return 'File was overwritten: $name';
+  }
+
+  @override
+  String get moveSaveAsCopy => 'Save as copy';
+
+  @override
+  String get moveCancelled => 'Operation cancelled';
+
+  @override
+  String movedAs(Object name) {
+    return 'Moved and saved as $name';
+  }
 
   @override
   String get folderCreated => 'Folder created';
@@ -836,6 +883,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get confirmRemoveRefMessage =>
       'Remove this reference? The entity data will remain until all references are removed.';
+
+  @override
+  String get noZombiesInLane => 'No zombies in this lane';
 
   @override
   String get code => 'Code';

@@ -123,6 +123,27 @@ class AppLocalizationsZh extends AppLocalizations {
   String get renameFail => '重命名失败，已有同名文件';
 
   @override
+  String get copyReferenceOrDeep => '复制引用还是深拷贝？';
+
+  @override
+  String get copyReference => '复制引用';
+
+  @override
+  String get deepCopy => '深拷贝';
+
+  @override
+  String get copyEventTarget => '目标波次';
+
+  @override
+  String get targetWaveIndex => '目标波次序号';
+
+  @override
+  String get moveToWaveIndex => '移动至波次序号';
+
+  @override
+  String get invalidWaveIndex => '无效波次序号';
+
+  @override
   String get renamingFailed => '重命名失败';
 
   @override
@@ -159,6 +180,31 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get moveSameFolder => '源目录和目标目录相同';
+
+  @override
+  String get moveFileExistsTitle => '文件已存在';
+
+  @override
+  String get moveFileExistsMessage => '目标文件夹中已存在同名文件。';
+
+  @override
+  String get moveOverwrite => '覆盖';
+
+  @override
+  String fileOverwritten(Object name) {
+    return '文件已覆盖: $name';
+  }
+
+  @override
+  String get moveSaveAsCopy => '另存为副本';
+
+  @override
+  String get moveCancelled => '操作已取消';
+
+  @override
+  String movedAs(Object name) {
+    return '已移动并另存为 $name';
+  }
 
   @override
   String get folderCreated => '文件夹创建成功';
@@ -814,6 +860,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get confirmRemoveRefMessage => '确定要移除此引用吗？实体数据将保留直至所有引用被移除。';
+
+  @override
+  String get noZombiesInLane => '此车道没有僵尸';
 
   @override
   String get code => '代码';

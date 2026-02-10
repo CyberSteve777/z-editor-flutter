@@ -251,20 +251,22 @@ class _CustomZombiePropertiesScreenState
         title: const Text('Select size'),
         content: StatefulBuilder(
           builder: (context, setState) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: options.map((opt) {
-                return RadioListTile<String?>(
-                  value: opt,
-                  groupValue: selected,
-                  onChanged: (val) {
-                    setState(() {
-                      selected = val;
-                    });
-                  },
-                  title: Text(opt ?? 'null'),
-                );
-              }).toList(),
+            return RadioGroup<String?>(
+              groupValue: selected,
+              onChanged: (val) {
+                setState(() {
+                  selected = val;
+                });
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: options.map((opt) {
+                  return RadioListTile<String?>(
+                    value: opt,
+                    title: Text(opt ?? 'null'),
+                  );
+                }).toList(),
+              ),
             );
           },
         ),
@@ -406,6 +408,7 @@ class _CustomZombiePropertiesScreenState
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
+        behavior: HitTestBehavior.deferToChild,
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -542,7 +545,7 @@ class _CustomZombiePropertiesScreenState
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: DropdownButtonFormField<String>(
-                        value: _propsData.groundTrackName == 'ground_swatch'
+                        initialValue: _propsData.groundTrackName == 'ground_swatch'
                             ? 'ground_swatch'
                             : '',
                         decoration: const InputDecoration(
@@ -577,35 +580,52 @@ class _CustomZombiePropertiesScreenState
                   )),
               const SizedBox(height: 8),
               Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: _showSizeTypeDialog,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text('SizeType',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  Text(
-                                    _propsData.sizeType ?? 'null',
-                                    style: theme.textTheme.bodySmall?.copyWith(
-                                      color: theme.colorScheme.onSurfaceVariant,
+                child: Theme(
+                  data: theme.copyWith(
+                    switchTheme: SwitchThemeData(
+                      trackColor: WidgetStateProperty.resolveWith((states) {
+                        if (states.contains(WidgetState.selected)) {
+                          return themeColor; // Amber when on
+                        }
+                        return null;
+                      }),
+                      thumbColor: WidgetStateProperty.resolveWith((states) {
+                        if (states.contains(WidgetState.selected)) {
+                          return theme.colorScheme.onPrimary;
+                        }
+                        return null;
+                      }),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: _showSizeTypeDialog,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('SizeType',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    Text(
+                                      _propsData.sizeType ?? 'null',
+                                      style: theme.textTheme.bodySmall?.copyWith(
+                                        color: theme.colorScheme.onSurfaceVariant,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            const Icon(Icons.edit, size: 18),
-                          ],
+                              const Icon(Icons.edit, size: 18),
+                            ],
+                          ),
                         ),
-                      ),
-                      const Divider(height: 24),
+                        const Divider(height: 24),
                       _switchRow(
                         title: 'Disable drop fractions',
                         checked: _propsData.armDropFraction != null ||
@@ -717,6 +737,7 @@ class _CustomZombiePropertiesScreenState
                   ),
                 ),
               ),
+            ),
               const SizedBox(height: 16),
               Text('Resistences',
                   style: theme.textTheme.titleMedium?.copyWith(
@@ -897,14 +918,79 @@ class _CustomZombiePropertiesScreenState
     required double value,
     required ValueChanged<double> onChanged,
   }) {
-    final controller = TextEditingController(text: value.toString());
+    return _DoubleInputField(
+      key: ValueKey(label),
+      label: label,
+      value: value,
+      onChanged: onChanged,
+    );
+  }
+}
+
+class _DoubleInputField extends StatefulWidget {
+  const _DoubleInputField({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.onChanged,
+  });
+  final String label;
+  final double value;
+  final ValueChanged<double> onChanged;
+
+  @override
+  State<_DoubleInputField> createState() => _DoubleInputFieldState();
+}
+
+class _DoubleInputFieldState extends State<_DoubleInputField> {
+  late TextEditingController _controller;
+  late FocusNode _focusNode;
+  bool _isFocused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.value.toString());
+    _focusNode = FocusNode();
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  void _onFocusChange() {
+    final focused = _focusNode.hasFocus;
+    if (_isFocused != focused) {
+      setState(() => _isFocused = focused);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant _DoubleInputField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!_isFocused && oldWidget.value != widget.value) {
+      _controller.text = widget.value.toString();
+    }
+  }
+
+  @override
+  void dispose() {
+    _focusNode.removeListener(_onFocusChange);
+    _focusNode.dispose();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
+      controller: _controller,
+      focusNode: _focusNode,
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
-      decoration: InputDecoration(labelText: label, border: const OutlineInputBorder()),
+      decoration: InputDecoration(
+        labelText: widget.label,
+        border: const OutlineInputBorder(),
+      ),
       onChanged: (v) {
         final n = double.tryParse(v);
-        if (n != null) onChanged(n);
+        if (n != null) widget.onChanged(n);
       },
     );
   }

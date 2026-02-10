@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:z_editor/data/zombie_repository.dart';
+import 'package:z_editor/theme/app_theme.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/widgets/asset_image.dart'
@@ -88,7 +89,9 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
         !visibleTags.contains(_selectedTag)) {
       _selectedTag = visibleTags.first;
     }
-    final themeColor = theme.colorScheme.primary;
+    final themeColor = theme.brightness == Brightness.dark
+        ? pvzPurpleDark
+        : pvzPurpleLight;
 
     final appBarHeight =
         _selectedCategory == ZombieCategory.collection ? 120.0 : 168.0;
@@ -243,6 +246,8 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
       ),
       floatingActionButton: widget.multiSelect
           ? FloatingActionButton(
+              backgroundColor: themeColor,
+              foregroundColor: theme.colorScheme.surface,
               onPressed: () {
                 widget.onMultiZombieSelected?.call(_selectedIds.toList());
               },

@@ -2,8 +2,70 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/data/event_registry.dart';
 import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
+import 'package:z_editor/theme/app_theme.dart';
+import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
 
 /// Shared editor UI components. Ported from Z-Editor-master EditorComponents.kt
+
+/// Square add button with rounded corners and + symbol.
+/// Used in jittered, groundspawn and similar row-based editors.
+/// Green for numbered rows, gray for random row.
+class PvzAddButton extends StatelessWidget {
+  const PvzAddButton({
+    super.key,
+    required this.onPressed,
+    this.size = 48,
+    this.label,
+    this.useSecondaryColor = false,
+  });
+
+  final VoidCallback onPressed;
+  final double size;
+  final String? label;
+  /// When true, uses gray (surface variant) instead of green (e.g. for random row).
+  final bool useSecondaryColor;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final Color bgColor;
+    final Color iconColor;
+    if (useSecondaryColor) {
+      bgColor = theme.colorScheme.surfaceContainerHighest;
+      iconColor = theme.colorScheme.onSurfaceVariant;
+    } else {
+      bgColor = isDark ? pvzGreenDark.withValues(alpha: 0.35) : const Color(0xFFC8E6C9);
+      iconColor = pvzGreenDark;
+    }
+    final btn = Material(
+      color: bgColor,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onPressed,
+        borderRadius: BorderRadius.circular(12),
+        child: SizedBox(
+          width: size,
+          height: size,
+          child: Icon(Icons.add, color: iconColor, size: size * 0.55),
+        ),
+      ),
+    );
+    if (label != null) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          btn,
+          if (label!.isNotEmpty) ...[
+            const SizedBox(width: 8),
+            Text(label!, style: Theme.of(context).textTheme.labelLarge),
+          ],
+        ],
+      );
+    }
+    return btn;
+  }
+}
 
 /// Event chip for wave timeline. Ported from EventChip in EditorComponents.kt
 class EventChipWidget extends StatelessWidget {
@@ -156,6 +218,122 @@ class HelpSectionData {
   const HelpSectionData({required this.title, required this.body});
   final String title;
   final String body;
+}
+
+/// Zombie icon card with C (custom) badge in top-left, level badge in top-right.
+/// Reused by jittered, storm, grid item spawn and similar zombie editors.
+class ZombieIconCard extends StatelessWidget {
+  const ZombieIconCard({
+    super.key,
+    required this.iconPath,
+    required this.levelDisplay,
+    required this.isElite,
+    required this.isCustom,
+    required this.onTap,
+    this.size = 56,
+  });
+
+  final String? iconPath;
+  final String levelDisplay;
+  final bool isElite;
+  final bool isCustom;
+  final VoidCallback onTap;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: theme.colorScheme.outline.withValues(alpha: 0.5),
+              width: 0.5,
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                if (iconPath != null && iconPath!.isNotEmpty)
+                  AssetImageWidget(
+                    assetPath: iconPath!,
+                    altCandidates: imageAltCandidates(iconPath!),
+                    width: size,
+                    height: size,
+                    fit: BoxFit.cover,
+                  )
+                else
+                  Center(
+                    child: Icon(
+                      Icons.warning,
+                      size: 24,
+                      color: theme.colorScheme.error,
+                    ),
+                  ),
+                if (isCustom)
+                  Positioned(
+                    top: 2,
+                    left: 2,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 4,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: pvzOrangeLight,
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: const Text(
+                        'C',
+                        style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                Positioned(
+                  top: 2,
+                  right: 2,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 4,
+                      vertical: 2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.onSurfaceVariant.withValues(
+                        alpha: 0.9,
+                      ),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      levelDisplay,
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.surface,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 bool isDesktopPlatform(BuildContext context) {

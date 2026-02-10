@@ -14,6 +14,13 @@ const Color _pvzBluePrimary = Color(0xFF2196F3);
 const Color pvzOrangeLight = Color(0xFFE8A000);
 const Color pvzOrangeDark = Color(0xFFD5925E);
 
+/// Yellow for custom zombie action buttons (Edit, Make custom = primary; Switch = secondary)
+/// Light theme: brighter yellow for filled buttons, lighter for outlined
+const Color pvzYellowLight = Color(0xFFFDD835);
+const Color pvzYellowDark = Color(0xFFF9A825);
+const Color pvzYellowLightMuted = Color(0xFFFFF59D);
+const Color pvzYellowDarkMuted = Color(0xFFFFB300);
+
 /// Purple for Custom Zombie card in Wave Timeline (matches Kotlin PvzPurpleLight/Dark)
 const Color pvzPurpleLight = Color(0xFF673AB7);
 const Color pvzPurpleDark = Color(0xFF8F76BB);
@@ -55,6 +62,9 @@ ThemeData get lightTheme {
       elevation: 0,
       scrolledUnderElevation: 2,
     ),
+    chipTheme: ChipThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
   );
 }
 
@@ -79,6 +89,9 @@ ThemeData get darkTheme {
       centerTitle: false,
       elevation: 0,
       scrolledUnderElevation: 2,
+    ),
+    chipTheme: ChipThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   );
 }

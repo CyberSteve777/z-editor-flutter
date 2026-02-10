@@ -126,6 +126,28 @@ class AppLocalizationsRu extends AppLocalizations {
   String get renameFail => 'Ошибка переименования, файл уже существует';
 
   @override
+  String get copyReferenceOrDeep =>
+      'Скопировать ссылку или создать полную копию?';
+
+  @override
+  String get copyReference => 'Скопировать ссылку';
+
+  @override
+  String get deepCopy => 'Полная копия';
+
+  @override
+  String get copyEventTarget => 'Целевая волна';
+
+  @override
+  String get targetWaveIndex => 'Номер целевой волны';
+
+  @override
+  String get moveToWaveIndex => 'Переместить в волну №';
+
+  @override
+  String get invalidWaveIndex => 'Неверный номер волны';
+
+  @override
   String get renamingFailed => 'Ошибка переименования';
 
   @override
@@ -162,6 +184,32 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get moveSameFolder => 'Исходная и целевая папки совпадают';
+
+  @override
+  String get moveFileExistsTitle => 'Файл уже существует';
+
+  @override
+  String get moveFileExistsMessage =>
+      'В целевой папке уже есть файл с таким именем.';
+
+  @override
+  String get moveOverwrite => 'Перезаписать';
+
+  @override
+  String fileOverwritten(Object name) {
+    return 'Файл перезаписан: $name';
+  }
+
+  @override
+  String get moveSaveAsCopy => 'Сохранить как копию';
+
+  @override
+  String get moveCancelled => 'Операция отменена';
+
+  @override
+  String movedAs(Object name) {
+    return 'Перемещено и сохранено как $name';
+  }
 
   @override
   String get folderCreated => 'Папка создана';
@@ -840,6 +888,9 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get confirmRemoveRefMessage =>
       'Удалить эту ссылку? Данные объекта останутся до удаления всех ссылок.';
+
+  @override
+  String get noZombiesInLane => 'Нет зомби на этой полосе';
 
   @override
   String get code => 'Код';
