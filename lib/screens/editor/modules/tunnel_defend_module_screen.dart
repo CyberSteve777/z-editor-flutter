@@ -120,6 +120,12 @@ class _TunnelDefendModuleScreenState extends State<TunnelDefendModuleScreen> {
         }
       }
     }
+    for (final road in _data.roads) {
+      if (road.gridX < 0 || road.gridX >= _gridCols ||
+          road.gridY < 0 || road.gridY >= _gridRows) {
+        roads.add(road);
+      }
+    }
     _data = TunnelDefendModuleData(roads: roads);
     _moduleObj.objData = _data.toJson();
     widget.onChanged();
@@ -175,6 +181,59 @@ class _TunnelDefendModuleScreenState extends State<TunnelDefendModuleScreen> {
       }
     }
     _sync();
+  }
+
+  List<TunnelRoadData> get _roadsOutsideLawn => _data.roads.where((r) =>
+      r.gridX < 0 || r.gridX >= _gridCols ||
+      r.gridY < 0 || r.gridY >= _gridRows).toList();
+
+  bool get _isDefaultLawnSize => _gridRows == 5 && _gridCols == 9;
+
+  String _roadDisplayName(String img) =>
+      img.replaceAll('IMAGE_UI_MAUSOLEUM_TUNNEL_', '');
+
+  Future<void> _requestDeleteOutsideLawn() async {
+    final outside = _roadsOutsideLawn;
+    if (outside.isEmpty) return;
+    final l10n = AppLocalizations.of(context);
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(
+          l10n?.tunnelDefendDeleteOutsideConfirmTitle ??
+              'Delete path elements outside lawn?',
+        ),
+        content: Text(
+          l10n?.tunnelDefendDeleteOutsideConfirmMessage ??
+              'Remove path elements that are outside the 5×9 lawn grid. This cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l10n?.cancel ?? 'Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: FilledButton.styleFrom(
+              backgroundColor: Colors.amber.shade700,
+              foregroundColor: Colors.black87,
+            ),
+            child: Text(l10n?.tunnelDefendDeleteOutside ?? 'Delete path elements outside lawn'),
+          ),
+        ],
+      ),
+    );
+    if (ok == true && mounted) _deleteRoadsOutsideLawn();
+  }
+
+  void _deleteRoadsOutsideLawn() {
+    final inside = _data.roads.where((r) =>
+        r.gridX >= 0 && r.gridX < _gridCols &&
+        r.gridY >= 0 && r.gridY < _gridRows).toList();
+    _data = TunnelDefendModuleData(roads: inside);
+    _moduleObj.objData = _data.toJson();
+    widget.onChanged();
+    setState(() {});
   }
 
   @override
@@ -312,6 +371,58 @@ class _TunnelDefendModuleScreenState extends State<TunnelDefendModuleScreen> {
                 ),
               ),
             ),
+            if (_isDefaultLawnSize && _roadsOutsideLawn.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Card(
+                color: gridBg,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: RichText(
+                              text: TextSpan(
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                ),
+                                children: [
+                                  TextSpan(
+                                    text: l10n?.tunnelDefendPathOutsideLawn ??
+                                        'Path elements outside of the lawn: ',
+                                  ),
+                                  TextSpan(
+                                    text: _roadsOutsideLawn.map((r) =>
+                                        '${_roadDisplayName(r.img)} (R${r.gridY + 1}:C${r.gridX + 1})').join(', '),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          FilledButton.icon(
+                            onPressed: _requestDeleteOutsideLawn,
+                            style: FilledButton.styleFrom(
+                              backgroundColor: Colors.amber.shade700,
+                              foregroundColor: Colors.black87,
+                            ),
+                            icon: const Icon(Icons.delete_outline, size: 18),
+                            label: Text(
+                              l10n?.tunnelDefendDeleteOutside ??
+                                  'Delete path elements outside lawn',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
             const SizedBox(height: 16),
             Card(
               color: gridBg,

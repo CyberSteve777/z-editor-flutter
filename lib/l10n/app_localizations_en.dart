@@ -1269,7 +1269,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get frozenPlantPlacementSelectedPosition => 'Selected position';
 
   @override
-  String get frozenPlantPlacementPlaceHere => 'Place here';
+  String get frozenPlantPlacementPlaceHere => 'Add plant';
 
   @override
   String get frozenPlantPlacementPlantList => 'Plant list (row-first)';
@@ -2313,7 +2313,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectedPosition => 'Selected position';
 
   @override
-  String get placeHere => 'Place here';
+  String get placePlant => 'Place plant';
 
   @override
   String get plantList => 'Plant list (row-first)';
@@ -3585,6 +3585,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get tunnelDefendClearConfirmMessage =>
       'Remove all placed tunnel components from the grid. This cannot be undone.';
+
+  @override
+  String get tunnelDefendPathOutsideLawn =>
+      'Path elements outside of the lawn: ';
+
+  @override
+  String get tunnelDefendDeleteOutside => 'Delete path elements outside lawn';
+
+  @override
+  String get tunnelDefendDeleteOutsideConfirmTitle =>
+      'Delete path elements outside lawn?';
+
+  @override
+  String get tunnelDefendDeleteOutsideConfirmMessage =>
+      'Remove path elements that are outside the 5×9 lawn grid. This cannot be undone.';
 
   @override
   String get moduleTitle_LawnMowerProperties => 'Lawn mower';

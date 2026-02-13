@@ -1217,7 +1217,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get frozenPlantPlacementSelectedPosition => '选中位置';
 
   @override
-  String get frozenPlantPlacementPlaceHere => '在此放置';
+  String get frozenPlantPlacementPlaceHere => '地方植物';
 
   @override
   String get frozenPlantPlacementPlantList => '植物分布列表（行优先）';
@@ -2196,7 +2196,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get selectedPosition => '已选位置';
 
   @override
-  String get placeHere => '放置此处';
+  String get placePlant => '地方植物';
 
   @override
   String get plantList => '植物列表（先行后列）';
@@ -3415,6 +3415,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tunnelDefendClearConfirmMessage => '将移除网格上所有已放置的地道组件，此操作不可撤销。';
+
+  @override
+  String get tunnelDefendPathOutsideLawn => '场地外的路径组件：';
+
+  @override
+  String get tunnelDefendDeleteOutside => '删除场地外的路径组件';
+
+  @override
+  String get tunnelDefendDeleteOutsideConfirmTitle => '删除场地外的路径组件？';
+
+  @override
+  String get tunnelDefendDeleteOutsideConfirmMessage =>
+      '将移除 5×9 场地网格之外的路径组件，此操作不可撤销。';
 
   @override
   String get moduleTitle_LawnMowerProperties => '小推车';

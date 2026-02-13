@@ -1275,7 +1275,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get frozenPlantPlacementSelectedPosition => 'Выбранная позиция';
 
   @override
-  String get frozenPlantPlacementPlaceHere => 'Разместить здесь';
+  String get frozenPlantPlacementPlaceHere => 'Разместить растение';
 
   @override
   String get frozenPlantPlacementPlantList => 'Список растений (по рядам)';
@@ -1897,7 +1897,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get addItem => 'Добавить предмет';
+  String get addItem => 'Добавить препятствие';
 
   @override
   String get addWind => 'Добавить ветер';
@@ -1926,7 +1926,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get selectGridItem => 'Выбрать предмет';
 
   @override
-  String get addItemTitle => 'Добавить предмет';
+  String get addItemTitle => 'Добавить препятствие';
 
   @override
   String get initialPlantLayout => 'Начальная расстановка растений';
@@ -2327,7 +2327,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get selectedPosition => 'Выбранная позиция';
 
   @override
-  String get placeHere => 'Разместить здесь';
+  String get placePlant => 'Разместить растение';
 
   @override
   String get plantList => 'Список растений (строки сначала)';
@@ -2467,13 +2467,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get protectedPlants => 'Защищаемые растения';
 
   @override
-  String get addPlant => 'Добавить растение';
+  String get addPlant => 'Разместить растение';
 
   @override
   String get protectedGridItems => 'Защищаемые предметы';
 
   @override
-  String get addGridItem => 'Добавить предмет';
+  String get addGridItem => 'Разместить препятствие';
 
   @override
   String get spawnTimer => 'Таймер спавна';
@@ -3509,7 +3509,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Уровень может работать некорректно. Рекомендуется добавить:';
 
   @override
-  String get itemListRowFirst => 'Список предметов (по строкам)';
+  String get itemListRowFirst => 'Список препятствий (по строкам)';
 
   @override
   String get railcartCowboy => 'Ковбой';
@@ -3608,6 +3608,20 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get tunnelDefendClearConfirmMessage =>
       'Удалить все размещённые компоненты тоннелей из сетки. Действие нельзя отменить.';
+
+  @override
+  String get tunnelDefendPathOutsideLawn => 'Элементы путей вне газона: ';
+
+  @override
+  String get tunnelDefendDeleteOutside => 'Удалить элементы путей вне газона';
+
+  @override
+  String get tunnelDefendDeleteOutsideConfirmTitle =>
+      'Удалить элементы путей вне газона?';
+
+  @override
+  String get tunnelDefendDeleteOutsideConfirmMessage =>
+      'Удалить элементы путей за пределами сетки газона 5×9. Действие нельзя отменить.';
 
   @override
   String get moduleTitle_LawnMowerProperties => 'Газонокосилки';

@@ -2437,7 +2437,7 @@ abstract class AppLocalizations {
   /// No description provided for @frozenPlantPlacementPlaceHere.
   ///
   /// In en, this message translates to:
-  /// **'Place here'**
+  /// **'Add plant'**
   String get frozenPlantPlacementPlaceHere;
 
   /// No description provided for @frozenPlantPlacementPlantList.
@@ -4318,11 +4318,11 @@ abstract class AppLocalizations {
   /// **'Selected position'**
   String get selectedPosition;
 
-  /// No description provided for @placeHere.
+  /// No description provided for @placePlant.
   ///
   /// In en, this message translates to:
-  /// **'Place here'**
-  String get placeHere;
+  /// **'Place plant'**
+  String get placePlant;
 
   /// No description provided for @plantList.
   ///
@@ -6645,6 +6645,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove all placed tunnel components from the grid. This cannot be undone.'**
   String get tunnelDefendClearConfirmMessage;
+
+  /// No description provided for @tunnelDefendPathOutsideLawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Path elements outside of the lawn: '**
+  String get tunnelDefendPathOutsideLawn;
+
+  /// No description provided for @tunnelDefendDeleteOutside.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete path elements outside lawn'**
+  String get tunnelDefendDeleteOutside;
+
+  /// No description provided for @tunnelDefendDeleteOutsideConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete path elements outside lawn?'**
+  String get tunnelDefendDeleteOutsideConfirmTitle;
+
+  /// No description provided for @tunnelDefendDeleteOutsideConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove path elements that are outside the 5×9 lawn grid. This cannot be undone.'**
+  String get tunnelDefendDeleteOutsideConfirmMessage;
 
   /// No description provided for @moduleTitle_LawnMowerProperties.
   ///

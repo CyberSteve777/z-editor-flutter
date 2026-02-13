@@ -174,10 +174,10 @@ class _InitialPlantEntryScreenState extends State<InitialPlantEntryScreen> {
                               ],
                             ),
                             const Spacer(),
-                            PvzAddButton(
+                            FilledButton.icon(
                               onPressed: _handleSelectPlant,
-                              size: 40,
-                              label: l10n?.placeHere ?? 'Place here',
+                              icon: const Icon(Icons.add, size: 18),
+                              label: Text(l10n?.placePlant ?? 'Place plant'),
                             ),
                           ],
                         ),
