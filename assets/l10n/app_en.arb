@@ -1101,7 +1101,7 @@
   "gridItemCategoryAll": "All",
   "gridItemCategoryScene": "Scene",
   "gridItemCategoryTrap": "Trap",
-  "gridItemCategoryPlants": "Plants",
+  "gridItemCategorySpawnableObjects": "Spawnable Objects",
   "sunDropperConfigTitle": "Sun drop config",
   "customLocalParams": "Custom local params",
   "currentModeLocal": "Current: local (@CurrentLevel)",

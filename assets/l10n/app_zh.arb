@@ -1130,7 +1130,7 @@
   "gridItemCategoryAll": "全部",
   "gridItemCategoryScene": "场景",
   "gridItemCategoryTrap": "陷阱",
-  "gridItemCategoryPlants": "植物",
+  "gridItemCategorySpawnableObjects": "生成物品",
   "sunDropperConfigTitle": "阳光掉落配置",
   "customLocalParams": "自定义本地参数",
   "currentModeLocal": "当前: 本地编辑 (@CurrentLevel)",

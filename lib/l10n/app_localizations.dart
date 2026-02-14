@@ -6346,11 +6346,11 @@ abstract class AppLocalizations {
   /// **'Trap'**
   String get gridItemCategoryTrap;
 
-  /// No description provided for @gridItemCategoryPlants.
+  /// No description provided for @gridItemCategorySpawnableObjects.
   ///
   /// In en, this message translates to:
-  /// **'Plants'**
-  String get gridItemCategoryPlants;
+  /// **'Spawnable Objects'**
+  String get gridItemCategorySpawnableObjects;
 
   /// No description provided for @sunDropperConfigTitle.
   ///

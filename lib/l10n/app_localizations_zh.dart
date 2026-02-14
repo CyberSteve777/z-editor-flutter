@@ -3257,7 +3257,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get gridItemCategoryTrap => '陷阱';
 
   @override
-  String get gridItemCategoryPlants => '植物';
+  String get gridItemCategorySpawnableObjects => '生成物品';
 
   @override
   String get sunDropperConfigTitle => '阳光掉落配置';

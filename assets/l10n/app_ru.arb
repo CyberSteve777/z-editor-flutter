@@ -1130,7 +1130,7 @@
   "gridItemCategoryAll": "Все",
   "gridItemCategoryScene": "Сцена",
   "gridItemCategoryTrap": "Ловушка",
-  "gridItemCategoryPlants": "Растения",
+  "gridItemCategorySpawnableObjects": "Появляющиеся препятствия",
   "sunDropperConfigTitle": "Настройка падения солнца",
   "customLocalParams": "Пользовательские локальные параметры",
   "currentModeLocal": "Текущий: локальный (@CurrentLevel)",

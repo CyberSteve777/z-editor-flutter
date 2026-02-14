@@ -37,7 +37,6 @@ class _GridItemSelectionScreenState extends State<GridItemSelectionScreen> {
         GridItemFilterMode.restricted => item.tag == GridItemTag.normal,
       };
       final isSearchMatched = _searchQuery.trim().isEmpty ||
-          item.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           item.typeName.toLowerCase().contains(_searchQuery.toLowerCase());
       return isModeMatched && isSearchMatched;
     }).toList();
@@ -158,7 +157,7 @@ class _GridItemSelectionScreenState extends State<GridItemSelectionScreen> {
                               );
                               final name = displayName != 'griditem_${item.typeName}'
                                   ? displayName
-                                  : item.name;
+                                  : item.typeName;
                               return _GridItemCard(
                                 item: item,
                                 name: name,
@@ -187,8 +186,8 @@ class _GridItemSelectionScreenState extends State<GridItemSelectionScreen> {
         return l10n.gridItemCategoryScene;
       case GridItemCategory.trap:
         return l10n.gridItemCategoryTrap;
-      case GridItemCategory.plants:
-        return l10n.gridItemCategoryPlants;
+      case GridItemCategory.spawnableObjects:
+        return l10n.gridItemCategorySpawnableObjects;
     }
   }
 }

@@ -3441,7 +3441,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get gridItemCategoryTrap => 'Ловушка';
 
   @override
-  String get gridItemCategoryPlants => 'Растения';
+  String get gridItemCategorySpawnableObjects => 'Появляющиеся препятствия';
 
   @override
   String get sunDropperConfigTitle => 'Настройка падения солнца';

@@ -3420,7 +3420,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gridItemCategoryTrap => 'Trap';
 
   @override
-  String get gridItemCategoryPlants => 'Plants';
+  String get gridItemCategorySpawnableObjects => 'Spawnable Objects';
 
   @override
   String get sunDropperConfigTitle => 'Sun drop config';
