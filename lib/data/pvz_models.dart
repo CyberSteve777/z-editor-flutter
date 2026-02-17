@@ -1800,17 +1800,20 @@ class SeedRainItem {
 // === Zombie Spawn ===
 
 class ZombieSpawnData {
-  ZombieSpawnData({this.type = '', this.level, this.row});
+  ZombieSpawnData({this.type = '', this.level, this.row, this.direction});
 
   String type;
   int? level;
   int? row;
+  /// Direction zombie comes from: "left" or "right". Null = right (game default).
+  String? direction;
 
   factory ZombieSpawnData.fromJson(Map<String, dynamic> json) {
     return ZombieSpawnData(
       type: json['Type'] as String? ?? '',
       level: json['Level'] as int?,
       row: json['Row'] as int?,
+      direction: json['Direction'] as String?,
     );
   }
 
@@ -1818,6 +1821,7 @@ class ZombieSpawnData {
     final Map<String, dynamic> data = {'Type': type};
     if (level != null) data['Level'] = level;
     if (row != null) data['Row'] = row;
+    if (direction != null) data['Direction'] = direction;
     return data;
   }
 }
@@ -2741,7 +2745,7 @@ class MagicMirrorArrayData {
     this.mirror1GridY = 2,
     this.mirror2GridX = 6,
     this.mirror2GridY = 2,
-    this.typeIndex = 1,
+    this.typeIndex,
     this.mirrorExistDuration = 300,
   });
 
@@ -2749,7 +2753,8 @@ class MagicMirrorArrayData {
   int mirror1GridY;
   int mirror2GridX;
   int mirror2GridY;
-  int typeIndex;
+  /// null means "no style" - TypeIndex is omitted in JSON
+  int? typeIndex;
   int mirrorExistDuration;
 
   factory MagicMirrorArrayData.fromJson(Map<String, dynamic> json) {
@@ -2758,19 +2763,24 @@ class MagicMirrorArrayData {
       mirror1GridY: json['Mirror1GridY'] as int? ?? 2,
       mirror2GridX: json['Mirror2GridX'] as int? ?? 6,
       mirror2GridY: json['Mirror2GridY'] as int? ?? 2,
-      typeIndex: json['TypeIndex'] as int? ?? 1,
+      typeIndex: json['TypeIndex'] as int?,
       mirrorExistDuration: json['MirrorExistDuration'] as int? ?? 300,
     );
   }
 
-  Map<String, dynamic> toJson() => {
-    'Mirror1GridX': mirror1GridX,
-    'Mirror1GridY': mirror1GridY,
-    'Mirror2GridX': mirror2GridX,
-    'Mirror2GridY': mirror2GridY,
-    'TypeIndex': typeIndex,
-    'MirrorExistDuration': mirrorExistDuration,
-  };
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{
+      'Mirror1GridX': mirror1GridX,
+      'Mirror1GridY': mirror1GridY,
+      'Mirror2GridX': mirror2GridX,
+      'Mirror2GridY': mirror2GridY,
+      'MirrorExistDuration': mirrorExistDuration,
+    };
+    if (typeIndex != null) {
+      map['TypeIndex'] = typeIndex;
+    }
+    return map;
+  }
 }
 
 class FairyTaleFogWaveActionData {

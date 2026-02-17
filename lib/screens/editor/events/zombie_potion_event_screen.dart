@@ -5,7 +5,7 @@ import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
-import 'package:z_editor/widgets/asset_image.dart';
+import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
 import 'package:z_editor/widgets/editor_components.dart';
 
 /// Zombie potion event editor. Ported from Z-Editor-master ZombiePotionActionPropsEP.kt
@@ -34,6 +34,15 @@ class _ZombiePotionEventScreenState extends State<ZombiePotionEventScreen> {
   late ZombiePotionActionPropsData _data;
   int _selectedX = 0;
   int _selectedY = 0;
+  ZombiePotionData? _itemToDelete;
+
+  bool get _isDeepSeaLawn {
+    final parsed = LevelParser.parseLevel(widget.levelFile);
+    return LevelParser.isDeepSeaLawn(parsed.levelDef);
+  }
+
+  int get _gridCols => _isDeepSeaLawn ? 10 : 9;
+  int get _gridRows => _isDeepSeaLawn ? 6 : 5;
 
   @override
   void initState() {
@@ -96,11 +105,22 @@ class _ZombiePotionEventScreenState extends State<ZombiePotionEventScreen> {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
     final alias = LevelParser.extractAlias(widget.rtid);
-    final sortedItems = List<ZombiePotionData>.from(_data.potions)
-      ..sort((a, b) {
-        final r = a.location.y.compareTo(b.location.y);
-        return r != 0 ? r : a.location.x.compareTo(b.location.x);
-      });
+    final itemsAtPosition = _data.potions
+        .where((p) =>
+            p.location.x == _selectedX &&
+            p.location.y == _selectedY &&
+            p.location.x >= 0 &&
+            p.location.y >= 0 &&
+            p.location.x < _gridCols &&
+            p.location.y < _gridRows)
+        .toList();
+    final itemsOutsideLawn = _data.potions
+        .where((p) =>
+            p.location.x < 0 ||
+            p.location.y < 0 ||
+            p.location.x >= _gridCols ||
+            p.location.y >= _gridRows)
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -142,153 +162,382 @@ class _ZombiePotionEventScreenState extends State<ZombiePotionEventScreen> {
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Text(
-                                l10n?.selectedPosition ?? 'Selected position',
-                                style: theme.textTheme.bodySmall,
-                              ),
-                              Text(
-                                'R${_selectedY + 1} : C${_selectedX + 1}',
-                                style: theme.textTheme.titleLarge?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    l10n?.selectedPosition ?? 'Selected position',
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: theme.colorScheme.onSurfaceVariant,
+                                    ),
+                                  ),
+                                  Text(
+                                    'R${_selectedY + 1} : C${_selectedX + 1}',
+                                    style: theme.textTheme.titleLarge?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: theme.colorScheme.primary,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          const Spacer(),
-                          FilledButton.icon(
-                            onPressed: _addPotion,
-                            icon: const Icon(Icons.add),
-                            label: Text(l10n?.addItem ?? 'Add item'),
-                          ),
+                          const SizedBox(height: 16),
+                          _buildGrid(),
                         ],
                       ),
-                      const SizedBox(height: 16),
-                      AspectRatio(
-                        aspectRatio: 9 / 5,
-                        child: GridView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 9,
-                            childAspectRatio: 1,
-                          ),
-                          itemCount: 45,
-                          itemBuilder: (context, i) {
-                            final col = i % 9;
-                            final row = i ~/ 9;
-                            final isSelected =
-                                row == _selectedY && col == _selectedX;
-                            final cellItems = _data.potions
-                                .where((p) =>
-                                    p.location.x == col && p.location.y == row)
-                                .toList();
-                            final firstItem = cellItems.firstOrNull;
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _selectedX = col;
-                                  _selectedY = row;
-                                });
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: isSelected
-                                      ? theme.colorScheme.primaryContainer
-                                      : theme.colorScheme.surfaceContainerHighest,
-                                  border: Border.all(
-                                    color: isSelected
-                                        ? theme.colorScheme.primary
-                                        : theme.colorScheme.outlineVariant,
-                                  ),
-                                ),
-                                child: firstItem != null
-                                    ? Center(
-                                        child: AssetImageWidget(
-                                          assetPath: GridItemRepository
-                                              .getIconPath(firstItem.type),
-                                          width: 24,
-                                          height: 24,
-                                          fit: BoxFit.contain,
-                                        ),
-                                      )
-                                    : null,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    l10n?.itemsSortedByRow ?? 'Items (sorted by row)',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      ...itemsAtPosition.map((item) => _PotionItemCard(
+                            item: item,
+                            gridRows: _gridRows,
+                            gridCols: _gridCols,
+                            showCoordinates: false,
+                            onDelete: () => setState(() => _itemToDelete = item),
+                            deleteTooltip: l10n?.delete ?? 'Delete',
+                          )),
+                      AddItemCard(onPressed: _addPotion),
                     ],
                   ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                l10n?.itemsSortedByRow ?? 'Items (sorted by row)',
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-              ...sortedItems.map((item) {
-                final isSelected =
-                    item.location.x == _selectedX && item.location.y == _selectedY;
-                return Card(
-                  margin: const EdgeInsets.only(bottom: 8),
-                  color: isSelected
-                      ? theme.colorScheme.primaryContainer.withValues(
-                          alpha: 0.5,
-                        )
-                      : null,
-                  child: ListTile(
-                    onTap: () {
-                      setState(() {
-                        _selectedX = item.location.x;
-                        _selectedY = item.location.y;
-                      });
-                    },
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: AssetImageWidget(
-                        assetPath: GridItemRepository.getIconPath(item.type),
-                        width: 36,
-                        height: 36,
-                        fit: BoxFit.cover,
+                  if (itemsOutsideLawn.isNotEmpty) ...[
+                    const SizedBox(height: 24),
+                    Text(
+                      l10n?.outsideLawnItems ?? 'Objects outside the lawn',
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
-                    title: Text(() {
-                      final d = ResourceNames.lookup(context, 'griditem_${item.type}');
-                      return d != 'griditem_${item.type}' ? d : item.type;
-                    }()),
-                    subtitle: Text(
-                      'R${item.location.y + 1}:C${item.location.x + 1}',
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: itemsOutsideLawn
+                          .map((item) => _PotionItemCard(
+                                item: item,
+                                gridRows: _gridRows,
+                                gridCols: _gridCols,
+                                showCoordinates: true,
+                                onDelete: () => setState(() => _itemToDelete = item),
+                                deleteTooltip: l10n?.delete ?? 'Delete',
+                              ))
+                          .toList(),
                     ),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete),
-                      tooltip: l10n?.delete ?? 'Delete',
-                      onPressed: () => _removePotion(item),
-                    ),
+                  ],
+                  const SizedBox(height: 32),
+                ],
+              ),
+            ),
+            if (_itemToDelete != null) _buildDeleteDialog(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGrid() {
+    final theme = Theme.of(context);
+    return scaleTableForDesktop(
+      context: context,
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: AspectRatio(
+          aspectRatio: _gridCols / _gridRows,
+          child: Container(
+            decoration: BoxDecoration(
+              color: theme.brightness == Brightness.dark
+                  ? const Color(0xFF31383B)
+                  : const Color(0xFFD7ECF1),
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(color: const Color(0xFF6B899A), width: 1),
+            ),
+            child: Column(
+              children: List.generate(_gridRows, (row) {
+                return Expanded(
+                  child: Row(
+                    children: List.generate(_gridCols, (col) {
+                      final isSelected = row == _selectedY && col == _selectedX;
+                      final cellItems = _data.potions
+                          .where((p) =>
+                              p.location.x == col && p.location.y == row)
+                          .toList();
+                      final firstItem = cellItems.firstOrNull;
+                      final count = cellItems.length;
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () => setState(() {
+                            _selectedX = col;
+                            _selectedY = row;
+                          }),
+                          child: Container(
+                            margin: const EdgeInsets.all(0.5),
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? theme.colorScheme.primary.withValues(
+                                      alpha: 0.2,
+                                    )
+                                  : Colors.transparent,
+                              border: Border.all(
+                                color: isSelected
+                                    ? theme.colorScheme.primary
+                                    : const Color(0xFF6B899A),
+                                width: 0.5,
+                              ),
+                            ),
+                            child: count > 0 && firstItem != null
+                                ? Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      Positioned.fill(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: FittedBox(
+                                            fit: BoxFit.contain,
+                                            child: _PotionIconSmall(
+                                                firstItem.type),
+                                          ),
+                                        ),
+                                      ),
+                                      if (count > 1)
+                                        Positioned(
+                                          top: 2,
+                                          right: 2,
+                                          child: Container(
+                                            padding:
+                                                const EdgeInsets.symmetric(
+                                                  horizontal: 4,
+                                                  vertical: 2,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.black.withValues(
+                                                alpha: 0.6,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                            child: Text(
+                                              '+${count - 1}',
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 8,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  )
+                                : null,
+                          ),
+                        ),
+                      );
+                    }),
                   ),
                 );
               }),
-              const SizedBox(height: 32),
-            ],
+            ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDeleteDialog() {
+    final l10n = AppLocalizations.of(context);
+    final item = _itemToDelete!;
+    final displayName = ResourceNames.lookup(context, 'griditem_${item.type}');
+    final name = displayName != 'griditem_${item.type}' ? displayName : item.type;
+    return AlertDialog(
+      title: Text(l10n?.removeItem ?? 'Remove item'),
+      content: Text(
+        l10n?.removeItemConfirm('R${item.location.y + 1}:C${item.location.x + 1} $name') ??
+            'Remove R${item.location.y + 1}:C${item.location.x + 1} $name?',
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => setState(() => _itemToDelete = null),
+          child: Text(l10n?.cancel ?? 'Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            _removePotion(item);
+            setState(() => _itemToDelete = null);
+          },
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).colorScheme.error,
+          ),
+          child: Text(l10n?.remove ?? 'Remove'),
+        ),
+      ],
+    );
+  }
+}
+
+class _PotionIconSmall extends StatelessWidget {
+  const _PotionIconSmall(this.typeName);
+
+  final String typeName;
+
+  @override
+  Widget build(BuildContext context) {
+    final path = GridItemRepository.getIconPath(typeName);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(4),
+      child: AssetImageWidget(
+        assetPath: path,
+        fit: BoxFit.cover,
+        width: 32,
+        height: 32,
+        altCandidates: imageAltCandidates(path),
+      ),
+    );
+  }
+}
+
+class _PotionItemCard extends StatelessWidget {
+  const _PotionItemCard({
+    required this.item,
+    required this.gridRows,
+    required this.gridCols,
+    required this.showCoordinates,
+    required this.onDelete,
+    required this.deleteTooltip,
+  });
+
+  final ZombiePotionData item;
+  final int gridRows;
+  final int gridCols;
+  final bool showCoordinates;
+  final VoidCallback onDelete;
+  final String deleteTooltip;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final path = GridItemRepository.getIconPath(item.type);
+    final displayName = ResourceNames.lookup(context, 'griditem_${item.type}');
+    final name = displayName != 'griditem_${item.type}' ? displayName : item.type;
+
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: SizedBox(
+        width: 100,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                  child: Center(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: AssetImageWidget(
+                        assetPath: path,
+                        width: 64,
+                        height: 64,
+                        fit: BoxFit.cover,
+                        altCandidates: imageAltCandidates(path),
+                        errorWidget: Container(
+                          color: const Color(0xFFF5EEE8),
+                          width: 64,
+                          height: 64,
+                          alignment: Alignment.center,
+                          child: Text(
+                            item.type.isNotEmpty ? item.type[0] : '?',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF407A9A),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: IconButton(
+                    onPressed: onDelete,
+                    icon: const Icon(Icons.delete_outline, size: 18),
+                    tooltip: deleteTooltip,
+                    color: Colors.grey,
+                    padding: EdgeInsets.zero,
+                    constraints:
+                        const BoxConstraints(minWidth: 28, minHeight: 28),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  if (showCoordinates)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.warning_amber_rounded,
+                            color: Colors.amber.shade700,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'R${item.location.y + 1}:C${item.location.x + 1}',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: Colors.amber.shade700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

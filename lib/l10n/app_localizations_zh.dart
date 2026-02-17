@@ -300,6 +300,14 @@ class AppLocalizationsZh extends AppLocalizations {
       '1. 目录设置：首次进入请选择存放 JSON 关卡文件的目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n交流 QQ 群：562251204';
 
   @override
+  String get usageTextDesktop =>
+      '1. 目录设置：点击文件夹图标选择 JSON 关卡目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用 + 基于模板新建。\n3. 模块管理：在编辑器中添加新模块。\n4. 保存关卡：点击保存将修改写回 JSON 文件。\n交流 QQ 群：562251204';
+
+  @override
+  String get usageTextMobile =>
+      '1. 目录设置：点击文件夹图标选择 JSON 关卡目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n交流 QQ 群：562251204';
+
+  @override
   String get creditsSection => '致谢名单';
 
   @override
@@ -629,7 +637,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get waveTimelineGuideTitle => '操作指引';
 
   @override
-  String get waveTimelineGuideBody => '右滑：管理波次事件\n左滑：删除该波次\n点击pt：查看期望';
+  String get waveTimelineGuideBody => '右滑：管理波次事件\n左滑：删除波次\n点击pt：查看僵尸期望';
+
+  @override
+  String get waveTimelineGuideBodyDesktop =>
+      '左键点击波次：管理事件\n使用删除按钮：移除波次\n点击pt：查看僵尸期望';
+
+  @override
+  String get waveTimelineGuideBodyMobile => '右滑：管理波次事件\n左滑：删除波次\n点击pt：查看僵尸期望';
 
   @override
   String get waveDeadLinksTitle => '引用失效报警';
@@ -697,6 +712,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get waveEmptyRowHint => '空波次 (左右划操作)';
+
+  @override
+  String get waveEmptyRowHintDesktop => '空波次 (点击管理)';
+
+  @override
+  String get waveEmptyRowHintMobile => '空波次 (左右划操作)';
 
   @override
   String get removeFromWave => '从波次移除';
@@ -826,6 +847,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get deleteWaveConfirmCheckbox => '我确认永久删除此波次';
+
+  @override
   String get addEvent => '添加事件';
 
   @override
@@ -872,6 +896,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get confirmRemoveRefMessage => '确定要移除此引用吗？实体数据将保留直至所有引用被移除。';
+
+  @override
+  String get deleteEventConfirmCheckbox => '我理解此操作无法撤销';
 
   @override
   String get noZombiesInLane => '此车道没有僵尸';
@@ -1464,12 +1491,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get eventDesc_MagicMirrorWaveActionProps => '镜子传送门';
 
   @override
-  String get eventTitle_WaveActionMagicMirrorTeleportationArrayProps2 => '魔镜';
-
-  @override
-  String get eventDesc_WaveActionMagicMirrorTeleportationArrayProps2 => '镜子传送门';
-
-  @override
   String get weatherOption_DefaultSnow_label => '冰河洞穴 (DefaultSnow)';
 
   @override
@@ -1867,6 +1888,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get typeIndex => '类型索引';
 
   @override
+  String get noStyle => '无样式';
+
+  @override
   String styleN(int n) {
     return '样式 $n';
   }
@@ -2203,6 +2227,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get firstCostume => '首次装扮 (Avatar)';
+
+  @override
+  String get costumeOn => '服装: 开';
+
+  @override
+  String get costumeOff => '服装: 关';
+
+  @override
+  String get outsideLawnItems => '场地外的物体';
+
+  @override
+  String get zombieFromLeft => '从左侧';
 
   @override
   String get eventMagicMirror => '魔镜事件';

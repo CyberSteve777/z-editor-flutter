@@ -30,6 +30,7 @@ class EventSelectionScreen extends StatelessWidget {
         title: Text(
           l10n?.addEventForWave(waveIndex) ?? 'Add event for wave $waveIndex',
           style: const TextStyle(fontWeight: FontWeight.bold),
+          overflow: TextOverflow.ellipsis,
         ),
       ),
       body: ListView.builder(
@@ -140,8 +141,9 @@ class EventSelectionScreen extends StatelessWidget {
           return isTitle ? l10n.eventTitle_BassRainZombieSpawnerProps : l10n.eventDesc_BassRainZombieSpawnerProps;
         case 'BlackHoleWaveActionProps':
           return isTitle ? l10n.eventTitle_BlackHoleWaveActionProps : l10n.eventDesc_BlackHoleWaveActionProps;
-        case 'WaveActionMagicMirrorTeleportationArrayProps2':
-          return isTitle ? l10n.eventTitle_WaveActionMagicMirrorTeleportationArrayProps2 : l10n.eventDesc_WaveActionMagicMirrorTeleportationArrayProps2;
+        case 'MagicMirrorWaveActionProps':
+        case 'WaveActionMagicMirrorTeleportationArrayProps':
+          return isTitle ? l10n.eventTitle_MagicMirrorWaveActionProps : l10n.eventDesc_MagicMirrorWaveActionProps;
         default:
           return name;
       }

@@ -390,17 +390,20 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
+      isScrollControlled: true,
       builder: (ctx) {
         int rowValue = zombie.row ?? 0;
         int levelValue = zombie.level ?? 0;
+        bool fromLeft = zombie.direction == 'left';
         return StatefulBuilder(
           builder: (ctx, setModalState) {
             return Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                   Row(
                     children: [
                       if (iconPath != null)
@@ -478,6 +481,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                               type: zombie.type,
                               row: v == 0 ? null : v,
                               level: zombie.level,
+                              direction: fromLeft ? 'left' : null,
                             );
                             _updateZombie(index, updated);
                           },
@@ -502,6 +506,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                                     type: rtid,
                                     row: zombie.row,
                                     level: isEliteNew ? null : zombie.level,
+                                    direction: fromLeft ? 'left' : null,
                                   ),
                                 );
                               });
@@ -529,6 +534,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                           type: zombie.type,
                           row: zombie.row,
                           level: v ? null : 1,
+                          direction: fromLeft ? 'left' : null,
                         );
                         _updateZombie(index, updated);
                       },
@@ -551,6 +557,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                                 type: zombie.type,
                                 row: zombie.row,
                                 level: newLevel,
+                                direction: fromLeft ? 'left' : null,
                               );
                               _updateZombie(index, updated);
                             },
@@ -558,6 +565,21 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                         ],
                       ),
                   ],
+                  const SizedBox(height: 12),
+                  SwitchListTile(
+                    title: Text(l10n?.zombieFromLeft ?? 'From left'),
+                    value: fromLeft,
+                    onChanged: (v) {
+                      setModalState(() => fromLeft = v);
+                      final updated = ZombieSpawnData(
+                        type: zombie.type,
+                        row: zombie.row,
+                        level: zombie.level,
+                        direction: v ? 'left' : null,
+                      );
+                      _updateZombie(index, updated);
+                    },
+                  ),
                   const SizedBox(height: 12),
                   Row(
                     children: [
@@ -568,6 +590,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                               type: zombie.type,
                               row: rowValue == 0 ? null : rowValue,
                               level: isElite ? null : (levelValue == 0 ? null : levelValue),
+                              direction: fromLeft ? 'left' : null,
                             );
                             final list = List<ZombieSpawnData>.from(_zombies)
                               ..add(copy);
@@ -687,6 +710,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                     ),
                   ],
                 ],
+                ),
               ),
             );
           },

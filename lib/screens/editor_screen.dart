@@ -99,6 +99,11 @@ class EditorScreen extends StatefulWidget {
     required this.onRegisterBackHandler,
     required this.themeMode,
     required this.onCycleTheme,
+    required this.locale,
+    required this.onLocaleChanged,
+    required this.uiScale,
+    required this.onUiScaleChange,
+    required this.onLanguageTap,
   });
 
   final String fileName;
@@ -107,6 +112,11 @@ class EditorScreen extends StatefulWidget {
   final void Function(Future<bool> Function()? handler) onRegisterBackHandler;
   final ThemeMode themeMode;
   final VoidCallback onCycleTheme;
+  final Locale locale;
+  final ValueChanged<Locale> onLocaleChanged;
+  final double uiScale;
+  final ValueChanged<double> onUiScaleChange;
+  final void Function(BuildContext context) onLanguageTap;
 
   @override
   State<EditorScreen> createState() => _EditorScreenState();
@@ -295,10 +305,16 @@ class _EditorScreenState extends State<EditorScreen> {
           SnackBar(
             backgroundColor: snackColor,
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Icon(Icons.check_circle, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
-                Text(l10n?.saved ?? 'Saved'),
+                Expanded(
+                  child: Text(
+                    l10n?.saved ?? 'Saved',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
           ),
@@ -933,7 +949,8 @@ class _EditorScreenState extends State<EditorScreen> {
       return;
     }
 
-    if (objClass == 'MagicMirrorWaveActionProps') {
+    if (objClass == 'MagicMirrorWaveActionProps' ||
+        objClass == 'WaveActionMagicMirrorTeleportationArrayProps') {
       await Navigator.push(
         context,
         MaterialPageRoute(
@@ -1177,6 +1194,55 @@ class _EditorScreenState extends State<EditorScreen> {
         ),
       ),
     ).then((_) => _setActiveTab(EditorTabType.timeline));
+  }
+
+  void _showUiScaleDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    var tempScale = widget.uiScale;
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setDialogState) => AlertDialog(
+          title: Text(l10n.adjustUiSize),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(l10n.currentScale((tempScale * 100).toInt().toString())),
+              Slider(
+                value: tempScale,
+                min: 0.75,
+                max: 1.25,
+                onChanged: (v) => setDialogState(() => tempScale = v),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(child: Text(l10n.small, overflow: TextOverflow.ellipsis)),
+                  Flexible(child: Text(l10n.standard, overflow: TextOverflow.ellipsis)),
+                  Flexible(child: Text(l10n.large, overflow: TextOverflow.ellipsis)),
+                ],
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                widget.onUiScaleChange(1.0);
+                Navigator.pop(ctx);
+              },
+              child: Text(l10n.reset),
+            ),
+            TextButton(
+              onPressed: () {
+                widget.onUiScaleChange(tempScale);
+                Navigator.pop(ctx);
+              },
+              child: Text(l10n.done),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void _setActiveTab(EditorTabType type) {
@@ -1882,7 +1948,10 @@ class _EditorScreenState extends State<EditorScreen> {
         Theme.of(context).platform == TargetPlatform.linux;
     Widget body = Scaffold(
         appBar: AppBar(
-          title: Text(widget.fileName),
+          title: Text(
+            widget.fileName,
+            overflow: TextOverflow.ellipsis,
+          ),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async {
@@ -1895,6 +1964,16 @@ class _EditorScreenState extends State<EditorScreen> {
             },
           ),
           actions: [
+            IconButton(
+              icon: const Icon(Icons.language),
+              tooltip: l10n?.language ?? 'Language',
+              onPressed: () => widget.onLanguageTap(context),
+            ),
+            IconButton(
+              icon: const Icon(Icons.aspect_ratio),
+              tooltip: l10n?.uiSize ?? 'UI size',
+              onPressed: () => _showUiScaleDialog(context),
+            ),
             IconButton(
               icon: const Icon(Icons.code),
               tooltip: l10n?.tooltipJsonViewer ?? 'View/edit JSON',
@@ -1911,9 +1990,13 @@ class _EditorScreenState extends State<EditorScreen> {
                               levelFile: _levelFile!,
                               onBack: () => Navigator.pop(context),
                               onSaved: () {
-                                _markDirty();
-                                _parsedData = LevelParser.parseLevel(_levelFile!);
-                                setState(() {});
+                                if (_levelFile != null) {
+                                  setState(() {
+                                    _hasChanges = true;
+                                    _parsedData = LevelParser.parseLevel(_levelFile!);
+                                    _recalculateTabs();
+                                  });
+                                }
                               },
                             ),
                           ),

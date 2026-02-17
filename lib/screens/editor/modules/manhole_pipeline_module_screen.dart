@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
@@ -34,6 +35,17 @@ class _ManholePipelineModuleScreenState
   late TextEditingController _timeCtrl;
   late TextEditingController _damageCtrl;
 
+  bool get _isDeepSeaLawn {
+    final parsed = LevelParser.parseLevel(widget.levelFile);
+    return LevelParser.isDeepSeaLawn(parsed.levelDef);
+  }
+
+  int get _gridCols => _isDeepSeaLawn ? 10 : 9;
+  int get _gridRows => _isDeepSeaLawn ? 6 : 5;
+
+  int _clampCol(int x) => x.clamp(0, _gridCols - 1);
+  int _clampRow(int y) => y.clamp(0, _gridRows - 1);
+
   @override
   void initState() {
     super.initState();
@@ -63,6 +75,18 @@ class _ManholePipelineModuleScreenState
     }
     if (_data.pipelineList.isEmpty) {
       _data.pipelineList = [PipelineData(startX: 6, startY: 2, endX: 2, endY: 2)];
+    } else {
+      _data = ManholePipelineModuleData(
+        operationTimePerGrid: _data.operationTimePerGrid,
+        damagePerSecond: _data.damagePerSecond,
+        pipelineList: _data.pipelineList.map((p) => PipelineData(
+          startX: _clampCol(p.startX),
+          startY: _clampRow(p.startY),
+          endX: _clampCol(p.endX),
+          endY: _clampRow(p.endY),
+        )).toList(),
+      );
+      _moduleObj.objData = _data.toJson();
     }
     _timeCtrl = TextEditingController(text: '${_data.operationTimePerGrid}');
     _damageCtrl = TextEditingController(text: '${_data.damagePerSecond}');
@@ -235,34 +259,52 @@ class _ManholePipelineModuleScreenState
               ),
             ),
             const SizedBox(height: 16),
-            Row(
-              children: [
-                FilterChip(
-                  selected: !_editingEnd,
+            SegmentedButton<bool>(
+              segments: [
+                ButtonSegment(
+                  value: false,
                   label: Text(l10n.setStart),
-                  onSelected: (_) => setState(() => _editingEnd = false),
+                  icon: const Icon(Icons.login),
                 ),
-                const SizedBox(width: 8),
-                FilterChip(
-                  selected: _editingEnd,
+                ButtonSegment(
+                  value: true,
                   label: Text(l10n.setEnd),
-                  onSelected: (_) => setState(() => _editingEnd = true),
+                  icon: const Icon(Icons.logout),
                 ),
               ],
+              selected: {_editingEnd},
+              onSelectionChanged: (s) =>
+                  setState(() => _editingEnd = s.first),
             ),
             const SizedBox(height: 12),
             _buildGrid(theme),
             const SizedBox(height: 8),
-            Text(
-              l10n.manholePipelineStartEndFormat(
-                _current.startX,
-                _current.startY,
-                _current.endX,
-                _current.endY,
-              ),
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
+            Row(
+              children: [
+                if (_isOutOfLawn(_current.startX, _current.startY) ||
+                    _isOutOfLawn(_current.endX, _current.endY))
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Icon(
+                      Icons.warning_amber_rounded,
+                      color: Colors.amber.shade700,
+                      size: 24,
+                    ),
+                  ),
+                Expanded(
+                  child: Text(
+                    l10n.manholePipelineStartEndFormat(
+                      _current.startX,
+                      _current.startY,
+                      _current.endX,
+                      _current.endY,
+                    ),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -270,13 +312,16 @@ class _ManholePipelineModuleScreenState
     );
   }
 
+  bool _isOutOfLawn(int x, int y) =>
+      x < 0 || x >= _gridCols || y < 0 || y >= _gridRows;
+
   Widget _buildGrid(ThemeData theme) {
     return scaleTableForDesktop(
       context: context,
       child: Container(
         constraints: const BoxConstraints(maxWidth: 480),
         child: AspectRatio(
-          aspectRatio: 1.8,
+          aspectRatio: _gridCols / _gridRows,
           child: Container(
             decoration: BoxDecoration(
               color: theme.brightness == Brightness.dark
@@ -286,14 +331,32 @@ class _ManholePipelineModuleScreenState
               border: Border.all(color: theme.dividerColor),
             ),
             child: Column(
-              children: List.generate(5, (row) {
+              children: List.generate(_gridRows, (row) {
                 return Expanded(
                   child: Row(
-                    children: List.generate(9, (col) {
-                      final isStart =
-                          _current.startX == col && _current.startY == row;
-                      final isEnd =
-                          _current.endX == col && _current.endY == row;
+                    children: List.generate(_gridCols, (col) {
+                      final markersInCell = <({int index, bool isStart})>[];
+                      for (var i = 0; i < _data.pipelineList.length; i++) {
+                        final p = _data.pipelineList[i];
+                        if (p.startX == col && p.startY == row) {
+                          markersInCell.add((index: i, isStart: true));
+                        } else if (p.endX == col && p.endY == row) {
+                          markersInCell.add((index: i, isStart: false));
+                        }
+                      }
+                      markersInCell.sort((a, b) =>
+                          a.index == _selectedIndex
+                              ? 1
+                              : b.index == _selectedIndex
+                                  ? -1
+                                  : a.index.compareTo(b.index));
+                      final isTarget = markersInCell.any((m) => m.index == _selectedIndex) &&
+                          ((_editingEnd &&
+                                  col == _current.endX &&
+                                  row == _current.endY) ||
+                              (!_editingEnd &&
+                                  col == _current.startX &&
+                                  row == _current.startY));
                       return Expanded(
                         child: GestureDetector(
                           onTap: () {
@@ -320,27 +383,43 @@ class _ManholePipelineModuleScreenState
                           child: Container(
                             margin: const EdgeInsets.all(0.5),
                             decoration: BoxDecoration(
+                              color: isTarget
+                                  ? theme.colorScheme.primaryContainer
+                                  : null,
                               border: Border.all(
-                                color: theme.dividerColor,
-                                width: 0.5,
+                                color: isTarget
+                                    ? theme.colorScheme.primary
+                                    : theme.dividerColor,
+                                width: isTarget ? 1 : 0.5,
                               ),
                             ),
                             clipBehavior: Clip.hardEdge,
-                            child: isStart || isEnd
-                                ? SizedBox.expand(
-                                    child: AssetImageWidget(
-                                      assetPath: isStart
-                                          ? 'assets/images/griditems/steam_down.webp'
-                                          : 'assets/images/griditems/steam_up.webp',
-                                      fit: BoxFit.cover,
-                                      altCandidates: imageAltCandidates(
-                                        isStart
-                                            ? 'assets/images/griditems/steam_down.webp'
-                                            : 'assets/images/griditems/steam_up.webp',
-                                      ),
-                                    ),
-                                  )
-                                : null,
+                            child: markersInCell.isEmpty
+                                ? null
+                                : Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      for (final m in markersInCell)
+                                        Positioned.fill(
+                                          child: Opacity(
+                                            opacity: m.index == _selectedIndex
+                                                ? 1.0
+                                                : 0.5,
+                                            child: AssetImageWidget(
+                                              assetPath: m.isStart
+                                                  ? 'assets/images/griditems/steam_down.webp'
+                                                  : 'assets/images/griditems/steam_up.webp',
+                                              fit: BoxFit.cover,
+                                              altCandidates: imageAltCandidates(
+                                                m.isStart
+                                                    ? 'assets/images/griditems/steam_down.webp'
+                                                    : 'assets/images/griditems/steam_up.webp',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
                           ),
                         ),
                       );

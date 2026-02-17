@@ -133,10 +133,16 @@ class _JsonViewerScreenState extends State<JsonViewerScreen> {
           SnackBar(
             backgroundColor: isDark ? pvzGreenDark : pvzGreenLight,
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Icon(Icons.check_circle, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
-                Text(l10n?.saved ?? 'Saved'),
+                Expanded(
+                  child: Text(
+                    l10n?.saved ?? 'Saved',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
           ),
@@ -228,6 +234,7 @@ class _JsonViewerScreenState extends State<JsonViewerScreen> {
               : _viewMode == _JsonViewMode.structured
                   ? '${widget.fileName} ${l10n?.jsonViewerModeObjectReading ?? '(object reading mode)'}'
                   : '${widget.fileName} ${l10n?.jsonViewerModeReading ?? '(reading mode)'}',
+          overflow: TextOverflow.ellipsis,
         ),
         actions: [
           if (_isEditing)
@@ -511,11 +518,15 @@ class _JsonViewerScreenState extends State<JsonViewerScreen> {
           SnackBar(
             backgroundColor: isDark ? pvzGreenDark : pvzGreenLight,
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Icon(Icons.check_circle, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
-                Text(
-                  l10n?.clearUnusedNone ?? 'No unused objects found.',
+                Expanded(
+                  child: Text(
+                    l10n?.clearUnusedNone ?? 'No unused objects found.',
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -556,12 +567,28 @@ class _JsonViewerScreenState extends State<JsonViewerScreen> {
       widget.onSaved?.call();
       setState(() {});
       if (mounted) {
+        final theme = Theme.of(context);
+        final isDark = theme.brightness == Brightness.dark;
+        final msg = l10n?.clearUnusedDone(toRemove.length) ??
+            'Removed ${toRemove.length} unused object(s).';
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              l10n?.clearUnusedDone(toRemove.length) ??
-                  'Removed ${toRemove.length} unused object(s).',
-            ),
+            backgroundColor: toRemove.isNotEmpty
+                ? (isDark ? pvzGreenDark : pvzGreenLight)
+                : null,
+            content: toRemove.isNotEmpty
+                ? Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.check_circle,
+                          color: Colors.white, size: 20),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(msg, overflow: TextOverflow.ellipsis),
+                      ),
+                    ],
+                  )
+                : Text(msg, overflow: TextOverflow.ellipsis),
           ),
         );
       }

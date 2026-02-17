@@ -132,37 +132,56 @@ class _ZEditorAppState extends State<ZEditorApp> {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: MediaQuery(
-        data: MediaQuery.of(context).copyWith(
-          textScaler: TextScaler.linear(widget.uiScale),
-        ),
-        child: _DesktopEscapeHandler(
-          onEscapeNoRouteToPop: () {
+      builder: (context, child) {
+        final scale = widget.uiScale;
+        final mediaQuery = MediaQuery.of(context);
+        final viewportSize = mediaQuery.size;
+        final scaledSize = Size(
+          viewportSize.width / scale,
+          viewportSize.height / scale,
+        );
+        return MediaQuery(
+          data: mediaQuery.copyWith(
+            size: scaledSize,
+            textScaler: TextScaler.linear(1.0),
+          ),
+          child: FittedBox(
+            fit: BoxFit.contain,
+            alignment: Alignment.topLeft,
+            child: SizedBox(
+              width: scaledSize.width,
+              height: scaledSize.height,
+              child: child,
+            ),
+          ),
+        );
+      },
+      home: _DesktopEscapeHandler(
+        onEscapeNoRouteToPop: () {
+          if (_screen == AppScreen.levelList) {
+            SystemNavigator.pop();
+          } else if (_screen == AppScreen.editor && _editorBackHandler != null) {
+            _editorBackHandler!().then((leave) {
+              if (leave && mounted) _backToLevelList();
+            });
+          } else if (mounted) {
+            _backToLevelList();
+          }
+        },
+        child: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, _) async {
+            if (didPop) return;
             if (_screen == AppScreen.levelList) {
               SystemNavigator.pop();
             } else if (_screen == AppScreen.editor && _editorBackHandler != null) {
-              _editorBackHandler!().then((leave) {
-                if (leave && mounted) _backToLevelList();
-              });
+              final shouldLeave = await _editorBackHandler!();
+              if (shouldLeave && mounted) _backToLevelList();
             } else if (mounted) {
               _backToLevelList();
             }
           },
-          child: PopScope(
-            canPop: false,
-            onPopInvokedWithResult: (didPop, _) async {
-              if (didPop) return;
-              if (_screen == AppScreen.levelList) {
-                SystemNavigator.pop();
-              } else if (_screen == AppScreen.editor && _editorBackHandler != null) {
-                final shouldLeave = await _editorBackHandler!();
-                if (shouldLeave && mounted) _backToLevelList();
-              } else {
-                if (mounted) _backToLevelList();
-              }
-            },
-            child: _buildCurrentScreen(),
-          ),
+          child: _buildCurrentScreen(),
         ),
       ),
     );
@@ -192,6 +211,11 @@ class _ZEditorAppState extends State<ZEditorApp> {
           },
           themeMode: widget.themeMode,
           onCycleTheme: widget.onCycleTheme,
+          locale: widget.locale,
+          onLocaleChanged: widget.onLocaleChanged,
+          uiScale: widget.uiScale,
+          onUiScaleChange: widget.onUiScaleChange,
+          onLanguageTap: (ctx) => _showLanguageSelector(ctx),
         );
       case AppScreen.about:
         return AboutScreen(onBack: _backToLevelList);

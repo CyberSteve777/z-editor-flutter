@@ -28,6 +28,14 @@ class _FairyTaleFogEventScreenState extends State<FairyTaleFogEventScreen> {
   late PvzObject _moduleObj;
   late FairyTaleFogWaveActionData _data;
 
+  bool get _isDeepSeaLawn {
+    final parsed = LevelParser.parseLevel(widget.levelFile);
+    return LevelParser.isDeepSeaLawn(parsed.levelDef);
+  }
+
+  int get _gridCols => _isDeepSeaLawn ? 10 : 9;
+  int get _gridRows => _isDeepSeaLawn ? 6 : 5;
+
   static const _fogOptions = [
     ('fairy_tale_fog_lvl1', 'Level 1'),
     ('fairy_tale_fog_lvl2', 'Level 2'),
@@ -329,19 +337,23 @@ class _FairyTaleFogEventScreenState extends State<FairyTaleFogEventScreen> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      AspectRatio(
-                        aspectRatio: 9 / 5,
-                        child: GridView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 9,
-                            childAspectRatio: 1,
-                          ),
-                          itemCount: 45,
-                          itemBuilder: (context, i) {
-                            final col = i % 9;
-                            final row = i ~/ 9;
+                      scaleTableForDesktop(
+                        context: context,
+                        child: Container(
+                          constraints: const BoxConstraints(maxWidth: 480),
+                          child: AspectRatio(
+                            aspectRatio: _gridCols / _gridRows,
+                            child: GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: _gridCols,
+                                childAspectRatio: 1,
+                              ),
+                              itemCount: _gridCols * _gridRows,
+                              itemBuilder: (context, i) {
+                                final col = i % _gridCols;
+                                final row = i ~/ _gridCols;
                             final inFog = _isCellInFog(col, row);
                             return Container(
                               decoration: BoxDecoration(
@@ -356,6 +368,8 @@ class _FairyTaleFogEventScreenState extends State<FairyTaleFogEventScreen> {
                           },
                         ),
                       ),
+                    ),
+                  ),
                     ],
                   ),
                 ),

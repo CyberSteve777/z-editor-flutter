@@ -115,15 +115,29 @@ class _InitialGridItemEntryScreenState extends State<InitialGridItemEntryScreen>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    final sortedItems = List<InitialGridItemData>.from(_data.placements)
-      ..sort((a, b) {
-        final c = a.gridY.compareTo(b.gridY);
-        return c != 0 ? c : a.gridX.compareTo(b.gridX);
-      });
+    final itemsAtPosition = _data.placements
+        .where((p) =>
+            p.gridX == _selectedX &&
+            p.gridY == _selectedY &&
+            p.gridX >= 0 &&
+            p.gridY >= 0 &&
+            p.gridX < _gridCols &&
+            p.gridY < _gridRows)
+        .toList();
+    final itemsOutsideLawn = _data.placements
+        .where((p) =>
+            p.gridX < 0 ||
+            p.gridY < 0 ||
+            p.gridX >= _gridCols ||
+            p.gridY >= _gridRows)
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.gridItemLayout ?? 'Grid item layout'),
+        title: Text(
+          l10n?.gridItemLayout ?? 'Grid item layout',
+          overflow: TextOverflow.ellipsis,
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           tooltip: l10n?.back ?? 'Back',
@@ -163,12 +177,6 @@ class _InitialGridItemEntryScreenState extends State<InitialGridItemEntryScreen>
                                 ),
                               ],
                             ),
-                            const Spacer(),
-                            FilledButton.icon(
-                              onPressed: _handleSelectItem,
-                              icon: const Icon(Icons.add, size: 18),
-                              label: Text(l10n?.addItem ?? 'Add item'),
-                            ),
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -186,18 +194,48 @@ class _InitialGridItemEntryScreenState extends State<InitialGridItemEntryScreen>
                   ),
                 ),
                 const SizedBox(height: 8),
-                ...sortedItems.map((item) => _GridItemCard(
-                  item: item,
-                  gridRows: _gridRows,
-                  gridCols: _gridCols,
-                  isSelected: item.gridX == _selectedX && item.gridY == _selectedY,
-                  onTap: () => setState(() {
-                    _selectedX = item.gridX;
-                    _selectedY = item.gridY;
-                  }),
-                  onDelete: () => setState(() => _itemToDelete = item),
-                  deleteTooltip: l10n?.delete ?? 'Delete',
-                )),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ...itemsAtPosition.map((item) => _GridItemCard(
+                      item: item,
+                      gridRows: _gridRows,
+                      gridCols: _gridCols,
+                      showCoordinates: false,
+                      onDelete: () => setState(() => _itemToDelete = item),
+                      deleteTooltip: l10n?.delete ?? 'Delete',
+                    )),
+                    AddItemCard(
+                      onPressed: _handleSelectItem,
+                    ),
+                  ],
+                ),
+                if (itemsOutsideLawn.isNotEmpty) ...[
+                  const SizedBox(height: 24),
+                  Text(
+                    l10n?.outsideLawnItems ?? 'Objects outside the lawn',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: itemsOutsideLawn
+                        .map((item) => _GridItemCard(
+                              item: item,
+                              gridRows: _gridRows,
+                              gridCols: _gridCols,
+                              showCoordinates: true,
+                              onDelete: () => setState(() => _itemToDelete = item),
+                              deleteTooltip: l10n?.delete ?? 'Delete',
+                            ))
+                        .toList(),
+                  ),
+                ],
               ],
             ),
           ),
@@ -369,8 +407,7 @@ class _GridItemCard extends StatelessWidget {
     required this.item,
     required this.gridRows,
     required this.gridCols,
-    required this.isSelected,
-    required this.onTap,
+    required this.showCoordinates,
     required this.onDelete,
     required this.deleteTooltip,
   });
@@ -378,13 +415,9 @@ class _GridItemCard extends StatelessWidget {
   final InitialGridItemData item;
   final int gridRows;
   final int gridCols;
-  final bool isSelected;
-  final VoidCallback onTap;
+  final bool showCoordinates;
   final VoidCallback onDelete;
   final String deleteTooltip;
-
-  bool get _isOutOfBounds =>
-      item.gridX >= gridCols || item.gridY >= gridRows;
 
   @override
   Widget build(BuildContext context) {
@@ -396,97 +429,96 @@ class _GridItemCard extends StatelessWidget {
         : item.typeName;
 
     return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      color: isSelected
-          ? (theme.brightness == Brightness.dark
-              ? const Color(0xFF31383B)
-              : const Color(0xFFD7ECF1))
-          : theme.cardTheme.color,
-      shape: RoundedRectangleBorder(
-        side: isSelected
-            ? BorderSide(color: theme.colorScheme.primary, width: 1)
-            : BorderSide.none,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      name,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: onDelete,
-                    icon: const Icon(Icons.delete_outline, size: 20),
-                    tooltip: deleteTooltip,
-                    color: Colors.grey,
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Row(
-                children: [
-                  if (_isOutOfBounds)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Icon(
-                        Icons.warning_amber_rounded,
-                        color: Colors.amber.shade700,
-                        size: 24,
-                      ),
-                    ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: AssetImageWidget(
-                      assetPath: path,
-                      width: 36,
-                      height: 36,
-                      fit: BoxFit.cover,
-                      altCandidates: imageAltCandidates(path),
-                      errorWidget: Container(
-                        color: const Color(0xFFF5EEE8),
-                        width: 36,
-                        height: 36,
-                        alignment: Alignment.center,
-                        child: Text(
-                          item.typeName.isNotEmpty
-                              ? item.typeName[0]
-                              : '?',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF407A9A),
+      clipBehavior: Clip.antiAlias,
+      child: SizedBox(
+        width: 100,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                  child: Center(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: AssetImageWidget(
+                        assetPath: path,
+                        width: 64,
+                        height: 64,
+                        fit: BoxFit.cover,
+                        altCandidates: imageAltCandidates(path),
+                        errorWidget: Container(
+                          color: const Color(0xFFF5EEE8),
+                          width: 64,
+                          height: 64,
+                          alignment: Alignment.center,
+                          child: Text(
+                            item.typeName.isNotEmpty ? item.typeName[0] : '?',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF407A9A),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'R${item.gridY + 1}:C${item.gridX + 1}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      color: Color(0xFF407A9A),
-                    ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: IconButton(
+                    onPressed: onDelete,
+                    icon: const Icon(Icons.delete_outline, size: 18),
+                    tooltip: deleteTooltip,
+                    color: Colors.grey,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
                   ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  if (showCoordinates)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.warning_amber_rounded,
+                            color: Colors.amber.shade700,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'R${item.gridY + 1}:C${item.gridX + 1}',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: Colors.amber.shade700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

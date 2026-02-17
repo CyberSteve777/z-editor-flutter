@@ -126,15 +126,29 @@ class _InitialPlantEntryScreenState extends State<InitialPlantEntryScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context);
-    final sortedPlants = List<InitialPlantData>.from(_data.plants)
-      ..sort((a, b) {
-        final c = a.gridY.compareTo(b.gridY);
-        return c != 0 ? c : a.gridX.compareTo(b.gridX);
-      });
+    final plantsAtPosition = _data.plants
+        .where((p) =>
+            p.gridX == _selectedX &&
+            p.gridY == _selectedY &&
+            p.gridX >= 0 &&
+            p.gridY >= 0 &&
+            p.gridX < _gridCols &&
+            p.gridY < _gridRows)
+        .toList();
+    final plantsOutsideLawn = _data.plants
+        .where((p) =>
+            p.gridX < 0 ||
+            p.gridY < 0 ||
+            p.gridX >= _gridCols ||
+            p.gridY >= _gridRows)
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.initialPlantLayout ?? 'Initial plant layout'),
+        title: Text(
+          l10n?.initialPlantLayout ?? 'Initial plant layout',
+          overflow: TextOverflow.ellipsis,
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: widget.onBack,
@@ -173,12 +187,6 @@ class _InitialPlantEntryScreenState extends State<InitialPlantEntryScreen> {
                                 ),
                               ],
                             ),
-                            const Spacer(),
-                            FilledButton.icon(
-                              onPressed: _handleSelectPlant,
-                              icon: const Icon(Icons.add, size: 18),
-                              label: Text(l10n?.placePlant ?? 'Place plant'),
-                            ),
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -196,19 +204,58 @@ class _InitialPlantEntryScreenState extends State<InitialPlantEntryScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                ...sortedPlants.map((p) => _InitialPlantCard(
-                  plant: p,
-                  gridRows: _gridRows,
-                  gridCols: _gridCols,
-                  isSelected: p.gridX == _selectedX && p.gridY == _selectedY,
-                  onTap: () {
-                    setState(() {
-                      _selectedX = p.gridX;
-                      _selectedY = p.gridY;
-                      _editingPlant = p;
-                    });
-                  },
-                )),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ...plantsAtPosition.map((p) => _InitialPlantCard(
+                      plant: p,
+                      gridRows: _gridRows,
+                      gridCols: _gridCols,
+                      showCoordinates: false,
+                      onTap: () {
+                        setState(() {
+                          _selectedX = p.gridX;
+                          _selectedY = p.gridY;
+                          _editingPlant = p;
+                        });
+                      },
+                    )),
+                    AddItemCard(
+                      onPressed: _handleSelectPlant,
+                    ),
+                  ],
+                ),
+                if (plantsOutsideLawn.isNotEmpty) ...[
+                  const SizedBox(height: 24),
+                  Text(
+                    l10n?.outsideLawnItems ?? 'Objects outside the lawn',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: plantsOutsideLawn
+                        .map((p) => _InitialPlantCard(
+                              plant: p,
+                              gridRows: _gridRows,
+                              gridCols: _gridCols,
+                              showCoordinates: true,
+                              onTap: () {
+                                setState(() {
+                                  _selectedX = p.gridX;
+                                  _selectedY = p.gridY;
+                                  _editingPlant = p;
+                                });
+                              },
+                            ))
+                        .toList(),
+                  ),
+                ],
               ],
             ),
           ),
@@ -374,22 +421,20 @@ class _InitialPlantCard extends StatelessWidget {
     required this.plant,
     required this.gridRows,
     required this.gridCols,
-    required this.isSelected,
+    required this.showCoordinates,
     required this.onTap,
   });
 
   final InitialPlantData plant;
   final int gridRows;
   final int gridCols;
-  final bool isSelected;
+  final bool showCoordinates;
   final VoidCallback onTap;
-
-  bool get _isOutOfBounds =>
-      plant.gridX >= gridCols || plant.gridY >= gridRows;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context);
     final plantType = plant.plantTypes.firstOrNull ?? '';
     final info = PlantRepository().getPlantInfoById(plantType);
     final plantName = ResourceNames.lookup(
@@ -401,90 +446,109 @@ class _InitialPlantCard extends StatelessWidget {
         : 'assets/images/others/unknown.webp';
 
     return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      color: isSelected
-          ? (theme.brightness == Brightness.dark
-              ? const Color(0xFF3C483D)
-              : const Color(0xFFD5F3D6))
-          : theme.cardTheme.color,
-      shape: RoundedRectangleBorder(
-        side: isSelected
-            ? BorderSide(color: theme.colorScheme.primary, width: 1)
-            : BorderSide.none,
-        borderRadius: BorderRadius.circular(12),
-      ),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Row(
+        child: SizedBox(
+          width: 100,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              if (_isOutOfBounds)
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Icon(
-                    Icons.warning_amber_rounded,
-                    color: Colors.amber.shade700,
-                    size: 24,
+              Padding(
+                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                child: Center(
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: AssetImageWidget(
+                          assetPath: path,
+                          width: 64,
+                          height: 64,
+                          fit: BoxFit.cover,
+                          altCandidates: imageAltCandidates(path),
+                          errorWidget: Container(
+                            color: theme.colorScheme.onSurfaceVariant,
+                            width: 64,
+                            height: 64,
+                          ),
+                        ),
+                      ),
+                      if (plant.avatar)
+                        Positioned(
+                          right: -4,
+                          bottom: -4,
+                          child: Container(
+                            padding: const EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue.shade100,
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.grey),
+                            ),
+                            child: Icon(
+                              Icons.checkroom,
+                              size: 12,
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
-              Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: AssetImageWidget(
-                      assetPath: path,
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
-                      altCandidates: imageAltCandidates(path),
-                      errorWidget: Container(
-                        color: theme.colorScheme.onSurfaceVariant,
-                        width: 40,
-                        height: 40,
-                      ),
-                    ),
-                  ),
-                  if (plant.avatar)
-                    Positioned(
-                      right: 0,
-                      bottom: 0,
-                      child: Container(
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.grey),
-                        ),
-                        child: const Icon(
-                          Icons.star,
-                          size: 12,
-                          color: Color(0xFFFFC107),
-                        ),
-                      ),
-                    ),
-                ],
               ),
-              const SizedBox(width: 8),
-              Expanded(
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$plantName (R${plant.gridY + 1}:C${plant.gridX + 1})',
-                      style: const TextStyle(
+                      plantName,
+                      style: theme.textTheme.labelMedium?.copyWith(
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        color: Color(0xFF2E7D32),
+                        overflow: TextOverflow.ellipsis,
                       ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      AppLocalizations.of(context)?.levelFormat(plant.level) ?? 'Level: ${plant.level}',
+                      l10n?.levelFormat(plant.level) ?? 'Level: ${plant.level}',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.colorScheme.onSurfaceVariant,
                       ),
                     ),
+                    Text(
+                      plant.avatar
+                          ? (l10n?.costumeOn ?? 'Costume: on')
+                          : (l10n?.costumeOff ?? 'Costume: off'),
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    if (showCoordinates)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.warning_amber_rounded,
+                              color: Colors.amber.shade700,
+                              size: 16,
+                            ),
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: Text(
+                                'R${plant.gridY + 1}:C${plant.gridX + 1}',
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: Colors.amber.shade700,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                   ],
                 ),
               ),

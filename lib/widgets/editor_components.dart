@@ -67,6 +67,51 @@ class PvzAddButton extends StatelessWidget {
   }
 }
 
+/// Card-sized add button that matches item card dimensions.
+/// Used in initial plant/zombie/grid entry screens.
+class AddItemCard extends StatelessWidget {
+  const AddItemCard({
+    super.key,
+    required this.onPressed,
+  });
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      child: SizedBox(
+        width: 100,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+              child: Center(
+                child: SizedBox(
+                  width: 64,
+                  height: 64,
+                  child: Center(
+                    child: PvzAddButton(
+                      onPressed: onPressed,
+                      size: 56,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(8, 4, 8, 12),
+              child: SizedBox.shrink(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 /// Event chip for wave timeline. Ported from EventChip in EditorComponents.kt
 class EventChipWidget extends StatelessWidget {
   const EventChipWidget({

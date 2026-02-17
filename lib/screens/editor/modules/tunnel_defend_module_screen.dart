@@ -486,6 +486,7 @@ class _TunnelDefendModuleScreenState extends State<TunnelDefendModuleScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Expanded(
+                                    flex: 3,
                                     child: AssetImageWidget(
                                       assetPath:
                                           'assets/images/tunnels/$asset.webp',
@@ -495,17 +496,24 @@ class _TunnelDefendModuleScreenState extends State<TunnelDefendModuleScreen> {
                                     ),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
-                                    asset.replaceAll(
-                                        'IMAGE_UI_MAUSOLEUM_TUNNEL_', ''),
-                                    style: theme.textTheme.labelMedium?.copyWith(
-                                      color: isSelected
-                                          ? accentColor
-                                          : theme.colorScheme.onSurface,
+                                  Flexible(
+                                    flex: 1,
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        asset.replaceAll(
+                                            'IMAGE_UI_MAUSOLEUM_TUNNEL_', ''),
+                                        style: theme.textTheme.labelMedium?.copyWith(
+                                          color: isSelected
+                                              ? accentColor
+                                              : theme.colorScheme.onSurface,
+                                        ),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),

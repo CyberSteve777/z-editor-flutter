@@ -652,6 +652,18 @@ abstract class AppLocalizations {
   /// **'1. Folder: Tap folder icon to choose level JSON directory.\n2. Open/Create: Tap a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\nQQ group: 562251204'**
   String get usageText;
 
+  /// No description provided for @usageTextDesktop.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Folder: Click folder icon to choose level JSON directory.\n2. Open/Create: Click a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Click save to write back to the JSON file.\nQQ group: 562251204'**
+  String get usageTextDesktop;
+
+  /// No description provided for @usageTextMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Folder: Tap folder icon to choose level JSON directory.\n2. Open/Create: Tap a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\nQQ group: 562251204'**
+  String get usageTextMobile;
+
   /// No description provided for @creditsSection.
   ///
   /// In en, this message translates to:
@@ -1303,8 +1315,20 @@ abstract class AppLocalizations {
   /// No description provided for @waveTimelineGuideBody.
   ///
   /// In en, this message translates to:
-  /// **'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view expectation'**
+  /// **'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view zombie expectation'**
   String get waveTimelineGuideBody;
+
+  /// No description provided for @waveTimelineGuideBodyDesktop.
+  ///
+  /// In en, this message translates to:
+  /// **'Left-click wave: manage events\nUse delete to remove wave\nClick points: view zombie expectation'**
+  String get waveTimelineGuideBodyDesktop;
+
+  /// No description provided for @waveTimelineGuideBodyMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view zombie expectation'**
+  String get waveTimelineGuideBodyMobile;
 
   /// No description provided for @waveDeadLinksTitle.
   ///
@@ -1419,6 +1443,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Empty wave (swipe left/right)'**
   String get waveEmptyRowHint;
+
+  /// No description provided for @waveEmptyRowHintDesktop.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty wave (click to manage)'**
+  String get waveEmptyRowHintDesktop;
+
+  /// No description provided for @waveEmptyRowHintMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty wave (swipe left/right)'**
+  String get waveEmptyRowHintMobile;
 
   /// No description provided for @removeFromWave.
   ///
@@ -1666,6 +1702,12 @@ abstract class AppLocalizations {
   /// **'This will remove this wave and its {count} events.'**
   String deleteWaveConfirm(int count);
 
+  /// No description provided for @deleteWaveConfirmCheckbox.
+  ///
+  /// In en, this message translates to:
+  /// **'I confirm permanent deletion of this wave'**
+  String get deleteWaveConfirmCheckbox;
+
   /// No description provided for @addEvent.
   ///
   /// In en, this message translates to:
@@ -1761,6 +1803,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove this reference? The entity data will remain until all references are removed.'**
   String get confirmRemoveRefMessage;
+
+  /// No description provided for @deleteEventConfirmCheckbox.
+  ///
+  /// In en, this message translates to:
+  /// **'I understand this action cannot be undone'**
+  String get deleteEventConfirmCheckbox;
 
   /// No description provided for @noZombiesInLane.
   ///
@@ -2920,18 +2968,6 @@ abstract class AppLocalizations {
   /// **'Mirror portals'**
   String get eventDesc_MagicMirrorWaveActionProps;
 
-  /// No description provided for @eventTitle_WaveActionMagicMirrorTeleportationArrayProps2.
-  ///
-  /// In en, this message translates to:
-  /// **'Magic Mirror'**
-  String get eventTitle_WaveActionMagicMirrorTeleportationArrayProps2;
-
-  /// No description provided for @eventDesc_WaveActionMagicMirrorTeleportationArrayProps2.
-  ///
-  /// In en, this message translates to:
-  /// **'Mirror portals'**
-  String get eventDesc_WaveActionMagicMirrorTeleportationArrayProps2;
-
   /// No description provided for @weatherOption_DefaultSnow_label.
   ///
   /// In en, this message translates to:
@@ -3682,6 +3718,12 @@ abstract class AppLocalizations {
   /// **'Type index'**
   String get typeIndex;
 
+  /// No description provided for @noStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'No style'**
+  String get noStyle;
+
   /// No description provided for @styleN.
   ///
   /// In en, this message translates to:
@@ -4335,6 +4377,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'First costume (Avatar)'**
   String get firstCostume;
+
+  /// No description provided for @costumeOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Costume: on'**
+  String get costumeOn;
+
+  /// No description provided for @costumeOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Costume: off'**
+  String get costumeOff;
+
+  /// No description provided for @outsideLawnItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Objects outside the lawn'**
+  String get outsideLawnItems;
+
+  /// No description provided for @zombieFromLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'From left'**
+  String get zombieFromLeft;
 
   /// No description provided for @eventMagicMirror.
   ///

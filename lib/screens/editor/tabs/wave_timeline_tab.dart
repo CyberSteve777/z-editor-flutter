@@ -12,6 +12,28 @@ import 'package:z_editor/escape_override.dart';
 import 'package:z_editor/theme/app_theme.dart';
 import 'package:z_editor/widgets/editor_components.dart' show EventChipWidget, isDesktopPlatform;
 
+String _waveGuideBodyForPlatform(BuildContext context, AppLocalizations? l10n) {
+  if (l10n == null) {
+    return isDesktopPlatform(context)
+        ? 'Right-click wave: manage events\nSwipe or use delete to remove wave\nClick points: view expectation'
+        : 'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view expectation';
+  }
+  return isDesktopPlatform(context)
+      ? l10n.waveTimelineGuideBodyDesktop
+      : l10n.waveTimelineGuideBodyMobile;
+}
+
+String _waveEmptyRowHintForPlatform(BuildContext context, AppLocalizations? l10n) {
+  if (l10n == null) {
+    return isDesktopPlatform(context)
+        ? 'Empty wave (click to manage)'
+        : 'Empty wave (swipe left/right)';
+  }
+  return isDesktopPlatform(context)
+      ? l10n.waveEmptyRowHintDesktop
+      : l10n.waveEmptyRowHintMobile;
+}
+
 /// Wave timeline tab with events. Ported from Z-Editor-master WaveTimelineTab.kt
 class WaveTimelineTab extends StatefulWidget {
   const WaveTimelineTab({
@@ -123,8 +145,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    l10n?.waveTimelineGuideBody ??
-                        'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view expectation',
+                    _waveGuideBodyForPlatform(context, l10n),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: onBg.withValues(alpha: 0.9),
                         ),
@@ -152,11 +173,14 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
               children: [
                 Icon(Icons.gpp_bad, color: Theme.of(context).colorScheme.onError),
                 const SizedBox(width: 8),
-                Text(
-                  l10n?.waveDeadLinksTitle ?? 'Broken references',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onError,
+                Expanded(
+                  child: Text(
+                    l10n?.waveDeadLinksTitle ?? 'Broken references',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onError,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -223,11 +247,14 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
               children: [
                 Icon(Icons.science, color: onCard),
                 const SizedBox(width: 8),
-                Text(
-                  l10n?.customZombieManagerTitle ?? 'Custom zombie management',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: onCard,
+                Expanded(
+                  child: Text(
+                    l10n?.customZombieManagerTitle ?? 'Custom zombie management',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: onCard,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
@@ -261,11 +288,14 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                           children: [
                             Icon(icon, size: 18, color: iconColor),
                             const SizedBox(width: 8),
-                            Text(
-                              info.alias,
-                              style: TextStyle(
-                                color: onItem,
-                                fontWeight: FontWeight.w500,
+                            Flexible(
+                              child: Text(
+                                info.alias,
+                                style: TextStyle(
+                                  color: onItem,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -367,11 +397,15 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
             child: Text(
               l10n?.waveHeaderPreview ?? 'Content & points preview',
               style: TextStyle(fontWeight: FontWeight.bold, color: color),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-          Text(
-            l10n?.waveTotalLabel(total) ?? 'Total: $total',
-            style: TextStyle(fontWeight: FontWeight.bold, color: color),
+          Flexible(
+            child: Text(
+              l10n?.waveTotalLabel(total) ?? 'Total: $total',
+              style: TextStyle(fontWeight: FontWeight.bold, color: color),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ],
       ),
@@ -444,8 +478,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                 children: [
                   if (rtidList.isEmpty)
                     Text(
-                      l10n?.waveEmptyRowHint ??
-                          'Empty wave (swipe left/right)',
+                      _waveEmptyRowHintForPlatform(context, l10n),
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall
@@ -481,10 +514,14 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    '${points}pt',
-                    style: Theme.of(context).textTheme.bodySmall,
+                  Flexible(
+                    child: Text(
+                      '${points}pt',
+                      style: Theme.of(context).textTheme.bodySmall,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   const SizedBox(width: 2),
                   Icon(
@@ -1241,33 +1278,36 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                       Navigator.pop(ctx);
                       final ok = await showDialog<bool>(
                         context: context,
-                        builder: (dctx) => AlertDialog(
-                          title: Text(
-                            l10n?.confirmRemoveRef ??
-                                'Remove reference',
-                          ),
-                          content: Text(
-                            l10n?.confirmRemoveRefMessage ??
-                                'Remove this reference? The entity data will remain until all references are removed.',
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(dctx, false),
-                              style: TextButton.styleFrom(
-                                foregroundColor: Theme.of(dctx).colorScheme.primary,
-                              ),
-                              child: Text(l10n?.cancel ?? 'Cancel'),
+                        builder: (dctx) {
+                          return AlertDialog(
+                            title: Text(
+                              l10n?.confirmRemoveRef ??
+                                  'Remove reference',
                             ),
-                            FilledButton(
-                              onPressed: () => Navigator.pop(dctx, true),
-                              style: FilledButton.styleFrom(
-                                backgroundColor: Theme.of(dctx).colorScheme.error,
-                                foregroundColor: Colors.white,
-                              ),
-                              child: Text(l10n?.confirmRemoveRef ?? 'Remove reference'),
+                            content: Text(
+                              l10n?.confirmRemoveRefMessage ??
+                                  'Remove this reference? The entity data will remain until all references are removed.',
                             ),
-                          ],
-                        ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(dctx, false),
+                                style: TextButton.styleFrom(
+                                  foregroundColor:
+                                      Theme.of(dctx).colorScheme.primary,
+                                ),
+                                child: Text(l10n?.cancel ?? 'Cancel'),
+                              ),
+                              FilledButton(
+                                onPressed: () => Navigator.pop(dctx, true),
+                                style: FilledButton.styleFrom(
+                                  backgroundColor: Theme.of(dctx).colorScheme.error,
+                                  foregroundColor: Colors.white,
+                                ),
+                                child: Text(l10n?.confirmRemoveRef ?? 'Remove reference'),
+                              ),
+                            ],
+                          );
+                        },
                       );
                       if (ok == true) {
                         _smartDeleteEvent(waveIndex, rtid);
@@ -1284,6 +1324,67 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
       ),
     ),
     );
+  }
+
+  Future<bool> _showDeleteWaveConfirmDialog(
+    BuildContext context,
+    int waveIndex,
+    int eventCount,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    var confirm = false;
+    final result = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setDialogState) => AlertDialog(
+          title: Text(
+            (l10n?.deleteWave != null && l10n?.waveLabel != null)
+                ? '${l10n?.deleteWave} ${l10n?.waveLabel} $waveIndex?'
+                : 'Delete Wave $waveIndex?',
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n?.deleteWaveConfirm(eventCount) ??
+                    'This will remove this wave and its $eventCount events.',
+              ),
+              const SizedBox(height: 16),
+              CheckboxListTile(
+                value: confirm,
+                onChanged: (v) => setDialogState(() => confirm = v ?? false),
+                title: Text(
+                  l10n?.deleteWaveConfirmCheckbox ??
+                      'I confirm permanent deletion of this wave',
+                ),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              style: TextButton.styleFrom(
+                foregroundColor: Theme.of(ctx).colorScheme.error,
+              ),
+              child: Text(l10n?.cancel ?? 'Cancel'),
+            ),
+            FilledButton(
+              onPressed: confirm
+                  ? () => Navigator.pop(ctx, true)
+                  : null,
+              style: FilledButton.styleFrom(
+                backgroundColor: Theme.of(ctx).colorScheme.error,
+              ),
+              child: Text(l10n?.delete ?? 'Delete'),
+            ),
+          ],
+        ),
+      ),
+    );
+    return result ?? false;
   }
 
   void _showWaveManageSheet(BuildContext context, int waveIndex) {
@@ -1341,10 +1442,43 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                     },
                     trailing: IconButton(
                       icon: const Icon(Icons.delete_outline),
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.pop(ctx);
-                        _smartDeleteEvent(waveIndex, rtid);
-                        setState(() {});
+                        final ok = await showDialog<bool>(
+                          context: context,
+                          builder: (dctx) => AlertDialog(
+                            title: Text(
+                              l10n?.confirmRemoveRef ?? 'Remove reference',
+                            ),
+                            content: Text(
+                              l10n?.confirmRemoveRefMessage ??
+                                  'Remove this reference? The entity data will remain until all references are removed.',
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(dctx, false),
+                                style: TextButton.styleFrom(
+                                  foregroundColor:
+                                      Theme.of(dctx).colorScheme.primary,
+                                ),
+                                child: Text(l10n?.cancel ?? 'Cancel'),
+                              ),
+                              FilledButton(
+                                onPressed: () => Navigator.pop(dctx, true),
+                                style: FilledButton.styleFrom(
+                                  backgroundColor:
+                                      Theme.of(dctx).colorScheme.error,
+                                  foregroundColor: Colors.white,
+                                ),
+                                child: Text(l10n?.confirmRemoveRef ?? 'Remove reference'),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (ok == true) {
+                          _smartDeleteEvent(waveIndex, rtid);
+                          setState(() {});
+                        }
                       },
                     ),
                   ),
@@ -1375,35 +1509,10 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                 ),
                 onPressed: () async {
                   Navigator.pop(ctx);
-                  final ok = await showDialog<bool>(
-                    context: context,
-                    builder: (dctx) => AlertDialog(
-                      title: Text(
-                        (l10n?.deleteWave != null && l10n?.waveLabel != null)
-                            ? '${l10n?.deleteWave} ${l10n?.waveLabel} $waveIndex?'
-                            : 'Delete Wave $waveIndex?',
-                      ),
-                      content: Text(
-                        l10n?.deleteWaveConfirm(rtidList.length) ??
-                            'This will remove this wave and its ${rtidList.length} events.',
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(dctx, false),
-                          style: TextButton.styleFrom(
-                            foregroundColor: Theme.of(dctx).colorScheme.error,
-                          ),
-                          child: Text(l10n?.cancel ?? 'Cancel'),
-                        ),
-                        FilledButton(
-                          onPressed: () => Navigator.pop(dctx, true),
-                          style: FilledButton.styleFrom(
-                            backgroundColor: Theme.of(dctx).colorScheme.primary,
-                          ),
-                          child: Text(l10n?.confirm ?? 'Confirm'),
-                        ),
-                      ],
-                    ),
+                  final ok = await _showDeleteWaveConfirmDialog(
+                    context,
+                    waveIndex,
+                    rtidList.length,
                   );
                   if (ok == true && mounted) {
                     final wm = widget.parsed.waveManager;
@@ -1540,33 +1649,10 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                   return false;
                 }
                 if (dir == DismissDirection.endToStart) {
-                  return await showDialog<bool>(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                      title: Text(
-                        '${l10n?.deleteWave ?? "Delete"} ${l10n?.waveLabel ?? "Wave"} $waveIndex?',
-                      ),
-                      content: Text(
-                        l10n?.deleteWaveConfirm(waveEvents.length) ??
-                            'This will remove this wave and its ${waveEvents.length} events.',
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(ctx, false),
-                          style: TextButton.styleFrom(
-                            foregroundColor: Theme.of(ctx).colorScheme.error,
-                          ),
-                          child: Text(l10n?.cancel ?? 'Cancel'),
-                        ),
-                        FilledButton(
-                          onPressed: () => Navigator.pop(ctx, true),
-                          style: FilledButton.styleFrom(
-                            backgroundColor: Theme.of(ctx).colorScheme.error,
-                          ),
-                          child: Text(l10n?.delete ?? 'Delete'),
-                        ),
-                      ],
-                    ),
+                  return await _showDeleteWaveConfirmDialog(
+                    context,
+                    waveIndex,
+                    waveEvents.length,
                   );
                 }
                 return false;
@@ -1660,7 +1746,12 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              Text(e.value.toStringAsFixed(2)),
+                              Flexible(
+                                child: Text(
+                                  e.value.toStringAsFixed(2),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ],
                           ),
                         );

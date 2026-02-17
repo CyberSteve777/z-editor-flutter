@@ -31,11 +31,25 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
   int _selectedIndex = 0;
   bool _isEditingMirror2 = false;
 
+  bool get _isDeepSeaLawn {
+    final parsed = LevelParser.parseLevel(widget.levelFile);
+    return LevelParser.isDeepSeaLawn(parsed.levelDef);
+  }
+
+  int get _gridCols => _isDeepSeaLawn ? 10 : 9;
+  int get _gridRows => _isDeepSeaLawn ? 6 : 5;
+
   @override
   void initState() {
     super.initState();
     _loadData();
   }
+
+  int _clampCol(int x) => x.clamp(0, _gridCols - 1);
+  int _clampRow(int y) => y.clamp(0, _gridRows - 1);
+
+  bool _isOutOfLawn(int x, int y) =>
+      x < 0 || x >= _gridCols || y < 0 || y >= _gridRows;
 
   void _loadData() {
     final alias = LevelParser.extractAlias(widget.rtid);
@@ -56,6 +70,16 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
       _data = MagicMirrorWaveActionData.fromJson(
         Map<String, dynamic>.from(_moduleObj.objData as Map),
       );
+      _data = MagicMirrorWaveActionData(
+        arrays: _data.arrays.map((a) => MagicMirrorArrayData(
+          mirror1GridX: _clampCol(a.mirror1GridX),
+          mirror1GridY: _clampRow(a.mirror1GridY),
+          mirror2GridX: _clampCol(a.mirror2GridX),
+          mirror2GridY: _clampRow(a.mirror2GridY),
+          typeIndex: a.typeIndex,
+          mirrorExistDuration: a.mirrorExistDuration,
+        )).toList(),
+      );
     } catch (_) {
       _data = MagicMirrorWaveActionData();
     }
@@ -67,12 +91,18 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
             mirror1GridY: 2,
             mirror2GridX: 6,
             mirror2GridY: 2,
-            typeIndex: 1,
+            typeIndex: null,
             mirrorExistDuration: 300,
           ),
         ],
       );
-      _sync();
+      _moduleObj.objData = _data.toJson();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          widget.onChanged();
+          setState(() {});
+        }
+      });
     }
   }
 
@@ -100,12 +130,20 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
           mirror1GridY: 2,
           mirror2GridX: 6,
           mirror2GridY: 2,
-          typeIndex: 1,
+          typeIndex: null,
           mirrorExistDuration: 300,
         ),
       ],
     );
     _selectedIndex = _data.arrays.length - 1;
+    _sync();
+  }
+
+  void _removeArray(int index) {
+    if (_data.arrays.length <= 1) return;
+    final arrays = List<MagicMirrorArrayData>.from(_data.arrays)..removeAt(index);
+    _data = MagicMirrorWaveActionData(arrays: arrays);
+    if (_selectedIndex >= arrays.length) _selectedIndex = arrays.length - 1;
     _sync();
   }
 
@@ -159,27 +197,32 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ..._data.arrays.asMap().entries.map((e) {
-                      final idx = e.key;
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: FilterChip(
-                          label: Text(l10n?.groupN(idx + 1) ?? 'Group ${idx + 1}'),
-                          selected: idx == _selectedIndex,
-                          onSelected: (_) =>
-                              setState(() => _selectedIndex = idx),
-                        ),
+              SizedBox(
+                height: 40,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _data.arrays.length + 1,
+                  separatorBuilder: (_, __) => const SizedBox(width: 8),
+                  itemBuilder: (context, index) {
+                    if (index == _data.arrays.length) {
+                      return OutlinedButton.icon(
+                        onPressed: _addArray,
+                        icon: const Icon(Icons.add),
+                        label: Text(l10n?.add ?? 'Add'),
                       );
-                    }),
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: _addArray,
-                    ),
-                  ],
+                    }
+                    final selected = index == _selectedIndex;
+                    return FilterChip(
+                      label: Text(l10n?.groupN(index + 1) ?? 'Group ${index + 1}'),
+                      selected: selected,
+                      onSelected: (_) =>
+                          setState(() => _selectedIndex = index),
+                      deleteIcon: const Icon(Icons.close),
+                      onDeleted: _data.arrays.length > 1
+                          ? () => _removeArray(index)
+                          : null,
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 16),
@@ -197,35 +240,37 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
                           ),
                         ),
                         const SizedBox(height: 12),
-                        DropdownButtonFormField<int>(
-                          initialValue: [1, 2, 3].contains(currentArray.typeIndex)
+                        DropdownButtonFormField<int?>(
+                          initialValue: [null, 1, 2, 3].contains(currentArray.typeIndex)
                               ? currentArray.typeIndex
-                              : 1,
+                              : null,
                           decoration: InputDecoration(
                             labelText: l10n?.typeIndex ?? 'Type index',
                             border: const OutlineInputBorder(),
                           ),
-                          items: [1, 2, 3]
-                              .map((i) => DropdownMenuItem(
-                                    value: i,
-                                    child: Text(l10n?.styleN(i) ?? 'Style $i'),
-                                  ))
-                              .toList(),
+                          items: [
+                            DropdownMenuItem<int?>(
+                              value: null,
+                              child: Text(l10n?.noStyle ?? 'No style'),
+                            ),
+                            ...([1, 2, 3].map((i) => DropdownMenuItem<int?>(
+                                  value: i,
+                                  child: Text(l10n?.styleN(i) ?? 'Style $i'),
+                                ))),
+                          ],
                           onChanged: (v) {
-                            if (v != null) {
-                              _updateArray(
-                                _selectedIndex,
-                                MagicMirrorArrayData(
-                                  mirror1GridX: currentArray.mirror1GridX,
-                                  mirror1GridY: currentArray.mirror1GridY,
-                                  mirror2GridX: currentArray.mirror2GridX,
-                                  mirror2GridY: currentArray.mirror2GridY,
-                                  typeIndex: v,
-                                  mirrorExistDuration:
-                                      currentArray.mirrorExistDuration,
-                                ),
-                              );
-                            }
+                            _updateArray(
+                              _selectedIndex,
+                              MagicMirrorArrayData(
+                                mirror1GridX: currentArray.mirror1GridX,
+                                mirror1GridY: currentArray.mirror1GridY,
+                                mirror2GridX: currentArray.mirror2GridX,
+                                mirror2GridY: currentArray.mirror2GridY,
+                                typeIndex: v,
+                                mirrorExistDuration:
+                                    currentArray.mirrorExistDuration,
+                              ),
+                            );
                           },
                         ),
                         const SizedBox(height: 12),
@@ -273,108 +318,47 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
                               setState(() => _isEditingMirror2 = s.first),
                         ),
                         const SizedBox(height: 12),
-                        Text(
-                          'M1: R${currentArray.mirror1GridY + 1}:C${currentArray.mirror1GridX + 1}  |  M2: R${currentArray.mirror2GridY + 1}:C${currentArray.mirror2GridX + 1}',
-                          style: theme.textTheme.bodySmall,
+                        Row(
+                          children: [
+                            if (_isOutOfLawn(
+                                currentArray.mirror1GridX,
+                                currentArray.mirror1GridY))
+                              Padding(
+                                padding: const EdgeInsets.only(right: 4),
+                                child: Icon(
+                                  Icons.warning_amber_rounded,
+                                  color: Colors.amber.shade700,
+                                  size: 20,
+                                ),
+                              ),
+                            Text(
+                              'M1: R${currentArray.mirror1GridY + 1}:C${currentArray.mirror1GridX + 1}',
+                              style: theme.textTheme.bodySmall,
+                            ),
+                            const Text('  |  '),
+                            if (_isOutOfLawn(
+                                currentArray.mirror2GridX,
+                                currentArray.mirror2GridY))
+                              Padding(
+                                padding: const EdgeInsets.only(right: 4),
+                                child: Icon(
+                                  Icons.warning_amber_rounded,
+                                  color: Colors.amber.shade700,
+                                  size: 20,
+                                ),
+                              ),
+                            Text(
+                              'M2: R${currentArray.mirror2GridY + 1}:C${currentArray.mirror2GridX + 1}',
+                              style: theme.textTheme.bodySmall,
+                            ),
+                          ],
                         ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: AspectRatio(
-                      aspectRatio: 9 / 5,
-                      child: GridView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 9,
-                          childAspectRatio: 1,
-                        ),
-                        itemCount: 45,
-                        itemBuilder: (context, i) {
-                          final col = i % 9;
-                          final row = i ~/ 9;
-                          final isTarget = _isEditingMirror2
-                              ? col == currentArray.mirror2GridX &&
-                                  row == currentArray.mirror2GridY
-                              : col == currentArray.mirror1GridX &&
-                                  row == currentArray.mirror1GridY;
-                          final mirrorInCell = _data.arrays.indexed
-                              .where((e) {
-                                final arr = e.$2;
-                                return (arr.mirror1GridX == col &&
-                                        arr.mirror1GridY == row) ||
-                                    (arr.mirror2GridX == col &&
-                                        arr.mirror2GridY == row);
-                              })
-                              .map((e) => (e.$1, e.$2.typeIndex))
-                              .lastOrNull;
-                          return GestureDetector(
-                            onTap: () {
-                              if (_isEditingMirror2) {
-                                _updateArray(
-                                  _selectedIndex,
-                                  MagicMirrorArrayData(
-                                    mirror1GridX: currentArray.mirror1GridX,
-                                    mirror1GridY: currentArray.mirror1GridY,
-                                    mirror2GridX: col,
-                                    mirror2GridY: row,
-                                    typeIndex: currentArray.typeIndex,
-                                    mirrorExistDuration:
-                                        currentArray.mirrorExistDuration,
-                                  ),
-                                );
-                              } else {
-                                _updateArray(
-                                  _selectedIndex,
-                                  MagicMirrorArrayData(
-                                    mirror1GridX: col,
-                                    mirror1GridY: row,
-                                    mirror2GridX: currentArray.mirror2GridX,
-                                    mirror2GridY: currentArray.mirror2GridY,
-                                    typeIndex: currentArray.typeIndex,
-                                    mirrorExistDuration:
-                                        currentArray.mirrorExistDuration,
-                                  ),
-                                );
-                              }
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: isTarget
-                                    ? theme.colorScheme.primaryContainer
-                                    : theme.colorScheme.surfaceContainerHighest,
-                                border: Border.all(
-                                  color: isTarget
-                                      ? theme.colorScheme.primary
-                                      : theme.colorScheme.outlineVariant,
-                                ),
-                              ),
-                              child: mirrorInCell != null
-                                  ? Center(
-                                      child: AssetImageWidget(
-                                        assetPath:
-                                            'assets/images/griditems/magic_mirror${mirrorInCell.$2}.png',
-                                        width: 32,
-                                        height: 32,
-                                        fit: BoxFit.contain,
-                                        altCandidates: imageAltCandidates(
-                                          'assets/images/griditems/magic_mirror${mirrorInCell.$2}.png',
-                                        ),
-                                      ),
-                                    )
-                                  : null,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                _buildGrid(theme, currentArray),
               ] else
                 Center(
                   child: Padding(
@@ -384,6 +368,131 @@ class _MagicMirrorEventScreenState extends State<MagicMirrorEventScreen> {
                 ),
               const SizedBox(height: 32),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGrid(ThemeData theme, MagicMirrorArrayData currentArray) {
+    return scaleTableForDesktop(
+      context: context,
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 480),
+        child: AspectRatio(
+          aspectRatio: _gridCols / _gridRows,
+          child: Container(
+            decoration: BoxDecoration(
+              color: theme.brightness == Brightness.dark
+                  ? const Color(0xFF2A2A2A)
+                  : const Color(0xFFE0E0E0),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: theme.dividerColor),
+            ),
+            child: Column(
+              children: List.generate(_gridRows, (row) {
+                return Expanded(
+                  child: Row(
+                    children: List.generate(_gridCols, (col) {
+                      final isTarget = _isEditingMirror2
+                          ? col == currentArray.mirror2GridX &&
+                              row == currentArray.mirror2GridY
+                          : col == currentArray.mirror1GridX &&
+                              row == currentArray.mirror1GridY;
+                      final mirrorsInCell = _data.arrays.indexed
+                          .where((e) {
+                            final arr = e.$2;
+                            return (arr.mirror1GridX == col &&
+                                    arr.mirror1GridY == row) ||
+                                (arr.mirror2GridX == col &&
+                                    arr.mirror2GridY == row);
+                          })
+                          .map((e) => (e.$1, e.$2.typeIndex))
+                          .toList()
+                        ..sort((a, b) => a.$1 == _selectedIndex
+                            ? 1
+                            : b.$1 == _selectedIndex
+                                ? -1
+                                : a.$1.compareTo(b.$1));
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (_isEditingMirror2) {
+                              _updateArray(
+                                _selectedIndex,
+                                MagicMirrorArrayData(
+                                  mirror1GridX: currentArray.mirror1GridX,
+                                  mirror1GridY: currentArray.mirror1GridY,
+                                  mirror2GridX: col,
+                                  mirror2GridY: row,
+                                  typeIndex: currentArray.typeIndex,
+                                  mirrorExistDuration:
+                                      currentArray.mirrorExistDuration,
+                                ),
+                              );
+                            } else {
+                              _updateArray(
+                                _selectedIndex,
+                                MagicMirrorArrayData(
+                                  mirror1GridX: col,
+                                  mirror1GridY: row,
+                                  mirror2GridX: currentArray.mirror2GridX,
+                                  mirror2GridY: currentArray.mirror2GridY,
+                                  typeIndex: currentArray.typeIndex,
+                                  mirrorExistDuration:
+                                      currentArray.mirrorExistDuration,
+                                ),
+                              );
+                            }
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(0.5),
+                            decoration: BoxDecoration(
+                              color: isTarget
+                                  ? theme.colorScheme.primaryContainer
+                                  : null,
+                              border: Border.all(
+                                color: isTarget
+                                    ? theme.colorScheme.primary
+                                    : theme.dividerColor,
+                                width: isTarget ? 1 : 0.5,
+                              ),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                            child: mirrorsInCell.isEmpty
+                                ? null
+                                : Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      for (final e in mirrorsInCell)
+                                        Positioned.fill(
+                                          child: Opacity(
+                                            opacity: e.$1 == _selectedIndex
+                                                ? 1.0
+                                                : 0.5,
+                                            child: AssetImageWidget(
+                                              assetPath: e.$2 == null
+                                                  ? 'assets/images/griditems/magic_mirror.webp'
+                                                  : 'assets/images/griditems/magic_mirror${e.$2}.png',
+                                              fit: BoxFit.cover,
+                                              altCandidates: imageAltCandidates(
+                                                e.$2 == null
+                                                    ? 'assets/images/griditems/magic_mirror.webp'
+                                                    : 'assets/images/griditems/magic_mirror${e.$2}.png',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                );
+              }),
+            ),
           ),
         ),
       ),

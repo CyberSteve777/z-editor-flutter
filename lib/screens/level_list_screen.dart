@@ -174,10 +174,13 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.check_circle, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
-                Text(l10n.renameSuccess),
+                Expanded(
+                  child: Text(l10n.renameSuccess, overflow: TextOverflow.ellipsis),
+                ),
               ],
             ),
           ),
@@ -189,12 +192,16 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.report_problem, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20),
                 const SizedBox(width: 8),
-                Text(
-                  l10n.renamingFailed,
-                  style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                Expanded(
+                  child: Text(
+                    l10n.renamingFailed,
+                    style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -221,10 +228,11 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Icon(Icons.check_circle, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
-                Text(l10n.copySuccess),
+                Expanded(child: Text(l10n.copySuccess, overflow: TextOverflow.ellipsis)),
               ],
             ),
           ),
@@ -236,12 +244,16 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.report_problem, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20),
                 const SizedBox(width: 8),
-                Text(
-                  l10n.copyFail,
-                  style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                Expanded(
+                  child: Text(
+                    l10n.copyFail,
+                    style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -263,10 +275,11 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Icon(Icons.check_circle, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
-                Text(l10n.folderCreated),
+                Expanded(child: Text(l10n.folderCreated, overflow: TextOverflow.ellipsis)),
               ],
             ),
           ),
@@ -281,12 +294,16 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.report_problem, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20),
                 const SizedBox(width: 8),
-                Text(
-                  l10n.createFail,
-                  style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                Expanded(
+                  child: Text(
+                    l10n.createFail,
+                    style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -424,10 +441,11 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Icon(Icons.check_circle, color: Colors.white, size: 20),
                 const SizedBox(width: 8),
-                Text(l10n.levelCreated),
+                Expanded(child: Text(l10n.levelCreated, overflow: TextOverflow.ellipsis)),
               ],
             ),
           ),
@@ -441,12 +459,16 @@ class _LevelListScreenState extends State<LevelListScreen> {
           SnackBar(
             backgroundColor: isDark ? const Color(0xFF8D6E00) : const Color(0xFFFFF59D),
             content: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.report_problem, color: isDark ? const Color(0xFFFFEB3B) : const Color(0xFF8D6E00), size: 20),
                 const SizedBox(width: 8),
-                Text(
-                  l10n.levelCreateFail,
-                  style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                Expanded(
+                  child: Text(
+                    l10n.levelCreateFail,
+                    style: TextStyle(color: isDark ? Colors.white : const Color(0xFF5D4E00)),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
@@ -463,7 +485,11 @@ class _LevelListScreenState extends State<LevelListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.appTitle, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+        title: Text(
+          l10n.appTitle,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          overflow: TextOverflow.ellipsis,
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -598,7 +624,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
                             l10n.movePrompt,
                             style: TextStyle(
                               fontSize: 12,
-                              color: theme.colorScheme.onSecondaryContainer.withOpacity(0.8),
+                              color: theme.colorScheme.onSecondaryContainer.withAlpha(204),
                             ),
                           ),
                         ],
@@ -950,10 +976,13 @@ class _LevelListScreenState extends State<LevelListScreen> {
       SnackBar(
         backgroundColor: bgColor,
         content: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             leading,
             const SizedBox(width: 8),
-            Text(text, style: TextStyle(color: textColor)),
+            Expanded(
+              child: Text(text, style: TextStyle(color: textColor), overflow: TextOverflow.ellipsis),
+            ),
           ],
         ),
       ),
@@ -1107,10 +1136,11 @@ class _LevelListScreenState extends State<LevelListScreen> {
         SnackBar(
           backgroundColor: isDark ? const Color(0xFF2E7D32) : const Color(0xFF4CAF50),
           content: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(Icons.check_circle, color: Colors.white, size: 20),
               const SizedBox(width: 8),
-              Text(l10n.deleted),
+              Expanded(child: Text(l10n.deleted, overflow: TextOverflow.ellipsis)),
             ],
           ),
         ),
@@ -1171,9 +1201,9 @@ class _LevelListScreenState extends State<LevelListScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(l10n.small),
-                  Text(l10n.standard),
-                  Text(l10n.large),
+                  Flexible(child: Text(l10n.small, overflow: TextOverflow.ellipsis)),
+                  Flexible(child: Text(l10n.standard, overflow: TextOverflow.ellipsis)),
+                  Flexible(child: Text(l10n.large, overflow: TextOverflow.ellipsis)),
                 ],
               ),
             ],

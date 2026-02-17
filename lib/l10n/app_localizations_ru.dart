@@ -309,6 +309,14 @@ class AppLocalizationsRu extends AppLocalizations {
       '1. Папка: нажмите на иконку папки, чтобы выбрать каталог с уровнями.\n2. Открыть/Создать: нажмите на уровень для редактирования или «+» для создания из шаблона.\n3. Модули: добавляйте модули в редакторе.\n4. Сохранить: нажмите «Сохранить» для записи в JSON.\nQQ-группа: 562251204';
 
   @override
+  String get usageTextDesktop =>
+      '1. Папка: щёлкните по иконке папки для выбора каталога уровней.\n2. Открыть/Создать: щёлкните по уровню для редактирования или «+» для создания из шаблона.\n3. Модули: добавляйте модули в редакторе.\n4. Сохранить: щёлкните «Сохранить» для записи в JSON.\nQQ-группа: 562251204';
+
+  @override
+  String get usageTextMobile =>
+      '1. Папка: нажмите на иконку папки, чтобы выбрать каталог с уровнями.\n2. Открыть/Создать: нажмите на уровень для редактирования или «+» для создания из шаблона.\n3. Модули: добавляйте модули в редакторе.\n4. Сохранить: нажмите «Сохранить» для записи в JSON.\nQQ-группа: 562251204';
+
+  @override
   String get creditsSection => 'Благодарности';
 
   @override
@@ -642,7 +650,15 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get waveTimelineGuideBody =>
-      'Свайп вправо: управление событиями волны\nСвайп влево: удалить волну\nНажмите на очки: ожидание';
+      'Свайп вправо: управление событиями волны\nСвайп влево: удалить волну\nНажмите на очки: ожидание по зомби';
+
+  @override
+  String get waveTimelineGuideBodyDesktop =>
+      'Клик левой кнопокой мыши по волне: управление событиями\nКнопка удаления: убрать волну\nКлик по очкам: ожидание по зомби';
+
+  @override
+  String get waveTimelineGuideBodyMobile =>
+      'Свайп вправо: управление событиями волны\nСвайп влево: удалить волну\nНажмите на очки: ожидание по зомби';
 
   @override
   String get waveDeadLinksTitle => 'Неверные ссылки';
@@ -714,6 +730,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get waveEmptyRowHint => 'Пустая волна (свайп влево/вправо)';
+
+  @override
+  String get waveEmptyRowHintDesktop =>
+      'Пустая волна (щёлкните для управления)';
+
+  @override
+  String get waveEmptyRowHintMobile => 'Пустая волна (свайп влево/вправо)';
 
   @override
   String get removeFromWave => 'Удалить из волны';
@@ -853,6 +876,10 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get deleteWaveConfirmCheckbox =>
+      'Я подтверждаю безвозвратное удаление этой волны';
+
+  @override
   String get addEvent => 'Добавить событие';
 
   @override
@@ -901,6 +928,10 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get confirmRemoveRefMessage =>
       'Удалить эту ссылку? Данные объекта останутся до удаления всех ссылок.';
+
+  @override
+  String get deleteEventConfirmCheckbox =>
+      'Я понимаю, что это действие нельзя отменить';
 
   @override
   String get noZombiesInLane => 'Нет зомби на этой полосе';
@@ -1546,14 +1577,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get eventDesc_MagicMirrorWaveActionProps => 'Зеркальные порталы';
 
   @override
-  String get eventTitle_WaveActionMagicMirrorTeleportationArrayProps2 =>
-      'Волшебное зеркало';
-
-  @override
-  String get eventDesc_WaveActionMagicMirrorTeleportationArrayProps2 =>
-      'Зеркальные порталы';
-
-  @override
   String get weatherOption_DefaultSnow_label => 'Ледяные пещеры (DefaultSnow)';
 
   @override
@@ -1956,6 +1979,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get typeIndex => 'Индекс типа';
 
   @override
+  String get noStyle => 'Без стиля';
+
+  @override
   String styleN(int n) {
     return 'Стиль $n';
   }
@@ -2334,6 +2360,18 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get firstCostume => 'Первый костюм (Avatar)';
+
+  @override
+  String get costumeOn => 'Костюм: надет';
+
+  @override
+  String get costumeOff => 'Костюм: не надет';
+
+  @override
+  String get outsideLawnItems => 'Объекты вне газона';
+
+  @override
+  String get zombieFromLeft => 'Слева';
 
   @override
   String get eventMagicMirror => 'Событие волшебного зеркала';

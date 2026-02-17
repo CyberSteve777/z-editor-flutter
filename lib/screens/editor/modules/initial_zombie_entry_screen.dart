@@ -140,15 +140,29 @@ class _InitialZombieEntryScreenState extends State<InitialZombieEntryScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final sortedPlacements = List<InitialZombieData>.from(_data.placements)
-      ..sort((a, b) {
-        final c = a.gridY.compareTo(b.gridY);
-        return c != 0 ? c : a.gridX.compareTo(b.gridX);
-      });
+    final placementsAtPosition = _data.placements
+        .where((p) =>
+            p.gridX == _selectedX &&
+            p.gridY == _selectedY &&
+            p.gridX >= 0 &&
+            p.gridY >= 0 &&
+            p.gridX < _gridCols &&
+            p.gridY < _gridRows)
+        .toList();
+    final placementsOutsideLawn = _data.placements
+        .where((p) =>
+            p.gridX < 0 ||
+            p.gridY < 0 ||
+            p.gridX >= _gridCols ||
+            p.gridY >= _gridRows)
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)?.initialZombieLayout ?? 'Initial zombie layout'),
+        title: Text(
+          AppLocalizations.of(context)?.initialZombieLayout ?? 'Initial zombie layout',
+          overflow: TextOverflow.ellipsis,
+        ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: widget.onBack,
@@ -187,12 +201,6 @@ class _InitialZombieEntryScreenState extends State<InitialZombieEntryScreen> {
                                 ),
                               ],
                             ),
-                            const Spacer(),
-                            FilledButton.icon(
-                              onPressed: _handleAddZombie,
-                              icon: const Icon(Icons.add, size: 18),
-                              label: Text(AppLocalizations.of(context)?.placeZombie ?? 'Place zombie'),
-                            ),
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -210,19 +218,59 @@ class _InitialZombieEntryScreenState extends State<InitialZombieEntryScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                ...sortedPlacements.map((p) => _InitialZombieCard(
-                  item: p,
-                  gridRows: _gridRows,
-                  gridCols: _gridCols,
-                  isSelected: p.gridX == _selectedX && p.gridY == _selectedY,
-                  onTap: () {
-                    setState(() {
-                      _selectedX = p.gridX;
-                      _selectedY = p.gridY;
-                      _editingPlacement = p;
-                    });
-                  },
-                )),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ...placementsAtPosition.map((p) => _InitialZombieCard(
+                      item: p,
+                      gridRows: _gridRows,
+                      gridCols: _gridCols,
+                      showCoordinates: false,
+                      onTap: () {
+                        setState(() {
+                          _selectedX = p.gridX;
+                          _selectedY = p.gridY;
+                          _editingPlacement = p;
+                        });
+                      },
+                    )),
+                    AddItemCard(
+                      onPressed: _handleAddZombie,
+                    ),
+                  ],
+                ),
+                if (placementsOutsideLawn.isNotEmpty) ...[
+                  const SizedBox(height: 24),
+                  Text(
+                    AppLocalizations.of(context)?.outsideLawnItems ??
+                        'Objects outside the lawn',
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: placementsOutsideLawn
+                        .map((p) => _InitialZombieCard(
+                              item: p,
+                              gridRows: _gridRows,
+                              gridCols: _gridCols,
+                              showCoordinates: true,
+                              onTap: () {
+                                setState(() {
+                                  _selectedX = p.gridX;
+                                  _selectedY = p.gridY;
+                                  _editingPlacement = p;
+                                });
+                              },
+                            ))
+                        .toList(),
+                  ),
+                ],
               ],
             ),
           ),
@@ -387,93 +435,102 @@ class _InitialZombieCard extends StatelessWidget {
     required this.item,
     required this.gridRows,
     required this.gridCols,
-    required this.isSelected,
+    required this.showCoordinates,
     required this.onTap,
   });
 
   final InitialZombieData item;
   final int gridRows;
   final int gridCols;
-  final bool isSelected;
+  final bool showCoordinates;
   final VoidCallback onTap;
-
-  bool get _isOutOfBounds =>
-      item.gridX >= gridCols || item.gridY >= gridRows;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final info = ZombieRepository().getZombieById(item.typeName) ??
+    final typeId = item.typeName;
+    final info = ZombieRepository().getZombieById(typeId) ??
         ZombieRepository().getZombieById(
-          item.typeName.replaceAll('_elite', ''),
+          typeId.replaceAll('_elite', ''),
         );
     final path = info?.icon != null
         ? 'assets/images/zombies/${info!.icon}'
         : 'assets/images/others/unknown.webp';
+    final nameKey = ZombieRepository().getName(typeId);
+    final name = ResourceNames.lookup(context, nameKey);
 
     return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      color: isSelected
-          ? (theme.brightness == Brightness.dark
-              ? const Color(0xFF40404B)
-              : const Color(0xFFD9D7F6))
-          : theme.cardTheme.color,
-      shape: RoundedRectangleBorder(
-        side: isSelected
-            ? BorderSide(color: theme.colorScheme.primary, width: 1)
-            : BorderSide.none,
-        borderRadius: BorderRadius.circular(12),
-      ),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Row(
+        child: SizedBox(
+          width: 100,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              if (_isOutOfBounds)
-                Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Icon(
-                    Icons.warning_amber_rounded,
-                    color: Colors.amber.shade700,
-                    size: 24,
-                  ),
-                ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: AssetImageWidget(
-                  assetPath: path,
-                  width: 40,
-                  height: 40,
-                  fit: BoxFit.cover,
-                  altCandidates: imageAltCandidates(path),
-                  errorWidget: Container(
-                    color: theme.colorScheme.onSurfaceVariant,
-                    width: 40,
-                    height: 40,
+              Padding(
+                padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                child: Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: AssetImageWidget(
+                      assetPath: path,
+                      width: 64,
+                      height: 64,
+                      fit: BoxFit.cover,
+                      altCandidates: imageAltCandidates(path),
+                      errorWidget: Container(
+                        color: theme.colorScheme.onSurfaceVariant,
+                        width: 64,
+                        height: 64,
+                      ),
+                    ),
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'R${item.gridY + 1}:C${item.gridX + 1}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      color: Color(0xFF654B80),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                  Text(
-                    item.condition,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
+                    Text(
+                      item.condition,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                ],
+                    if (showCoordinates)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.warning_amber_rounded,
+                              color: Colors.amber.shade700,
+                              size: 16,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              'R${item.gridY + 1}:C${item.gridX + 1}',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: Colors.amber.shade700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ],
           ),

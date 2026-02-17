@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 
+String _usageTextForPlatform(BuildContext context, AppLocalizations l10n) {
+  final p = Theme.of(context).platform;
+  final isDesktop = p == TargetPlatform.windows ||
+      p == TargetPlatform.macOS ||
+      p == TargetPlatform.linux;
+  return isDesktop ? l10n.usageTextDesktop : l10n.usageTextMobile;
+}
+
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key, required this.onBack});
 
@@ -17,6 +25,7 @@ class AboutScreen extends StatelessWidget {
         title: Text(
           l10n.softwareIntro,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+          overflow: TextOverflow.ellipsis,
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -67,7 +76,7 @@ class AboutScreen extends StatelessWidget {
             _InfoCard(
               title: l10n.usageSection,
               child: Text(
-                l10n.usageText,
+                _usageTextForPlatform(context, l10n),
                 style: TextStyle(height: 1.5, color: theme.colorScheme.onSurface),
               ),
             ),
@@ -95,7 +104,7 @@ class AboutScreen extends StatelessWidget {
             FutureBuilder<PackageInfo>(
               future: PackageInfo.fromPlatform(),
               builder: (context, snapshot) {
-                final versionStr = snapshot.data?.version ?? '1.2.0';
+                final versionStr = snapshot.data?.version ?? '0.0.0';
                 return Text(
                   l10n.version(versionStr),
                   textAlign: TextAlign.center,

@@ -33,6 +33,14 @@ class _ModernPortalsEventScreenState extends State<ModernPortalsEventScreen> {
   late PvzObject _moduleObj;
   late PortalEventData _data;
 
+  bool get _isDeepSeaLawn {
+    final parsed = LevelParser.parseLevel(widget.levelFile);
+    return LevelParser.isDeepSeaLawn(parsed.levelDef);
+  }
+
+  int get _gridCols => _isDeepSeaLawn ? 10 : 9;
+  int get _gridRows => _isDeepSeaLawn ? 6 : 5;
+
   @override
   void initState() {
     super.initState();
@@ -153,19 +161,23 @@ class _ModernPortalsEventScreenState extends State<ModernPortalsEventScreen> {
                         ],
                       ),
                       const SizedBox(height: 12),
-                      AspectRatio(
-                        aspectRatio: 9 / 5,
-                        child: GridView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 9,
-                            childAspectRatio: 1,
-                          ),
-                          itemCount: 45,
-                          itemBuilder: (context, i) {
-                            final col = i % 9;
-                            final row = i ~/ 9;
+                      scaleTableForDesktop(
+                        context: context,
+                        child: Container(
+                          constraints: const BoxConstraints(maxWidth: 480),
+                          child: AspectRatio(
+                            aspectRatio: _gridCols / _gridRows,
+                            child: GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: _gridCols,
+                                childAspectRatio: 1,
+                              ),
+                              itemCount: _gridCols * _gridRows,
+                              itemBuilder: (context, i) {
+                                final col = i % _gridCols;
+                                final row = i ~/ _gridCols;
                             final isSelected =
                                 row == _data.portalRow && col == _data.portalColumn;
                             return GestureDetector(
@@ -201,6 +213,8 @@ class _ModernPortalsEventScreenState extends State<ModernPortalsEventScreen> {
                           },
                         ),
                       ),
+                    ),
+                  ),
                     ],
                   ),
                 ),

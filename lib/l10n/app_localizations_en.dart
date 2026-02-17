@@ -307,6 +307,14 @@ class AppLocalizationsEn extends AppLocalizations {
       '1. Folder: Tap folder icon to choose level JSON directory.\n2. Open/Create: Tap a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\nQQ group: 562251204';
 
   @override
+  String get usageTextDesktop =>
+      '1. Folder: Click folder icon to choose level JSON directory.\n2. Open/Create: Click a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Click save to write back to the JSON file.\nQQ group: 562251204';
+
+  @override
+  String get usageTextMobile =>
+      '1. Folder: Tap folder icon to choose level JSON directory.\n2. Open/Create: Tap a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\nQQ group: 562251204';
+
+  @override
   String get creditsSection => 'Credits';
 
   @override
@@ -639,7 +647,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get waveTimelineGuideBody =>
-      'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view expectation';
+      'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view zombie expectation';
+
+  @override
+  String get waveTimelineGuideBodyDesktop =>
+      'Left-click wave: manage events\nUse delete to remove wave\nClick points: view zombie expectation';
+
+  @override
+  String get waveTimelineGuideBodyMobile =>
+      'Swipe right: manage wave events\nSwipe left: delete wave\nTap points: view zombie expectation';
 
   @override
   String get waveDeadLinksTitle => 'Broken references';
@@ -710,6 +726,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get waveEmptyRowHint => 'Empty wave (swipe left/right)';
+
+  @override
+  String get waveEmptyRowHintDesktop => 'Empty wave (click to manage)';
+
+  @override
+  String get waveEmptyRowHintMobile => 'Empty wave (swipe left/right)';
 
   @override
   String get removeFromWave => 'Remove from wave';
@@ -848,6 +870,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get deleteWaveConfirmCheckbox =>
+      'I confirm permanent deletion of this wave';
+
+  @override
   String get addEvent => 'Add event';
 
   @override
@@ -896,6 +922,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get confirmRemoveRefMessage =>
       'Remove this reference? The entity data will remain until all references are removed.';
+
+  @override
+  String get deleteEventConfirmCheckbox =>
+      'I understand this action cannot be undone';
 
   @override
   String get noZombiesInLane => 'No zombies in this lane';
@@ -1531,14 +1561,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventDesc_MagicMirrorWaveActionProps => 'Mirror portals';
 
   @override
-  String get eventTitle_WaveActionMagicMirrorTeleportationArrayProps2 =>
-      'Magic Mirror';
-
-  @override
-  String get eventDesc_WaveActionMagicMirrorTeleportationArrayProps2 =>
-      'Mirror portals';
-
-  @override
   String get weatherOption_DefaultSnow_label => 'Frostbite Caves (DefaultSnow)';
 
   @override
@@ -1941,6 +1963,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get typeIndex => 'Type index';
 
   @override
+  String get noStyle => 'No style';
+
+  @override
   String styleN(int n) {
     return 'Style $n';
   }
@@ -2320,6 +2345,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get firstCostume => 'First costume (Avatar)';
+
+  @override
+  String get costumeOn => 'Costume: on';
+
+  @override
+  String get costumeOff => 'Costume: off';
+
+  @override
+  String get outsideLawnItems => 'Objects outside the lawn';
+
+  @override
+  String get zombieFromLeft => 'From left';
 
   @override
   String get eventMagicMirror => 'Magic mirror event';
