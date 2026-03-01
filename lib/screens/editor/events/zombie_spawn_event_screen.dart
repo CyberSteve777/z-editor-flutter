@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/data/repository/zombie_repository.dart';
@@ -47,6 +48,8 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
   late PvzObject _moduleObj;
   late dynamic _data;
   double _batchLevel = 1;
+
+  bool get _isDeepSeaLawn => LevelParser.isDeepSeaLawnFromFile(widget.levelFile);
 
   static const _jamOptions = [
     (null, 'None'),
@@ -468,11 +471,12 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                           ),
                           items: [
                             DropdownMenuItem(value: 0, child: Text(l10n?.random ?? 'Random')),
-                            DropdownMenuItem(value: 1, child: Text(l10n?.rowN(1) ?? 'Row 1')),
-                            DropdownMenuItem(value: 2, child: Text(l10n?.rowN(2) ?? 'Row 2')),
-                            DropdownMenuItem(value: 3, child: Text(l10n?.rowN(3) ?? 'Row 3')),
-                            DropdownMenuItem(value: 4, child: Text(l10n?.rowN(4) ?? 'Row 4')),
-                            DropdownMenuItem(value: 5, child: Text(l10n?.rowN(5) ?? 'Row 5')),
+                            ...List.generate(_isDeepSeaLawn ? 6 : 5, (i) => i + 1).map(
+                              (v) => DropdownMenuItem(
+                                value: v,
+                                child: Text(l10n?.rowN(v) ?? 'Row $v'),
+                              ),
+                            ),
                           ],
                           onChanged: (v) {
                             if (v == null) return;
@@ -757,7 +761,9 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                 ),
                 HelpSectionData(
                   title: l10n?.row ?? 'Row',
-                  body: l10n?.eventHelpStandardRow ?? 'Rows 0–4. Leave unset for random row.',
+                  body: _isDeepSeaLawn
+                      ? (l10n?.eventHelpStandardRowDeepSea ?? 'Rows 0–5 (6-row lawn). Leave unset for random row.')
+                      : (l10n?.eventHelpStandardRow ?? 'Rows 0–4. Leave unset for random row.'),
                 ),
               ],
             ),
@@ -809,7 +815,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                   child: TextFormField(
                     initialValue: d.columnStart.toString(),
                     decoration: InputDecoration(
-                      labelText: l10n?.start ?? 'Start',
+                      labelText: l10n?.columnStartLabel ?? 'Start [ColumnStart]',
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
@@ -833,7 +839,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
                   child: TextFormField(
                     initialValue: d.columnEnd.toString(),
                     decoration: InputDecoration(
-                      labelText: l10n?.end ?? 'End',
+                      labelText: l10n?.columnEndLabel ?? 'End [ColumnEnd]',
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
@@ -915,7 +921,7 @@ class _ZombieSpawnEventScreenState extends State<ZombieSpawnEventScreen> {
   Widget _buildLaneRows(BuildContext context, ThemeData theme, AppLocalizations? l10n) {
     return Column(
       children: [
-        for (var row = 1; row <= 5; row++) ...[
+        for (var row = 1; row <= (_isDeepSeaLawn ? 6 : 5); row++) ...[
           _buildLaneRow(
             context,
             theme,
