@@ -1,0 +1,557 @@
+{
+	"#comment": "",
+	"version": 1,
+	"objects": [
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire1"
+			],
+			"objdata": {
+				"Amount": 300.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 25.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire2"
+			],
+			"objdata": {
+				"Amount": 400.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 40.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire3"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 80.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire10"
+			],
+			"objdata": {
+				"Amount": 300.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 25.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResiliencePoison1"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 2,
+				"RecoverSpeed": 100.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceCold1"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 5,
+				"RecoverSpeed": 100.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire4"
+			],
+			"objdata": {
+				"Amount": 2500.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 250.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceLightning1"
+			],
+			"objdata": {
+				"Amount": 300.000000,
+				"WeakType": 3,
+				"RecoverSpeed": 40.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceLightning4"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 3,
+				"RecoverSpeed": 40.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceMagic1"
+			],
+			"objdata": {
+				"Amount": 300.000000,
+				"WeakType": 1,
+				"RecoverSpeed": 250.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceMagic12th"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 1,
+				"RecoverSpeed": 40.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"Resiliencefire11"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 250.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"Resilienceice1"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 5,
+				"RecoverSpeed": 250.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceMagic2"
+			],
+			"objdata": {
+				"Amount": 300.000000,
+				"WeakType": 1,
+				"RecoverSpeed": 30.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceMagic3"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 1,
+				"RecoverSpeed": 20.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceMagic4"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 1,
+				"RecoverSpeed": 15.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceMagic5"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 4,
+				"RecoverSpeed": 75.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceLightning2"
+			],
+			"objdata": {
+				"Amount": 400.000000,
+				"WeakType": 3,
+				"RecoverSpeed": 40.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire5"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 7,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire6"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 7,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceLightning3"
+			],
+			"objdata": {
+				"Amount": 200.000000,
+				"WeakType": 3,
+				"RecoverSpeed": 7,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire7"
+			],
+			"objdata": {
+				"Amount": 300.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 10,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFire8"
+			],
+			"objdata": {
+				"Amount": 300.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 10,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceHamlet"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 2,
+				"RecoverSpeed": 100.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceRemeo"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 2,
+				"RecoverSpeed": 100.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceJuliet"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 1,
+				"RecoverSpeed": 100.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceFairyTaleImp"
+			],
+			"objdata": {
+				"Amount": 600.000000,
+				"WeakType": 2,
+				"RecoverSpeed": 66.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceJuggler"
+			],
+			"objdata": {
+				"Amount": 1000.000000,
+				"WeakType": 1,
+				"RecoverSpeed": 80.000000,
+				"DamageThresholdPerSecond": 1500.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		},
+		{
+			"objclass": "ZombieResilience",
+			"aliases": [
+				"ResilienceTeamBossFire"
+			],
+			"objdata": {
+				"Amount": 500.000000,
+				"WeakType": 6,
+				"RecoverSpeed": 25.000000,
+				"DamageThresholdPerSecond": 10000.000000,
+				"ResilienceBaseDamageThreshold": 40.000000,
+				"ResilienceExtraDamageThreshold": 60.000000,
+				"AnimLabels": [
+					"break_enter",
+					"break_loop",
+					"break_recover"
+				]
+			}
+		}
+	]
+}

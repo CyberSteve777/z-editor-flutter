@@ -1,0 +1,416 @@
+{
+	"#comment": "Make new plant types here!",
+	"version": 1,
+	"objects": [
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoraptor"
+			],
+			"objdata": {
+				"TypeName": "dinoraptor",
+				"CreatureClass": "DinosaurRaptor",
+				"Properties": "RTID(DinoRaptor@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoRaptorGroup",
+					"ZombieDinoRaptorAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Raptor",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_RAPTOR",
+				"HomeWorld": "tutorial"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinostego"
+			],
+			"objdata": {
+				"TypeName": "dinostego",
+				"CreatureClass": "DinosaurStegosaurus",
+				"Properties": "RTID(DinoStego@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoStegosaurusGroup",
+					"ZombieDinoStegosaurusAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Stegosaurus",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_STEGOSAURUS",
+				"HomeWorld": "tutorial"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoptero"
+			],
+			"objdata": {
+				"TypeName": "dinoptero",
+				"CreatureClass": "DinosaurPterodactyl",
+				"Properties": "RTID(DinoPtero@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoPterodactylGroup",
+					"ZombieDinoPterodactylAudio"
+				],
+				"AudioGroups": [
+					"ZombieIceAgeDodoAudio"
+				],
+				"AnimRigClass": "DinosaurAnimRig_Pterodactyl",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_PTERODACTYL",
+				"HomeWorld": "tutorial"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoankylo"
+			],
+			"objdata": {
+				"TypeName": "dinoankylo",
+				"CreatureClass": "DinosaurAnkylosaurus",
+				"Properties": "RTID(DinoAnkylo@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoAnkylosaurusGroup",
+					"ZombieDinoAnkylosaurusAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Ankylosaurus",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_ANKYLOSAURUS",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinotyranno"
+			],
+			"objdata": {
+				"TypeName": "dinotyranno",
+				"CreatureClass": "DinosaurTyrannosaurus",
+				"Properties": "RTID(DinoTyrannosaurus@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoRexGroup",
+					"ZombieDinoRexAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Tyrannosaurus",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_REX",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinopterocatcher"
+			],
+			"objdata": {
+				"TypeName": "dinopterocatcher",
+				"CreatureClass": "DinosaurPterodactyl",
+				"Properties": "RTID(DinoPteroCatcher@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoPterodactylGroup",
+					"ZombieDinoPterodactylAudio",
+					"ZombieDinoShanghaiAudio"
+				],
+				"AudioGroups": [
+					"ZombieIceAgeDodoAudio"
+				],
+				"AnimRigClass": "DinosaurAnimRig_Pterodactyl",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_PTERODACTYL",
+				"HomeWorld": "tutorial"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoyoungptero"
+			],
+			"objdata": {
+				"TypeName": "dinoyoungptero",
+				"CreatureClass": "DinoYoungPterodactyl",
+				"Properties": "RTID(DinoYoungPtero@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoYoungPterodactylGroup",
+					"ZombieDinoPterodactylAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_YoungPterodactyl",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_YOUNG_PTERODACTYL",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoyoungtyranno"
+			],
+			"objdata": {
+				"TypeName": "dinoyoungtyranno",
+				"CreatureClass": "DinoYoungTyrannosaurus",
+				"Properties": "RTID(DinoYoungTyranno@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoYoungRexGroup",
+					"PlantDragonRoarAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_YoungTyrannosaurus",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_YOUNG_REX",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoyoungbronto"
+			],
+			"objdata": {
+				"TypeName": "dinoyoungbronto",
+				"CreatureClass": "DinoYoungBrontosaurus",
+				"Properties": "RTID(DinoYoungBronto@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoYoungBrontosaurusGroup",
+					"DinoBrontoTreadGroup",
+					"ZombieDinoRexAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_YoungBrontosaurus",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_YOUNG_BRONTOSAURUS",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoraptorrunner"
+			],
+			"objdata": {
+				"TypeName": "dinoraptorrunner",
+				"CreatureClass": "DinosaurRunner",
+				"Properties": "RTID(DinoRaptorRunner@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoRunnerRaptorGroup",
+					"DinoSmokeGroup",
+					"ZombieDinoShanghaiAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Runner",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_RUNNER_RAPTOR",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinostegorunner"
+			],
+			"objdata": {
+				"TypeName": "dinostegorunner",
+				"CreatureClass": "DinosaurRunner",
+				"Properties": "RTID(DinoStegoRunner@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoRunnerStegosaurusGroup",
+					"DinoSmokeGroup",
+					"ZombieDinoShanghaiAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Runner",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_RUNNER_STEGOSAURUS",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinoankylorunner"
+			],
+			"objdata": {
+				"TypeName": "dinoankylorunner",
+				"CreatureClass": "DinosaurRunner",
+				"Properties": "RTID(DinoAnkyloRunner@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoRunnerAnkylosaurusGroup",
+					"DinoSmokeGroup",
+					"ZombieDinoShanghaiAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Runner",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_RUNNER_ANKYLOSAURUS",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"dinotyrannorunner"
+			],
+			"objdata": {
+				"TypeName": "dinotyrannorunner",
+				"CreatureClass": "DinosaurRunner",
+				"Properties": "RTID(DinoTyrannosaurusRunner@PropertySheets)",
+				"ResourceGroups": [
+					"CreatureDinoRunnerRexGroup",
+					"DinoSmokeGroup",
+					"ZombieDinoShanghaiAudio"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "DinosaurAnimRig_Runner",
+				"PopAnim": "POPANIM_ZOMBIE_ZOMBIE_DINO_RUNNER_REX",
+				"HomeWorld": "dino"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"inkfish"
+			],
+			"objdata": {
+				"TypeName": "inkfish",
+				"CreatureClass": "FishInkfish",
+				"Properties": "RTID(inkfishDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "FishAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_INKFISH"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"swordfish"
+			],
+			"objdata": {
+				"TypeName": "swordfish",
+				"CreatureClass": "FishSwordfish",
+				"Properties": "RTID(SwordfishDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "SwordfishAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_SWORDFISH"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"pufferfish"
+			],
+			"objdata": {
+				"TypeName": "pufferfish",
+				"CreatureClass": "FishPuffer",
+				"Properties": "RTID(pufferfishDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "PufferAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_PUFFERFISH"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"starfish"
+			],
+			"objdata": {
+				"TypeName": "starfish",
+				"CreatureClass": "FishStar",
+				"Properties": "RTID(starfishDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "FishAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_STARFISH"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"jellyfish"
+			],
+			"objdata": {
+				"TypeName": "jellyfish",
+				"CreatureClass": "FishJelly",
+				"Properties": "RTID(jellyfishDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "JellyAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_JELLYFISH"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"smalljellyfish"
+			],
+			"objdata": {
+				"TypeName": "smalljellyfish",
+				"CreatureClass": "FishSmallJelly",
+				"Properties": "RTID(jellyfishDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "JellyAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_JELLYFISH"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"hermitcrab"
+			],
+			"objdata": {
+				"TypeName": "hermitcrab",
+				"CreatureClass": "FishHermitcrab",
+				"Properties": "RTID(hermitcrabDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "FishAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_HERMITCRAB"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"krill"
+			],
+			"objdata": {
+				"TypeName": "krill",
+				"CreatureClass": "FishKrill",
+				"Properties": "RTID(krillDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "FishAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_KRILL"
+			}
+		},
+		{
+			"objclass": "CreatureType",
+			"aliases": [
+				"cthulhusmalljelly"
+			],
+			"objdata": {
+				"TypeName": "cthulhusmalljelly",
+				"CreatureClass": "FishCthulhuSmallJelly",
+				"Properties": "RTID(cthulhusmalljellyDefault@PropertySheets)",
+				"ResourceGroups": [
+					"FishesGroup"
+				],
+				"AudioGroups": [],
+				"AnimRigClass": "CthulhuSmallJellyAnimRig",
+				"PopAnim": "POPANIM_PLANT_FISHS_FISH_CTHULHU_JELLYFISH"
+			}
+		}
+	]
+}
