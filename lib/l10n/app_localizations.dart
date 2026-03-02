@@ -1096,23 +1096,23 @@ abstract class AppLocalizations {
   /// **'Orange Quality'**
   String get plantTagOrange;
 
-  /// No description provided for @plantTagAssist.
+  /// No description provided for @plantTagSupport.
   ///
   /// In en, this message translates to:
-  /// **'Assist'**
-  String get plantTagAssist;
+  /// **'Support'**
+  String get plantTagSupport;
 
-  /// No description provided for @plantTagRemote.
+  /// No description provided for @plantTagRanger.
   ///
   /// In en, this message translates to:
-  /// **'Remote'**
-  String get plantTagRemote;
+  /// **'Ranger'**
+  String get plantTagRanger;
 
-  /// No description provided for @plantTagProductor.
+  /// No description provided for @plantTagSunProducer.
   ///
   /// In en, this message translates to:
-  /// **'Producer'**
-  String get plantTagProductor;
+  /// **'Sun producer'**
+  String get plantTagSunProducer;
 
   /// No description provided for @plantTagDefence.
   ///
@@ -1162,11 +1162,11 @@ abstract class AppLocalizations {
   /// **'Electric'**
   String get plantTagElectric;
 
-  /// No description provided for @plantTagPhysics.
+  /// No description provided for @plantTagPhysical.
   ///
   /// In en, this message translates to:
-  /// **'Physics'**
-  String get plantTagPhysics;
+  /// **'Physical'**
+  String get plantTagPhysical;
 
   /// No description provided for @plantTagOriginal.
   ///

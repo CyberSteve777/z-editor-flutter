@@ -528,13 +528,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plantTagOrange => '橙品质';
 
   @override
-  String get plantTagAssist => '辅助';
+  String get plantTagSupport => '辅助';
 
   @override
-  String get plantTagRemote => '远程';
+  String get plantTagRanger => '远程';
 
   @override
-  String get plantTagProductor => '生产';
+  String get plantTagSunProducer => '阳光生产';
 
   @override
   String get plantTagDefence => '防御';
@@ -561,7 +561,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plantTagElectric => '电能';
 
   @override
-  String get plantTagPhysics => '物理';
+  String get plantTagPhysical => '物理';
 
   @override
   String get plantTagOriginal => '一代原版';

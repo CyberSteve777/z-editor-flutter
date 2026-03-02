@@ -535,13 +535,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plantTagOrange => 'Orange Quality';
 
   @override
-  String get plantTagAssist => 'Assist';
+  String get plantTagSupport => 'Support';
 
   @override
-  String get plantTagRemote => 'Remote';
+  String get plantTagRanger => 'Ranger';
 
   @override
-  String get plantTagProductor => 'Producer';
+  String get plantTagSunProducer => 'Sun producer';
 
   @override
   String get plantTagDefence => 'Defense';
@@ -568,7 +568,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plantTagElectric => 'Electric';
 
   @override
-  String get plantTagPhysics => 'Physics';
+  String get plantTagPhysical => 'Physical';
 
   @override
   String get plantTagOriginal => 'Original PvZ1';

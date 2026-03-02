@@ -31,9 +31,9 @@ enum PlantTag {
   blue,
   purple,
   orange,
-  assist,
-  remote,
-  productor,
+  support,
+  ranger,
+  sun_producer,
   defence,
   vanguard,
   trapper,
@@ -42,7 +42,7 @@ enum PlantTag {
   magic,
   poison,
   electric,
-  physics,
+  physical,
   original,
   parallel,
 }
@@ -63,12 +63,12 @@ extension PlantTagExtension on PlantTag {
         return s.plantTagPurple;
       case PlantTag.orange:
         return s.plantTagOrange;
-      case PlantTag.assist:
-        return s.plantTagAssist;
-      case PlantTag.remote:
-        return s.plantTagRemote;
-      case PlantTag.productor:
-        return s.plantTagProductor;
+      case PlantTag.support:
+        return s.plantTagSupport;
+      case PlantTag.ranger:
+        return s.plantTagRanger;
+      case PlantTag.sun_producer:
+        return s.plantTagSunProducer;
       case PlantTag.defence:
         return s.plantTagDefence;
       case PlantTag.vanguard:
@@ -85,8 +85,8 @@ extension PlantTagExtension on PlantTag {
         return s.plantTagPoison;
       case PlantTag.electric:
         return s.plantTagElectric;
-      case PlantTag.physics:
-        return s.plantTagPhysics;
+      case PlantTag.physical:
+        return s.plantTagPhysical;
       case PlantTag.original:
         return s.plantTagOriginal;
       case PlantTag.parallel:
@@ -106,11 +106,11 @@ extension PlantTagExtension on PlantTag {
         return 'Plant_Purple.webp';
       case PlantTag.orange:
         return 'Plant_Orange.webp';
-      case PlantTag.assist:
+      case PlantTag.support:
         return 'Plant_Assist.webp';
-      case PlantTag.remote:
+      case PlantTag.ranger:
         return 'Plant_Remote.webp';
-      case PlantTag.productor:
+      case PlantTag.sun_producer:
         return 'Plant_Productor.webp';
       case PlantTag.defence:
         return 'Plant_Defence.webp';
@@ -128,7 +128,7 @@ extension PlantTagExtension on PlantTag {
         return 'Plant_Poison.webp';
       case PlantTag.electric:
         return 'Plant_Electric.webp';
-      case PlantTag.physics:
+      case PlantTag.physical:
         return 'Plant_Physics.webp';
       default:
         return null;
@@ -144,9 +144,9 @@ extension PlantTagExtension on PlantTag {
       case PlantTag.purple:
       case PlantTag.orange:
         return PlantCategory.quality;
-      case PlantTag.assist:
-      case PlantTag.remote:
-      case PlantTag.productor:
+      case PlantTag.support:
+      case PlantTag.ranger:
+      case PlantTag.sun_producer:
       case PlantTag.defence:
       case PlantTag.vanguard:
       case PlantTag.trapper:
@@ -156,7 +156,7 @@ extension PlantTagExtension on PlantTag {
       case PlantTag.magic:
       case PlantTag.poison:
       case PlantTag.electric:
-      case PlantTag.physics:
+      case PlantTag.physical:
         return PlantCategory.attribute;
       case PlantTag.original:
       case PlantTag.parallel:
@@ -236,7 +236,7 @@ class PlantRepository {
                       .replaceAll('_', '')
                       .toLowerCase();
                   return PlantTag.values.firstWhere(
-                    (e) => e.name.toLowerCase() == normalizedTag,
+                    (e) => e.name.replaceAll('_', '').toLowerCase() == normalizedTag,
                     orElse: () => PlantTag.all,
                   );
                 })

@@ -4,7 +4,7 @@
         "name": "plant_sunflower",
         "tags": [
             "White",
-            "Productor",
+            "SunProducer",
             "Original"
         ],
         "icon": "icon_sunflower.webp"
@@ -14,7 +14,7 @@
         "name": "plant_peashooter",
         "tags": [
             "White",
-            "Remote",
+            "Ranger",
             "Original"
         ],
         "icon": "icon_peashooter.webp"
@@ -35,7 +35,7 @@
         "tags": [
             "White",
             "Trapper",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_potatomine.webp"
@@ -46,7 +46,7 @@
         "tags": [
             "White",
             "Trapper",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_gravebuster.webp"
@@ -66,8 +66,8 @@
         "name": "plant_bloomerang",
         "tags": [
             "Green",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_bloomerang.webp"
     },
@@ -76,8 +76,8 @@
         "name": "plant_cabbagepult",
         "tags": [
             "White",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_cabbagepult.webp"
@@ -87,8 +87,8 @@
         "name": "plant_repeater",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_repeater.webp"
@@ -98,7 +98,7 @@
         "name": "plant_twinsunflower",
         "tags": [
             "Blue",
-            "Productor",
+            "SunProducer",
             "Original"
         ],
         "icon": "icon_twinsunflower.webp"
@@ -109,7 +109,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_bonkchoy.webp"
     },
@@ -129,7 +129,7 @@
         "name": "plant_snowpea",
         "tags": [
             "Green",
-            "Remote",
+            "Ranger",
             "Ice",
             "Original"
         ],
@@ -140,8 +140,8 @@
         "name": "plant_torchwood",
         "tags": [
             "Green",
-            "Assist",
-            "Physics",
+            "Support",
+            "Physical",
             "Original"
         ],
         "icon": "icon_torchwood.webp"
@@ -162,8 +162,8 @@
         "name": "plant_coconutcannon",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_coconutcannon.webp"
     },
@@ -172,7 +172,7 @@
         "name": "plant_powerlily",
         "tags": [
             "Blue",
-            "Assist",
+            "Support",
             "Magic"
         ],
         "icon": "icon_powerlily.webp"
@@ -183,7 +183,7 @@
         "tags": [
             "Green",
             "Defence",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_tallnut.webp"
@@ -194,7 +194,7 @@
         "tags": [
             "White",
             "Trapper",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_spikeweed.webp"
@@ -205,7 +205,7 @@
         "tags": [
             "Green",
             "Trapper",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_spikerock.webp"
@@ -224,8 +224,8 @@
         "name": "plant_kernelpult",
         "tags": [
             "White",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_kernelpult.webp"
@@ -245,8 +245,8 @@
         "name": "plant_threepeater",
         "tags": [
             "Green",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_threepeater.webp"
@@ -256,8 +256,8 @@
         "name": "plant_melonpult",
         "tags": [
             "Green",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_melonpult.webp"
@@ -267,7 +267,7 @@
         "name": "plant_wintermelon",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Ice",
             "Original"
         ],
@@ -278,7 +278,7 @@
         "name": "plant_lightningreed",
         "tags": [
             "Green",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_lightningreed.webp"
@@ -288,8 +288,8 @@
         "name": "plant_peapod",
         "tags": [
             "Green",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_peapod.webp"
     },
@@ -299,7 +299,7 @@
         "tags": [
             "Blue",
             "Trapper",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_squash.webp"
@@ -310,7 +310,7 @@
         "tags": [
             "White",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_chilibean.webp"
     },
@@ -319,8 +319,8 @@
         "name": "plant_splitpea",
         "tags": [
             "White",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_splitpea.webp"
@@ -353,7 +353,7 @@
         "tags": [
             "White",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_turnip.webp"
     },
@@ -372,7 +372,7 @@
         "name": "plant_peach",
         "tags": [
             "White",
-            "Assist",
+            "Support",
             "Magic"
         ],
         "icon": "icon_peach.webp"
@@ -383,7 +383,7 @@
         "tags": [
             "White",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_bamboo.webp"
     },
@@ -392,8 +392,8 @@
         "name": "plant_kiwifruit",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_kiwifruit.webp"
     },
@@ -403,7 +403,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_mapleblade.webp"
     },
@@ -412,8 +412,8 @@
         "name": "plant_dracaena",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_dracaena.webp"
     },
@@ -432,7 +432,7 @@
         "name": "plant_laser_bean",
         "tags": [
             "Blue",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_laser_bean.webp"
@@ -443,7 +443,7 @@
         "tags": [
             "Blue",
             "Trapper",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_blover.webp"
@@ -453,7 +453,7 @@
         "name": "plant_citron",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_citron.webp"
@@ -481,7 +481,7 @@
         "name": "plant_magnifyinggrass",
         "tags": [
             "Green",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_magnifyinggrass.webp"
@@ -491,7 +491,7 @@
         "name": "plant_powerplant",
         "tags": [
             "Orange",
-            "Assist",
+            "Support",
             "Magic"
         ],
         "icon": "icon_powerplant.webp"
@@ -501,7 +501,7 @@
         "name": "plant_starfruit",
         "tags": [
             "Blue",
-            "Remote",
+            "Ranger",
             "Electric",
             "Magic",
             "Original"
@@ -513,7 +513,7 @@
         "name": "plant_sunshroom",
         "tags": [
             "Orange",
-            "Productor",
+            "SunProducer",
             "Original"
         ],
         "icon": "icon_sunshroom.gif"
@@ -524,7 +524,7 @@
         "tags": [
             "White",
             "Vanguard",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_puffshroom.webp"
@@ -535,7 +535,7 @@
         "tags": [
             "White",
             "Vanguard",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_fumeshroom.webp"
@@ -556,7 +556,7 @@
         "name": "plant_sunbean",
         "tags": [
             "White",
-            "Productor",
+            "SunProducer",
             "Magic"
         ],
         "icon": "icon_sunbean.webp"
@@ -566,8 +566,8 @@
         "name": "plant_peanut",
         "tags": [
             "White",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_peanut.webp"
     },
@@ -586,8 +586,8 @@
         "name": "plant_oakshooter",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_oakshooter.webp"
     },
@@ -607,7 +607,7 @@
         "name": "plant_coffeebean",
         "tags": [
             "White",
-            "Assist",
+            "Support",
             "Magic",
             "Original"
         ],
@@ -618,7 +618,7 @@
         "name": "plant_iceshroom",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Ice"
         ],
         "icon": "icon_iceshroom.webp"
@@ -628,7 +628,7 @@
         "name": "plant_fireshroom",
         "tags": [
             "Purple",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_fireshroom.webp"
@@ -648,8 +648,8 @@
         "name": "plant_lilypad",
         "tags": [
             "White",
-            "Assist",
-            "Physics",
+            "Support",
+            "Physical",
             "Original"
         ],
         "icon": "icon_lilypad.webp"
@@ -659,7 +659,7 @@
         "name": "plant_tanglekelp",
         "tags": [
             "White",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_tanglekelp.webp"
@@ -670,7 +670,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_chomper.webp"
@@ -680,8 +680,8 @@
         "name": "plant_lemon",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_lemon.webp"
     },
@@ -690,8 +690,8 @@
         "name": "plant_lotusshower",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_lotusshower.webp"
     },
@@ -700,8 +700,8 @@
         "name": "plant_bowlingbulb",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_bowlingbulb.webp"
     },
@@ -710,8 +710,8 @@
         "name": "plant_banana",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_banana.webp"
     },
@@ -720,8 +720,8 @@
         "name": "plant_guacodile",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_guacodile.webp"
     },
@@ -730,8 +730,8 @@
         "name": "plant_homingthistle",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_homingthistle.webp"
     },
@@ -750,7 +750,7 @@
         "name": "plant_firepeashooter",
         "tags": [
             "Green",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_firepeashooter.webp"
@@ -760,7 +760,7 @@
         "name": "plant_pepperpult",
         "tags": [
             "Blue",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_pepperpult.webp"
@@ -770,7 +770,7 @@
         "name": "plant_hotpotato",
         "tags": [
             "White",
-            "Assist",
+            "Support",
             "Fire"
         ],
         "icon": "icon_hotpotato.webp"
@@ -790,7 +790,7 @@
         "tags": [
             "Green",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_stunion.webp"
     },
@@ -799,8 +799,8 @@
         "name": "plant_rafflesia",
         "tags": [
             "Green",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_rafflesia.webp"
     },
@@ -809,8 +809,8 @@
         "name": "plant_acorn",
         "tags": [
             "Green",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_acorn.webp"
     },
@@ -829,8 +829,8 @@
         "name": "plant_xshot",
         "tags": [
             "Green",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_xshot.webp"
     },
@@ -840,7 +840,7 @@
         "tags": [
             "Green",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_doublesamara.webp"
     },
@@ -849,8 +849,8 @@
         "name": "plant_asparagus",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_asparagus.webp"
     },
@@ -869,8 +869,8 @@
         "name": "plant_horsebean",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_horsebean.webp"
     },
@@ -889,7 +889,7 @@
         "name": "plant_anthurium",
         "tags": [
             "Green",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_anthurium.webp"
@@ -900,7 +900,7 @@
         "tags": [
             "Green",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_pineapple.webp"
     },
@@ -910,7 +910,7 @@
         "tags": [
             "Green",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_endurian.webp"
     },
@@ -920,7 +920,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_toadstool.webp"
     },
@@ -929,7 +929,7 @@
         "name": "plant_goldleaf",
         "tags": [
             "White",
-            "Productor",
+            "SunProducer",
             "Magic"
         ],
         "icon": "icon_goldleaf.webp"
@@ -939,8 +939,8 @@
         "name": "plant_akee",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_akee.webp"
     },
@@ -960,7 +960,7 @@
         "tags": [
             "Blue",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_redstinger.webp"
     },
@@ -980,7 +980,7 @@
         "tags": [
             "Green",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_jackfruit.webp"
     },
@@ -989,7 +989,7 @@
         "name": "plant_morningglory",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_morningglory.webp"
@@ -1000,8 +1000,8 @@
         "tags": [
             "Orange",
             "Original",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_nekotail.gif"
     },
@@ -1011,7 +1011,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_phatbeet.webp"
     },
@@ -1031,7 +1031,7 @@
         "tags": [
             "Blue",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_celerystalker.webp"
     },
@@ -1040,8 +1040,8 @@
         "name": "plant_sporeshroom",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_sporeshroom.webp"
     },
@@ -1052,7 +1052,7 @@
             "Green",
             "Trapper",
             "Original",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_garlic.webp"
     },
@@ -1061,7 +1061,7 @@
         "name": "plant_intensivecarrot",
         "tags": [
             "Green",
-            "Assist",
+            "Support",
             "Magic"
         ],
         "icon": "icon_intensivecarrot.webp"
@@ -1072,8 +1072,8 @@
         "tags": [
             "Orange",
             "Original",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_cactus.webp"
     },
@@ -1082,7 +1082,7 @@
         "name": "plant_electricblueberry",
         "tags": [
             "Purple",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_electricblueberry.webp"
@@ -1093,8 +1093,8 @@
         "tags": [
             "Orange",
             "Original",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_gatlingpea.webp"
     },
@@ -1103,8 +1103,8 @@
         "name": "plant_primalpeashooter",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_primalpeashooter.webp"
     },
@@ -1114,7 +1114,7 @@
         "tags": [
             "Blue",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_primalwallnut.webp"
     },
@@ -1133,7 +1133,7 @@
         "name": "plant_primalsunflower",
         "tags": [
             "Blue",
-            "Productor"
+            "SunProducer"
         ],
         "icon": "icon_primalsunflower.webp"
     },
@@ -1143,7 +1143,7 @@
         "tags": [
             "Purple",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_primalpotatomine.webp"
     },
@@ -1172,7 +1172,7 @@
         "name": "plant_primalrafflesia",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Poison"
         ],
         "icon": "icon_primalrafflesia.webp"
@@ -1202,7 +1202,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_dragoncane.webp"
     },
@@ -1211,8 +1211,8 @@
         "name": "plant_cobcannon",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_cobcannon.webp"
@@ -1222,7 +1222,7 @@
         "name": "plant_meteorflower",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_meteorflower.webp"
@@ -1241,7 +1241,7 @@
         "name": "plant_moonflower",
         "tags": [
             "Green",
-            "Assist"
+            "Support"
         ],
         "icon": "icon_moonflower.webp"
     },
@@ -1260,7 +1260,7 @@
         "name": "plant_caulipower",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_caulipower.webp"
@@ -1271,7 +1271,7 @@
         "tags": [
             "Purple",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_grimrose.webp"
     },
@@ -1281,7 +1281,7 @@
         "tags": [
             "Purple",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_nightshade.webp"
     },
@@ -1290,8 +1290,8 @@
         "name": "plant_dusklobber",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_dusklobber.webp"
     },
@@ -1300,8 +1300,8 @@
         "name": "plant_bloominghearts",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_bloominghearts.webp"
     },
@@ -1310,7 +1310,7 @@
         "name": "plant_marigold",
         "tags": [
             "White",
-            "Assist",
+            "Support",
             "Original"
         ],
         "icon": "icon_marigold.webp"
@@ -1320,7 +1320,7 @@
         "name": "plant_flowerpot",
         "tags": [
             "White",
-            "Assist",
+            "Support",
             "Original"
         ],
         "icon": "icon_flowerpot.webp"
@@ -1330,8 +1330,8 @@
         "name": "plant_shadowpeashooter",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_shadowpeashooter.webp"
     },
@@ -1340,7 +1340,7 @@
         "name": "plant_goldbloom",
         "tags": [
             "White",
-            "Productor"
+            "SunProducer"
         ],
         "icon": "icon_goldbloom.webp"
     },
@@ -1358,7 +1358,7 @@
         "name": "plant_lotusshooter",
         "tags": [
             "Purple",
-            "Remote",
+            "Ranger",
             "Ice"
         ],
         "icon": "icon_lotusshooter.webp"
@@ -1368,8 +1368,8 @@
         "name": "plant_vanilla",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_vanilla.webp"
     },
@@ -1378,8 +1378,8 @@
         "name": "plant_passionflower",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_passionflower.webp"
     },
@@ -1388,7 +1388,7 @@
         "name": "plant_convallariachemist",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Poison"
         ],
         "icon": "icon_convallariachemist.gif"
@@ -1398,8 +1398,8 @@
         "name": "plant_mulberry",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Poison"
         ],
         "icon": "icon_mulberry.webp"
@@ -1409,7 +1409,7 @@
         "name": "plant_aloes",
         "tags": [
             "Purple",
-            "Assist"
+            "Support"
         ],
         "icon": "icon_aloes.webp"
     },
@@ -1418,8 +1418,8 @@
         "name": "plant_bearberry",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_bearberry.webp"
     },
@@ -1429,7 +1429,7 @@
         "tags": [
             "Green",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_waxgourd.webp"
     },
@@ -1448,8 +1448,8 @@
         "name": "plant_pomegranatejeweler",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_pomegranatejeweler.webp"
     },
@@ -1458,7 +1458,7 @@
         "name": "plant_dartichoke",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_dartichoke.webp"
@@ -1479,7 +1479,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_roseswordman.webp"
     },
@@ -1499,7 +1499,7 @@
         "tags": [
             "Orange",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_whitemelon.webp"
     },
@@ -1508,8 +1508,8 @@
         "name": "plant_eggplantninja",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_eggplantninja.webp"
     },
@@ -1528,8 +1528,8 @@
         "name": "plant_stephania",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_stephania.webp"
     },
@@ -1539,7 +1539,7 @@
         "tags": [
             "Purple",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_tupistrastalker.webp"
     },
@@ -1549,7 +1549,7 @@
         "tags": [
             "Green",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_dendrobiumguard.webp"
     },
@@ -1558,8 +1558,8 @@
         "name": "plant_cypripedium",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_cypripedium.webp"
     },
@@ -1568,8 +1568,8 @@
         "name": "plant_boophonegeisha",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_boophonegeisha.webp"
     },
@@ -1578,7 +1578,7 @@
         "name": "plant_stickybombrice",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_stickybombrice.webp"
@@ -1598,8 +1598,8 @@
         "name": "plant_slingpea",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_slingpea.webp"
     },
@@ -1608,7 +1608,7 @@
         "name": "plant_bubblecoral",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_bubblecoral.webp"
@@ -1618,7 +1618,7 @@
         "name": "plant_oxygenalgae",
         "tags": [
             "White",
-            "Productor"
+            "SunProducer"
         ],
         "icon": "icon_oxygenalgae.webp"
     },
@@ -1628,7 +1628,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics",
+            "Physical",
             "Original"
         ],
         "icon": "icon_seashroom.webp"
@@ -1639,7 +1639,7 @@
         "tags": [
             "Purple",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_kelpguard.webp"
     },
@@ -1648,7 +1648,7 @@
         "name": "plant_aquaweed",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_aquaweed.webp"
@@ -1658,8 +1658,8 @@
         "name": "plant_seashooter",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_seashooter.webp"
     },
@@ -1678,7 +1678,7 @@
         "tags": [
             "Orange",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_ents.webp"
     },
@@ -1688,7 +1688,7 @@
         "tags": [
             "Blue",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_heathseeker.webp"
     },
@@ -1697,8 +1697,8 @@
         "name": "plant_hatmushroom",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Magic"
         ],
         "icon": "icon_hatmushroom.webp"
@@ -1708,7 +1708,7 @@
         "name": "plant_hocuscrocus",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_hocuscrocus.webp"
@@ -1718,8 +1718,8 @@
         "name": "plant_springprincess",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_springprincess.webp"
     },
@@ -1728,8 +1728,8 @@
         "name": "plant_riflebamboo",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_riflebamboo.webp"
     },
@@ -1738,7 +1738,7 @@
         "name": "plant_wizardthorns",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Poison",
             "Magic"
         ],
@@ -1749,7 +1749,7 @@
         "name": "plant_tristerixaphyllus",
         "tags": [
             "Orange",
-            "Remote"
+            "Ranger"
         ],
         "icon": "icon_tristerixaphyllus.webp"
     },
@@ -1758,8 +1758,8 @@
         "name": "plant_scaredyshroom",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Original"
         ],
         "icon": "icon_scaredyshroom.webp"
@@ -1779,8 +1779,8 @@
         "name": "plant_peavine",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_peavine.webp"
     },
@@ -1789,7 +1789,7 @@
         "name": "plant_shinevine",
         "tags": [
             "Orange",
-            "Productor",
+            "SunProducer",
             "Electric"
         ],
         "icon": "icon_shinevine.webp"
@@ -1818,7 +1818,7 @@
         "name": "plant_aquavine",
         "tags": [
             "Orange",
-            "Remote"
+            "Ranger"
         ],
         "icon": "icon_aquavine.webp"
     },
@@ -1828,7 +1828,7 @@
         "tags": [
             "Orange",
             "Electric",
-            "Remote"
+            "Ranger"
         ],
         "icon": "icon_powervine.webp"
     },
@@ -1837,7 +1837,7 @@
         "name": "plant_poisonvine",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Poison"
         ],
         "icon": "icon_poisonvine.webp"
@@ -1847,7 +1847,7 @@
         "name": "plant_electricpeashooter",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_electricpeashooter.webp"
@@ -1857,7 +1857,7 @@
         "name": "plant_poisonpeashooter",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Poison"
         ],
         "icon": "icon_poisonpeashooter.webp"
@@ -1867,8 +1867,8 @@
         "name": "plant_snappea",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_snappea.webp"
     },
@@ -1877,7 +1877,7 @@
         "name": "plant_beanchemist",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_beanchemist.webp"
@@ -1887,8 +1887,8 @@
         "name": "plant_megagatling",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_megagatling.webp"
     },
@@ -1898,7 +1898,7 @@
         "tags": [
             "Purple",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_ghostpepper.webp"
     },
@@ -1907,7 +1907,7 @@
         "name": "plant_witchhazel",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_witchhazel.webp"
@@ -1947,7 +1947,7 @@
         "name": "plant_inferno",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_inferno.webp"
@@ -1957,7 +1957,7 @@
         "name": "plant_pumpkinwitch",
         "tags": [
             "Blue",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_pumpkinwitch.webp"
@@ -1967,7 +1967,7 @@
         "name": "plant_birthsunflower",
         "tags": [
             "Purple",
-            "Productor"
+            "SunProducer"
         ],
         "icon": "icon_birthsunflower.webp"
     },
@@ -1976,7 +1976,7 @@
         "name": "plant_plantain",
         "tags": [
             "Purple",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_plantain.webp"
@@ -1986,7 +1986,7 @@
         "name": "plant_hydrocotyledrummer",
         "tags": [
             "Purple",
-            "Assist",
+            "Support",
             "Magic"
         ],
         "icon": "icon_hydrocotyledrummer.webp"
@@ -1996,8 +1996,8 @@
         "name": "plant_boomflower",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_boomflower.webp"
     },
@@ -2007,7 +2007,7 @@
         "tags": [
             "Orange",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_beercoconut.webp"
     },
@@ -2017,7 +2017,7 @@
         "tags": [
             "Purple",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_buttercup.webp"
     },
@@ -2026,7 +2026,7 @@
         "name": "plant_hoyacordata",
         "tags": [
             "Orange",
-            "Assist"
+            "Support"
         ],
         "icon": "icon_hoyacordata.webp"
     },
@@ -2045,8 +2045,8 @@
         "name": "plant_firecrackerflower",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_firecrackerflower.webp"
     },
@@ -2055,8 +2055,8 @@
         "name": "plant_actinostemma",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_actinostemma.webp"
     },
@@ -2065,8 +2065,8 @@
         "name": "plant_carrotlauncher",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_carrotlauncher.webp"
     },
@@ -2075,8 +2075,8 @@
         "name": "plant_dandelion",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_dandelion.webp"
     },
@@ -2086,7 +2086,7 @@
         "tags": [
             "Blue",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_broccoli.webp"
     },
@@ -2096,7 +2096,7 @@
         "tags": [
             "Green",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_pamegranate.webp"
     },
@@ -2124,8 +2124,8 @@
         "name": "plant_sapfling",
         "tags": [
             "Green",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_sapfling.webp"
     },
@@ -2135,7 +2135,7 @@
         "tags": [
             "Blue",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_chestnut.webp"
     },
@@ -2145,7 +2145,7 @@
         "tags": [
             "Green",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_sugarcane.webp"
     },
@@ -2154,8 +2154,8 @@
         "name": "plant_magicshroom",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Magic"
         ],
         "icon": "icon_magicshroom.webp"
@@ -2165,8 +2165,8 @@
         "name": "plant_greenturnip",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_greenturnip.webp"
     },
@@ -2175,7 +2175,7 @@
         "name": "plant_cottonyeti",
         "tags": [
             "Blue",
-            "Remote",
+            "Ranger",
             "Magic",
             "Ice"
         ],
@@ -2187,7 +2187,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_agave.webp"
     },
@@ -2196,8 +2196,8 @@
         "name": "plant_wintersweet",
         "tags": [
             "Blue",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_wintersweet.webp"
     },
@@ -2206,7 +2206,7 @@
         "name": "plant_dragonfruit",
         "tags": [
             "Blue",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_dragonfruit.webp"
@@ -2216,7 +2216,7 @@
         "name": "plant_pinkstarfruit",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric",
             "Magic"
         ],
@@ -2227,7 +2227,7 @@
         "name": "plant_flamelady",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Fire",
             "Magic"
         ],
@@ -2248,8 +2248,8 @@
         "name": "plant_applemortar",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_applemortar.webp"
     },
@@ -2259,7 +2259,7 @@
         "tags": [
             "Orange",
             "Trapper",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_escaperoot.gif"
     },
@@ -2289,7 +2289,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_parsnip.webp"
     },
@@ -2298,7 +2298,7 @@
         "name": "plant_missiletoe",
         "tags": [
             "Purple",
-            "Remote",
+            "Ranger",
             "Magic",
             "Ice"
         ],
@@ -2310,7 +2310,7 @@
         "tags": [
             "Purple",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_kiwibeast.webp"
     },
@@ -2329,9 +2329,9 @@
         "name": "plant_tuliptrumpeter",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_tuliptrumpeter.webp"
     },
@@ -2359,8 +2359,8 @@
         "name": "plant_pinecone",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_pinecone.webp"
     },
@@ -2390,7 +2390,7 @@
         "tags": [
             "Orange",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_hollyknight.webp"
     },
@@ -2421,8 +2421,8 @@
         "name": "plant_egretflower",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_egretflower.webp"
     },
@@ -2431,8 +2431,8 @@
         "name": "plant_strawburst",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_strawburst.webp"
     },
@@ -2441,8 +2441,8 @@
         "name": "plant_elaeocarpus",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_elaeocarpus.webp"
     },
@@ -2451,7 +2451,7 @@
         "name": "plant_eleocurling",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Ice"
         ],
         "icon": "icon_eleocurling.webp"
@@ -2461,7 +2461,7 @@
         "name": "plant_ultomato",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_ultomato.webp"
@@ -2471,8 +2471,8 @@
         "name": "plant_shadowvanilla",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_shadowvanilla.webp"
     },
@@ -2482,7 +2482,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_bromelblade.webp"
     },
@@ -2509,8 +2509,8 @@
         "name": "plant_nukelauncher",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_nukelauncher.webp"
     },
@@ -2520,7 +2520,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_headbutterlettuce.webp"
     },
@@ -2529,8 +2529,8 @@
         "name": "plant_dazeychain",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_dazeychain.webp"
     },
@@ -2540,7 +2540,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_clawgloriosa.webp"
     },
@@ -2549,8 +2549,8 @@
         "name": "plant_impatiensshooter",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_impatiensshooter.webp"
     },
@@ -2559,8 +2559,8 @@
         "name": "plant_turkeypult",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_turkeypult.webp"
     },
@@ -2570,7 +2570,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_hammerflower.webp"
     },
@@ -2580,7 +2580,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_tigerstool.webp"
     },
@@ -2589,8 +2589,8 @@
         "name": "plant_draftodil",
         "tags": [
             "Purple",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_draftodil.webp"
     },
@@ -2610,7 +2610,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_gardenergrass.webp"
     },
@@ -2620,7 +2620,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_fishhookgrass.webp"
     },
@@ -2630,7 +2630,7 @@
         "tags": [
             "Purple",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_byttneriameteorhammer.webp"
     },
@@ -2639,7 +2639,7 @@
         "name": "plant_crownflower",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_crownflower.webp"
@@ -2649,8 +2649,8 @@
         "name": "plant_jewelrabbit",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_jewelrabbit.gif"
     },
@@ -2660,7 +2660,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_burdockbatter.webp"
     },
@@ -2669,7 +2669,7 @@
         "name": "plant_orchidmage",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_orchidmage.webp"
@@ -2679,8 +2679,8 @@
         "name": "plant_lancerhoya",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_lancerhoya.webp"
     },
@@ -2689,7 +2689,7 @@
         "name": "plant_deodarcedar",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_deodarcedar.webp"
@@ -2700,7 +2700,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_geraniifencer.webp"
     },
@@ -2709,8 +2709,8 @@
         "name": "plant_sarracenia",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_sarracenia.webp"
     },
@@ -2719,8 +2719,8 @@
         "name": "plant_mandrake",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_mandrake.webp"
     },
@@ -2729,7 +2729,7 @@
         "name": "plant_cthulhuactinia",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_cthulhuactinia.webp"
@@ -2739,8 +2739,8 @@
         "name": "plant_devilsflower",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_devilsflower.webp"
     },
@@ -2750,7 +2750,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_maybee.webp"
     },
@@ -2759,7 +2759,7 @@
         "name": "plant_rapeflower",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_rapeflower.webp"
@@ -2770,7 +2770,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_spartanbamboo.webp"
     },
@@ -2789,8 +2789,8 @@
         "name": "plant_happyleek",
         "tags": [
             "Orange",
-            "Productor",
-            "Physics"
+            "SunProducer",
+            "Physical"
         ],
         "icon": "icon_happyleek.webp"
     },
@@ -2810,7 +2810,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_waterrabbit.webp"
     },
@@ -2819,8 +2819,8 @@
         "name": "plant_heliconiagunner",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_heliconiagunner.webp"
     },
@@ -2849,7 +2849,7 @@
         "name": "plant_dragonbruit",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Poison"
         ],
         "icon": "icon_dragonbruit.webp"
@@ -2859,7 +2859,7 @@
         "name": "plant_eagleclaw",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_eagleclaw.webp"
@@ -2869,7 +2869,7 @@
         "name": "plant_twinshoneysuckle",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Fire",
             "Ice",
             "Magic"
@@ -2882,7 +2882,7 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_rhubarbarian.webp"
     },
@@ -2891,7 +2891,7 @@
         "name": "plant_wiregelsemium",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Electric"
         ],
         "icon": "icon_wiregelsemium.webp"
@@ -2901,7 +2901,7 @@
         "name": "plant_eywa",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_eywa.webp"
@@ -2911,7 +2911,7 @@
         "name": "plant_paphiopedilum",
         "tags": [
             "Orange",
-            "Remote"
+            "Ranger"
         ],
         "icon": "icon_paphiopedilum.webp"
     },
@@ -2921,7 +2921,7 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_buduhboom.webp"
     },
@@ -2930,8 +2930,8 @@
         "name": "plant_animnuts",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics",
+            "Ranger",
+            "Physical",
             "Magic"
         ],
         "icon": "icon_animnuts.webp"
@@ -2941,7 +2941,7 @@
         "name": "plant_aeonium",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Magic"
         ],
         "icon": "icon_aeonium.webp"
@@ -2952,7 +2952,7 @@
         "tags": [
             "Orange",
             "Defence",
-            "Physics"
+            "Physical"
         ],
         "icon": "icon_peonychi.webp"
     },
@@ -2972,7 +2972,7 @@
         "tags": [
             "Purple",
             "Trapper",
-            "Assist",
+            "Support",
             "Original"
         ],
         "icon": "icon_umbrellaleaf.webp"
@@ -2982,8 +2982,8 @@
         "name": "plant_duckpear",
         "tags": [
             "Orange",
-            "Remote",
-            "Physics"
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_duckpear.webp"
     },
@@ -2992,7 +2992,7 @@
         "name": "plant_longmalily",
         "tags": [
             "Orange",
-            "Remote",
+            "Ranger",
             "Fire"
         ],
         "icon": "icon_longmalily.gif"
@@ -3013,7 +3013,7 @@
         "tags": [
             "Blue",
             "Electric",
-            "Remote"
+            "Ranger"
         ],
         "icon": "icon_moton.webp"
     },
@@ -3022,7 +3022,7 @@
         "name": "uncharted_haystack",
         "tags": [
             "Parallel",
-            "Assist",
+            "Support",
             "_internal_mausoleum"
         ],
         "icon": "icon_uncharted_haystack.webp"

@@ -537,19 +537,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get plantTagOrange => 'Оранжевое качество';
 
   @override
-  String get plantTagAssist => 'Помощник';
+  String get plantTagSupport => 'Поддержка';
 
   @override
-  String get plantTagRemote => 'Дальний бой';
+  String get plantTagRanger => 'Дальний бой';
 
   @override
-  String get plantTagProductor => 'Производитель';
+  String get plantTagSunProducer => 'Производитель солнц';
 
   @override
   String get plantTagDefence => 'Защита';
 
   @override
-  String get plantTagVanguard => 'Авангард';
+  String get plantTagVanguard => 'Ближний бой';
 
   @override
   String get plantTagTrapper => 'Ловушка';
@@ -570,7 +570,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get plantTagElectric => 'Электричество';
 
   @override
-  String get plantTagPhysics => 'Физика';
+  String get plantTagPhysical => 'Физика';
 
   @override
   String get plantTagOriginal => 'Оригинал PvZ1';
