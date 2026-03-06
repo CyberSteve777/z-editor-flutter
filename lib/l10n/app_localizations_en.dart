@@ -1685,6 +1685,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Rolling barrels on rows (empty, zombie, explosive)';
 
   @override
+  String get eventTitle_BungeeWaveActionProps => 'Bungee Drop';
+
+  @override
+  String get eventDesc_BungeeWaveActionProps =>
+      'Single bungee zombie drop (type, level, cell)';
+
+  @override
   String get eventTitle_ThunderWaveActionProps => 'Thunder';
 
   @override
@@ -2051,6 +2058,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String editAlias(Object alias) {
     return 'Edit $alias';
   }
+
+  @override
+  String get aliasLabel => 'Alias';
 
   @override
   String get add => 'Add';
@@ -2462,6 +2472,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noEditableFishProps => 'No editable properties found.';
 
   @override
+  String get fishPropSpeed => 'Speed';
+
+  @override
+  String get fishPropScareSpeed => 'Scare speed';
+
+  @override
+  String get fishPropDamage => 'Damage';
+
+  @override
+  String get fishPropHitpoints => 'Hitpoints';
+
+  @override
+  String get fishPropHitPoints => 'Hit points';
+
+  @override
+  String get fishPropHitRect => 'Hit rect';
+
+  @override
+  String get fishPropAttackRect => 'Attack rect';
+
+  @override
+  String get fishPropScareRect => 'Scare rect';
+
+  @override
+  String get fishPropScarerect => 'Scare rect';
+
+  @override
+  String get fishPropArtCenter => 'Art center';
+
+  @override
   String get edit => 'Edit';
 
   @override
@@ -2726,6 +2766,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get barrelWaveZombies => 'Zombies';
+
+  @override
+  String get barrelWaveZombieLevel => 'Zombie level';
 
   @override
   String get barrelWaveAddZombie => 'Add zombie';
@@ -4280,7 +4323,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Allow night start wave and night statues';
 
   @override
-  String get renaiModuleNightStart => 'Night start wave (0-based)';
+  String get renaiModuleNightStart => 'Night start wave';
 
   @override
   String get renaiModuleDayStatues => 'Day statues';
@@ -4475,4 +4518,138 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tooltipIncrease => 'Increase';
+
+  @override
+  String get bungeeWaveEventTitle => 'Bungee drop event';
+
+  @override
+  String get bungeeWaveEventHelpTitle => 'Bungee drop event';
+
+  @override
+  String get bungeeWaveEventHelpOverview =>
+      'Set the zombie type and lawn cell for a single bungee drop. One event drops one zombie.';
+
+  @override
+  String get bungeeWaveEventHelpGrid => 'Grid';
+
+  @override
+  String get bungeeWaveEventHelpGridBody =>
+      'Tap a cell in the grid to set where the bungee zombie will land.';
+
+  @override
+  String get bungeeWaveCurrentTarget => 'Current target';
+
+  @override
+  String get bungeeWaveCol => 'Col';
+
+  @override
+  String get bungeeWaveRow => 'Row';
+
+  @override
+  String get bungeeWavePropertiesConfig => 'Properties';
+
+  @override
+  String get bungeeWaveZombieLevel => 'Zombie level (Level)';
+
+  @override
+  String get bungeeWaveRoofWarning =>
+      'On roof maps, bungee drops intercepted by umbrellas may trigger instant brain-eating. Use with care.';
+
+  @override
+  String get moduleTitle_LevelMutatorRiftTimedSunProps => 'Zombie Sun Drop';
+
+  @override
+  String get moduleDesc_LevelMutatorRiftTimedSunProps =>
+      'Zombie sun drop per tier (Pursuit); disables sun shovel';
+
+  @override
+  String get zombieSunDropTitle => 'Zombie sun drop config';
+
+  @override
+  String get zombieSunDropHelpTitle => 'Zombie sun drop';
+
+  @override
+  String get zombieSunDropHelpOverview =>
+      'Set sun dropped by specific zombies per tier (used in Pursuit). This module also disables sun shovel.';
+
+  @override
+  String get zombieSunDropHelpValues => 'Values';
+
+  @override
+  String get zombieSunDropHelpValuesBody =>
+      'Ten integers correspond to tiers 1–10. If tier exceeds 10, tier 1 value is used.';
+
+  @override
+  String get zombieSunDropEmpty => 'No entries. Tap + to add.';
+
+  @override
+  String get zombieSunDropDefaultDrop => 'Default drop';
+
+  @override
+  String get zombieSunDropSun => 'sun';
+
+  @override
+  String get zombieSunDropEditTitle => 'Edit values';
+
+  @override
+  String get zombieSunDropEditHint =>
+      'Sun dropped per tier (1–10). Tiers above 10 use tier 1 value.';
+
+  @override
+  String get zombieSunDropTier => 'Tier';
+
+  @override
+  String get moduleTitle_PickupCollectableTutorialProperties =>
+      'Pickup Tutorial';
+
+  @override
+  String get moduleDesc_PickupCollectableTutorialProperties =>
+      'Zombie that drops collectable + pickup dialog text';
+
+  @override
+  String get pickupCollectableTutorialTitle => 'Pickup tutorial';
+
+  @override
+  String get pickupCollectableTutorialHelpTitle => 'Pickup tutorial';
+
+  @override
+  String get pickupCollectableTutorialHelpBasic => 'Description';
+
+  @override
+  String get pickupCollectableTutorialHelpBasicBody =>
+      'Configure a zombie that drops a collectable and the dialog text before/after pickup. First kill of that zombie type in the level shows the dialog.';
+
+  @override
+  String get pickupCollectableTutorialHelpDialogs => 'Dialogs';
+
+  @override
+  String get pickupCollectableTutorialHelpDialogsBody =>
+      'Dialogs appear before and after picking up the item and can pause the level.';
+
+  @override
+  String get pickupCollectableTutorialCoreConfig => 'Core config';
+
+  @override
+  String get pickupCollectableTutorialZombieLabel =>
+      'Zombie that carries the item';
+
+  @override
+  String get pickupCollectableTutorialLootType => 'Loot type';
+
+  @override
+  String get pickupCollectableTutorialGuideText => 'Guide text';
+
+  @override
+  String get pickupCollectableTutorialPickupAdvice =>
+      'Before pickup (PickupAdvice)';
+
+  @override
+  String get pickupCollectableTutorialPostPickupAdvice =>
+      'After pickup (PostPickupAdvice)';
+
+  @override
+  String get pickupCollectableTutorialNotSet => 'Not set';
+
+  @override
+  String get pickupCollectableLootGoldCoin => 'Gold coin';
 }

@@ -1699,6 +1699,13 @@ class AppLocalizationsRu extends AppLocalizations {
       'Катящиеся бочки по рядам (пустые, зомби, взрывные)';
 
   @override
+  String get eventTitle_BungeeWaveActionProps => 'Прыжок с парашютом';
+
+  @override
+  String get eventDesc_BungeeWaveActionProps =>
+      'Один сброс зомби с парашютом (тип, уровень, клетка)';
+
+  @override
   String get eventTitle_ThunderWaveActionProps => 'Гром';
 
   @override
@@ -2066,6 +2073,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String editAlias(Object alias) {
     return 'Редактировать $alias';
   }
+
+  @override
+  String get aliasLabel => 'Псевдоним';
 
   @override
   String get add => 'Добавить';
@@ -2481,6 +2491,36 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noEditableFishProps => 'Редактируемые свойства не найдены.';
 
   @override
+  String get fishPropSpeed => 'Скорость';
+
+  @override
+  String get fishPropScareSpeed => 'Скорость испуга';
+
+  @override
+  String get fishPropDamage => 'Урон';
+
+  @override
+  String get fishPropHitpoints => 'Прочность';
+
+  @override
+  String get fishPropHitPoints => 'Очки здоровья';
+
+  @override
+  String get fishPropHitRect => 'Область попадания';
+
+  @override
+  String get fishPropAttackRect => 'Область атаки';
+
+  @override
+  String get fishPropScareRect => 'Область испуга';
+
+  @override
+  String get fishPropScarerect => 'Область испуга';
+
+  @override
+  String get fishPropArtCenter => 'Центр отрисовки';
+
+  @override
   String get edit => 'Редактировать';
 
   @override
@@ -2744,6 +2784,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get barrelWaveZombies => 'Зомби';
+
+  @override
+  String get barrelWaveZombieLevel => 'Уровень зомби';
 
   @override
   String get barrelWaveAddZombie => 'Добавить зомби';
@@ -4303,7 +4346,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Разрешить волну начала ночи и ночные статуи';
 
   @override
-  String get renaiModuleNightStart => 'Волна начала ночи (0-базовый)';
+  String get renaiModuleNightStart => 'Волна начала ночи';
 
   @override
   String get renaiModuleDayStatues => 'Дневные статуи';
@@ -4499,4 +4542,136 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tooltipIncrease => 'Увеличить';
+
+  @override
+  String get bungeeWaveEventTitle => 'Событие сброса с парашютом';
+
+  @override
+  String get bungeeWaveEventHelpTitle => 'Событие сброса с парашютом';
+
+  @override
+  String get bungeeWaveEventHelpOverview =>
+      'Задайте тип зомби и клетку лужайки для одного сброса. Одно событие — один зомби.';
+
+  @override
+  String get bungeeWaveEventHelpGrid => 'Сетка';
+
+  @override
+  String get bungeeWaveEventHelpGridBody =>
+      'Нажмите на клетку в сетке, чтобы задать место приземления зомби с парашютом.';
+
+  @override
+  String get bungeeWaveCurrentTarget => 'Текущая цель';
+
+  @override
+  String get bungeeWaveCol => 'Столб.';
+
+  @override
+  String get bungeeWaveRow => 'Ряд';
+
+  @override
+  String get bungeeWavePropertiesConfig => 'Свойства';
+
+  @override
+  String get bungeeWaveZombieLevel => 'Уровень зомби (Level)';
+
+  @override
+  String get bungeeWaveRoofWarning =>
+      'На крыше зонтики могут перехватить сброс и вызвать мгновенное съедание мозга. Используйте осторожно.';
+
+  @override
+  String get moduleTitle_LevelMutatorRiftTimedSunProps => 'Солнце за зомби';
+
+  @override
+  String get moduleDesc_LevelMutatorRiftTimedSunProps =>
+      'Солнце за зомби по уровням (Погоня); отключает солнечную лопатку';
+
+  @override
+  String get zombieSunDropTitle => 'Настройка солнца за зомби';
+
+  @override
+  String get zombieSunDropHelpTitle => 'Солнце за зомби';
+
+  @override
+  String get zombieSunDropHelpOverview =>
+      'Задайте количество солнца за конкретных зомби по уровням (Погоня). Модуль также отключает солнечную лопатку.';
+
+  @override
+  String get zombieSunDropHelpValues => 'Значения';
+
+  @override
+  String get zombieSunDropHelpValuesBody =>
+      'Десять целых чисел соответствуют уровням 1–10. При уровне выше 10 используется значение 1-го уровня.';
+
+  @override
+  String get zombieSunDropEmpty => 'Нет записей. Нажмите +, чтобы добавить.';
+
+  @override
+  String get zombieSunDropDefaultDrop => 'Сброс по умолчанию';
+
+  @override
+  String get zombieSunDropSun => 'солнце';
+
+  @override
+  String get zombieSunDropEditTitle => 'Редактировать значения';
+
+  @override
+  String get zombieSunDropEditHint =>
+      'Солнце за уровень (1–10). Уровни выше 10 используют значение 1-го уровня.';
+
+  @override
+  String get zombieSunDropTier => 'Уровень';
+
+  @override
+  String get moduleTitle_PickupCollectableTutorialProperties => 'Урок подбора';
+
+  @override
+  String get moduleDesc_PickupCollectableTutorialProperties =>
+      'Зомби, роняющий предмет + текст диалога подбора';
+
+  @override
+  String get pickupCollectableTutorialTitle => 'Урок подбора';
+
+  @override
+  String get pickupCollectableTutorialHelpTitle => 'Урок подбора';
+
+  @override
+  String get pickupCollectableTutorialHelpBasic => 'Описание';
+
+  @override
+  String get pickupCollectableTutorialHelpBasicBody =>
+      'Настройте зомби, роняющего предмет, и текст до/после подбора. При первом убийстве такого зомби в уровне показывается диалог.';
+
+  @override
+  String get pickupCollectableTutorialHelpDialogs => 'Диалоги';
+
+  @override
+  String get pickupCollectableTutorialHelpDialogsBody =>
+      'Диалоги показываются до и после подбора предмета и могут приостанавливать уровень.';
+
+  @override
+  String get pickupCollectableTutorialCoreConfig => 'Основная настройка';
+
+  @override
+  String get pickupCollectableTutorialZombieLabel => 'Зомби с предметом';
+
+  @override
+  String get pickupCollectableTutorialLootType => 'Тип добычи';
+
+  @override
+  String get pickupCollectableTutorialGuideText => 'Текст подсказок';
+
+  @override
+  String get pickupCollectableTutorialPickupAdvice =>
+      'До подбора (PickupAdvice)';
+
+  @override
+  String get pickupCollectableTutorialPostPickupAdvice =>
+      'После подбора (PostPickupAdvice)';
+
+  @override
+  String get pickupCollectableTutorialNotSet => 'Не задано';
+
+  @override
+  String get pickupCollectableLootGoldCoin => 'Золотая монета';
 }

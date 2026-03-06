@@ -3160,6 +3160,18 @@ abstract class AppLocalizations {
   /// **'Rolling barrels on rows (empty, zombie, explosive)'**
   String get eventDesc_BarrelWaveActionProps;
 
+  /// No description provided for @eventTitle_BungeeWaveActionProps.
+  ///
+  /// In en, this message translates to:
+  /// **'Bungee Drop'**
+  String get eventTitle_BungeeWaveActionProps;
+
+  /// No description provided for @eventDesc_BungeeWaveActionProps.
+  ///
+  /// In en, this message translates to:
+  /// **'Single bungee zombie drop (type, level, cell)'**
+  String get eventDesc_BungeeWaveActionProps;
+
   /// No description provided for @eventTitle_ThunderWaveActionProps.
   ///
   /// In en, this message translates to:
@@ -3855,6 +3867,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit {alias}'**
   String editAlias(Object alias);
+
+  /// No description provided for @aliasLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Alias'**
+  String get aliasLabel;
 
   /// No description provided for @add.
   ///
@@ -4600,6 +4618,66 @@ abstract class AppLocalizations {
   /// **'No editable properties found.'**
   String get noEditableFishProps;
 
+  /// No description provided for @fishPropSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Speed'**
+  String get fishPropSpeed;
+
+  /// No description provided for @fishPropScareSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Scare speed'**
+  String get fishPropScareSpeed;
+
+  /// No description provided for @fishPropDamage.
+  ///
+  /// In en, this message translates to:
+  /// **'Damage'**
+  String get fishPropDamage;
+
+  /// No description provided for @fishPropHitpoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hitpoints'**
+  String get fishPropHitpoints;
+
+  /// No description provided for @fishPropHitPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Hit points'**
+  String get fishPropHitPoints;
+
+  /// No description provided for @fishPropHitRect.
+  ///
+  /// In en, this message translates to:
+  /// **'Hit rect'**
+  String get fishPropHitRect;
+
+  /// No description provided for @fishPropAttackRect.
+  ///
+  /// In en, this message translates to:
+  /// **'Attack rect'**
+  String get fishPropAttackRect;
+
+  /// No description provided for @fishPropScareRect.
+  ///
+  /// In en, this message translates to:
+  /// **'Scare rect'**
+  String get fishPropScareRect;
+
+  /// No description provided for @fishPropScarerect.
+  ///
+  /// In en, this message translates to:
+  /// **'Scare rect'**
+  String get fishPropScarerect;
+
+  /// No description provided for @fishPropArtCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Art center'**
+  String get fishPropArtCenter;
+
   /// No description provided for @edit.
   ///
   /// In en, this message translates to:
@@ -5055,6 +5133,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zombies'**
   String get barrelWaveZombies;
+
+  /// No description provided for @barrelWaveZombieLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie level'**
+  String get barrelWaveZombieLevel;
 
   /// No description provided for @barrelWaveAddZombie.
   ///
@@ -7879,7 +7963,7 @@ abstract class AppLocalizations {
   /// No description provided for @renaiModuleNightStart.
   ///
   /// In en, this message translates to:
-  /// **'Night start wave (0-based)'**
+  /// **'Night start wave'**
   String get renaiModuleNightStart;
 
   /// No description provided for @renaiModuleDayStatues.
@@ -8253,6 +8337,246 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Increase'**
   String get tooltipIncrease;
+
+  /// No description provided for @bungeeWaveEventTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bungee drop event'**
+  String get bungeeWaveEventTitle;
+
+  /// No description provided for @bungeeWaveEventHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bungee drop event'**
+  String get bungeeWaveEventHelpTitle;
+
+  /// No description provided for @bungeeWaveEventHelpOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the zombie type and lawn cell for a single bungee drop. One event drops one zombie.'**
+  String get bungeeWaveEventHelpOverview;
+
+  /// No description provided for @bungeeWaveEventHelpGrid.
+  ///
+  /// In en, this message translates to:
+  /// **'Grid'**
+  String get bungeeWaveEventHelpGrid;
+
+  /// No description provided for @bungeeWaveEventHelpGridBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a cell in the grid to set where the bungee zombie will land.'**
+  String get bungeeWaveEventHelpGridBody;
+
+  /// No description provided for @bungeeWaveCurrentTarget.
+  ///
+  /// In en, this message translates to:
+  /// **'Current target'**
+  String get bungeeWaveCurrentTarget;
+
+  /// No description provided for @bungeeWaveCol.
+  ///
+  /// In en, this message translates to:
+  /// **'Col'**
+  String get bungeeWaveCol;
+
+  /// No description provided for @bungeeWaveRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Row'**
+  String get bungeeWaveRow;
+
+  /// No description provided for @bungeeWavePropertiesConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Properties'**
+  String get bungeeWavePropertiesConfig;
+
+  /// No description provided for @bungeeWaveZombieLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie level (Level)'**
+  String get bungeeWaveZombieLevel;
+
+  /// No description provided for @bungeeWaveRoofWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'On roof maps, bungee drops intercepted by umbrellas may trigger instant brain-eating. Use with care.'**
+  String get bungeeWaveRoofWarning;
+
+  /// No description provided for @moduleTitle_LevelMutatorRiftTimedSunProps.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie Sun Drop'**
+  String get moduleTitle_LevelMutatorRiftTimedSunProps;
+
+  /// No description provided for @moduleDesc_LevelMutatorRiftTimedSunProps.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie sun drop per tier (Pursuit); disables sun shovel'**
+  String get moduleDesc_LevelMutatorRiftTimedSunProps;
+
+  /// No description provided for @zombieSunDropTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie sun drop config'**
+  String get zombieSunDropTitle;
+
+  /// No description provided for @zombieSunDropHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie sun drop'**
+  String get zombieSunDropHelpTitle;
+
+  /// No description provided for @zombieSunDropHelpOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Set sun dropped by specific zombies per tier (used in Pursuit). This module also disables sun shovel.'**
+  String get zombieSunDropHelpOverview;
+
+  /// No description provided for @zombieSunDropHelpValues.
+  ///
+  /// In en, this message translates to:
+  /// **'Values'**
+  String get zombieSunDropHelpValues;
+
+  /// No description provided for @zombieSunDropHelpValuesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ten integers correspond to tiers 1–10. If tier exceeds 10, tier 1 value is used.'**
+  String get zombieSunDropHelpValuesBody;
+
+  /// No description provided for @zombieSunDropEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No entries. Tap + to add.'**
+  String get zombieSunDropEmpty;
+
+  /// No description provided for @zombieSunDropDefaultDrop.
+  ///
+  /// In en, this message translates to:
+  /// **'Default drop'**
+  String get zombieSunDropDefaultDrop;
+
+  /// No description provided for @zombieSunDropSun.
+  ///
+  /// In en, this message translates to:
+  /// **'sun'**
+  String get zombieSunDropSun;
+
+  /// No description provided for @zombieSunDropEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit values'**
+  String get zombieSunDropEditTitle;
+
+  /// No description provided for @zombieSunDropEditHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun dropped per tier (1–10). Tiers above 10 use tier 1 value.'**
+  String get zombieSunDropEditHint;
+
+  /// No description provided for @zombieSunDropTier.
+  ///
+  /// In en, this message translates to:
+  /// **'Tier'**
+  String get zombieSunDropTier;
+
+  /// No description provided for @moduleTitle_PickupCollectableTutorialProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup Tutorial'**
+  String get moduleTitle_PickupCollectableTutorialProperties;
+
+  /// No description provided for @moduleDesc_PickupCollectableTutorialProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie that drops collectable + pickup dialog text'**
+  String get moduleDesc_PickupCollectableTutorialProperties;
+
+  /// No description provided for @pickupCollectableTutorialTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup tutorial'**
+  String get pickupCollectableTutorialTitle;
+
+  /// No description provided for @pickupCollectableTutorialHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup tutorial'**
+  String get pickupCollectableTutorialHelpTitle;
+
+  /// No description provided for @pickupCollectableTutorialHelpBasic.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get pickupCollectableTutorialHelpBasic;
+
+  /// No description provided for @pickupCollectableTutorialHelpBasicBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure a zombie that drops a collectable and the dialog text before/after pickup. First kill of that zombie type in the level shows the dialog.'**
+  String get pickupCollectableTutorialHelpBasicBody;
+
+  /// No description provided for @pickupCollectableTutorialHelpDialogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Dialogs'**
+  String get pickupCollectableTutorialHelpDialogs;
+
+  /// No description provided for @pickupCollectableTutorialHelpDialogsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Dialogs appear before and after picking up the item and can pause the level.'**
+  String get pickupCollectableTutorialHelpDialogsBody;
+
+  /// No description provided for @pickupCollectableTutorialCoreConfig.
+  ///
+  /// In en, this message translates to:
+  /// **'Core config'**
+  String get pickupCollectableTutorialCoreConfig;
+
+  /// No description provided for @pickupCollectableTutorialZombieLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie that carries the item'**
+  String get pickupCollectableTutorialZombieLabel;
+
+  /// No description provided for @pickupCollectableTutorialLootType.
+  ///
+  /// In en, this message translates to:
+  /// **'Loot type'**
+  String get pickupCollectableTutorialLootType;
+
+  /// No description provided for @pickupCollectableTutorialGuideText.
+  ///
+  /// In en, this message translates to:
+  /// **'Guide text'**
+  String get pickupCollectableTutorialGuideText;
+
+  /// No description provided for @pickupCollectableTutorialPickupAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Before pickup (PickupAdvice)'**
+  String get pickupCollectableTutorialPickupAdvice;
+
+  /// No description provided for @pickupCollectableTutorialPostPickupAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'After pickup (PostPickupAdvice)'**
+  String get pickupCollectableTutorialPostPickupAdvice;
+
+  /// No description provided for @pickupCollectableTutorialNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get pickupCollectableTutorialNotSet;
+
+  /// No description provided for @pickupCollectableLootGoldCoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold coin'**
+  String get pickupCollectableLootGoldCoin;
 }
 
 class _AppLocalizationsDelegate

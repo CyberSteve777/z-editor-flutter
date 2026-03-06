@@ -1595,6 +1595,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get eventDesc_BarrelWaveActionProps => '行上滚动的木桶（空桶/僵尸桶/炸药桶）';
 
   @override
+  String get eventTitle_BungeeWaveActionProps => '蹦极投放';
+
+  @override
+  String get eventDesc_BungeeWaveActionProps => '单次蹦极僵尸投放（种类、等级、格子）';
+
+  @override
   String get eventTitle_ThunderWaveActionProps => '雷电';
 
   @override
@@ -1955,6 +1961,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String editAlias(Object alias) {
     return '编辑 $alias';
   }
+
+  @override
+  String get aliasLabel => '别名';
 
   @override
   String get add => '添加';
@@ -2355,6 +2364,36 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noEditableFishProps => '未找到可编辑属性。';
 
   @override
+  String get fishPropSpeed => '速度';
+
+  @override
+  String get fishPropScareSpeed => '受惊速度';
+
+  @override
+  String get fishPropDamage => '伤害';
+
+  @override
+  String get fishPropHitpoints => '生命值';
+
+  @override
+  String get fishPropHitPoints => '生命值';
+
+  @override
+  String get fishPropHitRect => '受击区域';
+
+  @override
+  String get fishPropAttackRect => '攻击区域';
+
+  @override
+  String get fishPropScareRect => '受惊区域';
+
+  @override
+  String get fishPropScarerect => '受惊区域';
+
+  @override
+  String get fishPropArtCenter => '绘制中心';
+
+  @override
   String get edit => '编辑';
 
   @override
@@ -2586,6 +2625,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get barrelWaveZombies => '僵尸';
+
+  @override
+  String get barrelWaveZombieLevel => '僵尸等级';
 
   @override
   String get barrelWaveAddZombie => '添加僵尸';
@@ -4063,7 +4105,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get renaiModuleEnableNightSubtitle => '允许设置黑夜开始波次和夜间雕像';
 
   @override
-  String get renaiModuleNightStart => '黑夜开始波次（0起始）';
+  String get renaiModuleNightStart => '黑夜开始波次';
 
   @override
   String get renaiModuleDayStatues => '日间雕像';
@@ -4253,4 +4295,132 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tooltipIncrease => '增加';
+
+  @override
+  String get bungeeWaveEventTitle => '蹦极投放事件';
+
+  @override
+  String get bungeeWaveEventHelpTitle => '蹦极投放事件说明';
+
+  @override
+  String get bungeeWaveEventHelpOverview =>
+      '在关卡中设置蹦极僵尸投放僵尸的种类与位置，单个事件只能投放一只僵尸。';
+
+  @override
+  String get bungeeWaveEventHelpGrid => '坐标说明';
+
+  @override
+  String get bungeeWaveEventHelpGridBody => '在下方网格中点击，即可设置蹦极僵尸落下的草坪格子位置。';
+
+  @override
+  String get bungeeWaveCurrentTarget => '当前目标';
+
+  @override
+  String get bungeeWaveCol => '列';
+
+  @override
+  String get bungeeWaveRow => '行';
+
+  @override
+  String get bungeeWavePropertiesConfig => '属性配置';
+
+  @override
+  String get bungeeWaveZombieLevel => '僵尸等级 (Level)';
+
+  @override
+  String get bungeeWaveRoofWarning => '注意在屋顶地图中蹦极投放事件被保护伞拦截后有可能直接触发食脑，请谨慎使用。';
+
+  @override
+  String get moduleTitle_LevelMutatorRiftTimedSunProps => '僵尸掉落阳光';
+
+  @override
+  String get moduleDesc_LevelMutatorRiftTimedSunProps =>
+      '按阶级设置僵尸掉落阳光（追击）；使阳光铲失效';
+
+  @override
+  String get zombieSunDropTitle => '僵尸掉落阳光配置';
+
+  @override
+  String get zombieSunDropHelpTitle => '僵尸掉落阳光说明';
+
+  @override
+  String get zombieSunDropHelpOverview =>
+      '此模块用于设置特定僵尸在关卡中掉落的阳光数值，用于追击。该模块的副作用是让阳光铲失效。';
+
+  @override
+  String get zombieSunDropHelpValues => '数值设置';
+
+  @override
+  String get zombieSunDropHelpValuesBody =>
+      '十个整数对应僵尸在一到十阶时的掉落的阳光，若阶级超过10则使用一阶的数据。';
+
+  @override
+  String get zombieSunDropEmpty => '暂无配置，点击右下角添加';
+
+  @override
+  String get zombieSunDropDefaultDrop => '默认掉落';
+
+  @override
+  String get zombieSunDropSun => '阳光';
+
+  @override
+  String get zombieSunDropEditTitle => '编辑具体数值';
+
+  @override
+  String get zombieSunDropEditHint => '配置该僵尸在不同阶级的阳光掉落量，若超过10阶则使用一阶数值';
+
+  @override
+  String get zombieSunDropTier => '阶';
+
+  @override
+  String get moduleTitle_PickupCollectableTutorialProperties => '捡取教程属性';
+
+  @override
+  String get moduleDesc_PickupCollectableTutorialProperties =>
+      '配置掉落特定物品的僵尸及捡取前后提示';
+
+  @override
+  String get pickupCollectableTutorialTitle => '捡取教程属性';
+
+  @override
+  String get pickupCollectableTutorialHelpTitle => '捡取教程说明';
+
+  @override
+  String get pickupCollectableTutorialHelpBasic => '基本描述';
+
+  @override
+  String get pickupCollectableTutorialHelpBasicBody =>
+      '用于配置掉落特定物品的僵尸，以及捡取前后的文字提示引导。在关卡中首次击杀该种类的僵尸会弹出对话框。';
+
+  @override
+  String get pickupCollectableTutorialHelpDialogs => '对话提示';
+
+  @override
+  String get pickupCollectableTutorialHelpDialogsBody =>
+      '在捡起掉落物前后都会弹出对话框提示，对话会延缓关卡的进程。';
+
+  @override
+  String get pickupCollectableTutorialCoreConfig => '核心配置';
+
+  @override
+  String get pickupCollectableTutorialZombieLabel => '携带物品的僵尸';
+
+  @override
+  String get pickupCollectableTutorialLootType => '掉落物品类型';
+
+  @override
+  String get pickupCollectableTutorialGuideText => '引导文本';
+
+  @override
+  String get pickupCollectableTutorialPickupAdvice => '捡取前提示 (PickupAdvice)';
+
+  @override
+  String get pickupCollectableTutorialPostPickupAdvice =>
+      '捡取后提示 (PostPickupAdvice)';
+
+  @override
+  String get pickupCollectableTutorialNotSet => '未设置';
+
+  @override
+  String get pickupCollectableLootGoldCoin => '金币';
 }
