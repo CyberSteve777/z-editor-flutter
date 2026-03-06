@@ -357,6 +357,26 @@ class EventRegistry {
         }
       },
     ),
+    'BungeeWaveActionProps': EventMetadata(
+      titleKey: 'eventTitle_BungeeWaveActionProps',
+      descriptionKey: 'eventDesc_BungeeWaveActionProps',
+      icon: Icons.paragliding,
+      color: const Color(0xFFFF9800),
+      darkColor: const Color(0xFFFFCC80),
+      defaultAlias: 'BungeeDropEvent',
+      defaultObjClass: 'BungeeWaveActionProps',
+      initialDataFactory: () => BungeeWaveActionData(),
+      summaryProvider: (obj) {
+        try {
+          final data = BungeeWaveActionData.fromJson(
+            obj.objData as Map<String, dynamic>,
+          );
+          return 'C${data.target.mX + 1}R${data.target.mY + 1}';
+        } catch (_) {
+          return '';
+        }
+      },
+    ),
     'SpawnZombiesFishWaveActionProps': EventMetadata(
       titleKey: 'eventTitle_SpawnZombiesFishWaveActionProps',
       descriptionKey: 'eventDesc_SpawnZombiesFishWaveActionProps',

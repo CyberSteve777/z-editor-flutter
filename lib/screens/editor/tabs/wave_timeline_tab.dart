@@ -738,28 +738,29 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             for (var i = 0; i < actionButtons.length; i++) ...[
-              if (i > 0) const SizedBox(height: 4),
+              if (i > 0) const SizedBox(height: 6),
               InkWell(
                 onTap: actionButtons[i].onTap,
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(6),
                 child: Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Flexible(
                         child: Text(
                           actionButtons[i].label,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
                             color: color,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const SizedBox(width: 2),
+                      const SizedBox(width: 4),
                       Icon(
                         Icons.info_outline,
-                        size: 14,
+                        size: 18,
                         color: color,
                       ),
                     ],

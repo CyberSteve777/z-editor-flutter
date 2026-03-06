@@ -1832,6 +1832,130 @@ class LevelMutatorStartingPlantfoodPropsData {
   };
 }
 
+// === Bungee Wave Action (event) ===
+
+class BungeeWaveActionData {
+  BungeeWaveActionData({
+    BungeeWaveTargetData? target,
+    this.zombieName = '',
+    this.level = 1,
+  }) : target = target ?? BungeeWaveTargetData();
+
+  BungeeWaveTargetData target;
+  String zombieName;
+  int level;
+
+  factory BungeeWaveActionData.fromJson(Map<String, dynamic> json) {
+    final t = json['Target'];
+    return BungeeWaveActionData(
+      target: t is Map<String, dynamic>
+          ? BungeeWaveTargetData.fromJson(t)
+          : BungeeWaveTargetData(),
+      zombieName: json['ZombieName'] as String? ?? '',
+      level: json['Level'] as int? ?? 1,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'Target': target.toJson(),
+        'ZombieName': zombieName,
+        'Level': level,
+      };
+}
+
+class BungeeWaveTargetData {
+  BungeeWaveTargetData({this.mX = 0, this.mY = 0});
+
+  int mX;
+  int mY;
+
+  factory BungeeWaveTargetData.fromJson(Map<String, dynamic> json) {
+    return BungeeWaveTargetData(
+      mX: json['mX'] as int? ?? 0,
+      mY: json['mY'] as int? ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'mX': mX, 'mY': mY};
+}
+
+// === Rift Timed Sun (module) ===
+
+class RiftTimedSunModuleData {
+  RiftTimedSunModuleData({this.sunDrops = const []});
+
+  List<RiftTimedSunData> sunDrops;
+
+  factory RiftTimedSunModuleData.fromJson(Map<String, dynamic> json) {
+    final raw = json['SunDrops'] as List<dynamic>? ?? [];
+    return RiftTimedSunModuleData(
+      sunDrops: raw
+          .map((e) => RiftTimedSunData.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() =>
+      {'SunDrops': sunDrops.map((e) => e.toJson()).toList()};
+}
+
+class RiftTimedSunData {
+  RiftTimedSunData({
+    this.zombieTypeName = '',
+    List<int>? sunDropValues,
+  }) : sunDropValues = sunDropValues ?? List.filled(10, 0);
+
+  String zombieTypeName;
+  List<int> sunDropValues;
+
+  factory RiftTimedSunData.fromJson(Map<String, dynamic> json) {
+    final raw = json['SunDropValues'] as List<dynamic>? ?? [];
+    final values = raw.map((e) => (e is num) ? e.toInt() : 0).toList();
+    while (values.length < 10) values.add(0);
+    return RiftTimedSunData(
+      zombieTypeName: json['ZombieTypeName'] as String? ?? '',
+      sunDropValues: values.take(10).toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'ZombieTypeName': zombieTypeName,
+        'SunDropValues': sunDropValues,
+      };
+}
+
+// === Pickup Collectable Tutorial (module) ===
+
+class PickupCollectableTutorialData {
+  PickupCollectableTutorialData({
+    this.dropperZombieType = '',
+    this.lootType = 'GoldCoin',
+    this.pickupAdvice = '',
+    this.postPickupAdvice = '',
+  });
+
+  String dropperZombieType;
+  String lootType;
+  String pickupAdvice;
+  String postPickupAdvice;
+
+  factory PickupCollectableTutorialData.fromJson(Map<String, dynamic> json) {
+    return PickupCollectableTutorialData(
+      dropperZombieType: json['DropperZombieType'] as String? ?? '',
+      lootType: json['LootType'] as String? ?? 'GoldCoin',
+      pickupAdvice: json['PickupAdvice'] as String? ?? '',
+      postPickupAdvice: json['PostPickupAdvice'] as String? ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'DropperZombieType': dropperZombieType,
+        'LootType': lootType,
+        'PickupAdvice': pickupAdvice,
+        'PostPickupAdvice': postPickupAdvice,
+      };
+}
+
 // === Bowling Minigame ===
 
 class BowlingMinigamePropertiesData {

@@ -126,6 +126,7 @@ class _LawnMowerPropertiesScreenState extends State<LawnMowerPropertiesScreen> {
               showEditorHelpDialog(
                 context,
                 title: l10n?.lawnMowerTitle ?? 'Lawn mower style',
+                themeColor: accentColor,
                 sections: [
                   HelpSectionData(
                     title: l10n?.overview ?? 'Overview',

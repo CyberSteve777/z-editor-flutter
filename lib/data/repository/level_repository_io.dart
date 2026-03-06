@@ -332,6 +332,12 @@ class LevelRepository {
     }
   }
 
+  /// No-op on IO; used on web to trigger single-level download.
+  static Future<void> downloadLevel(String fileName) async {}
+
+  /// No-op on IO; used on web to trigger zip download of all cached levels.
+  static Future<void> downloadAllLevelsAsZip() async {}
+
   static Future<void> saveAndExport(String filePath, PvzLevelFile levelData) async {
     final file = File(filePath);
     await file.writeAsString(

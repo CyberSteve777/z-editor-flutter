@@ -3,7 +3,7 @@ import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/theme/app_theme.dart' show pvzLightOrangeDark, pvzLightOrangeLight;
-import 'package:z_editor/widgets/editor_components.dart';
+import 'package:z_editor/widgets/editor_components.dart' show showEditorHelpDialog, HelpSectionData, editorInputDecoration;
 
 class MaxSunModuleScreen extends StatefulWidget {
   const MaxSunModuleScreen({
@@ -27,11 +27,14 @@ class _MaxSunModuleScreenState extends State<MaxSunModuleScreen> {
   late PvzObject _moduleObj;
   late LevelMutatorMaxSunPropsData _data;
   late TextEditingController _sunController;
- 
+  late FocusNode _sunFocusNode;
+
   @override
   void initState() {
     super.initState();
     _loadData();
+    _sunFocusNode = FocusNode();
+    _sunFocusNode.addListener(() => setState(() {}));
   }
  
   void _loadData() {
@@ -111,11 +114,14 @@ class _MaxSunModuleScreenState extends State<MaxSunModuleScreen> {
             Text(l10n?.maxSunOverride ?? 'Max Sun Override', style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
             TextField(
+              focusNode: _sunFocusNode,
               controller: _sunController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                border: const OutlineInputBorder(),
+              decoration: editorInputDecoration(
+                context,
                 hintText: l10n?.enterMaxSunHint ?? 'Enter max sun (e.g., 9900)',
+                focusColor: accentColor,
+                isFocused: _sunFocusNode.hasFocus,
               ),
               onChanged: (value) {
                 final parsed = int.tryParse(value) ?? _data.maxSunOverride;

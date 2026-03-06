@@ -558,10 +558,10 @@ class _LevelListScreenState extends State<LevelListScreen> {
           PopupMenuButton<String>(
             itemBuilder: (context) => [
               PopupMenuItem(
-                value: 'folder',
+                value: kIsWeb ? 'download_all' : 'folder',
                 child: ListTile(
-                  leading: Icon(kIsWeb ? Icons.file_open : Icons.folder_open),
-                  title: Text(kIsWeb ? 'Add file' : l10n.switchFolder),
+                  leading: Icon(kIsWeb ? Icons.download : Icons.folder_open),
+                  title: Text(kIsWeb ? 'Download all levels' : l10n.switchFolder),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
@@ -601,6 +601,8 @@ class _LevelListScreenState extends State<LevelListScreen> {
             onSelected: (value) async {
               if (value == 'folder') {
                 _pickFolder();
+              } else if (value == 'download_all') {
+                await LevelRepository.downloadAllLevelsAsZip();
               } else if (value == 'cache') {
                 final count = await LevelRepository.clearAllInternalCache();
                 if (context.mounted) {
@@ -778,6 +780,9 @@ class _LevelListScreenState extends State<LevelListScreen> {
                                   setState(() => _itemToDelete = item);
                                   WidgetsBinding.instance.addPostFrameCallback((_) => _showDeleteDialog());
                                 },
+                                onDownload: kIsWeb && !item.isDirectory
+                                    ? () => LevelRepository.downloadLevel(item.name)
+                                    : null,
                                 onCopy: actionsDisabled ? () {} : () async {
                                   if (!item.isDirectory && _pathStack.isNotEmpty) {
                                     final baseName = item.name.replaceFirst(RegExp(r'\.json$'), '');
@@ -1377,6 +1382,7 @@ class _FileItemRow extends StatelessWidget {
     required this.onCopy,
     required this.onMove,
     required this.showMove,
+    this.onDownload,
   });
 
   final FileItem item;
@@ -1387,6 +1393,7 @@ class _FileItemRow extends StatelessWidget {
   final VoidCallback onCopy;
   final VoidCallback onMove;
   final bool showMove;
+  final VoidCallback? onDownload;
 
   @override
   Widget build(BuildContext context) {
@@ -1461,6 +1468,18 @@ class _FileItemRow extends StatelessWidget {
                       icon: Icon(Icons.copy, color: theme.colorScheme.onSurfaceVariant),
                       tooltip: l10n.copy,
                       onPressed: onCopy,
+                      iconSize: 22,
+                      style: IconButton.styleFrom(
+                        padding: const EdgeInsets.all(8),
+                        minimumSize: const Size(36, 36),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    ),
+                  if (onDownload != null)
+                    IconButton(
+                      icon: Icon(Icons.download, color: theme.colorScheme.onSurfaceVariant),
+                      tooltip: 'Download',
+                      onPressed: onDownload,
                       iconSize: 22,
                       style: IconButton.styleFrom(
                         padding: const EdgeInsets.all(8),

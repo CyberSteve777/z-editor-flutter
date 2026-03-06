@@ -288,7 +288,7 @@ class _RenaiModuleScreenState extends State<RenaiModuleScreen> {
                         children: [
                           Text(
                             l10n?.renaiModuleNightStart ??
-                                'Night start wave (0-based)',
+                                'Night start wave',
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.primary,
@@ -306,10 +306,10 @@ class _RenaiModuleScreenState extends State<RenaiModuleScreen> {
                               ),
                               onChanged: (v) {
                                 final n = int.tryParse(v);
-                                if (n != null && n >= 0) {
+                                if (n != null && n >= 1) {
                                   _data = RenaiModulePropertiesData(
                                     nightEnabled: _data.nightEnabled,
-                                    nightStartWaveNum: n,
+                                    nightStartWaveNum: n - 1,
                                     statueInfos: _data.statueInfos,
                                     statueNightInfos: _data.statueNightInfos,
                                   );
@@ -684,14 +684,14 @@ class _StatueCardState extends State<_StatueCard> {
   @override
   void initState() {
     super.initState();
-    _waveCtrl = TextEditingController(text: '${widget.item.waveNumber}');
+    _waveCtrl = TextEditingController(text: '${widget.item.waveNumber + 1}');
   }
 
   @override
   void didUpdateWidget(covariant _StatueCard oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.item.waveNumber != widget.item.waveNumber) {
-      _waveCtrl.text = '${widget.item.waveNumber}';
+      _waveCtrl.text = '${widget.item.waveNumber + 1}';
     }
   }
 

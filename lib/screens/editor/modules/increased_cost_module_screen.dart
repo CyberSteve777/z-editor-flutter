@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
+import 'package:z_editor/widgets/editor_components.dart' show editorInputDecoration;
 
 /// Increased cost module editor. Ported from Z-Editor-master IncreasedCostModulePropertiesEP.kt
 class IncreasedCostModuleScreen extends StatefulWidget {
@@ -29,11 +30,17 @@ class _IncreasedCostModuleScreenState extends State<IncreasedCostModuleScreen> {
   late IncreasedCostModulePropertiesData _data;
   late TextEditingController _baseCostCtrl;
   late TextEditingController _maxCountCtrl;
+  late FocusNode _baseCostFocusNode;
+  late FocusNode _maxCountFocusNode;
 
   @override
   void initState() {
     super.initState();
     _loadData();
+    _baseCostFocusNode = FocusNode();
+    _maxCountFocusNode = FocusNode();
+    _baseCostFocusNode.addListener(() => setState(() {}));
+    _maxCountFocusNode.addListener(() => setState(() {}));
   }
 
   void _loadData() {
@@ -71,6 +78,8 @@ class _IncreasedCostModuleScreenState extends State<IncreasedCostModuleScreen> {
 
   @override
   void dispose() {
+    _baseCostFocusNode.dispose();
+    _maxCountFocusNode.dispose();
     _baseCostCtrl.dispose();
     _maxCountCtrl.dispose();
     super.dispose();
@@ -99,11 +108,14 @@ class _IncreasedCostModuleScreenState extends State<IncreasedCostModuleScreen> {
                 ),
                 const SizedBox(height: 12),
                 TextField(
+                  focusNode: _baseCostFocusNode,
                   controller: _baseCostCtrl,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  decoration: editorInputDecoration(
+                    context,
                     labelText: AppLocalizations.of(context)?.baseCostIncreaseLabel ?? 'Base cost increase (BaseCostIncreased)',
-                    border: const OutlineInputBorder(),
+                    focusColor: Theme.of(context).colorScheme.primary,
+                    isFocused: _baseCostFocusNode.hasFocus,
                   ),
                   onChanged: (v) {
                     final n = int.tryParse(v);
@@ -115,11 +127,14 @@ class _IncreasedCostModuleScreenState extends State<IncreasedCostModuleScreen> {
                 ),
                 const SizedBox(height: 12),
                 TextField(
+                  focusNode: _maxCountFocusNode,
                   controller: _maxCountCtrl,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  decoration: editorInputDecoration(
+                    context,
                     labelText: AppLocalizations.of(context)?.maxIncreaseCountLabel ?? 'Max increase count (MaxIncreasedCount)',
-                    border: const OutlineInputBorder(),
+                    focusColor: Theme.of(context).colorScheme.primary,
+                    isFocused: _maxCountFocusNode.hasFocus,
                   ),
                   onChanged: (v) {
                     final n = int.tryParse(v);

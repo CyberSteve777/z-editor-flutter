@@ -513,6 +513,43 @@ Widget scaleTableForDesktop({
   );
 }
 
+/// Input decoration for editor screens.
+/// When not focused: border and label (including floating label) use theme onSurface.
+/// When focused and [focusColor] set: border and floating label use [focusColor].
+/// Pass [isFocused] from the field's FocusNode so the floating label only uses [focusColor] when focused.
+InputDecoration editorInputDecoration(
+  BuildContext context, {
+  String? labelText,
+  String? hintText,
+  Color? focusColor,
+  bool isFocused = false,
+  bool filled = false,
+  Color? fillColor,
+}) {
+  final theme = Theme.of(context);
+  final unfocusedColor = theme.colorScheme.onSurface;
+  final baseDecoration = InputDecoration(
+    labelText: labelText,
+    hintText: hintText,
+    border: const OutlineInputBorder(),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: unfocusedColor.withValues(alpha: 0.6)),
+    ),
+    labelStyle: TextStyle(color: unfocusedColor),
+    hintStyle: TextStyle(color: unfocusedColor.withValues(alpha: 0.7)),
+    filled: filled,
+    fillColor: fillColor,
+  );
+  if (focusColor == null) return baseDecoration;
+  return baseDecoration.copyWith(
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: focusColor, width: 2),
+    ),
+    floatingLabelStyle: TextStyle(color: isFocused ? focusColor : unfocusedColor),
+    focusColor: focusColor,
+  );
+}
+
 /// Icon for grid items. For renai_zomboss_statue_zombie1_half,
 /// overlays a purple "Z" badge on the base statue icon.
 /// Use anywhere grid item icons are displayed (selection, grids, lists).

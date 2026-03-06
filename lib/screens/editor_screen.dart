@@ -40,6 +40,8 @@ import 'package:z_editor/screens/editor/modules/initial_plant_entry_screen.dart'
 import 'package:z_editor/screens/editor/modules/initial_plant_properties_screen.dart';
 import 'package:z_editor/screens/editor/modules/initial_zombie_entry_screen.dart';
 import 'package:z_editor/screens/editor/modules/initial_grid_item_entry_screen.dart';
+import 'package:z_editor/screens/editor/modules/pickup_collectable_tutorial_screen.dart';
+import 'package:z_editor/screens/editor/modules/zombie_sun_drop_module_screen.dart';
 import 'package:z_editor/screens/editor/modules/power_tile_properties_screen.dart';
 import 'package:z_editor/screens/editor/modules/protect_grid_item_challenge_screen.dart';
 import 'package:z_editor/screens/editor/modules/protect_plant_challenge_screen.dart';
@@ -80,6 +82,7 @@ import 'package:z_editor/screens/editor/events/modern_portals_event_screen.dart'
 import 'package:z_editor/screens/editor/events/parachute_rain_event_screen.dart';
 import 'package:z_editor/screens/editor/events/raiding_party_event_screen.dart';
 import 'package:z_editor/screens/editor/events/barrel_wave_event_screen.dart';
+import 'package:z_editor/screens/editor/events/bungee_wave_event_screen.dart';
 import 'package:z_editor/screens/editor/events/thunder_wave_event_screen.dart';
 import 'package:z_editor/screens/editor/events/tide_wave_event_screen.dart';
 import 'package:z_editor/screens/editor/events/zombie_fish_wave_event_screen.dart';
@@ -723,6 +726,40 @@ List<ModuleMetadata> _calculateMissingModules() {
       return;
     }
 
+    if (objClass == 'BungeeWaveActionProps') {
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BungeeWaveEventScreen(
+            rtid: rtid,
+            levelFile: _levelFile!,
+            onChanged: _markDirty,
+            onBack: () {
+              _setActiveTab(EditorTabType.timeline);
+              Navigator.pop(context);
+            },
+            onRequestZombieSelection: (onSelected) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ZombieSelectionScreen(
+                    multiSelect: false,
+                    onZombieSelected: (id) {
+                      Navigator.pop(context);
+                      onSelected(id);
+                    },
+                    onMultiZombieSelected: (_) {},
+                    onBack: () => Navigator.pop(context),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
+      return;
+    }
+
     if (objClass == 'ThunderWaveActionProps') {
       await Navigator.push(
         context,
@@ -788,6 +825,7 @@ List<ModuleMetadata> _calculateMissingModules() {
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             eventSubtitle: subtitle,
+            eventObjClass: objClass,
             onRequestZombieSelection: (onSelected) {
               Navigator.push(
                 context,
@@ -1791,6 +1829,68 @@ List<ModuleMetadata> _calculateMissingModules() {
             levelFile: _levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
+          ),
+        ),
+      );
+      return;
+    }
+    if (info.source == 'CurrentLevel' &&
+        objClass == 'LevelMutatorRiftTimedSunProps') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ZombieSunDropModuleScreen(
+            rtid: rtid,
+            levelFile: _levelFile!,
+            onChanged: _markDirty,
+            onBack: () => Navigator.pop(context),
+            onRequestZombieSelection: (onSelected) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ZombieSelectionScreen(
+                    multiSelect: true,
+                    onZombieSelected: (_) {},
+                    onMultiZombieSelected: (ids) {
+                      Navigator.pop(context);
+                      onSelected(ids);
+                    },
+                    onBack: () => Navigator.pop(context),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      );
+      return;
+    }
+    if (info.source == 'CurrentLevel' &&
+        objClass == 'PickupCollectableTutorialProperties') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PickupCollectableTutorialScreen(
+            rtid: rtid,
+            levelFile: _levelFile!,
+            onChanged: _markDirty,
+            onBack: () => Navigator.pop(context),
+            onRequestZombieSelection: (onSelected) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ZombieSelectionScreen(
+                    multiSelect: false,
+                    onZombieSelected: (id) {
+                      Navigator.pop(context);
+                      onSelected(id);
+                    },
+                    onMultiZombieSelected: (_) {},
+                    onBack: () => Navigator.pop(context),
+                  ),
+                ),
+              );
+            },
           ),
         ),
       );

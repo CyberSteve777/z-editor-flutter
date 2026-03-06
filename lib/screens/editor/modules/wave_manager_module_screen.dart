@@ -214,6 +214,7 @@ class _WaveManagerModuleScreenState extends State<WaveManagerModuleScreen> {
               showEditorHelpDialog(
                 context,
                 title: l10n?.waveManagerModule ?? 'Wave manager module',
+                themeColor: sectionTitleColor,
                 sections: [
                   HelpSectionData(
                     title: l10n?.overview ?? 'Overview',

@@ -100,6 +100,7 @@ class _ZombieRushModuleScreenState extends State<ZombieRushModuleScreen> {
               showEditorHelpDialog(
                 context,
                 title: l10n?.zombieRushTitle ?? 'Level timer',
+                themeColor: accentColor,
                 sections: [
                   HelpSectionData(
                     title: l10n?.overview ?? 'Overview',

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:archive/archive.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,15 @@ export '../pvz_models.dart' show PvzLevelFile;
 
 /// Virtual path prefix for web - files opened via picker have no real path.
 const String _webPathPrefix = 'web://';
+
+/// Returns the cache key (file name) for a path. Strips [_webPathPrefix] so we never
+/// use "web://filename" as a cache key, which would create duplicate list entries.
+String _fileNameFromPath(String filePath) {
+  if (filePath.startsWith(_webPathPrefix)) {
+    return filePath.substring(_webPathPrefix.length);
+  }
+  return p.basename(filePath);
+}
 
 class FileItem {
   FileItem({
@@ -161,7 +171,7 @@ class LevelRepository {
     String targetDirPath,
     String targetFileName,
   ) async {
-    final srcName = p.basename(srcPath);
+    final srcName = _fileNameFromPath(srcPath);
     if (!_memoryCache.containsKey(srcName)) return false;
     if (_memoryCache.containsKey(targetFileName)) return false;
     _memoryCache[targetFileName] = _memoryCache[srcName]!;
@@ -243,15 +253,36 @@ class LevelRepository {
   }
 
   static Future<PvzLevelFile?> loadLevelFromPath(String filePath) async {
-    final fileName = p.basename(filePath);
+    final fileName = _fileNameFromPath(filePath);
     return loadLevel(fileName);
   }
 
   static Future<void> saveAndExport(String filePath, PvzLevelFile levelData) async {
-    final fileName = p.basename(filePath);
+    final fileName = _fileNameFromPath(filePath);
     final content = const JsonEncoder.withIndent('  ').convert(levelData.toJson());
     _memoryCache[fileName] = content;
+    // No auto-download on save; use downloadLevel() or download button to export.
+  }
+
+  /// Triggers a download of a single level by file name (web only).
+  static Future<void> downloadLevel(String fileName) async {
+    final content = _memoryCache[fileName];
+    if (content == null) return;
     await _triggerDownload(fileName, content);
+  }
+
+  /// Builds a zip of all cached levels and triggers download (web only).
+  static Future<void> downloadAllLevelsAsZip() async {
+    if (_memoryCache.isEmpty) return;
+    final archive = Archive();
+    for (final entry in _memoryCache.entries) {
+      final name = entry.key;
+      final content = entry.value;
+      final bytes = Uint8List.fromList(content.codeUnits);
+      archive.addFile(ArchiveFile(name, bytes.length, bytes));
+    }
+    final zipBytes = ZipEncoder().encode(archive);
+    await _triggerDownloadBytes('levels.zip', Uint8List.fromList(zipBytes));
   }
 
   static Future<void> _triggerDownload(String fileName, String content) async {
@@ -261,6 +292,16 @@ class LevelRepository {
       type: FileType.custom,
       allowedExtensions: ['json'],
       bytes: Uint8List.fromList(content.codeUnits),
+    );
+  }
+
+  static Future<void> _triggerDownloadBytes(String fileName, Uint8List bytes) async {
+    await FilePicker.platform.saveFile(
+      dialogTitle: 'Save file',
+      fileName: fileName,
+      type: FileType.custom,
+      allowedExtensions: const ['zip'],
+      bytes: bytes,
     );
   }
 

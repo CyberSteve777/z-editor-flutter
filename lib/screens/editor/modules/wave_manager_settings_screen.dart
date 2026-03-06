@@ -144,6 +144,7 @@ class _WaveManagerSettingsScreenState extends State<WaveManagerSettingsScreen> {
             onPressed: () => showEditorHelpDialog(
               context,
               title: l10n?.waveManagerHelpTitle ?? 'Wave manager',
+              themeColor: themeColor,
               sections: [
                 HelpSectionData(
                   title: l10n?.waveManagerHelpOverviewTitle ?? 'Overview',

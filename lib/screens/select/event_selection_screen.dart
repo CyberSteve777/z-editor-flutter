@@ -159,6 +159,8 @@ class EventSelectionScreen extends StatelessWidget {
           return isTitle ? l10n.eventTitle_BlackHoleWaveActionProps : l10n.eventDesc_BlackHoleWaveActionProps;
         case 'BarrelWaveActionProps':
           return isTitle ? l10n.eventTitle_BarrelWaveActionProps : l10n.eventDesc_BarrelWaveActionProps;
+        case 'BungeeWaveActionProps':
+          return isTitle ? l10n.eventTitle_BungeeWaveActionProps : l10n.eventDesc_BungeeWaveActionProps;
         case 'ThunderWaveActionProps':
           return isTitle ? l10n.eventTitle_ThunderWaveActionProps : l10n.eventDesc_ThunderWaveActionProps;
         case 'MagicMirrorWaveActionProps':

@@ -231,6 +231,34 @@ class _CustomFishPropertiesScreenState extends State<CustomFishPropertiesScreen>
     );
   }
 
+  String _fishPropLabel(AppLocalizations? l10n, String key) {
+    if (l10n == null) return key;
+    switch (key) {
+      case 'Speed':
+        return l10n.fishPropSpeed;
+      case 'ScareSpeed':
+        return l10n.fishPropScareSpeed;
+      case 'Damage':
+        return l10n.fishPropDamage;
+      case 'Hitpoints':
+        return l10n.fishPropHitpoints;
+      case 'HitPoints':
+        return l10n.fishPropHitPoints;
+      case 'HitRect':
+        return l10n.fishPropHitRect;
+      case 'AttackRect':
+        return l10n.fishPropAttackRect;
+      case 'ScareRect':
+        return l10n.fishPropScareRect;
+      case 'Scarerect':
+        return l10n.fishPropScarerect;
+      case 'ArtCenter':
+        return l10n.fishPropArtCenter;
+      default:
+        return key;
+    }
+  }
+
   Color get _themeColor =>
       Theme.of(context).brightness == Brightness.dark ? pvzFishDark : pvzFishLight;
 
@@ -364,6 +392,7 @@ class _CustomFishPropertiesScreenState extends State<CustomFishPropertiesScreen>
             onPressed: () => showEditorHelpDialog(
               context,
               title: l10n?.customFish ?? 'Custom fish',
+              themeColor: _themeColor,
               sections: [
                 HelpSectionData(
                   title: l10n?.customFishHelpIntro ?? 'Brief introduction',
@@ -389,6 +418,37 @@ class _CustomFishPropertiesScreenState extends State<CustomFishPropertiesScreen>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
+                l10n?.aliasLabel ?? 'Alias',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: _themeColor,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: TextFormField(
+                    initialValue: _typeObj!.aliases?.isNotEmpty == true
+                        ? _typeObj!.aliases!.first
+                        : '',
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      isDense: true,
+                      hintText: l10n?.aliasLabel ?? 'Alias',
+                    ),
+                    onChanged: (v) {
+                      final trimmed = v.trim();
+                      if (trimmed.isNotEmpty && _typeObj != null) {
+                        _typeObj!.aliases = [trimmed];
+                        _sync();
+                      }
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
                 l10n?.baseStats ?? 'Base stats',
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
@@ -404,7 +464,7 @@ class _CustomFishPropertiesScreenState extends State<CustomFishPropertiesScreen>
                       for (final k in numberKeys)
                         if (propsData.containsKey(k)) ...[
                           _doubleInput(
-                            label: k,
+                            label: _fishPropLabel(l10n, k),
                             key: k,
                             value: _toDoubleSafe(propsData[k]),
                           ),
@@ -443,11 +503,11 @@ class _CustomFishPropertiesScreenState extends State<CustomFishPropertiesScreen>
                         Column(
                           children: [
                             _editRow(
-                              title: k,
+                              title: _fishPropLabel(l10n, k),
                               subtitle: _formatRect(propsData[k]),
                               icon: Icons.aspect_ratio,
                               onTap: () => _showRectDialog(
-                                title: '${l10n?.edit ?? 'Edit'} $k',
+                                title: '${l10n?.edit ?? 'Edit'} ${_fishPropLabel(l10n, k)}',
                                 key: k,
                                 initial: _parseRect(propsData[k]),
                               ),
@@ -458,11 +518,11 @@ class _CustomFishPropertiesScreenState extends State<CustomFishPropertiesScreen>
                     for (final k in pointKeys)
                       if (propsData.containsKey(k))
                         _editRow(
-                          title: k,
+                          title: _fishPropLabel(l10n, k),
                           subtitle: _formatPoint(propsData[k]),
                           icon: Icons.center_focus_strong,
                           onTap: () => _showPointDialog(
-                            title: '${l10n?.edit ?? 'Edit'} $k',
+                            title: '${l10n?.edit ?? 'Edit'} ${_fishPropLabel(l10n, k)}',
                             key: k,
                             initial: _parsePoint(propsData[k]),
                           ),

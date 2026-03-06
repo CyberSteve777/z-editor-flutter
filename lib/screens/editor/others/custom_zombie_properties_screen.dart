@@ -508,6 +508,7 @@ class _CustomZombiePropertiesScreenState
             onPressed: () => showEditorHelpDialog(
               context,
               title: l10n?.customZombie ?? 'Custom zombie',
+              themeColor: themeColor,
               sections: [
                 HelpSectionData(
                   title: l10n?.customZombieHelpIntro ?? 'Brief introduction',
@@ -538,6 +539,38 @@ class _CustomZombiePropertiesScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                l10n?.aliasLabel ?? 'Alias',
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: themeColor,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: TextFormField(
+                    initialValue: _typeObj!.aliases?.isNotEmpty == true
+                        ? _typeObj!.aliases!.first
+                        : '',
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      isDense: true,
+                      hintText: l10n?.aliasLabel ?? 'Alias',
+                    ),
+                    onChanged: (v) {
+                      final trimmed = v.trim();
+                      if (trimmed.isNotEmpty && _typeObj != null) {
+                        _typeObj!.aliases = [trimmed];
+                        widget.onChanged();
+                        setState(() {});
+                      }
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
               Text(l10n?.baseStats ?? 'Base stats',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.bold,

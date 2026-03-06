@@ -101,6 +101,10 @@ class ModuleRegistry {
         return l10n.moduleTitle_LevelMutatorMaxSunProps;
       case 'moduleTitle_LevelMutatorStartingPlantfoodProps':
         return l10n.moduleTitle_LevelMutatorStartingPlantfoodProps;
+      case 'moduleTitle_LevelMutatorRiftTimedSunProps':
+        return l10n.moduleTitle_LevelMutatorRiftTimedSunProps;
+      case 'moduleTitle_PickupCollectableTutorialProperties':
+        return l10n.moduleTitle_PickupCollectableTutorialProperties;
       case 'moduleTitle_StarChallengeModuleProperties':
         return l10n.moduleTitle_StarChallengeModuleProperties;
       case 'moduleTitle_LevelScoringModuleProperties':
@@ -213,6 +217,10 @@ class ModuleRegistry {
         return l10n.moduleDesc_LevelMutatorMaxSunProps;
       case 'moduleDesc_LevelMutatorStartingPlantfoodProps':
         return l10n.moduleDesc_LevelMutatorStartingPlantfoodProps;
+      case 'moduleDesc_LevelMutatorRiftTimedSunProps':
+        return l10n.moduleDesc_LevelMutatorRiftTimedSunProps;
+      case 'moduleDesc_PickupCollectableTutorialProperties':
+        return l10n.moduleDesc_PickupCollectableTutorialProperties;
       case 'moduleDesc_StarChallengeModuleProperties':
         return l10n.moduleDesc_StarChallengeModuleProperties;
       case 'moduleDesc_LevelScoringModuleProperties':
@@ -438,6 +446,26 @@ class ModuleRegistry {
       defaultAlias: 'OverrideStartingPlantFood',
       initialDataFactory: () => LevelMutatorStartingPlantfoodPropsData(),
       routeId: 'StartingPlantfoodModule',
+    ),
+    'LevelMutatorRiftTimedSunProps': ModuleMetadata(
+      titleKey: 'moduleTitle_LevelMutatorRiftTimedSunProps',
+      descriptionKey: 'moduleDesc_LevelMutatorRiftTimedSunProps',
+      icon: Icons.wb_sunny_outlined,
+      isCore: true,
+      category: ModuleCategory.mode,
+      defaultAlias: 'ZombieSunDrop',
+      initialDataFactory: () => RiftTimedSunModuleData(),
+      routeId: 'ZombieSunDropModule',
+    ),
+    'PickupCollectableTutorialProperties': ModuleMetadata(
+      titleKey: 'moduleTitle_PickupCollectableTutorialProperties',
+      descriptionKey: 'moduleDesc_PickupCollectableTutorialProperties',
+      icon: Icons.school,
+      isCore: true,
+      category: ModuleCategory.mode,
+      defaultAlias: 'PickupCollectableTutorial',
+      initialDataFactory: () => PickupCollectableTutorialData(),
+      routeId: 'PickupCollectableTutorial',
     ),
     'StarChallengeModuleProperties': ModuleMetadata(
       titleKey: 'moduleTitle_StarChallengeModuleProperties',

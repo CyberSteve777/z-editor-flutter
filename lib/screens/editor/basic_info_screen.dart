@@ -6,6 +6,7 @@ import 'package:z_editor/data/repository/stage_repository.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
+import 'package:z_editor/widgets/editor_components.dart' show editorInputDecoration;
 // Options matching LevelDefinitionEP.kt (keep codenames)
 const _musicTypeOptions = [
   ('', 'Default'),
@@ -76,20 +77,23 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
     super.dispose();
   }
 
-  Widget _rectangularTextField({
+  Widget _rectangularTextField(
+    BuildContext context, {
     required TextEditingController controller,
     required String label,
     TextInputType? keyboardType,
     int maxLines = 1,
     required VoidCallback onChanged,
   }) {
+    final focusColor = Theme.of(context).colorScheme.primary;
     return TextField(
       controller: controller,
       keyboardType: keyboardType,
       maxLines: maxLines,
-      decoration: InputDecoration(
+      decoration: editorInputDecoration(
+        context,
         labelText: label,
-        border: const OutlineInputBorder(),
+        focusColor: focusColor,
       ),
       onChanged: (_) => onChanged(),
     );
@@ -142,6 +146,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                 child: Column(
                   children: [
                     _rectangularTextField(
+                      context,
                       controller: _nameCtrl,
                       label: '${l10n?.name ?? 'Name'} (Name)',
                       onChanged: _sync,
@@ -151,6 +156,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                       children: [
                         Expanded(
                           child: _rectangularTextField(
+                            context,
                             controller: _levelNumCtrl,
                             label: l10n?.levelNumber ?? 'Level number',
                             keyboardType: TextInputType.number,
@@ -160,6 +166,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                         const SizedBox(width: 12),
                         Expanded(
                           child: _rectangularTextField(
+                            context,
                             controller: _sunCtrl,
                             label: l10n?.startingSun ?? 'Initial sun',
                             keyboardType: TextInputType.number,
@@ -170,6 +177,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                     ),
                     const SizedBox(height: 12),
                     _rectangularTextField(
+                      context,
                       controller: _descCtrl,
                       label: '${l10n?.description ?? 'Description'} (Description)',
                       maxLines: 2,
@@ -268,9 +276,10 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   value: _musicTypeOptions.map((e) => e.$1).contains(def.musicType)
                       ? def.musicType
                       : _musicTypeOptions.first.$1,
-                  decoration: InputDecoration(
+                  decoration: editorInputDecoration(
+                    context,
                     labelText: '${l10n?.musicType ?? 'Music type'} (MusicType)',
-                    border: const OutlineInputBorder(),
+                    focusColor: theme.colorScheme.primary,
                   ),
                   items: _musicTypeOptions.map((e) => DropdownMenuItem(
                     value: e.$1,
@@ -295,9 +304,10 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   value: _lootOptions.map((e) => e.$1).contains(def.loot)
                       ? def.loot
                       : _lootOptions.first.$1,
-                  decoration: InputDecoration(
+                  decoration: editorInputDecoration(
+                    context,
                     labelText: '${l10n?.loot ?? 'Loot'} (Loot)',
-                    border: const OutlineInputBorder(),
+                    focusColor: theme.colorScheme.primary,
                   ),
                   items: _lootOptions.map((e) => DropdownMenuItem(
                     value: e.$1,
@@ -322,9 +332,10 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   value: _victoryOptions.map((e) => e.$1).contains(def.victoryModule)
                       ? def.victoryModule
                       : _victoryOptions.first.$1,
-                  decoration: InputDecoration(
+                  decoration: editorInputDecoration(
+                    context,
                     labelText: '${l10n?.victoryModule ?? 'Victory module'} (VictoryModule)',
-                    border: const OutlineInputBorder(),
+                    focusColor: theme.colorScheme.primary,
                   ),
                   items: _victoryOptions.map((e) => DropdownMenuItem(
                     value: e.$1,

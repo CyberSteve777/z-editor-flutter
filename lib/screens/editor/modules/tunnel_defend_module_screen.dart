@@ -265,6 +265,7 @@ class _TunnelDefendModuleScreenState extends State<TunnelDefendModuleScreen> {
               showEditorHelpDialog(
                 context,
                 title: l10n?.tunnelDefendTitle ?? 'Tunnel defend',
+                themeColor: accentColor,
                 sections: [
                   HelpSectionData(
                     

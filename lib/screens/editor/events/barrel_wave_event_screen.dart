@@ -428,9 +428,9 @@ class _BarrelWaveEventScreenState extends State<BarrelWaveEventScreen> {
                         child: TextFormField(
                           key: ValueKey('zombie_lv_${index}_$zi'),
                           initialValue: z.level.toString(),
-                          decoration: const InputDecoration(
-                            labelText: 'Lv',
-                            border: OutlineInputBorder(),
+                          decoration: InputDecoration(
+                            labelText: l10n?.barrelWaveZombieLevel ?? 'Zombie level',
+                            border: const OutlineInputBorder(),
                             isDense: true,
                           ),
                           keyboardType: TextInputType.number,
