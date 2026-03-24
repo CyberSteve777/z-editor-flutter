@@ -3725,7 +3725,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get minCountThreshold => 'Порог мин. количества';
 
   @override
-  String get followAccountLevel => '0 = follow account level';
+  String get followAccountLevel => 'Level 0 follows the player’s account level';
 
   @override
   String get enablePointSpawning => 'Включить очки спавна';
