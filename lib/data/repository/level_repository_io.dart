@@ -1,9 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:z_editor/util/3rdParty/sen_buffer.dart';
+import 'package:z_editor/util/3rdParty/sen_rton_codec.dart';
+import 'package:z_editor/util/hujson_codec.dart';
+import 'package:z_editor/util/pvz2c_crypto.dart';
 
 import '../pvz_models.dart';
 export '../pvz_models.dart' show PvzLevelFile;
@@ -28,6 +33,7 @@ class FileItem {
 class LevelRepository {
   static const _prefsFolderKey = 'folder_path';
   static const _prefsLastLevelDirKey = 'last_level_directory';
+  static const Set<String> _levelExtensions = {'.json', '.hujson', '.rton'};
 
   static Future<String?> getSavedFolderPath() async {
     final prefs = await SharedPreferences.getInstance();
@@ -72,8 +78,8 @@ class LevelRepository {
       final stat = await entity.stat();
       final name = p.basename(entity.path);
       final isDir = stat.type == FileSystemEntityType.directory;
-      final isJson = !isDir && name.toLowerCase().endsWith('.json');
-      if (isDir || isJson) {
+      final isLevel = !isDir && isSupportedLevelFileName(name);
+      if (isDir || isLevel) {
         list.add(FileItem(
           name: name,
           path: entity.path,
@@ -113,6 +119,21 @@ class LevelRepository {
       }
     }
     return a.length.compareTo(b.length);
+  }
+
+  static bool isSupportedLevelFileName(String name) {
+    final lower = name.toLowerCase();
+    return _levelExtensions.any(lower.endsWith);
+  }
+
+  static String baseNameWithoutLevelExtension(String name) {
+    final lower = name.toLowerCase();
+    for (final ext in _levelExtensions) {
+      if (lower.endsWith(ext)) {
+        return name.substring(0, name.length - ext.length);
+      }
+    }
+    return p.basenameWithoutExtension(name);
   }
 
   static Future<bool> createDirectory(String parentPath, String name) async {
@@ -172,9 +193,7 @@ class LevelRepository {
     String defaultBaseName,
   ) async {
     final items = await getDirectoryContents(dirPath);
-    final existing = items
-        .map((f) => f.name.toLowerCase().replaceFirst(RegExp(r'\.json$'), ''))
-        .toSet();
+    final existing = items.map((f) => baseNameWithoutLevelExtension(f.name).toLowerCase()).toSet();
     final base = defaultBaseName;
     if (!existing.contains(base.toLowerCase())) return base;
     var candidate = '${base}_copy';
@@ -186,9 +205,7 @@ class LevelRepository {
 
   static Future<String> getNextAvailableCopyName(String dirPath, String baseNameWithoutExt) async {
     final items = await getDirectoryContents(dirPath);
-    final existing = items
-        .map((f) => f.name.toLowerCase().replaceFirst(RegExp(r'\.json$'), ''))
-        .toSet();
+    final existing = items.map((f) => baseNameWithoutLevelExtension(f.name).toLowerCase()).toSet();
     var candidate = '${baseNameWithoutExt}_copy';
     if (!existing.contains(candidate.toLowerCase())) return candidate;
     var n = 2;
@@ -256,9 +273,9 @@ class LevelRepository {
     String fileName,
     String destDirPath,
   ) async {
-    final baseName = fileName.replaceFirst(RegExp(r'\.json$', caseSensitive: false), '');
+    final baseName = baseNameWithoutLevelExtension(fileName);
     final suggested = await getNextAvailableCopyName(destDirPath, baseName);
-    final newFileName = suggested.toLowerCase().endsWith('.json') ? suggested : '$suggested.json';
+    final newFileName = '$suggested.json';
     return moveFileWithName(srcDirPath, fileName, destDirPath, newFileName);
   }
 
@@ -285,7 +302,7 @@ class LevelRepository {
     final dir = Directory(cacheDir);
     int count = 0;
     await for (final entity in dir.list()) {
-      if (entity is File && entity.path.toLowerCase().endsWith('.json')) {
+      if (entity is File && isSupportedLevelFileName(p.basename(entity.path))) {
         await entity.delete();
         count++;
       }
@@ -314,8 +331,8 @@ class LevelRepository {
     final file = File(p.join(cacheDir, fileName));
     if (!await file.exists()) return null;
     try {
-      final json = jsonDecode(await file.readAsString()) as Map<String, dynamic>;
-      return PvzLevelFile.fromJson(json);
+      final bytes = await file.readAsBytes();
+      return _decodeLevelBytes(fileName, bytes);
     } catch (_) {
       return null;
     }
@@ -325,8 +342,8 @@ class LevelRepository {
     final file = File(filePath);
     if (!await file.exists()) return null;
     try {
-      final json = jsonDecode(await file.readAsString()) as Map<String, dynamic>;
-      return PvzLevelFile.fromJson(json);
+      final bytes = await file.readAsBytes();
+      return _decodeLevelBytes(p.basename(filePath), bytes);
     } catch (_) {
       return null;
     }
@@ -339,14 +356,90 @@ class LevelRepository {
   static Future<void> downloadAllLevelsAsZip() async {}
 
   static Future<void> saveAndExport(String filePath, PvzLevelFile levelData) async {
-    final file = File(filePath);
-    await file.writeAsString(
-      const JsonEncoder.withIndent('  ').convert(levelData.toJson()),
-    );
-    final cacheDir = await getCacheDir();
     final fileName = p.basename(filePath);
+    final bytes = _encodeLevelBytes(fileName, levelData);
+    final file = File(filePath);
+    await file.writeAsBytes(bytes, flush: true);
+    final cacheDir = await getCacheDir();
     final cachePath = p.join(cacheDir, fileName);
-    await file.copy(cachePath);
+    await File(cachePath).writeAsBytes(bytes, flush: true);
+  }
+
+  static Future<String?> convertLevelFile({
+    required String sourcePath,
+    required String sourceName,
+    required String targetExtension,
+    String? targetName,
+  }) async {
+    final srcFile = File(sourcePath);
+    if (!await srcFile.exists()) return null;
+    final parent = p.dirname(sourcePath);
+    final base = baseNameWithoutLevelExtension(sourceName);
+    final target = targetName ?? '$base$targetExtension';
+    final targetPath = p.join(parent, target);
+    if (await File(targetPath).exists()) return null;
+    final level = _decodeLevelBytes(sourceName, await srcFile.readAsBytes());
+    if (level == null) return null;
+    final outBytes = _encodeLevelBytes(target, level);
+    await File(targetPath).writeAsBytes(outBytes, flush: true);
+    return target;
+  }
+
+  static Future<String> getFirstAvailableIndexedName(
+    String dirPath,
+    String baseName,
+    String extension,
+  ) async {
+    var i = 1;
+    while (true) {
+      final candidate = '${baseName}_$i$extension';
+      if (!await fileExistsInDirectory(dirPath, candidate)) return candidate;
+      i++;
+    }
+  }
+
+  static PvzLevelFile? _decodeLevelBytes(String fileName, Uint8List bytes) {
+    final lower = fileName.toLowerCase();
+    try {
+      if (lower.endsWith('.json')) {
+        return PvzLevelFile.fromJson(jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>);
+      }
+      if (lower.endsWith('.hujson')) {
+        final plain = HuJsonCodec.decode(bytes);
+        return PvzLevelFile.fromJson(jsonDecode(utf8.decode(plain)) as Map<String, dynamic>);
+      }
+      if (lower.endsWith('.rton')) {
+        final plainRton = HuJsonCodec.decode(bytes);
+        final buf = SenBuffer.fromBytes(plainRton);
+        final rton = ReflectionObjectNotation();
+        final encrypted =
+            plainRton.length >= 2 && plainRton[0] == 0x10 && plainRton[1] == 0x00;
+        final jsonMap = rton.decodeRTON(
+          buf,
+          encrypted,
+          encrypted ? RijndaelC.defaultValue() : null,
+          null,
+        );
+        return PvzLevelFile.fromJson(Map<String, dynamic>.from(jsonMap as Map));
+      }
+    } catch (_) {
+      return null;
+    }
+    return null;
+  }
+
+  static Uint8List _encodeLevelBytes(String fileName, PvzLevelFile data) {
+    final lower = fileName.toLowerCase();
+    final jsonText = const JsonEncoder.withIndent('  ').convert(data.toJson());
+    final jsonBytes = Uint8List.fromList(utf8.encode(jsonText));
+    if (lower.endsWith('.json')) return jsonBytes;
+    if (lower.endsWith('.hujson')) return HuJsonCodec.encode(jsonBytes);
+    if (lower.endsWith('.rton')) {
+      final rton = ReflectionObjectNotation();
+      final senOut = rton.encodeRTON(data.toJson(), false, null, null);
+      return HuJsonCodec.encode(senOut.toBytes());
+    }
+    return jsonBytes;
   }
 
   static const List<String> defaultTemplateList = [

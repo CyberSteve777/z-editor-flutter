@@ -1,17 +1,19 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:z_editor/escape_override.dart';
 import 'package:path/path.dart' as p;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/data/repository/level_repository.dart';
+import 'package:z_editor/bloc/app_navigation/app_navigation_cubit.dart';
+import 'package:z_editor/bloc/settings/settings_cubit.dart';
+import 'package:z_editor/bloc/editor/editor_cubit.dart';
 import 'package:z_editor/screens/about_screen.dart';
 import 'package:z_editor/screens/editor_screen.dart';
 import 'package:z_editor/screens/level_list_screen.dart';
 import 'package:z_editor/theme/app_theme.dart';
-
-enum AppScreen { levelList, editor, about }
 
 /// Wraps child and handles Escape key on desktop to trigger back/pop.
 /// Uses HardwareKeyboard.addHandler for immediate, global Escape handling.
@@ -73,159 +75,141 @@ class _DesktopEscapeHandlerState extends State<_DesktopEscapeHandler> {
 }
 
 class ZEditorApp extends StatefulWidget {
-  const ZEditorApp({
-    super.key,
-    required this.locale,
-    required this.onLocaleChanged,
-    required this.themeMode,
-    required this.onCycleTheme,
-    required this.uiScale,
-    required this.onUiScaleChange,
-  });
-
-  final Locale locale;
-  final ValueChanged<Locale> onLocaleChanged;
-  final ThemeMode themeMode;
-  final VoidCallback onCycleTheme;
-  final double uiScale;
-  final ValueChanged<double> onUiScaleChange;
+  const ZEditorApp({super.key});
 
   @override
   State<ZEditorApp> createState() => _ZEditorAppState();
 }
 
 class _ZEditorAppState extends State<ZEditorApp> {
-  AppScreen _screen = AppScreen.levelList;
-  String _editorFileName = '';
-  String _editorFilePath = '';
   Future<bool> Function()? _editorBackHandler;
 
-  void _openLevel(String fileName, String filePath) {
-    LevelRepository.setLastOpenedLevelDirectory(p.dirname(filePath));
-    setState(() {
-      _editorFileName = fileName;
-      _editorFilePath = filePath;
-      _screen = AppScreen.editor;
-    });
-  }
-
-  void _openAbout() {
-    setState(() => _screen = AppScreen.about);
-  }
-
-  void _backToLevelList() {
-    setState(() => _screen = AppScreen.levelList);
+  void _backToLevelList(BuildContext context) {
+    context.read<AppNavigationCubit>().backToLevelList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Z-Editor',
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: widget.themeMode,
-      locale: widget.locale,
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      builder: (context, child) {
-        var scale = widget.uiScale;
-        final mediaQuery = MediaQuery.of(context);
-        final viewportSize = mediaQuery.size;
-        if (kIsWeb) {
-          final isMobileViewport = mediaQuery.size.shortestSide < 600;
-          if (isMobileViewport) {
-            scale *= 0.85;
-          }
-        }
-        final scaledSize = Size(
-          viewportSize.width / scale,
-          viewportSize.height / scale,
-        );
-        return MediaQuery(
-          data: mediaQuery.copyWith(
-            size: scaledSize,
-            textScaler: TextScaler.linear(1.0),
-          ),
-          child: FittedBox(
-            fit: BoxFit.contain,
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: scaledSize.width,
-              height: scaledSize.height,
-              child: child,
-            ),
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, settings) {
+        return MaterialApp(
+          title: 'Z-Editor',
+          debugShowCheckedModeBanner: false,
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: settings.themeMode,
+          locale: settings.locale,
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          builder: (context, child) {
+            var scale = settings.uiScale;
+            final mediaQuery = MediaQuery.of(context);
+            final viewportSize = mediaQuery.size;
+            if (kIsWeb) {
+              final isMobileViewport = mediaQuery.size.shortestSide < 600;
+              if (isMobileViewport) {
+                scale *= 0.85;
+              }
+            }
+            final scaledSize = Size(
+              viewportSize.width / scale,
+              viewportSize.height / scale,
+            );
+            return MediaQuery(
+              data: mediaQuery.copyWith(
+                size: scaledSize,
+                textScaler: TextScaler.linear(1.0),
+              ),
+              child: FittedBox(
+                fit: BoxFit.contain,
+                alignment: Alignment.topLeft,
+                child: SizedBox(
+                  width: scaledSize.width,
+                  height: scaledSize.height,
+                  child: child,
+                ),
+              ),
+            );
+          },
+          home: BlocBuilder<AppNavigationCubit, AppNavigationState>(
+            builder: (context, nav) {
+              final appNav = context.read<AppNavigationCubit>();
+              return _DesktopEscapeHandler(
+                onEscapeNoRouteToPop: () {
+                  if (nav.screen == AppScreen.levelList) {
+                    SystemNavigator.pop();
+                  } else if (nav.screen == AppScreen.editor &&
+                      _editorBackHandler != null) {
+                    _editorBackHandler!().then((leave) {
+                      if (leave && mounted) {
+                        appNav.backToLevelList();
+                      }
+                    });
+                  } else if (mounted) {
+                    appNav.backToLevelList();
+                  }
+                },
+                child: PopScope(
+                  canPop: false,
+                  onPopInvokedWithResult: (didPop, _) async {
+                    if (didPop) return;
+                    if (nav.screen == AppScreen.levelList) {
+                      SystemNavigator.pop();
+                    } else if (nav.screen == AppScreen.editor &&
+                        _editorBackHandler != null) {
+                      final shouldLeave = await _editorBackHandler!();
+                      if (shouldLeave && mounted) {
+                        appNav.backToLevelList();
+                      }
+                    } else if (mounted) {
+                      appNav.backToLevelList();
+                    }
+                  },
+                  child: _buildCurrentScreen(context, nav),
+                ),
+              );
+            },
           ),
         );
       },
-      home: _DesktopEscapeHandler(
-        onEscapeNoRouteToPop: () {
-          if (_screen == AppScreen.levelList) {
-            SystemNavigator.pop();
-          } else if (_screen == AppScreen.editor && _editorBackHandler != null) {
-            _editorBackHandler!().then((leave) {
-              if (leave && mounted) _backToLevelList();
-            });
-          } else if (mounted) {
-            _backToLevelList();
-          }
-        },
-        child: PopScope(
-          canPop: false,
-          onPopInvokedWithResult: (didPop, _) async {
-            if (didPop) return;
-            if (_screen == AppScreen.levelList) {
-              SystemNavigator.pop();
-            } else if (_screen == AppScreen.editor && _editorBackHandler != null) {
-              final shouldLeave = await _editorBackHandler!();
-              if (shouldLeave && mounted) _backToLevelList();
-            } else if (mounted) {
-              _backToLevelList();
-            }
-          },
-          child: _buildCurrentScreen(),
-        ),
-      ),
     );
   }
 
-  Widget _buildCurrentScreen() {
-    switch (_screen) {
+  Widget _buildCurrentScreen(BuildContext context, AppNavigationState nav) {
+    switch (nav.screen) {
       case AppScreen.levelList:
         return LevelListScreen(
-          themeMode: widget.themeMode,
-          onCycleTheme: widget.onCycleTheme,
-          uiScale: widget.uiScale,
-          onUiScaleChange: widget.onUiScaleChange,
-          onLevelClick: _openLevel,
-          onAboutClick: _openAbout,
-          onLanguageTap: (ctx) => _showLanguageSelector(ctx),
+          onLevelClick: (fileName, filePath) {
+            LevelRepository.setLastOpenedLevelDirectory(p.dirname(filePath));
+            context.read<AppNavigationCubit>().openLevel(fileName, filePath);
+          },
+          onAboutClick: () => context.read<AppNavigationCubit>().openAbout(),
+          onLanguageTap: _showLanguageSelector,
         );
       case AppScreen.editor:
-        return EditorScreen(
-          fileName: _editorFileName,
-          filePath: _editorFilePath,
-          onBack: _backToLevelList,
-          onRegisterBackHandler: (handler) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (mounted) setState(() => _editorBackHandler = handler);
-            });
-          },
-          themeMode: widget.themeMode,
-          onCycleTheme: widget.onCycleTheme,
-          locale: widget.locale,
-          onLocaleChanged: widget.onLocaleChanged,
-          uiScale: widget.uiScale,
-          onUiScaleChange: widget.onUiScaleChange,
-          onLanguageTap: (ctx) => _showLanguageSelector(ctx),
+        return BlocProvider(
+          key: ValueKey(nav.editorFilePath),
+          create: (_) => EditorCubit(
+            fileName: nav.editorFileName,
+            filePath: nav.editorFilePath,
+          )..loadLevel(),
+          child: EditorScreen(
+            onBack: () => _backToLevelList(context),
+            onRegisterBackHandler: (handler) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (mounted) setState(() => _editorBackHandler = handler);
+              });
+            },
+            onLanguageTap: _showLanguageSelector,
+          ),
         );
       case AppScreen.about:
-        return AboutScreen(onBack: _backToLevelList);
+        return AboutScreen(onBack: () => _backToLevelList(context));
     }
   }
 
@@ -249,7 +233,7 @@ class _ZEditorAppState extends State<ZEditorApp> {
               leading: const Icon(Icons.language),
               title: Text(languageEnglish),
               onTap: () {
-                widget.onLocaleChanged(const Locale('en'));
+                context.read<SettingsCubit>().setLocale(const Locale('en'));
                 Navigator.pop(ctx);
               },
             ),
@@ -257,7 +241,7 @@ class _ZEditorAppState extends State<ZEditorApp> {
               leading: const Icon(Icons.translate),
               title: Text(languageChinese),
               onTap: () {
-                widget.onLocaleChanged(const Locale('zh'));
+                context.read<SettingsCubit>().setLocale(const Locale('zh'));
                 Navigator.pop(ctx);
               },
             ),
@@ -265,7 +249,7 @@ class _ZEditorAppState extends State<ZEditorApp> {
               leading: const Icon(Icons.translate),
               title: Text(languageRussian),
               onTap: () {
-                widget.onLocaleChanged(const Locale('ru'));
+                context.read<SettingsCubit>().setLocale(const Locale('ru'));
                 Navigator.pop(ctx);
               },
             ),

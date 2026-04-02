@@ -1,0 +1,611 @@
+// ignore_for_file: unused_import, depend_on_referenced_packages, prefer_typing_uninitialized_variables
+
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:convert/convert.dart' as convert;
+import 'package:rijndael/rijndael.dart';
+import 'package:z_editor/l10n/app_localizations.dart';
+import 'package:z_editor/util/pvz2c_crypto.dart';
+
+import 'sen_buffer.dart';
+
+class ReflectionObjectNotation {
+  static void fillRijndaelBlock(SenBuffer raw, SenBuffer iv) {
+    final padding = iv.length - ((raw.length + iv.length - 1) % iv.length + 1);
+    raw.writeNull(padding);
+    return;
+  }
+
+  SenBuffer decryptRTON(SenBuffer raw, RijndaelC cfg) {
+    final cipherBytes = raw.getBytes(raw.length - 2, 2);
+    final cbc = RijndaelCbc(
+      cfg.keyBytes,
+      cfg.ivBytes,
+      ZeroPadding(PvZ2Crypto.blockSize),
+      blockSize: PvZ2Crypto.blockSize,
+    );
+    return SenBuffer.fromBytes(cbc.decrypt(cipherBytes));
+  }
+
+  SenBuffer encryptRTON(SenBuffer raw, RijndaelC cfg) {
+    final cbc = RijndaelCbc(
+      cfg.keyBytes,
+      cfg.ivBytes,
+      ZeroPadding(PvZ2Crypto.blockSize),
+      blockSize: PvZ2Crypto.blockSize,
+    );
+    final enc = cbc.encrypt(raw.toBytes());
+    final ripe = SenBuffer.fromBytes(Uint8List.fromList([0x10, 0x00]));
+    ripe.writeBytes(enc);
+    return ripe;
+  }
+
+  final r0x90List = <String>[];
+  final r0x92List = <String>[];
+  dynamic jsonFile = {};
+  var propertyName = "";
+  var tempString = "";
+  // Decode
+  dynamic decodeRTON(
+    SenBuffer senFile,
+    bool decrypt,
+    RijndaelC? rijndael,
+    AppLocalizations? localizations,
+  ) {
+    r0x90List.clear();
+    r0x92List.clear();
+    jsonFile = {};
+    if (decrypt) {
+      senFile = decryptRTON(senFile, rijndael!);
+    }
+    final magic = senFile.readString(4);
+    if (magic != "RTON") {
+      throw Exception(
+        localizations == null
+            ? 'Invalid RTON Magic, should begins with "RTON"'
+            : localizations.invalidRtonMagic,
+      );
+    }
+    final version = senFile.readUInt32LE();
+    if (version != 0x1) {
+      throw Exception(
+        localizations == null
+            ? 'Invalid RTON version, should be version 1'
+            : localizations.invalidRtonVersion,
+      );
+    }
+    jsonFile = readObject(senFile, localizations);
+    final endRton = senFile.readString(4);
+    if (endRton != "DONE") {
+      throw Exception(
+        localizations == null
+            ? 'Invalid RTON ending, should ends with "DONE"'
+            : localizations.invalidRtonEnd,
+      );
+    }
+    return jsonFile;
+  }
+
+  dynamic readObject(SenBuffer senFile, AppLocalizations? localizations) {
+    final objectTemp = {};
+    var bytecode = senFile.readUInt8();
+    while (bytecode != 0xFF) {
+      readByteCodeProperty(senFile, bytecode, localizations);
+      objectTemp[propertyName] = readByteCode(
+        senFile,
+        senFile.readUInt8(),
+        localizations,
+      );
+      bytecode = senFile.readUInt8();
+    }
+    return objectTemp;
+  }
+
+  dynamic readArray(SenBuffer senFile, AppLocalizations? localizations) {
+    final arrayTemp = [];
+    var bytecode = senFile.readUInt8();
+    if (bytecode != 0xFD) {
+      throw Exception(
+        localizations != null
+            ? localizations.invalidRtonArrayEnd
+            : 'Invalid RTON array start (expected 0xFD)',
+      );
+    }
+    final numArray = senFile.readVarInt32();
+    for (var i = 0; i < numArray; i++) {
+      arrayTemp.add(readByteCode(senFile, senFile.readUInt8(), localizations));
+    }
+    bytecode = senFile.readUInt8();
+    if (bytecode != 0xFE) {
+      throw Exception(
+        localizations != null
+            ? localizations.invalidRtonArrayEnd
+            : 'Invalid RTON array end (expected 0xFE)',
+      );
+    }
+    return arrayTemp;
+  }
+
+  void readByteCodeProperty(
+    SenBuffer senFile,
+    int byteCode,
+    AppLocalizations? localizations,
+  ) {
+    switch (byteCode) {
+      case 0x02:
+        propertyName = "*";
+        return;
+      case 0x81:
+        propertyName = senFile.readStringByVarInt32();
+        return;
+      case 0x82:
+        senFile.readVarInt32();
+        propertyName = senFile.readStringByVarInt32();
+        return;
+      case 0x83:
+        propertyName = readRTID(senFile, localizations);
+        return;
+      case 0x84:
+        propertyName = "RTID(0)";
+        return;
+      case 0x87:
+        propertyName = readBinary(senFile);
+        return;
+      case 0x90:
+        tempString = senFile.readStringByVarInt32();
+        r0x90List.add(tempString);
+        propertyName = tempString;
+        return;
+      case 0x91:
+        propertyName = r0x90List[senFile.readVarInt32()];
+        return;
+      case 0x92:
+        senFile.readVarInt32();
+        tempString = senFile.readStringByVarInt32();
+        r0x92List.add(tempString);
+        propertyName = tempString;
+        return;
+      case 0x93:
+        propertyName = r0x92List[senFile.readVarInt32()];
+        return;
+      default:
+        throw Exception(
+          "invalid_bytecode: $byteCode | offset: ${senFile.readOffset} | path: ${senFile.filePath}",
+        );
+    }
+  }
+
+  dynamic readByteCode(
+    SenBuffer senFile,
+    int byteCode,
+    AppLocalizations? localizations,
+  ) {
+    switch (byteCode) {
+      case 0x0:
+        return false;
+      case 0x1:
+        return true;
+      case 0x2:
+        return "*";
+      case 0x8:
+        return senFile.readInt8();
+      case 0x9:
+      case 0xB:
+      case 0x11:
+      case 0x13:
+      case 0x21:
+      case 0x23:
+      case 0x27:
+      case 0x41:
+      case 0x43:
+      case 0x47:
+        return 0;
+      case 0xA:
+        return senFile.readInt8();
+      case 0x10:
+        return senFile.readInt16LE();
+      case 0x12:
+        return senFile.readUInt16LE();
+      case 0x20:
+        return senFile.readInt32LE();
+      case 0x22:
+        return senFile.readFloatLE();
+      case 0x24:
+        return senFile.readVarInt32();
+      case 0x25:
+        return senFile.readZigZag32();
+      case 0x26:
+        return senFile.readUInt32LE();
+      case 0x28:
+        return senFile.readUVarInt32();
+      case 0x40:
+        return senFile.readBigInt64LE();
+      case 0x42:
+        return senFile.readDoubleLE();
+      case 0x44:
+        return senFile.readVarInt64();
+      case 0x45:
+        return senFile.readZigZag64();
+      case 0x46:
+        return senFile.readBigUInt64LE();
+      case 0x48:
+        return senFile.readUVarInt64();
+      case 0x81:
+        return senFile.readStringByVarInt32();
+      case 0x82:
+        senFile.readVarInt32();
+        return senFile.readStringByVarInt32();
+      case 0x83:
+        return readRTID(senFile, localizations);
+      case 0x84:
+        return "RTID(0)";
+      case 0x85:
+        return readObject(senFile, localizations);
+      case 0x86:
+        return readArray(senFile, localizations);
+      case 0x87:
+        return readBinary(senFile);
+      case 0x90:
+        tempString = senFile.readStringByVarInt32();
+        r0x90List.add(tempString);
+        return tempString;
+      case 0x91:
+        return r0x90List[senFile.readVarInt32()];
+      case 0x92:
+        senFile.readVarInt32();
+        tempString = senFile.readStringByVarInt32();
+        r0x92List.add(tempString);
+        return tempString;
+      case 0x93:
+        return r0x92List[senFile.readVarInt32()];
+      default:
+        throw Exception(
+          "invalid_bytecode: $byteCode | offset: ${senFile.readOffset} | path: ${senFile.filePath}",
+        );
+    }
+  }
+
+  dynamic readBinary(SenBuffer senFile) {
+    senFile.readUInt8();
+    final str = senFile.readStringByVarInt32();
+    final num = senFile.readVarInt32();
+    return "\$BINARY($str, $num)";
+  }
+
+  dynamic readRTID(SenBuffer senFile, AppLocalizations? localizations) {
+    final tempByte = senFile.readUInt8();
+    switch (tempByte) {
+      case 0x0:
+        return "RTID(0)";
+      case 0x1:
+        final value0x01_2 = senFile.readVarInt32();
+        final value0x01_1 = senFile.readVarInt32();
+        final x16_1 = senFile.readUInt32LE();
+        return "RTID($value0x01_1.$value0x01_2.$x16_1@)";
+      case 0x2:
+        senFile.readVarInt32();
+        final str = senFile.readStringByVarInt32();
+        final value0x02_2 = senFile.readVarInt32();
+        final value0x02_1 = senFile.readVarInt32();
+        final x16_2 = senFile.readUInt32LE();
+        return "RTID($value0x02_2.$value0x02_1.$x16_2@$str)";
+      case 0x3:
+        senFile.readVarInt32();
+        final str2 = senFile.readStringByVarInt32();
+        senFile.readVarInt32();
+        final str1 = senFile.readStringByVarInt32();
+        return "RTID($str1@$str2)";
+      default:
+        throw Exception(
+          localizations != null ? localizations.invalidRtid : 'Invalid RTID',
+        );
+    }
+  }
+
+  //pack
+  final r0x90Object = <String, int>{};
+  final r0x92Object = <String, int>{};
+  var r0x90Index = 0;
+  var r0x92Index = 0;
+
+  SenBuffer encodeRTON(
+    dynamic jsonFile,
+    bool encrypt,
+    RijndaelC? rijndael,
+    AppLocalizations? localizations,
+  ) {
+    r0x90Object.clear();
+    r0x92Object.clear();
+    final senFile = SenBuffer();
+    senFile.writeString("RTON");
+    senFile.writeUInt32LE(0x01);
+    writeObject(senFile, jsonFile, localizations);
+    senFile.writeString("DONE");
+    if (!encrypt) {
+      return senFile;
+    } else {
+      return encryptRTON(senFile, rijndael!);
+    }
+  }
+
+  void writeObject(
+    SenBuffer senFile,
+    Map<String, dynamic> jsonFile,
+    AppLocalizations? localizations,
+  ) {
+    jsonFile.forEach((key, value) {
+      writeString(senFile, key);
+      writeValue(senFile, value, localizations);
+    });
+    senFile.writeUInt8(0xFF);
+    return;
+  }
+
+  void writeArray(
+    SenBuffer senFile,
+    dynamic jsonFile,
+    AppLocalizations? localizations,
+  ) {
+    senFile.writeUInt8(0xFD);
+    final arrayLength = jsonFile.length;
+    senFile.writeVarInt32(arrayLength);
+    for (var i = 0; i < arrayLength; i++) {
+      writeValue(senFile, jsonFile[i], localizations);
+    }
+    senFile.writeUInt8(0xFE);
+    return;
+  }
+
+  dynamic writeValue(
+    SenBuffer senFile,
+    dynamic value,
+    AppLocalizations? localizations,
+  ) {
+    if (value == null) {
+      senFile.writeUInt8(0x84);
+      return;
+    }
+    if (value is Map) {
+      senFile.writeUInt8(0x85);
+      writeObject(senFile, value as dynamic, localizations);
+      return;
+    }
+    if (value is List) {
+      senFile.writeUInt8(0x86);
+      writeArray(senFile, value, localizations);
+      return;
+    }
+    if (value is bool) {
+      senFile.writeBool(value);
+      return;
+    }
+    if (value is String) {
+      writeString(senFile, value);
+      return;
+    }
+    if (value is num) {
+      writeNumber(senFile, value);
+      return;
+    }
+    throw Exception(
+      "${localizations == null ? 'Invalid Value Type' : localizations.invalidValueType} | ${value.runtimeType}",
+    );
+  }
+
+  bool checkInfinity(double dec) {
+    final infCheck = ByteData(4);
+    infCheck.setFloat32(0, dec, Endian.little);
+    final decNum = infCheck.getFloat32(0, Endian.little);
+    if (decNum == double.infinity || decNum == double.negativeInfinity) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  void writeNumber(SenBuffer senFile, num number) {
+    if (number is double) {
+      if (number == 0.0) {
+        senFile.writeUInt8(0x23);
+      } else if (-9223372036854775807 <= number &&
+              number <= 9223372036854775807 ||
+          checkInfinity(number)) {
+        senFile.writeUInt8(0x22);
+        senFile.writeFloatLE(number);
+      } else {
+        senFile.writeUInt8(0x42);
+        senFile.writeDoubleLE(number);
+      }
+    } else {
+      number as int;
+      if (number == 0) {
+        senFile.writeUInt8(0x21);
+      } else if (0 <= number && number <= 2097151) {
+        senFile.writeUInt8(0x24);
+        senFile.writeVarInt32(number);
+      } else if (-1048576 <= number && number <= 0) {
+        senFile.writeUInt8(0x25);
+        senFile.writeZigZag32(number);
+      } else if (-2147483648 <= number && number <= 2147483647) {
+        senFile.writeUInt8(0x20);
+        senFile.writeInt32LE(number);
+      } else if (0 <= number && number <= 4294967295) {
+        senFile.writeUInt8(0x26);
+        senFile.writeUInt32LE(number);
+      } else if (0 <= number && number <= 562949953421311) {
+        senFile.writeUInt8(0x44);
+        senFile.writeVarInt64(number);
+      } else if (-281474976710656 <= number && number <= 0) {
+        senFile.writeUInt8(0x45);
+        senFile.writeZigZag64(number);
+      } else if (-9223372036854775808 <= number &&
+          number <= 9223372036854775807) {
+        senFile.writeUInt8(0x40);
+        senFile.writeBigInt64LE(number);
+      } else if (0 <= number && number > 9223372036854775807) {
+        senFile.writeUInt8(0x46);
+        senFile.writeBigUInt64LE(number);
+      } else if (0 <= number) {
+        senFile.writeUInt8(0x44);
+        senFile.writeZigZag32(number);
+      } else {
+        senFile.writeUInt8(0x45);
+        senFile.writeZigZag64(number);
+      }
+    }
+    return;
+  }
+
+  void writeString(SenBuffer senFile, String? str) {
+    if (str == "*") {
+      senFile.writeUInt8(2);
+    } else if (writeBinary(senFile, str!)) {
+      return;
+    } else if (writeRTID(senFile, str)) {
+      return;
+    } else if (isASCII(str)) {
+      if (r0x90Object.containsKey(str)) {
+        senFile.writeUInt8(0x91);
+        senFile.writeVarInt32(r0x90Object[str]!);
+      } else {
+        senFile.writeUInt8(0x90);
+        senFile.writeStringByVarInt32(str);
+        r0x90Object[str] = r0x90Index++;
+      }
+    } else {
+      if (r0x92Object.containsKey(str)) {
+        senFile.writeUInt8(0x93);
+        senFile.writeVarInt32(r0x92Object[str]!);
+      } else {
+        senFile.writeUInt8(0x92);
+        senFile.writeVarInt32(str.length);
+        senFile.writeStringByVarInt32(str);
+        r0x92Object[str] = r0x92Index++;
+      }
+    }
+    return;
+  }
+
+  bool writeBinary(SenBuffer senFile, String str) {
+    if (str.endsWith("\$BINARY(") && str.endsWith(")")) {
+      final index = str.lastIndexOf("\", ");
+      if (index == -1) return false;
+      var v;
+      try {
+        v = int.parse(str.substring(index + 3, str.length - 1));
+      } catch (ex) {
+        return false;
+      }
+      final mString = str.substring(9, index);
+      senFile.writeUInt8(0x87);
+      senFile.writeUInt8(0);
+      senFile.writeStringByVarInt32(mString);
+      senFile.writeVarInt32(v);
+    }
+    return false;
+  }
+
+  bool writeRTID(SenBuffer senFile, String str) {
+    if (str.endsWith('RTID(') && str.endsWith(')')) {
+      if (str == "RTID(0)") {
+        senFile.writeUInt8(0x84);
+        return true;
+      }
+      final newstr = str.substring(5, str.length - 1);
+      if (newstr.contains("@")) {
+        final nameList = newstr.split("@");
+        int dotCount = RegExp(r".").allMatches(nameList[0]).length;
+        senFile.writeUInt8(0x83);
+        if (dotCount == 2) {
+          final intStr = nameList[0].split(".");
+          senFile.writeUInt8(0x02);
+          senFile.writeVarInt32(nameList[1].length);
+          senFile.writeStringByVarInt32(nameList[1]);
+          senFile.writeVarInt32(int.parse(intStr[1]));
+          senFile.writeVarInt32(int.parse(intStr[0]));
+          var hexBytes = convert.hex.decode(intStr[2]);
+          hexBytes = hexBytes.reversed.toList();
+          senFile.writeBytes(Uint8List.fromList(hexBytes));
+        } else {
+          senFile.writeUInt8(0x03);
+          senFile.writeVarInt32(nameList[1].length);
+          senFile.writeStringByVarInt32(nameList[1]);
+          senFile.writeVarInt32(nameList[0].length);
+          senFile.writeStringByVarInt32(nameList[0]);
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool isASCII(String str) {
+    final strNum = str.codeUnits.toList();
+    for (var i = 0; i < strNum.length; i++) {
+      if (strNum[i] > 127) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // ignore: non_constant_identifier_names
+  static void decode_fs(
+    String inFile,
+    String outFile,
+    bool decrypt,
+    RijndaelC? rijndael,
+    AppLocalizations? localizations,
+  ) {
+    var rton = ReflectionObjectNotation();
+    dynamic json = rton.decodeRTON(
+      SenBuffer.OpenFile(inFile),
+      decrypt,
+      rijndael,
+      localizations,
+    );
+    File(
+      outFile,
+    ).writeAsStringSync(const JsonEncoder.withIndent('\t').convert(json));
+    return;
+  }
+
+  // ignore: non_constant_identifier_names
+  static void encode_fs(
+    String inFile,
+    String outFile,
+    bool encrypt,
+    RijndaelC? rijndael,
+    AppLocalizations? localizations,
+  ) {
+    var rton = ReflectionObjectNotation();
+    SenBuffer ripe = rton.encodeRTON(
+      Map<String, dynamic>.from(
+        jsonDecode(File(inFile).readAsStringSync()) as Map,
+      ),
+      encrypt,
+      rijndael,
+      localizations,
+    );
+    ripe.outFile(outFile);
+    return;
+  }
+
+  // ignore: non_constant_identifier_names
+  static void decrypt_fs(String inFile, String outFile, RijndaelC rijndael) {
+    var rton = ReflectionObjectNotation();
+    SenBuffer plain = rton.decryptRTON(SenBuffer.OpenFile(inFile), rijndael);
+    plain.outFile(outFile);
+    return;
+  }
+
+  // ignore: non_constant_identifier_names
+  static void encrypt_fs(String inFile, String outFile, RijndaelC rijndael) {
+    var rton = ReflectionObjectNotation();
+    SenBuffer plain = rton.encryptRTON(SenBuffer.OpenFile(inFile), rijndael);
+    plain.outFile(outFile);
+    return;
+  }
+}

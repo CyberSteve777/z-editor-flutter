@@ -5,6 +5,11 @@ import 'package:archive/archive.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:z_editor/util/3rdParty/sen_buffer.dart';
+import 'package:z_editor/util/3rdParty/sen_rton_codec.dart';
+import 'package:z_editor/util/hujson_codec.dart';
+import 'package:z_editor/util/pvz2c_crypto.dart';
+
 
 import '../pvz_models.dart';
 export '../pvz_models.dart' show PvzLevelFile;
@@ -43,7 +48,8 @@ class LevelRepository {
   static const _prefsFolderKey = 'folder_path';
   static const _prefsLastLevelDirKey = 'last_level_directory';
 
-  static final Map<String, String> _memoryCache = {};
+  static final Map<String, Uint8List> _memoryCache = {};
+  static const Set<String> _levelExtensions = {'.json', '.hujson', '.rton'};
 
   static Future<String?> getSavedFolderPath() async {
     final prefs = await SharedPreferences.getInstance();
@@ -73,15 +79,35 @@ class LevelRepository {
     return _memoryCache.containsKey(fileName);
   }
 
+  static bool isSupportedLevelFileName(String name) {
+    final lower = name.toLowerCase();
+    return _levelExtensions.any(lower.endsWith);
+  }
+
+  static String baseNameWithoutLevelExtension(String name) {
+    final lower = name.toLowerCase();
+    for (final ext in _levelExtensions) {
+      if (lower.endsWith(ext)) {
+        return name.substring(0, name.length - ext.length);
+      }
+    }
+    return p.basenameWithoutExtension(name);
+  }
+
   static Future<List<FileItem>> getDirectoryContents(String dirPath) async {
     if (!dirPath.startsWith(_webPathPrefix)) return [];
-    final items = _memoryCache.keys.map((name) => FileItem(
-      name: name,
-      path: '$_webPathPrefix$name',
-      isDirectory: false,
-      lastModified: 0,
-      size: (_memoryCache[name]?.length ?? 0) * 2,
-    )).toList();
+    final items = _memoryCache.keys
+        .where(isSupportedLevelFileName)
+        .map(
+          (name) => FileItem(
+            name: name,
+            path: '$_webPathPrefix$name',
+            isDirectory: false,
+            lastModified: 0,
+            size: _memoryCache[name]?.length ?? 0,
+          ),
+        )
+        .toList();
     items.sort((a, b) => _naturalCompare(a.name, b.name));
     return items;
   }
@@ -142,9 +168,7 @@ class LevelRepository {
     String defaultBaseName,
   ) async {
     final items = await getDirectoryContents(dirPath);
-    final existing = items
-        .map((f) => f.name.toLowerCase().replaceFirst(RegExp(r'\.json$'), ''))
-        .toSet();
+    final existing = items.map((f) => baseNameWithoutLevelExtension(f.name).toLowerCase()).toSet();
     final base = defaultBaseName;
     if (!existing.contains(base.toLowerCase())) return base;
     var candidate = '${base}_copy';
@@ -156,9 +180,7 @@ class LevelRepository {
 
   static Future<String> getNextAvailableCopyName(String dirPath, String baseNameWithoutExt) async {
     final items = await getDirectoryContents(dirPath);
-    final existing = items
-        .map((f) => f.name.toLowerCase().replaceFirst(RegExp(r'\.json$'), ''))
-        .toSet();
+    final existing = items.map((f) => baseNameWithoutLevelExtension(f.name).toLowerCase()).toSet();
     var candidate = '${baseNameWithoutExt}_copy';
     if (!existing.contains(candidate.toLowerCase())) return candidate;
     var n = 2;
@@ -203,9 +225,9 @@ class LevelRepository {
     String fileName,
     String destDirPath,
   ) async {
-    final baseName = fileName.replaceFirst(RegExp(r'\.json$', caseSensitive: false), '');
+    final baseName = baseNameWithoutLevelExtension(fileName);
     final suggested = await getNextAvailableCopyName(destDirPath, baseName);
-    final newFileName = suggested.toLowerCase().endsWith('.json') ? suggested : '$suggested.json';
+    final newFileName = '$suggested.json';
     return moveFileWithName(srcDirPath, fileName, destDirPath, newFileName);
   }
 
@@ -232,24 +254,20 @@ class LevelRepository {
     return _memoryCache.containsKey(fileName);
   }
 
-  static Future<bool> prepareInternalCacheFromBytes(String fileName, List<int> bytes) async {
-    return prepareInternalCacheFromString(fileName, String.fromCharCodes(bytes));
+  static Future<bool> prepareInternalCacheFromString(String fileName, String content) async {
+    _memoryCache[fileName] = Uint8List.fromList(utf8.encode(content));
+    return true;
   }
 
-  static Future<bool> prepareInternalCacheFromString(String fileName, String content) async {
-    _memoryCache[fileName] = content;
+  static Future<bool> prepareInternalCacheFromBytes(String fileName, List<int> bytes) async {
+    _memoryCache[fileName] = Uint8List.fromList(bytes);
     return true;
   }
 
   static Future<PvzLevelFile?> loadLevel(String fileName) async {
     final content = _memoryCache[fileName];
     if (content == null) return null;
-    try {
-      final json = jsonDecode(content) as Map<String, dynamic>;
-      return PvzLevelFile.fromJson(json);
-    } catch (_) {
-      return null;
-    }
+    return _decodeLevelBytes(fileName, content);
   }
 
   static Future<PvzLevelFile?> loadLevelFromPath(String filePath) async {
@@ -259,8 +277,7 @@ class LevelRepository {
 
   static Future<void> saveAndExport(String filePath, PvzLevelFile levelData) async {
     final fileName = _fileNameFromPath(filePath);
-    final content = const JsonEncoder.withIndent('  ').convert(levelData.toJson());
-    _memoryCache[fileName] = content;
+    _memoryCache[fileName] = _encodeLevelBytes(fileName, levelData);
     // No auto-download on save; use downloadLevel() or download button to export.
   }
 
@@ -268,7 +285,14 @@ class LevelRepository {
   static Future<void> downloadLevel(String fileName) async {
     final content = _memoryCache[fileName];
     if (content == null) return;
-    await _triggerDownload(fileName, content);
+    final ext = p.extension(fileName).replaceFirst('.', '');
+    await FilePicker.platform.saveFile(
+      dialogTitle: 'Save level',
+      fileName: fileName,
+      type: FileType.custom,
+      allowedExtensions: [ext.isEmpty ? 'json' : ext],
+      bytes: content,
+    );
   }
 
   /// Builds a zip of all cached levels and triggers download (web only).
@@ -277,22 +301,10 @@ class LevelRepository {
     final archive = Archive();
     for (final entry in _memoryCache.entries) {
       final name = entry.key;
-      final content = entry.value;
-      final bytes = Uint8List.fromList(content.codeUnits);
-      archive.addFile(ArchiveFile(name, bytes.length, bytes));
+      archive.addFile(ArchiveFile(name, entry.value.length, entry.value));
     }
     final zipBytes = ZipEncoder().encode(archive);
     await _triggerDownloadBytes('levels.zip', Uint8List.fromList(zipBytes));
-  }
-
-  static Future<void> _triggerDownload(String fileName, String content) async {
-    await FilePicker.platform.saveFile(
-      dialogTitle: 'Save level',
-      fileName: fileName,
-      type: FileType.custom,
-      allowedExtensions: ['json'],
-      bytes: Uint8List.fromList(content.codeUnits),
-    );
   }
 
   static Future<void> _triggerDownloadBytes(String fileName, Uint8List bytes) async {
@@ -338,7 +350,81 @@ class LevelRepository {
     String assetContent,
   ) async {
     if (_memoryCache.containsKey(newFileName)) return false;
-    _memoryCache[newFileName] = assetContent;
+    _memoryCache[newFileName] = Uint8List.fromList(utf8.encode(assetContent));
     return true;
+  }
+
+  static Future<String> getFirstAvailableIndexedName(
+    String dirPath,
+    String baseName,
+    String extension,
+  ) async {
+    var i = 1;
+    while (true) {
+      final candidate = '${baseName}_$i$extension';
+      if (!await fileExistsInDirectory(dirPath, candidate)) return candidate;
+      i++;
+    }
+  }
+
+  static Future<String?> convertLevelFile({
+    required String sourcePath,
+    required String sourceName,
+    required String targetExtension,
+    String? targetName,
+  }) async {
+    final srcName = _fileNameFromPath(sourcePath);
+    final bytes = _memoryCache[srcName];
+    if (bytes == null) return null;
+    final level = _decodeLevelBytes(sourceName, bytes);
+    if (level == null) return null;
+    final target = targetName ?? '${baseNameWithoutLevelExtension(sourceName)}$targetExtension';
+    if (_memoryCache.containsKey(target)) return null;
+    _memoryCache[target] = _encodeLevelBytes(target, level);
+    return target;
+  }
+
+  static PvzLevelFile? _decodeLevelBytes(String fileName, Uint8List bytes) {
+    final lower = fileName.toLowerCase();
+    try {
+      if (lower.endsWith('.json')) {
+        return PvzLevelFile.fromJson(jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>);
+      }
+      if (lower.endsWith('.hujson')) {
+        final plain = HuJsonCodec.decode(bytes);
+        return PvzLevelFile.fromJson(jsonDecode(utf8.decode(plain)) as Map<String, dynamic>);
+      }
+      if (lower.endsWith('.rton')) {
+        final plainRton = HuJsonCodec.decode(bytes);
+        final buf = SenBuffer.fromBytes(plainRton);
+        final rton = ReflectionObjectNotation();
+        final encrypted =
+            plainRton.length >= 2 && plainRton[0] == 0x10 && plainRton[1] == 0x00;
+        final jsonMap = rton.decodeRTON(
+          buf,
+          encrypted,
+          encrypted ? RijndaelC.defaultValue() : null,
+          null,
+        );
+        return PvzLevelFile.fromJson(Map<String, dynamic>.from(jsonMap as Map));
+      }
+    } catch (_) {
+      return null;
+    }
+    return null;
+  }
+
+  static Uint8List _encodeLevelBytes(String fileName, PvzLevelFile data) {
+    final lower = fileName.toLowerCase();
+    final jsonText = const JsonEncoder.withIndent('  ').convert(data.toJson());
+    final jsonBytes = Uint8List.fromList(utf8.encode(jsonText));
+    if (lower.endsWith('.json')) return jsonBytes;
+    if (lower.endsWith('.hujson')) return HuJsonCodec.encode(jsonBytes);
+    if (lower.endsWith('.rton')) {
+      final rton = ReflectionObjectNotation();
+      final senOut = rton.encodeRTON(data.toJson(), false, null, null);
+      return HuJsonCodec.encode(senOut.toBytes());
+    }
+    return jsonBytes;
   }
 }

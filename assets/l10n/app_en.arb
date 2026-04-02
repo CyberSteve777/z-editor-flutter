@@ -79,6 +79,15 @@
   "cacheCleared": "Cleared {count} cached files",
   "returnUp": "Back",
   "jsonFile": "JSON file",
+  "convertToJson": "Convert to JSON",
+  "convertToHotUpdateJson": "Convert to hot update json",
+  "convertToEncryptedRton": "Convert to encrypted rton",
+  "conversionRequiredTitle": "Conversion required",
+  "conversionRequiredMessage": "This file must be converted to JSON before it can be opened in the editor.",
+  "convertAction": "Convert",
+  "conversionFailed": "Conversion failed",
+  "convertedMessage": "Converted: {name}",
+  "@convertedMessage": {"placeholders": {"name": {}}},
   "softwareIntro": "Software intro",
   "zEditor": "Z-Editor",
   "pvzEditorSubtitle": "PVZ2 Visual Level Editor",
@@ -1483,5 +1492,11 @@
   "pickupCollectableTutorialPickupAdvice": "Pre-pickup dialog (PickupAdvice)",
   "pickupCollectableTutorialPostPickupAdvice": "Post-pickup dialog (PostPickupAdvice)",
   "pickupCollectableTutorialNotSet": "Not set",
-  "pickupCollectableLootGoldCoin": "Coin"
+  "pickupCollectableLootGoldCoin": "Coin",
+  "invalidRtonMagic": "Invalid RTON file: magic must be \"RTON\".",
+  "invalidRtonVersion": "Invalid RTON version (expected 1).",
+  "invalidRtonEnd": "Invalid RTON file: must end with \"DONE\".",
+  "invalidRtonArrayEnd": "Invalid RTON array delimiter.",
+  "invalidRtid": "Invalid RTID value.",
+  "invalidValueType": "Invalid value type for RTON."
 }

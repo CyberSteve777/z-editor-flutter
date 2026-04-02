@@ -2,7 +2,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as p;
+import 'package:z_editor/bloc/settings/settings_cubit.dart';
 import 'package:z_editor/data/repository/level_repository.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/screens/level_list_platform.dart';
@@ -10,19 +12,11 @@ import 'package:z_editor/screens/level_list_platform.dart';
 class LevelListScreen extends StatefulWidget {
   const LevelListScreen({
     super.key,
-    required this.themeMode,
-    required this.onCycleTheme,
-    required this.uiScale,
-    required this.onUiScaleChange,
     required this.onLevelClick,
     required this.onAboutClick,
     required this.onLanguageTap,
   });
 
-  final ThemeMode themeMode;
-  final VoidCallback onCycleTheme;
-  final double uiScale;
-  final ValueChanged<double> onUiScaleChange;
   final void Function(String fileName, String filePath) onLevelClick;
   final VoidCallback onAboutClick;
   final ValueChanged<BuildContext> onLanguageTap;
@@ -49,6 +43,25 @@ class _LevelListScreenState extends State<LevelListScreen> {
   String _selectedTemplate = '';
   String _newLevelNameInput = '';
   bool _showUiScaleDialog = false;
+
+  /// Extension to use when the user omits one (matches [LevelRepository] level files).
+  String _levelExtensionFromFileName(String fileName) {
+    final lower = fileName.toLowerCase();
+    if (lower.endsWith('.hujson')) return '.hujson';
+    if (lower.endsWith('.rton')) return '.rton';
+    if (lower.endsWith('.json')) return '.json';
+    return '.json';
+  }
+
+  /// If [inputName] already has a level extension, returns it; else appends the extension from [referenceFileName].
+  String _ensureLevelExtension(String inputName, String referenceFileName) {
+    final trimmed = inputName.trim();
+    final lower = trimmed.toLowerCase();
+    if (lower.endsWith('.json') || lower.endsWith('.hujson') || lower.endsWith('.rton')) {
+      return trimmed;
+    }
+    return trimmed + _levelExtensionFromFileName(referenceFileName);
+  }
 
   @override
   void initState() {
@@ -130,7 +143,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
   Future<void> _pickAndAddFile() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['json'],
+      allowedExtensions: ['json', 'hujson', 'rton'],
     );
     if (result == null || result.files.isEmpty || !mounted) return;
     for (final file in result.files) {
@@ -178,7 +191,9 @@ class _LevelListScreenState extends State<LevelListScreen> {
     if (target == null || _pathStack.isEmpty) return;
     final l10n = AppLocalizations.of(context)!;
     var finalName = _renameInput.trim();
-    if (!target.isDirectory && !finalName.toLowerCase().endsWith('.json')) finalName += '.json';
+    if (!target.isDirectory) {
+      finalName = _ensureLevelExtension(finalName, target.name);
+    }
     final ok = await LevelRepository.renameItem(
       _pathStack.last.path, target.name, finalName, target.isDirectory,
     );
@@ -239,7 +254,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
     if (target == null || _pathStack.isEmpty) return;
     final l10n = AppLocalizations.of(context)!;
     var finalName = _copyInput.trim();
-    if (!finalName.toLowerCase().endsWith('.json')) finalName += '.json';
+    finalName = _ensureLevelExtension(finalName, target.name);
     final ok = await LevelRepository.copyLevelToTarget(
       target.path, _pathStack.last.path, finalName,
     );
@@ -530,6 +545,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<SettingsCubit>().state;
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
 
@@ -548,12 +564,12 @@ class _LevelListScreenState extends State<LevelListScreen> {
           ),
           IconButton(
             icon: Icon(
-              widget.themeMode == ThemeMode.dark
+              settings.themeMode == ThemeMode.dark
                   ? Icons.light_mode
                   : Icons.dark_mode,
             ),
             tooltip: l10n.toggleTheme,
-            onPressed: widget.onCycleTheme,
+            onPressed: () => context.read<SettingsCubit>().cycleTheme(),
           ),
           PopupMenuButton<String>(
             itemBuilder: (context) => [
@@ -764,14 +780,30 @@ class _LevelListScreenState extends State<LevelListScreen> {
                                     if (item.isDirectory) {
                                       _navigateToFolder(item);
                                     } else {
-                                      final ok = await LevelRepository.prepareInternalCache(item.path, item.name);
-                                      if (mounted && ok) widget.onLevelClick(item.name, item.path);
+                                      final lowerName = item.name.toLowerCase();
+                                      if (lowerName.endsWith('.hujson') || lowerName.endsWith('.rton')) {
+                                        final convertedPath = await _showConversionRequiredDialog(item);
+                                        if (!mounted || convertedPath == null) return;
+                                        final convertedName = p.basename(convertedPath);
+                                        final ok = await LevelRepository.prepareInternalCache(
+                                          convertedPath,
+                                          convertedName,
+                                        );
+                                        if (mounted && ok) {
+                                          widget.onLevelClick(convertedName, convertedPath);
+                                        }
+                                      } else {
+                                        final ok = await LevelRepository.prepareInternalCache(item.path, item.name);
+                                        if (mounted && ok) widget.onLevelClick(item.name, item.path);
+                                      }
                                     }
                                   }
                                 },
                                 onRename: actionsDisabled ? () {} : () {
                                   setState(() {
-                                    _renameInput = item.isDirectory ? item.name : item.name.replaceFirst(RegExp(r'\.json$'), '');
+                                    _renameInput = item.isDirectory
+                                        ? item.name
+                                        : LevelRepository.baseNameWithoutLevelExtension(item.name);
                                     _itemToRename = item;
                                   });
                                   WidgetsBinding.instance.addPostFrameCallback((_) => _showRenameDialog());
@@ -785,7 +817,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
                                     : null,
                                 onCopy: actionsDisabled ? () {} : () async {
                                   if (!item.isDirectory && _pathStack.isNotEmpty) {
-                                    final baseName = item.name.replaceFirst(RegExp(r'\.json$'), '');
+                                    final baseName = LevelRepository.baseNameWithoutLevelExtension(item.name);
                                     final nextName = await LevelRepository.getNextAvailableCopyName(
                                       _pathStack.last.path, baseName,
                                     );
@@ -806,6 +838,9 @@ class _LevelListScreenState extends State<LevelListScreen> {
                                     });
                                   }
                                 },
+                                onConvert: actionsDisabled
+                                    ? null
+                                    : () => _showConvertMenuFor(item),
                                 showMove: !item.isDirectory && !kIsWeb,
                               ),
                             );
@@ -1065,6 +1100,134 @@ class _LevelListScreenState extends State<LevelListScreen> {
     );
   }
 
+  Future<String?> _showConversionRequiredDialog(FileItem item) async {
+    if (_pathStack.isEmpty || item.isDirectory) return null;
+    final l10n = AppLocalizations.of(context)!;
+    final shouldConvert = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.conversionRequiredTitle),
+        content: Text(l10n.conversionRequiredMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            style: TextButton.styleFrom(foregroundColor: Colors.green),
+            child: Text(l10n.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: FilledButton.styleFrom(
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+            ),
+            child: Text(l10n.convertAction),
+          ),
+        ],
+      ),
+    );
+    if (shouldConvert != true || !mounted) return null;
+    final convertedName = await _convertItemToExtension(item, '.json');
+    if (!mounted || convertedName == null || _pathStack.isEmpty) return null;
+    return p.join(_pathStack.last.path, convertedName);
+  }
+
+  Future<String?> _convertItemToExtension(FileItem item, String targetExt) async {
+    if (_pathStack.isEmpty || item.isDirectory) return null;
+    final l10n = AppLocalizations.of(context)!;
+    final messenger = ScaffoldMessenger.of(context);
+
+    final dir = _pathStack.last.path;
+    final base = LevelRepository.baseNameWithoutLevelExtension(item.name);
+    var targetName = '$base$targetExt';
+    final exists = await LevelRepository.fileExistsInDirectory(dir, targetName);
+    if (!mounted) return null;
+    if (exists) {
+      final suggested = await LevelRepository.getFirstAvailableIndexedName(dir, base, targetExt);
+      if (!mounted) return null;
+      final input = TextEditingController(text: suggested);
+      final chosen = await showDialog<String>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(l10n.moveFileExistsTitle),
+          content: TextField(
+            controller: input,
+            decoration: InputDecoration(labelText: l10n.newFileName),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.cancel)),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, input.text.trim()),
+              child: Text(l10n.convertAction),
+            ),
+          ],
+        ),
+      );
+      if (chosen == null || chosen.isEmpty) return null;
+      if (!mounted) return null;
+      targetName = chosen;
+      if (!targetName.toLowerCase().endsWith(targetExt)) {
+        targetName += targetExt;
+      }
+    }
+
+    final converted = await LevelRepository.convertLevelFile(
+      sourcePath: item.path,
+      sourceName: item.name,
+      targetExtension: targetExt,
+      targetName: targetName,
+    );
+    if (!mounted) return null;
+    if (converted != null) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.convertedMessage(converted))));
+      await _loadCurrentDirectory();
+      return converted;
+    }
+    messenger.showSnackBar(SnackBar(content: Text(l10n.conversionFailed)));
+    return null;
+  }
+
+  Future<void> _showConvertMenuFor(FileItem item) async {
+    if (_pathStack.isEmpty || item.isDirectory) return;
+    final l10n = AppLocalizations.of(context)!;
+    final lower = item.name.toLowerCase();
+    String? targetExt;
+    if (lower.endsWith('.json')) {
+      targetExt = await showModalBottomSheet<String>(
+        context: context,
+        builder: (ctx) => SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.sync_alt),
+                title: Text(l10n.convertToHotUpdateJson),
+                onTap: () => Navigator.pop(ctx, '.hujson'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.sync_alt),
+                title: Text(l10n.convertToEncryptedRton),
+                onTap: () => Navigator.pop(ctx, '.rton'),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else if (lower.endsWith('.hujson') || lower.endsWith('.rton')) {
+      targetExt = await showModalBottomSheet<String>(
+        context: context,
+        builder: (ctx) => SafeArea(
+          child: ListTile(
+            leading: const Icon(Icons.sync_alt),
+            title: Text(l10n.convertToJson),
+            onTap: () => Navigator.pop(ctx, '.json'),
+          ),
+        ),
+      );
+    }
+    if (targetExt == null || !mounted) return;
+    await _convertItemToExtension(item, targetExt);
+  }
+
   Future<void> _handleMoveConfirm() async {
     final target = _itemToMove;
     final srcPath = _moveSourcePath;
@@ -1079,6 +1242,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
       return;
     }
     final destExists = await LevelRepository.fileExistsInDirectory(destPath, target.name);
+    if (!mounted) return;
     if (destExists) {
       final l10n = AppLocalizations.of(context)!;
       final choice = await showDialog<int>(
@@ -1128,9 +1292,10 @@ class _LevelListScreenState extends State<LevelListScreen> {
         return;
       }
       if (choice == 2) {
-        final baseName = target.name.replaceFirst(RegExp(r'\.json$', caseSensitive: false), '');
+        final baseName = LevelRepository.baseNameWithoutLevelExtension(target.name);
         final suggested = await LevelRepository.getNextAvailableCopyName(destPath, baseName);
-        final suggestedFileName = suggested.toLowerCase().endsWith('.json') ? suggested : '$suggested.json';
+        final ext = _levelExtensionFromFileName(target.name);
+        final suggestedFileName = '$suggested$ext';
         if (!mounted) return;
         final nameResult = await showDialog<String>(
           context: context,
@@ -1171,8 +1336,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
           });
           return;
         }
-        var finalName = nameResult;
-        if (!finalName.toLowerCase().endsWith('.json')) finalName += '.json';
+        final finalName = _ensureLevelExtension(nameResult, target.name);
         final newName = await LevelRepository.moveFileWithName(srcPath, target.name, destPath, finalName);
         if (mounted) {
           if (newName != null) {
@@ -1266,7 +1430,7 @@ class _LevelListScreenState extends State<LevelListScreen> {
     if (!_showUiScaleDialog || !mounted) return;
     setState(() => _showUiScaleDialog = false);
     final l10n = AppLocalizations.of(context)!;
-    var tempScale = widget.uiScale;
+    var tempScale = context.read<SettingsCubit>().state.uiScale;
     showDialog(
       context: context,
       builder: (ctx) => StatefulBuilder(
@@ -1295,14 +1459,14 @@ class _LevelListScreenState extends State<LevelListScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                widget.onUiScaleChange(1.0);
+                context.read<SettingsCubit>().setUiScale(1.0);
                 Navigator.pop(ctx);
               },
               child: Text(l10n.reset),
             ),
             TextButton(
               onPressed: () {
-                widget.onUiScaleChange(tempScale);
+                context.read<SettingsCubit>().setUiScale(tempScale);
                 Navigator.pop(ctx);
               },
               child: Text(l10n.done),
@@ -1383,6 +1547,7 @@ class _FileItemRow extends StatelessWidget {
     required this.onMove,
     required this.showMove,
     this.onDownload,
+    this.onConvert,
   });
 
   final FileItem item;
@@ -1394,11 +1559,12 @@ class _FileItemRow extends StatelessWidget {
   final VoidCallback onMove;
   final bool showMove;
   final VoidCallback? onDownload;
+  final VoidCallback? onConvert;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final displayName = item.isDirectory ? item.name : item.name.replaceFirst(RegExp(r'\.json$'), '');
+    final displayName = item.isDirectory ? item.name : LevelRepository.baseNameWithoutLevelExtension(item.name);
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -1440,7 +1606,7 @@ class _FileItemRow extends StatelessWidget {
                     if (!item.isDirectory) ...[
                       const SizedBox(height: 2),
                       Text(
-                        l10n.jsonFile,
+                        p.extension(item.name).replaceFirst('.', '').toUpperCase(),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.onSurfaceVariant,
                         ),
@@ -1480,6 +1646,18 @@ class _FileItemRow extends StatelessWidget {
                       icon: Icon(Icons.download, color: theme.colorScheme.onSurfaceVariant),
                       tooltip: 'Download',
                       onPressed: onDownload,
+                      iconSize: 22,
+                      style: IconButton.styleFrom(
+                        padding: const EdgeInsets.all(8),
+                        minimumSize: const Size(36, 36),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                    ),
+                  if (onConvert != null)
+                    IconButton(
+                      icon: Icon(Icons.swap_horiz, color: theme.colorScheme.onSurfaceVariant),
+                      tooltip: 'Convert',
+                      onPressed: onConvert,
                       iconSize: 22,
                       style: IconButton.styleFrom(
                         padding: const EdgeInsets.all(8),

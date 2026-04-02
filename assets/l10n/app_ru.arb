@@ -79,6 +79,15 @@
   "cacheCleared": "Очищено файлов в кэше: {count}",
   "returnUp": "Назад",
   "jsonFile": "JSON-файл",
+  "convertToJson": "Преобразовать в JSON",
+  "convertToHotUpdateJson": "Преобразовать в hot update json",
+  "convertToEncryptedRton": "Преобразовать в зашифрованный rton",
+  "conversionRequiredTitle": "Требуется преобразование",
+  "conversionRequiredMessage": "Этот файл нужно преобразовать в JSON, прежде чем его можно открыть в редакторе.",
+  "convertAction": "Преобразовать",
+  "conversionFailed": "Преобразование не удалось",
+  "convertedMessage": "Преобразовано: {name}",
+  "@convertedMessage": {"placeholders": {"name": {}}},
   "softwareIntro": "О программе",
   "zEditor": "Z-Editor",
   "pvzEditorSubtitle": "Визуальный редактор уровней PVZ2",
@@ -1512,5 +1521,11 @@
   "pickupCollectableTutorialPickupAdvice": "До подбора (PickupAdvice)",
   "pickupCollectableTutorialPostPickupAdvice": "После подбора (PostPickupAdvice)",
   "pickupCollectableTutorialNotSet": "Не задано",
-  "pickupCollectableLootGoldCoin": "Золотая монета"
+  "pickupCollectableLootGoldCoin": "Золотая монета",
+  "invalidRtonMagic": "Неверный файл RTON: магия должна быть «RTON».",
+  "invalidRtonVersion": "Неверная версия RTON (ожидается 1).",
+  "invalidRtonEnd": "Неверный файл RTON: должен заканчиваться на «DONE».",
+  "invalidRtonArrayEnd": "Неверный разделитель массива RTON.",
+  "invalidRtid": "Недопустимое значение RTID.",
+  "invalidValueType": "Недопустимый тип значения для RTON."
 }

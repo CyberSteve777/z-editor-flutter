@@ -266,6 +266,33 @@ class AppLocalizationsEn extends AppLocalizations {
   String get jsonFile => 'JSON file';
 
   @override
+  String get convertToJson => 'Convert to JSON';
+
+  @override
+  String get convertToHotUpdateJson => 'Convert to hot update json';
+
+  @override
+  String get convertToEncryptedRton => 'Convert to encrypted rton';
+
+  @override
+  String get conversionRequiredTitle => 'Conversion required';
+
+  @override
+  String get conversionRequiredMessage =>
+      'This file must be converted to JSON before it can be opened in the editor.';
+
+  @override
+  String get convertAction => 'Convert';
+
+  @override
+  String get conversionFailed => 'Conversion failed';
+
+  @override
+  String convertedMessage(Object name) {
+    return 'Converted: $name';
+  }
+
+  @override
   String get softwareIntro => 'Software intro';
 
   @override
@@ -4741,4 +4768,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pickupCollectableLootGoldCoin => 'Coin';
+
+  @override
+  String get invalidRtonMagic => 'Invalid RTON file: magic must be \"RTON\".';
+
+  @override
+  String get invalidRtonVersion => 'Invalid RTON version (expected 1).';
+
+  @override
+  String get invalidRtonEnd => 'Invalid RTON file: must end with \"DONE\".';
+
+  @override
+  String get invalidRtonArrayEnd => 'Invalid RTON array delimiter.';
+
+  @override
+  String get invalidRtid => 'Invalid RTID value.';
+
+  @override
+  String get invalidValueType => 'Invalid value type for RTON.';
 }

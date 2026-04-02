@@ -79,6 +79,15 @@
   "cacheCleared": "已清理 {count} 个缓存文件",
   "returnUp": "返回上一级",
   "jsonFile": "JSON 文件",
+  "convertToJson": "转换为 JSON",
+  "convertToHotUpdateJson": "转换为热更新 JSON",
+  "convertToEncryptedRton": "转换为加密 RTON",
+  "conversionRequiredTitle": "需要转换",
+  "conversionRequiredMessage": "该文件需要先转换为 JSON 才能在编辑器中打开。",
+  "convertAction": "转换",
+  "conversionFailed": "转换失败",
+  "convertedMessage": "已转换：{name}",
+  "@convertedMessage": {"placeholders": {"name": {}}},
   "softwareIntro": "软件介绍",
   "zEditor": "Z-Editor",
   "pvzEditorSubtitle": "PVZ2 关卡可视化编辑器",
@@ -1512,5 +1521,11 @@
   "pickupCollectableTutorialPickupAdvice": "捡取前提示 (PickupAdvice)",
   "pickupCollectableTutorialPostPickupAdvice": "捡取后提示 (PostPickupAdvice)",
   "pickupCollectableTutorialNotSet": "未设置",
-  "pickupCollectableLootGoldCoin": "金币"
+  "pickupCollectableLootGoldCoin": "金币",
+  "invalidRtonMagic": "无效的 RTON 文件：文件头应为「RTON」。",
+  "invalidRtonVersion": "无效的 RTON 版本（应为 1）。",
+  "invalidRtonEnd": "无效的 RTON 文件：应以「DONE」结尾。",
+  "invalidRtonArrayEnd": "无效的 RTON 数组分隔符。",
+  "invalidRtid": "无效的 RTID 值。",
+  "invalidValueType": "RTON 不支持该值类型。"
 }

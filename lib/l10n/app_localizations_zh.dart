@@ -262,6 +262,32 @@ class AppLocalizationsZh extends AppLocalizations {
   String get jsonFile => 'JSON 文件';
 
   @override
+  String get convertToJson => '转换为 JSON';
+
+  @override
+  String get convertToHotUpdateJson => '转换为热更新 JSON';
+
+  @override
+  String get convertToEncryptedRton => '转换为加密 RTON';
+
+  @override
+  String get conversionRequiredTitle => '需要转换';
+
+  @override
+  String get conversionRequiredMessage => '该文件需要先转换为 JSON 才能在编辑器中打开。';
+
+  @override
+  String get convertAction => '转换';
+
+  @override
+  String get conversionFailed => '转换失败';
+
+  @override
+  String convertedMessage(Object name) {
+    return '已转换：$name';
+  }
+
+  @override
   String get softwareIntro => '软件介绍';
 
   @override
@@ -4496,4 +4522,22 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get pickupCollectableLootGoldCoin => '金币';
+
+  @override
+  String get invalidRtonMagic => '无效的 RTON 文件：文件头应为「RTON」。';
+
+  @override
+  String get invalidRtonVersion => '无效的 RTON 版本（应为 1）。';
+
+  @override
+  String get invalidRtonEnd => '无效的 RTON 文件：应以「DONE」结尾。';
+
+  @override
+  String get invalidRtonArrayEnd => '无效的 RTON 数组分隔符。';
+
+  @override
+  String get invalidRtid => '无效的 RTID 值。';
+
+  @override
+  String get invalidValueType => 'RTON 不支持该值类型。';
 }

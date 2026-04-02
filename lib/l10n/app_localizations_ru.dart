@@ -267,6 +267,33 @@ class AppLocalizationsRu extends AppLocalizations {
   String get jsonFile => 'JSON-файл';
 
   @override
+  String get convertToJson => 'Преобразовать в JSON';
+
+  @override
+  String get convertToHotUpdateJson => 'Преобразовать в hot update json';
+
+  @override
+  String get convertToEncryptedRton => 'Преобразовать в зашифрованный rton';
+
+  @override
+  String get conversionRequiredTitle => 'Требуется преобразование';
+
+  @override
+  String get conversionRequiredMessage =>
+      'Этот файл нужно преобразовать в JSON, прежде чем его можно открыть в редакторе.';
+
+  @override
+  String get convertAction => 'Преобразовать';
+
+  @override
+  String get conversionFailed => 'Преобразование не удалось';
+
+  @override
+  String convertedMessage(Object name) {
+    return 'Преобразовано: $name';
+  }
+
+  @override
   String get softwareIntro => 'О программе';
 
   @override
@@ -4674,4 +4701,24 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get pickupCollectableLootGoldCoin => 'Золотая монета';
+
+  @override
+  String get invalidRtonMagic =>
+      'Неверный файл RTON: магия должна быть «RTON».';
+
+  @override
+  String get invalidRtonVersion => 'Неверная версия RTON (ожидается 1).';
+
+  @override
+  String get invalidRtonEnd =>
+      'Неверный файл RTON: должен заканчиваться на «DONE».';
+
+  @override
+  String get invalidRtonArrayEnd => 'Неверный разделитель массива RTON.';
+
+  @override
+  String get invalidRtid => 'Недопустимое значение RTID.';
+
+  @override
+  String get invalidValueType => 'Недопустимый тип значения для RTON.';
 }

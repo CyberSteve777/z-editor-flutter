@@ -3,18 +3,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:z_editor/data/level_parser.dart';
-import 'package:z_editor/data/repository/level_repository.dart';
 import 'package:z_editor/data/registry/module_registry.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/repository/reference_repository.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/data/repository/plant_repository.dart';
-import 'package:z_editor/data/repository/resilience_config_repository.dart';
 import 'package:z_editor/data/repository/zombie_properties_repository.dart';
-import 'package:z_editor/data/repository/fish_type_repository.dart';
 import 'package:z_editor/data/repository/fish_properties_repository.dart';
-import 'package:z_editor/data/repository/zombie_repository.dart';
 import 'package:z_editor/screens/editor/basic_info_screen.dart';
 import 'package:z_editor/screens/editor/json_viewer_screen.dart';
 import 'package:z_editor/screens/editor/others/custom_zombie_properties_screen.dart';
@@ -101,9 +97,10 @@ import 'package:z_editor/screens/select/plant_selection_screen.dart';
 import 'package:z_editor/screens/select/zombie_selection_screen.dart';
 import 'package:z_editor/screens/select/tool_selection_screen.dart';
 import 'package:z_editor/screens/select/stage_selection_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:z_editor/bloc/editor/editor_cubit.dart';
+import 'package:z_editor/bloc/settings/settings_cubit.dart';
 import 'package:z_editor/theme/app_theme.dart';
-
-enum EditorTabType { settings, timeline, iZombie, vaseBreaker, zomboss }
 
 class _EditorEscapeIntent extends Intent {
   const _EditorEscapeIntent();
@@ -112,29 +109,13 @@ class _EditorEscapeIntent extends Intent {
 class EditorScreen extends StatefulWidget {
   const EditorScreen({
     super.key,
-    required this.fileName,
-    required this.filePath,
     required this.onBack,
     required this.onRegisterBackHandler,
-    required this.themeMode,
-    required this.onCycleTheme,
-    required this.locale,
-    required this.onLocaleChanged,
-    required this.uiScale,
-    required this.onUiScaleChange,
     required this.onLanguageTap,
   });
 
-  final String fileName;
-  final String filePath;
   final VoidCallback onBack;
   final void Function(Future<bool> Function()? handler) onRegisterBackHandler;
-  final ThemeMode themeMode;
-  final VoidCallback onCycleTheme;
-  final Locale locale;
-  final ValueChanged<Locale> onLocaleChanged;
-  final double uiScale;
-  final ValueChanged<double> onUiScaleChange;
   final void Function(BuildContext context) onLanguageTap;
 
   @override
@@ -142,14 +123,9 @@ class EditorScreen extends StatefulWidget {
 }
 
 class _EditorScreenState extends State<EditorScreen> {
-  PvzLevelFile? _levelFile;
-  ParsedLevelData? _parsedData;
-  bool _isLoading = true;
-  bool _hasChanges = false;
-  List<EditorTabType> _availableTabs = [EditorTabType.settings];
   TabController? _tabController;
-  final ValueNotifier<({int waveIndex, String? rtid})?> _openWaveSheetNotifier =
-      ValueNotifier<({int waveIndex, String? rtid})?>(null);
+
+  EditorCubit get _ec => context.read<EditorCubit>();
 
   @override
   void initState() {
@@ -157,13 +133,12 @@ class _EditorScreenState extends State<EditorScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       widget.onRegisterBackHandler(() async {
-        if (_hasChanges) {
+        if (context.read<EditorCubit>().state.hasChanges) {
           return await _confirmLeave();
         }
         return true;
       });
     });
-    _loadLevel();
   }
 
   @override
@@ -172,73 +147,16 @@ class _EditorScreenState extends State<EditorScreen> {
     super.dispose();
   }
 
-  Future<void> _loadLevel() async {
-    setState(() => _isLoading = true);
-    await ReferenceRepository.init();
-    await ZombiePropertiesRepository.init();
-    await ResilienceConfigRepository.init();
-    await PlantRepository().init();
-    await ZombieRepository().init();
-    await FishTypeRepository().init();
-    await FishPropertiesRepository.init();
-    var level = await LevelRepository.loadLevel(widget.fileName);
-    if (level == null && widget.filePath.isNotEmpty) {
-      level = await LevelRepository.loadLevelFromPath(widget.filePath);
-      if (level != null) {
-        await LevelRepository.prepareInternalCache(widget.filePath, widget.fileName);
-      }
-    }
-    if (mounted && level != null) {
-      final parsed = LevelParser.parseLevel(level);
-      setState(() {
-        _levelFile = level;
-        _parsedData = parsed;
-        _recalculateTabs();
-        _isLoading = false;
-      });
-    } else if (mounted) {
-      setState(() => _isLoading = false);
-    }
-  }
-
-  void _recalculateTabs() {
-    if (_levelFile == null || _parsedData == null) return;
-    final classes = <String>{
-      ..._levelFile!.objects.map((o) => o.objClass),
-      ...?_parsedData!.levelDef?.modules.map((rtid) {
-        final info = RtidParser.parse(rtid);
-        if (info == null) return '';
-        if (info.source == 'CurrentLevel') {
-          return _parsedData!.objectMap[info.alias]?.objClass ?? '';
-        }
-        return ReferenceRepository.instance.getObjClass(info.alias) ?? '';
-      }),
-    };
-    final tabs = <EditorTabType>[EditorTabType.settings];
-    if (classes.contains('WaveManagerModuleProperties')) {
-      tabs.add(EditorTabType.timeline);
-    }
-    if (classes.contains('EvilDaveProperties')) tabs.add(EditorTabType.iZombie);
-    if (classes.contains('VaseBreakerPresetProperties') ||
-        classes.contains('VaseBreakerArcadeModuleProperties')) {
-      tabs.add(EditorTabType.vaseBreaker);
-    }
-    if (classes.contains('ZombossBattleModuleProperties')) {
-      tabs.add(EditorTabType.zomboss);
-    }
-    _availableTabs = tabs;
-  }
-
   static const _internalTagToModule = <String, String>{
     '_internal_no42': 'UnchartedModeNo42UniverseModule',
     '_internal_mausoleum': 'PVZ2MausoleumModuleUnchartedMode',
   };
 
   Set<String> _levelModuleObjClasses() {
-    if (_levelFile == null || _parsedData == null) return {};
-    final levelDef = _parsedData!.levelDef;
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return {};
+    final levelDef = _ec.state.parsedData!.levelDef;
     if (levelDef == null) return {};
-    final objectMap = _parsedData!.objectMap;
+    final objectMap = _ec.state.parsedData!.objectMap;
     final set = <String>{};
     for (final rtid in levelDef.modules) {
       final info = RtidParser.parse(rtid);
@@ -316,9 +234,9 @@ class _EditorScreenState extends State<EditorScreen> {
   }
 
   Set<String> _collectPlantIdsInLevel() {
-    if (_levelFile == null) return {};
+    if (_ec.state.levelFile == null) return {};
     final out = <String>{};
-    for (final obj in _levelFile!.objects) {
+    for (final obj in _ec.state.levelFile!.objects) {
       final data = obj.objData;
       if (data is Map<String, dynamic>) {
         _collectPlantIdsFromDynamic(data, out);
@@ -329,7 +247,7 @@ class _EditorScreenState extends State<EditorScreen> {
 
   /// Returns map: module objClass -> list of plant IDs that need this module but it's missing.
   Map<String, List<String>> _getMissingModuleWarnings() {
-    if (_levelFile == null || _parsedData == null) return {};
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return {};
     final levelModules = _levelModuleObjClasses();
     final plantIds = _collectPlantIdsInLevel();
     final repo = PlantRepository();
@@ -348,14 +266,14 @@ class _EditorScreenState extends State<EditorScreen> {
   }
 
 List<ModuleMetadata> _calculateMissingModules() {
-    if (_levelFile == null || _parsedData == null) return const [];
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return const [];
     final existingClasses = <String>{
-      ..._levelFile!.objects.map((o) => o.objClass),
-      ...?_parsedData!.levelDef?.modules.map((rtid) {
+      ..._ec.state.levelFile!.objects.map((o) => o.objClass),
+      ...?_ec.state.parsedData!.levelDef?.modules.map((rtid) {
         final info = RtidParser.parse(rtid);
         if (info == null) return '';
         if (info.source == 'CurrentLevel') {
-          return _parsedData!.objectMap[info.alias]?.objClass ?? '';
+          return _ec.state.parsedData!.objectMap[info.alias]?.objClass ?? '';
         }
         return ReferenceRepository.instance.getObjClass(info.alias) ?? '';
       }),
@@ -431,50 +349,42 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   Future<void> _save() async {
-    if (_levelFile == null) return;
-    final hadChanges = _hasChanges;
-    await LevelRepository.saveAndExport(widget.filePath, _levelFile!);
-    if (mounted) {
-      setState(() => _hasChanges = false);
-      if (hadChanges) {
-        final l10n = AppLocalizations.of(context);
-        final theme = Theme.of(context);
-        final isDark = theme.brightness == Brightness.dark;
-        final snackColor = isDark ? pvzGreenDark : pvzGreenLight;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: snackColor,
-            content: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(Icons.check_circle, color: Colors.white, size: 20),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    l10n?.saved ?? 'Saved',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                    overflow: TextOverflow.ellipsis,
+    if (_ec.state.levelFile == null) return;
+    final hadChanges = _ec.state.hasChanges;
+    await _ec.save();
+    if (!mounted) return;
+    if (hadChanges) {
+      final l10n = AppLocalizations.of(context);
+      final theme = Theme.of(context);
+      final isDark = theme.brightness == Brightness.dark;
+      final snackColor = isDark ? pvzGreenDark : pvzGreenLight;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: snackColor,
+          content: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.check_circle, color: Colors.white, size: 20),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  l10n?.saved ?? 'Saved',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        );
-      }
+        ),
+      );
     }
   }
 
   void _markDirty() {
-    setState(() {
-      _hasChanges = true;
-      // Re-parse to refresh derived state and force UI to recognize updates
-      if (_levelFile != null) {
-        _parsedData = LevelParser.parseLevel(_levelFile!);
-      }
-    });
+    _ec.markDirty();
   }
 
   Future<bool> _confirmLeave() async {
@@ -513,13 +423,13 @@ List<ModuleMetadata> _calculateMissingModules() {
   // --- Actions ---
 
   void _handleEditBasicInfo() {
-    if (_levelFile == null || _parsedData == null) return;
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return;
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => BasicInfoScreen(
-          levelFile: _levelFile!,
-          levelDef: _parsedData!.levelDef!,
+          levelFile: _ec.state.levelFile!,
+          levelDef: _ec.state.parsedData!.levelDef!,
           onBack: () => Navigator.pop(context),
           onStageTap: (levelDef, onStagePicked) =>
               _openStageSelection(levelDef: levelDef, onStagePicked: onStagePicked),
@@ -533,7 +443,7 @@ List<ModuleMetadata> _calculateMissingModules() {
     required LevelDefinitionData levelDef,
     VoidCallback? onStagePicked,
   }) async {
-    if (_levelFile == null) return;
+    if (_ec.state.levelFile == null) return;
     final current = levelDef.stageModule;
     final wasDeepSea = LevelParser.isDeepSeaLawn(levelDef);
     await Navigator.push(
@@ -545,7 +455,7 @@ List<ModuleMetadata> _calculateMissingModules() {
             final newAlias = LevelParser.extractAlias(newRtid);
             final willBeDeepSea = newAlias == 'DeepseaStage' || newAlias == 'DeepseaLandStage';
             if (wasDeepSea && !willBeDeepSea) {
-              final has6RowData = LevelParser.has6RowDataInLevel(_levelFile!);
+              final has6RowData = LevelParser.has6RowDataInLevel(_ec.state.levelFile!);
               if (has6RowData && mounted) {
                 final l10n = AppLocalizations.of(context);
                 final confirmed = await showDialog<bool>(
@@ -572,14 +482,13 @@ List<ModuleMetadata> _calculateMissingModules() {
               }
             }
             levelDef.stageModule = newRtid;
-            for (final o in _levelFile!.objects) {
+            for (final o in _ec.state.levelFile!.objects) {
               if (o.objClass == 'LevelDefinition') {
                 o.objData = levelDef.toJson();
                 break;
               }
             }
             _markDirty();
-            setState(() {});
             onStagePicked?.call();
             if (!mounted) return;
             Navigator.pop(context);
@@ -591,14 +500,14 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   void _handleNavigateToAddModule() async {
-    if (_levelFile == null || _parsedData == null) return;
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return;
 
     final existingObjClasses = <String>{};
-    for (var rtid in _parsedData!.levelDef!.modules) {
+    for (var rtid in _ec.state.parsedData!.levelDef!.modules) {
       final info = RtidParser.parse(rtid);
       if (info != null) {
         if (info.source == 'CurrentLevel') {
-          final obj = _parsedData!.objectMap[info.alias];
+          final obj = _ec.state.parsedData!.objectMap[info.alias];
           if (obj != null) existingObjClasses.add(obj.objClass);
         } else {
           final cls = ReferenceRepository.instance.getObjClass(info.alias);
@@ -621,7 +530,7 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   void _addModule(ModuleMetadata meta) {
-    final def = _parsedData!.levelDef;
+    final def = _ec.state.parsedData!.levelDef;
     if (def == null) return;
 
     var alias = meta.effectiveAlias;
@@ -629,7 +538,7 @@ List<ModuleMetadata> _calculateMissingModules() {
 
     if (source == 'CurrentLevel') {
       var count = 0;
-      while (_levelFile!.objects.any(
+      while (_ec.state.levelFile!.objects.any(
         (o) => o.aliases?.contains(alias) == true,
       )) {
         count++;
@@ -640,7 +549,7 @@ List<ModuleMetadata> _calculateMissingModules() {
       def.modules.add(rtid);
 
       final objData = Map<String, dynamic>.from(meta.initialData ?? {});
-      _levelFile!.objects.add(
+      _ec.state.levelFile!.objects.add(
         PvzObject(aliases: [alias], objClass: meta.objClass, objData: objData),
       );
     } else {
@@ -648,33 +557,31 @@ List<ModuleMetadata> _calculateMissingModules() {
       def.modules.add(rtid);
     }
 
-    _parsedData = LevelParser.parseLevel(_levelFile!); // Re-parse to update map
     _markDirty();
-    _recalculateTabs();
+    _ec.recalculateTabs();
   }
 
   void _handleRemoveModule(String rtid) {
-    final def = _parsedData?.levelDef;
+    final def = _ec.state.parsedData?.levelDef;
     if (def == null) return;
 
     def.modules.remove(rtid);
     final info = RtidParser.parse(rtid);
     if (info != null && info.source == 'CurrentLevel') {
-      _levelFile!.objects.removeWhere(
+      _ec.state.levelFile!.objects.removeWhere(
         (o) => o.aliases?.contains(info.alias) == true,
       );
     }
 
-    _parsedData = LevelParser.parseLevel(_levelFile!);
     _markDirty();
-    _recalculateTabs();
+    _ec.recalculateTabs();
   }
 
   Future<void> _handleEditEvent(String rtid, int waveIndex) async {
-    if (_levelFile == null || _parsedData == null) return;
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return;
     final l10n = AppLocalizations.of(context);
     final alias = LevelParser.extractAlias(rtid);
-    final obj = _parsedData!.objectMap[alias];
+    final obj = _ec.state.parsedData!.objectMap[alias];
 
     if (obj == null) {
       await Navigator.push(
@@ -698,7 +605,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => BarrelWaveEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -732,7 +639,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => BungeeWaveEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -766,7 +673,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ThunderWaveEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -784,7 +691,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => SpawnGraveStonesEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestGridItemSelection: (onSelected) {
@@ -821,7 +728,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ParachuteRainEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             eventSubtitle: subtitle,
@@ -854,7 +761,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => TidalChangeEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -869,7 +776,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => TideWaveEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -887,7 +794,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ZombieFishWaveEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -909,7 +816,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                     },
                     onMultiPlantSelected: (_) {},
                     onBack: () => Navigator.pop(context),
-                    levelFile: _levelFile,
+                    levelFile: _ec.state.levelFile,
                     onAddModule: (objClass) {
                       _addModule(ModuleRegistry.getMetadata(objClass));
                     },
@@ -945,7 +852,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => JitteredEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -965,7 +872,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                     },
                     onMultiPlantSelected: (_) {},
                     onBack: () => Navigator.pop(context),
-                    levelFile: _levelFile,
+                    levelFile: _ec.state.levelFile,
                     onAddModule: (objClass) {
                       _addModule(ModuleRegistry.getMetadata(objClass));
                     },
@@ -1001,7 +908,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => GroundSpawnEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -1021,7 +928,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                     },
                     onMultiPlantSelected: (_) {},
                     onBack: () => Navigator.pop(context),
-                    levelFile: _levelFile,
+                    levelFile: _ec.state.levelFile,
                     onAddModule: (objClass) {
                       _addModule(ModuleRegistry.getMetadata(objClass));
                     },
@@ -1057,7 +964,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ModifyConveyorEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestPlantSelection: (onSelected) {
@@ -1072,7 +979,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                     },
                     onMultiPlantSelected: (_) {},
                     onBack: () => Navigator.pop(context),
-                    levelFile: _levelFile,
+                    levelFile: _ec.state.levelFile,
                     onAddModule: (objClass) {
                       _addModule(ModuleRegistry.getMetadata(objClass));
                     },
@@ -1092,7 +999,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => BeachStageEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestZombieSelection: (onSelected) {
@@ -1123,7 +1030,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => StormEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -1159,7 +1066,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => RaidingPartyEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1174,7 +1081,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => BlackHoleEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1189,7 +1096,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => FrostWindEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1204,7 +1111,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => DinoEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1219,7 +1126,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => DinoTreadEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1234,7 +1141,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => DinoRunEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1249,7 +1156,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => GridItemSpawnEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () {
               _setActiveTab(EditorTabType.timeline);
@@ -1300,7 +1207,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ZombiePotionEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestGridItemSelection: (onSelected) {
@@ -1330,7 +1237,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ShellEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1346,7 +1253,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => MagicMirrorEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1361,7 +1268,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => FairyTaleFogEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1376,7 +1283,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => FairyTaleWindEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1391,7 +1298,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ModernPortalsEventScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1408,8 +1315,8 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   void _handleAddEvent(int waveIndex) async {
-    if (_levelFile == null || _parsedData == null) return;
-    final wm = _parsedData!.waveManager;
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return;
+    final wm = _ec.state.parsedData!.waveManager;
     if (wm is! WaveManagerData) return;
     if (waveIndex < 1 || waveIndex > wm.waves.length) return;
 
@@ -1430,7 +1337,7 @@ List<ModuleMetadata> _calculateMissingModules() {
     var prefix = 'Wave$waveIndex${meta.defaultAlias}';
     var count = 0;
     var newAlias = '$prefix$count';
-    while (_levelFile!.objects.any((o) => o.aliases?.contains(newAlias) == true)) {
+    while (_ec.state.levelFile!.objects.any((o) => o.aliases?.contains(newAlias) == true)) {
       count++;
       newAlias = '$prefix$count';
     }
@@ -1438,7 +1345,7 @@ List<ModuleMetadata> _calculateMissingModules() {
     final newRtid = RtidParser.build(newAlias, 'CurrentLevel');
     final data = meta.initialDataFactory();
     final objData = (data as dynamic).toJson() as Map<String, dynamic>;
-    _levelFile!.objects.add(
+    _ec.state.levelFile!.objects.add(
       PvzObject(
         aliases: [newAlias],
         objClass: meta.defaultObjClass,
@@ -1447,41 +1354,37 @@ List<ModuleMetadata> _calculateMissingModules() {
     );
     waveEvents.add(newRtid);
 
-    final wmObj = _levelFile!.objects
+    final wmObj = _ec.state.levelFile!.objects
         .firstWhereOrNull((o) => o.objClass == 'WaveManagerProperties');
     if (wmObj != null) {
       wmObj.objData = wm.toJson();
     }
 
-    _parsedData = LevelParser.parseLevel(_levelFile!);
     _markDirty();
-    setState(() {});
   }
 
   void _handleDeleteEventReference(String rtid) {
-    if (_parsedData?.waveManager is WaveManagerData) {
-      final wm = _parsedData!.waveManager as WaveManagerData;
+    if (_ec.state.parsedData?.waveManager is WaveManagerData) {
+      final wm = _ec.state.parsedData!.waveManager as WaveManagerData;
       for (final wave in wm.waves) {
         wave.remove(rtid);
       }
-      final wmObj = _levelFile?.objects
+      final wmObj = _ec.state.levelFile?.objects
           .firstWhereOrNull((o) => o.objClass == 'WaveManagerProperties');
       if (wmObj != null) {
         wmObj.objData = wm.toJson();
       }
-      _parsedData = LevelParser.parseLevel(_levelFile!);
       _markDirty();
-      setState(() {});
     }
   }
 
   void _handleEditWaveManagerSettings() {
-    if (_levelFile == null || _parsedData == null) return;
-    final hasConveyor = _parsedData!.levelDef?.modules.any((rtid) {
+    if (_ec.state.levelFile == null || _ec.state.parsedData == null) return;
+    final hasConveyor = _ec.state.parsedData!.levelDef?.modules.any((rtid) {
       final info = RtidParser.parse(rtid);
       if (info == null) return false;
       if (info.source == 'CurrentLevel') {
-        final obj = _parsedData!.objectMap[info.alias];
+        final obj = _ec.state.parsedData!.objectMap[info.alias];
         return obj?.objClass == 'ConveyorSeedBankProperties';
       }
       return ReferenceRepository.instance.getObjClass(info.alias) ==
@@ -1491,7 +1394,7 @@ List<ModuleMetadata> _calculateMissingModules() {
       context,
       MaterialPageRoute(
         builder: (context) => WaveManagerSettingsScreen(
-          levelFile: _levelFile!,
+          levelFile: _ec.state.levelFile!,
           hasConveyor: hasConveyor,
           onChanged: _markDirty,
           onBack: () => Navigator.pop(context),
@@ -1501,10 +1404,10 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   void _handleCreateWaveContainer() {
-    if (_levelFile == null) return;
+    if (_ec.state.levelFile == null) return;
     var alias = 'WaveManagerProps';
     var count = 0;
-    while (_levelFile!.objects.any(
+    while (_ec.state.levelFile!.objects.any(
       (o) => o.aliases?.contains(alias) == true,
     )) {
       count++;
@@ -1514,14 +1417,14 @@ List<ModuleMetadata> _calculateMissingModules() {
       waveCount: 0,
       waves: [],
     );
-    _levelFile!.objects.add(
+    _ec.state.levelFile!.objects.add(
       PvzObject(
         aliases: [alias],
         objClass: 'WaveManagerProperties',
         objData: wm.toJson(),
       ),
     );
-    final wmmObj = _levelFile!.objects
+    final wmmObj = _ec.state.levelFile!.objects
         .firstWhereOrNull((o) => o.objClass == 'WaveManagerModuleProperties');
     if (wmmObj != null && wmmObj.objData is Map<String, dynamic>) {
       final data = WaveManagerModuleData.fromJson(
@@ -1530,13 +1433,11 @@ List<ModuleMetadata> _calculateMissingModules() {
       data.waveManagerProps = RtidParser.build(alias, 'CurrentLevel');
       wmmObj.objData = data.toJson();
     }
-    _parsedData = LevelParser.parseLevel(_levelFile!);
     _markDirty();
-    setState(() {});
   }
 
   Future<void> _handleDeleteWaveContainer() async {
-    if (_levelFile == null) return;
+    if (_ec.state.levelFile == null) return;
     final l10n = AppLocalizations.of(context);
     final ok = await showDialog<bool>(
       context: context,
@@ -1562,23 +1463,21 @@ List<ModuleMetadata> _calculateMissingModules() {
       ),
     );
     if (ok == true && mounted) {
-      _levelFile!.objects.removeWhere(
+      _ec.state.levelFile!.objects.removeWhere(
         (o) => o.objClass == 'WaveManagerProperties',
       );
-      _parsedData = LevelParser.parseLevel(_levelFile!);
       _markDirty();
-      setState(() {});
     }
   }
 
   void _handleEditCustomZombie(String rtid) {
-    if (_levelFile == null) return;
+    if (_ec.state.levelFile == null) return;
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => CustomZombiePropertiesScreen(
           rtid: rtid,
-          levelFile: _levelFile!,
+          levelFile: _ec.state.levelFile!,
           onChanged: _markDirty,
           onBack: () => Navigator.pop(context),
         ),
@@ -1587,13 +1486,13 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   void _handleEditCustomFish(String rtid) {
-    if (_levelFile == null) return;
+    if (_ec.state.levelFile == null) return;
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => CustomFishPropertiesScreen(
           rtid: rtid,
-          levelFile: _levelFile!,
+          levelFile: _ec.state.levelFile!,
           onChanged: _markDirty,
           onBack: () => Navigator.pop(context),
         ),
@@ -1602,7 +1501,7 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   String? _injectCustomFish(String baseFishAlias) {
-    if (_levelFile == null) return null;
+    if (_ec.state.levelFile == null) return null;
     final template = FishPropertiesRepository.getFishTemplate(baseFishAlias);
     if (template == null) return null;
 
@@ -1614,7 +1513,7 @@ List<ModuleMetadata> _calculateMissingModules() {
 
     final baseName = FishPropertiesRepository.getTypeName(baseFishAlias);
     var index = 1;
-    while (_levelFile!.objects.any(
+    while (_ec.state.levelFile!.objects.any(
       (o) => o.aliases?.contains('${baseName}_$index') == true,
     )) {
       index++;
@@ -1622,7 +1521,7 @@ List<ModuleMetadata> _calculateMissingModules() {
     final newTypeAlias = '${baseName}_$index';
 
     var propsIndex = index;
-    while (_levelFile!.objects.any(
+    while (_ec.state.levelFile!.objects.any(
       (o) => o.aliases?.contains('${baseName}_props_$propsIndex') == true,
     )) {
       propsIndex++;
@@ -1647,17 +1546,15 @@ List<ModuleMetadata> _calculateMissingModules() {
       objData: newTypeData,
     );
 
-    _levelFile!.objects.addAll([newPropsObj, newTypeObj]);
-    _parsedData = LevelParser.parseLevel(_levelFile!);
+    _ec.state.levelFile!.objects.addAll([newPropsObj, newTypeObj]);
     _markDirty();
-    setState(() {});
 
     return RtidParser.build(newTypeAlias, 'CurrentLevel');
   }
 
   void _showUiScaleDialog(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    var tempScale = widget.uiScale;
+    var tempScale = context.read<SettingsCubit>().state.uiScale;
     showDialog(
       context: context,
       builder: (ctx) => StatefulBuilder(
@@ -1686,14 +1583,14 @@ List<ModuleMetadata> _calculateMissingModules() {
           actions: [
             TextButton(
               onPressed: () {
-                widget.onUiScaleChange(1.0);
+                context.read<SettingsCubit>().setUiScale(1.0);
                 Navigator.pop(ctx);
               },
               child: Text(l10n.reset),
             ),
             TextButton(
               onPressed: () {
-                widget.onUiScaleChange(tempScale);
+                context.read<SettingsCubit>().setUiScale(tempScale);
                 Navigator.pop(ctx);
               },
               child: Text(l10n.done),
@@ -1705,7 +1602,7 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   void _setActiveTab(EditorTabType type) {
-    final index = _availableTabs.indexOf(type);
+    final index = _ec.state.availableTabs.indexOf(type);
     if (index >= 0) {
       _tabController?.animateTo(index);
     }
@@ -1716,7 +1613,7 @@ List<ModuleMetadata> _calculateMissingModules() {
   }
 
   String? _injectCustomZombie(String originalAlias) {
-    if (_levelFile == null) return null;
+    if (_ec.state.levelFile == null) return null;
     final typeName = ZombiePropertiesRepository.getTypeNameByAlias(
       originalAlias,
     );
@@ -1733,7 +1630,7 @@ List<ModuleMetadata> _calculateMissingModules() {
 
     final baseName = typeName;
     var index = 1;
-    while (_levelFile!.objects.any(
+    while (_ec.state.levelFile!.objects.any(
       (o) => o.aliases?.contains('${baseName}_$index') == true,
     )) {
       index++;
@@ -1741,7 +1638,7 @@ List<ModuleMetadata> _calculateMissingModules() {
     final newTypeAlias = '${baseName}_$index';
 
     var propsIndex = index;
-    while (_levelFile!.objects.any(
+    while (_ec.state.levelFile!.objects.any(
       (o) => o.aliases?.contains('${baseName}_props_$propsIndex') == true,
     )) {
       propsIndex++;
@@ -1766,10 +1663,8 @@ List<ModuleMetadata> _calculateMissingModules() {
       objData: newTypeData,
     );
 
-    _levelFile!.objects.addAll([newPropsObj, newTypeObj]);
-    _parsedData = LevelParser.parseLevel(_levelFile!);
+    _ec.state.levelFile!.objects.addAll([newPropsObj, newTypeObj]);
     _markDirty();
-    setState(() {});
 
     return RtidParser.build(newTypeAlias, 'CurrentLevel');
   }
@@ -1782,7 +1677,7 @@ List<ModuleMetadata> _calculateMissingModules() {
     String objClass = 'Unknown';
 
     if (info.source == 'CurrentLevel') {
-      obj = _parsedData!.objectMap[info.alias];
+      obj = _ec.state.parsedData!.objectMap[info.alias];
       objClass = obj?.objClass ?? 'Unknown';
     } else {
       objClass =
@@ -1796,7 +1691,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => StarChallengeModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1811,7 +1706,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => MaxSunModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1826,7 +1721,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => StartingPlantfoodModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1841,7 +1736,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ZombieSunDropModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestZombieSelection: (onSelected) {
@@ -1872,7 +1767,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => PickupCollectableTutorialScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestZombieSelection: (onSelected) {
@@ -1903,7 +1798,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => RailcartPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1918,7 +1813,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => IncreasedCostModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1933,7 +1828,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => DeathHoleModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1948,7 +1843,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ZombieMoveFastModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1962,7 +1857,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => TidePropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1977,7 +1872,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => BowlingMinigameScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -1985,20 +1880,19 @@ List<ModuleMetadata> _calculateMissingModules() {
       );
       return;
     }
-    if (objClass == 'SunDropperProperties' && _parsedData?.levelDef != null) {
+    if (objClass == 'SunDropperProperties' && _ec.state.parsedData?.levelDef != null) {
       void openSunDropper(String rt) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => SunDropperPropertiesScreen(
               rtid: rt,
-              levelFile: _levelFile!,
-              levelDef: _parsedData!.levelDef!,
+              levelFile: _ec.state.levelFile!,
+              levelDef: _ec.state.parsedData!.levelDef!,
               onChanged: _markDirty,
               onBack: () => Navigator.pop(context),
               onModeToggled: (newRtid) {
-                _parsedData = LevelParser.parseLevel(_levelFile!);
-                setState(() {});
+                _markDirty();
                 Navigator.pop(context);
                 openSunDropper(newRtid);
               },
@@ -2011,14 +1905,14 @@ List<ModuleMetadata> _calculateMissingModules() {
     }
     if (info.source == 'CurrentLevel' &&
         objClass == 'PiratePlankProperties') {
-      if (_parsedData!.levelDef != null) {
+      if (_ec.state.parsedData!.levelDef != null) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => PiratePlankPropertiesScreen(
               rtid: rtid,
-              levelFile: _levelFile!,
-              levelDef: _parsedData!.levelDef!,
+              levelFile: _ec.state.levelFile!,
+              levelDef: _ec.state.parsedData!.levelDef!,
               onChanged: _markDirty,
               onBack: () => Navigator.pop(context),
             ),
@@ -2034,7 +1928,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => SeedRainPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onAddModule: (objClass) => _addModule(ModuleRegistry.getMetadata(objClass)),
@@ -2050,7 +1944,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ConveyorSeedBankPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestPlantSelection: (onSelected) {
@@ -2064,7 +1958,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                       onSelected(id);
                     },
                     onBack: () => Navigator.pop(context),
-                    levelFile: _levelFile,
+                    levelFile: _ec.state.levelFile,
                     onAddModule: (objClass) {
                       _addModule(ModuleRegistry.getMetadata(objClass));
                     },
@@ -2098,7 +1992,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => LastStandMinigameScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2113,7 +2007,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => SeedBankPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestPlantSelection: (onSelected, {excludeIds}) {
@@ -2129,7 +2023,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                       onSelected(ids);
                     },
                     onBack: () => Navigator.pop(context),
-                    levelFile: _levelFile,
+                    levelFile: _ec.state.levelFile,
                     onAddModule: (objClass) {
                       _addModule(ModuleRegistry.getMetadata(objClass));
                     },
@@ -2165,7 +2059,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => InitialPlantPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onAddModule: (objClass) => _addModule(ModuleRegistry.getMetadata(objClass)),
@@ -2181,7 +2075,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => InitialPlantEntryScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onAddModule: (objClass) => _addModule(ModuleRegistry.getMetadata(objClass)),
@@ -2197,7 +2091,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => InitialZombieEntryScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2212,7 +2106,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => InitialGridItemEntryScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2227,7 +2121,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ProtectPlantChallengeScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onAddModule: (objClass) => _addModule(ModuleRegistry.getMetadata(objClass)),
@@ -2243,7 +2137,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ProtectGridItemChallengeScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2257,7 +2151,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => BombPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2272,7 +2166,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => SunBombChallengeScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2287,7 +2181,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ZombiePotionModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2302,7 +2196,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => AirDropShipModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2317,7 +2211,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => HeianWindModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2332,7 +2226,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => RenaiModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2347,7 +2241,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => PennyClassroomModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onAddModule: (objClass) => _addModule(ModuleRegistry.getMetadata(objClass)),
@@ -2363,7 +2257,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ManholePipelineModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2378,7 +2272,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => PowerTilePropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2388,14 +2282,14 @@ List<ModuleMetadata> _calculateMissingModules() {
     }
     if (info.source == 'CurrentLevel' &&
         objClass == 'RoofProperties') {
-      if (_parsedData!.levelDef != null) {
+      if (_ec.state.parsedData!.levelDef != null) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => RoofPropertiesScreen(
               rtid: rtid,
-              levelFile: _levelFile!,
-              levelDef: _parsedData!.levelDef!,
+              levelFile: _ec.state.levelFile!,
+              levelDef: _ec.state.parsedData!.levelDef!,
               onChanged: _markDirty,
               onBack: () => Navigator.pop(context),
             ),
@@ -2411,7 +2305,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => WarMistPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2420,13 +2314,13 @@ List<ModuleMetadata> _calculateMissingModules() {
       return;
     }
     if (objClass == 'RainDarkProperties') {
-      if (_parsedData!.levelDef != null) {
+      if (_ec.state.parsedData!.levelDef != null) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => RainDarkPropertiesScreen(
               currentRtid: rtid,
-              levelDef: _parsedData!.levelDef!,
+              levelDef: _ec.state.parsedData!.levelDef!,
               onChanged: _markDirty,
               onBack: () => Navigator.pop(context),
             ),
@@ -2441,7 +2335,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => LawnMowerPropertiesScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2456,7 +2350,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => TunnelDefendModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2471,7 +2365,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => ZombieRushModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
           ),
@@ -2486,7 +2380,7 @@ List<ModuleMetadata> _calculateMissingModules() {
         MaterialPageRoute(
           builder: (context) => WaveManagerModuleScreen(
             rtid: rtid,
-            levelFile: _levelFile!,
+            levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onRequestZombieSelection: (onSelected) {
@@ -2535,6 +2429,9 @@ List<ModuleMetadata> _calculateMissingModules() {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<SettingsCubit>().state;
+    return BlocBuilder<EditorCubit, EditorState>(
+      builder: (context, editorState) {
     final l10n = AppLocalizations.of(context);
     final isDesktop = Theme.of(context).platform == TargetPlatform.windows ||
         Theme.of(context).platform == TargetPlatform.macOS ||
@@ -2542,13 +2439,13 @@ List<ModuleMetadata> _calculateMissingModules() {
     Widget body = Scaffold(
         appBar: AppBar(
           title: Text(
-            widget.fileName,
+            _ec.fileName,
             overflow: TextOverflow.ellipsis,
           ),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () async {
-              if (_hasChanges) {
+              if (_ec.state.hasChanges) {
                 final leave = await _confirmLeave();
                 if (leave && mounted) widget.onBack();
               } else {
@@ -2570,7 +2467,7 @@ List<ModuleMetadata> _calculateMissingModules() {
             IconButton(
               icon: const Icon(Icons.code),
               tooltip: l10n?.tooltipJsonViewer ?? 'View/edit JSON',
-              onPressed: _levelFile != null
+              onPressed: _ec.state.levelFile != null
                   ? () async {
                       await _save();
                       if (context.mounted) {
@@ -2578,19 +2475,11 @@ List<ModuleMetadata> _calculateMissingModules() {
                           context,
                           MaterialPageRoute(
                             builder: (_) => JsonViewerScreen(
-                              fileName: widget.fileName,
-                              filePath: widget.filePath,
-                              levelFile: _levelFile!,
+                              fileName: _ec.fileName,
+                              filePath: _ec.filePath,
+                              levelFile: _ec.state.levelFile!,
                               onBack: () => Navigator.pop(context),
-                              onSaved: () {
-                                if (_levelFile != null) {
-                                  setState(() {
-                                    _hasChanges = true;
-                                    _parsedData = LevelParser.parseLevel(_levelFile!);
-                                    _recalculateTabs();
-                                  });
-                                }
-                              },
+                              onSaved: () => _ec.onJsonViewerSaved(),
                             ),
                           ),
                         );
@@ -2600,28 +2489,28 @@ List<ModuleMetadata> _calculateMissingModules() {
             ),
             IconButton(
               icon: Icon(
-                widget.themeMode == ThemeMode.dark
+                settings.themeMode == ThemeMode.dark
                     ? Icons.light_mode
                     : Icons.dark_mode,
               ),
               tooltip: l10n?.toggleTheme ?? 'Toggle theme',
-              onPressed: widget.onCycleTheme,
+              onPressed: () => context.read<SettingsCubit>().cycleTheme(),
             ),
             IconButton(
               icon: const Icon(Icons.save),
               tooltip: l10n?.tooltipSave ?? 'Save',
-              onPressed: _hasChanges ? _save : null,
+              onPressed: _ec.state.hasChanges ? _save : null,
             ),
           ],
         ),
-        body: _isLoading
+        body: _ec.state.isLoading
             ? const Center(child: CircularProgressIndicator())
-            : _levelFile == null || _parsedData == null
+            : _ec.state.levelFile == null || _ec.state.parsedData == null
             ? Center(
                 child: Text(l10n?.failedToLoadLevel ?? 'Failed to load level'),
               )
             : DefaultTabController(
-                length: _availableTabs.length,
+                length: _ec.state.availableTabs.length,
                 child: Builder(
                   builder: (context) {
                     _tabController = DefaultTabController.of(context);
@@ -2632,7 +2521,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                           tabAlignment: TabAlignment.fill,
                           dividerHeight: 0,
                           indicatorSize: TabBarIndicatorSize.tab,
-                          tabs: _availableTabs.map((t) {
+                          tabs: _ec.state.availableTabs.map((t) {
                             IconData icon;
                             String label;
                             switch (t) {
@@ -2662,12 +2551,12 @@ List<ModuleMetadata> _calculateMissingModules() {
                         ),
                         Expanded(
                           child: TabBarView(
-                            children: _availableTabs.map<Widget>((t) {
+                            children: _ec.state.availableTabs.map<Widget>((t) {
                               switch (t) {
                                 case EditorTabType.settings:
                                   return LevelSettingsTab(
-                                    levelDef: _parsedData!.levelDef,
-                                    objectMap: _parsedData!.objectMap,
+                                    levelDef: _ec.state.parsedData!.levelDef,
+                                    objectMap: _ec.state.parsedData!.objectMap,
                                     missingModules: _calculateMissingModules(),
                                     missingModuleWarnings: _getMissingModuleWarnings(),
                                     onEditBasicInfo: _handleEditBasicInfo,
@@ -2678,8 +2567,8 @@ List<ModuleMetadata> _calculateMissingModules() {
                                   );
                                 case EditorTabType.timeline:
                                   return WaveTimelineTab(
-                                    levelFile: _levelFile!,
-                                    parsed: _parsedData!,
+                                    levelFile: _ec.state.levelFile!,
+                                    parsed: _ec.state.parsedData!,
                                     onChanged: _markDirty,
                                     onEditEvent: _handleEditEvent,
                                     onAddEvent: _handleAddEvent,
@@ -2688,18 +2577,18 @@ List<ModuleMetadata> _calculateMissingModules() {
                                     onEditCustomZombie: _handleEditCustomZombie,
                                     onEditCustomFish: _handleEditCustomFish,
                                     onOpenModule: _handleEditModule,
-                                    openWaveSheetNotifier: _openWaveSheetNotifier,
+                                    openWaveSheetNotifier: _ec.openWaveSheetNotifier,
                                     onCreateContainer: () => _handleCreateWaveContainer(),
                                     onDeleteContainer: () => _handleDeleteWaveContainer(),
                                   );
                                 case EditorTabType.iZombie:
                                   return IZombieTab(
-                                    levelFile: _levelFile!,
+                                    levelFile: _ec.state.levelFile!,
                                     onChanged: _markDirty,
                                   );
                                 case EditorTabType.vaseBreaker:
                                   return VaseBreakerTab(
-                                    levelFile: _levelFile!,
+                                    levelFile: _ec.state.levelFile!,
                                     onChanged: _markDirty,
                                     onAddModule: (objClass) {
                                       _addModule(ModuleRegistry.getMetadata(objClass));
@@ -2707,7 +2596,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                                   );
                                 case EditorTabType.zomboss:
                                   return ZombossBattleTab(
-                                    levelFile: _levelFile!,
+                                    levelFile: _ec.state.levelFile!,
                                     onChanged: _markDirty,
                                   );
                               }
@@ -2729,7 +2618,7 @@ List<ModuleMetadata> _calculateMissingModules() {
           actions: {
             _EditorEscapeIntent: CallbackAction<_EditorEscapeIntent>(
               onInvoke: (_) async {
-                if (_hasChanges) {
+                if (_ec.state.hasChanges) {
                   final leave = await _confirmLeave();
                   if (leave && mounted) widget.onBack();
                 } else {
@@ -2744,5 +2633,7 @@ List<ModuleMetadata> _calculateMissingModules() {
       );
     }
     return body;
+      },
+    );
   }
 }

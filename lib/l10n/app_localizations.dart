@@ -580,6 +580,54 @@ abstract class AppLocalizations {
   /// **'JSON file'**
   String get jsonFile;
 
+  /// No description provided for @convertToJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert to JSON'**
+  String get convertToJson;
+
+  /// No description provided for @convertToHotUpdateJson.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert to hot update json'**
+  String get convertToHotUpdateJson;
+
+  /// No description provided for @convertToEncryptedRton.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert to encrypted rton'**
+  String get convertToEncryptedRton;
+
+  /// No description provided for @conversionRequiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversion required'**
+  String get conversionRequiredTitle;
+
+  /// No description provided for @conversionRequiredMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This file must be converted to JSON before it can be opened in the editor.'**
+  String get conversionRequiredMessage;
+
+  /// No description provided for @convertAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Convert'**
+  String get convertAction;
+
+  /// No description provided for @conversionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversion failed'**
+  String get conversionFailed;
+
+  /// No description provided for @convertedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Converted: {name}'**
+  String convertedMessage(Object name);
+
   /// No description provided for @softwareIntro.
   ///
   /// In en, this message translates to:
@@ -8577,6 +8625,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coin'**
   String get pickupCollectableLootGoldCoin;
+
+  /// No description provided for @invalidRtonMagic.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid RTON file: magic must be \"RTON\".'**
+  String get invalidRtonMagic;
+
+  /// No description provided for @invalidRtonVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid RTON version (expected 1).'**
+  String get invalidRtonVersion;
+
+  /// No description provided for @invalidRtonEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid RTON file: must end with \"DONE\".'**
+  String get invalidRtonEnd;
+
+  /// No description provided for @invalidRtonArrayEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid RTON array delimiter.'**
+  String get invalidRtonArrayEnd;
+
+  /// No description provided for @invalidRtid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid RTID value.'**
+  String get invalidRtid;
+
+  /// No description provided for @invalidValueType.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid value type for RTON.'**
+  String get invalidValueType;
 }
 
 class _AppLocalizationsDelegate
