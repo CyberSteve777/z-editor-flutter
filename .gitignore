@@ -52,3 +52,5 @@ report.txt
 /android/signing
 local.properties
 /.vscode/launch.json
+/.devcontainer
+run.sh

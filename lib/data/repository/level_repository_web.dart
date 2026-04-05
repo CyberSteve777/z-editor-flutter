@@ -17,6 +17,55 @@ export '../pvz_models.dart' show PvzLevelFile;
 /// Virtual path prefix for web - files opened via picker have no real path.
 const String _webPathPrefix = 'web://';
 
+String _normalizeWebDirPath(String path) {
+  if (path.isEmpty || path == _webPathPrefix) return _webPathPrefix;
+  var value = path;
+  if (!value.startsWith(_webPathPrefix)) {
+    value = '$_webPathPrefix$value';
+  }
+  while (value.endsWith('/') && value.length > _webPathPrefix.length) {
+    value = value.substring(0, value.length - 1);
+  }
+  return value;
+}
+
+String _webJoin(String dirPath, String name) {
+  final dir = _normalizeWebDirPath(dirPath);
+  final cleanName = name.replaceAll('\\', '/').trim();
+  if (dir == _webPathPrefix) {
+    return '$_webPathPrefix$cleanName';
+  }
+  return '$dir/$cleanName';
+}
+
+String _parentWebDir(String path) {
+  final normalized = _normalizeWebDirPath(path);
+  if (normalized == _webPathPrefix) return _webPathPrefix;
+  final idx = normalized.lastIndexOf('/');
+  if (idx < _webPathPrefix.length) return _webPathPrefix;
+  return normalized.substring(0, idx);
+}
+
+String _relativeFromWebPath(String path) {
+  final normalized = _normalizeWebDirPath(path);
+  if (normalized == _webPathPrefix) return '';
+  return normalized.substring(_webPathPrefix.length);
+}
+
+String _leafNameFromWebPath(String path) {
+  final rel = path.startsWith(_webPathPrefix) ? _relativeFromWebPath(path) : path;
+  final clean = rel.replaceAll('\\', '/');
+  final idx = clean.lastIndexOf('/');
+  return idx >= 0 ? clean.substring(idx + 1) : clean;
+}
+
+String _extensionFromName(String name) {
+  final leaf = _leafNameFromWebPath(name);
+  final idx = leaf.lastIndexOf('.');
+  if (idx <= 0 || idx == leaf.length - 1) return '';
+  return leaf.substring(idx + 1).toLowerCase();
+}
+
 /// Returns the cache key (file name) for a path. Strips [_webPathPrefix] so we never
 /// use "web://filename" as a cache key, which would create duplicate list entries.
 String _fileNameFromPath(String filePath) {
@@ -49,6 +98,7 @@ class LevelRepository {
   static const _prefsLastLevelDirKey = 'last_level_directory';
 
   static final Map<String, Uint8List> _memoryCache = {};
+  static final Set<String> _directories = {_webPathPrefix};
   static const Set<String> _levelExtensions = {'.json', '.hujson', '.rton'};
 
   static Future<String?> getSavedFolderPath() async {
@@ -76,7 +126,9 @@ class LevelRepository {
   }
 
   static Future<bool> fileExistsInDirectory(String dirPath, String fileName) async {
-    return _memoryCache.containsKey(fileName);
+    final filePath = _webJoin(dirPath, fileName);
+    final key = _relativeFromWebPath(filePath);
+    return _memoryCache.containsKey(key);
   }
 
   static bool isSupportedLevelFileName(String name) {
@@ -96,19 +148,48 @@ class LevelRepository {
 
   static Future<List<FileItem>> getDirectoryContents(String dirPath) async {
     if (!dirPath.startsWith(_webPathPrefix)) return [];
-    final items = _memoryCache.keys
-        .where(isSupportedLevelFileName)
-        .map(
-          (name) => FileItem(
-            name: name,
-            path: '$_webPathPrefix$name',
-            isDirectory: false,
-            lastModified: 0,
-            size: _memoryCache[name]?.length ?? 0,
-          ),
-        )
+    final normalized = _normalizeWebDirPath(dirPath);
+    _directories.add(_webPathPrefix);
+
+    final items = <FileItem>[];
+
+    final childDirs = _directories
+        .where((d) => d != normalized && _parentWebDir(d) == normalized)
         .toList();
-    items.sort((a, b) => _naturalCompare(a.name, b.name));
+    for (final dir in childDirs) {
+      items.add(
+        FileItem(
+          name: _leafNameFromWebPath(dir),
+          path: dir,
+          isDirectory: true,
+          lastModified: 0,
+          size: 0,
+        ),
+      );
+    }
+
+    for (final entry in _memoryCache.entries) {
+      final fullPath = entry.key.startsWith(_webPathPrefix)
+          ? _normalizeWebDirPath(entry.key)
+          : '$_webPathPrefix${entry.key}';
+      if (_parentWebDir(fullPath) != normalized) continue;
+      final name = _leafNameFromWebPath(fullPath);
+      if (!isSupportedLevelFileName(name)) continue;
+      items.add(
+        FileItem(
+          name: name,
+          path: fullPath,
+          isDirectory: false,
+          lastModified: 0,
+          size: entry.value.length,
+        ),
+      );
+    }
+
+    items.sort((a, b) {
+      if (a.isDirectory != b.isDirectory) return a.isDirectory ? -1 : 1;
+      return _naturalCompare(a.name, b.name);
+    });
     return items;
   }
 
@@ -137,7 +218,18 @@ class LevelRepository {
   }
 
   static Future<bool> createDirectory(String parentPath, String name) async {
-    return false;
+    final trimmed = name.trim();
+    if (trimmed.isEmpty || trimmed.contains('/') || trimmed.contains('\\')) {
+      return false;
+    }
+    final parent = _normalizeWebDirPath(parentPath);
+    if (!_directories.contains(parent)) return false;
+    final newDir = _webJoin(parent, trimmed);
+    if (_directories.contains(newDir)) return false;
+    final newKey = _relativeFromWebPath(newDir);
+    if (_memoryCache.containsKey(newKey)) return false;
+    _directories.add(newDir);
+    return true;
   }
 
   static Future<bool> renameItem(
@@ -146,11 +238,52 @@ class LevelRepository {
     String newName,
     bool isDirectory,
   ) async {
-    if (isDirectory) return false;
-    if (!_memoryCache.containsKey(oldName)) return false;
-    if (_memoryCache.containsKey(newName)) return false;
-    final content = _memoryCache.remove(oldName)!;
-    _memoryCache[newName] = content;
+    final currentDir = _normalizeWebDirPath(currentDirPath);
+    final oldPath = _webJoin(currentDir, oldName);
+    final newPath = _webJoin(currentDir, newName);
+    if (newName.trim().isEmpty || newName.contains('/') || newName.contains('\\')) {
+      return false;
+    }
+    if (isDirectory) {
+      if (!_directories.contains(oldPath) || _directories.contains(newPath)) {
+        return false;
+      }
+      final newKey = _relativeFromWebPath(newPath);
+      if (_memoryCache.containsKey(newKey)) return false;
+
+      final oldPrefix = '$oldPath/';
+      final dirsToRename = _directories
+          .where((d) => d == oldPath || d.startsWith(oldPrefix))
+          .toList();
+      final filesToRename = _memoryCache.entries
+          .where((e) => ('$_webPathPrefix${e.key}') == oldPath || ('$_webPathPrefix${e.key}').startsWith(oldPrefix))
+          .toList();
+
+      for (final d in dirsToRename) {
+        _directories.remove(d);
+      }
+      for (final d in dirsToRename) {
+        final renamed = d == oldPath ? newPath : '$newPath/${d.substring(oldPrefix.length)}';
+        _directories.add(renamed);
+      }
+
+      for (final e in filesToRename) {
+        _memoryCache.remove(e.key);
+      }
+      for (final e in filesToRename) {
+        final full = '$_webPathPrefix${e.key}';
+        final renamedFull = full == oldPath ? newPath : '$newPath/${full.substring(oldPrefix.length)}';
+        _memoryCache[_relativeFromWebPath(renamedFull)] = e.value;
+      }
+      return true;
+    }
+
+    final oldKey = _relativeFromWebPath(oldPath);
+    final newKey = _relativeFromWebPath(newPath);
+    if (!_memoryCache.containsKey(oldKey)) return false;
+    if (_memoryCache.containsKey(newKey) || _directories.contains(newPath)) return false;
+    final content = _memoryCache.remove(oldKey)!;
+    _memoryCache[newKey] = content;
     return true;
   }
 
@@ -159,8 +292,19 @@ class LevelRepository {
     String fileName,
     bool isDirectory,
   ) async {
-    if (isDirectory) return;
-    _memoryCache.remove(fileName);
+    final currentDir = _normalizeWebDirPath(currentDirPath);
+    final targetPath = _webJoin(currentDir, fileName);
+    if (isDirectory) {
+      final prefix = '$targetPath/';
+      _directories.removeWhere((d) => d == targetPath || d.startsWith(prefix));
+      _memoryCache.removeWhere((k, _) {
+        final full = '$_webPathPrefix$k';
+        return full == targetPath || full.startsWith(prefix);
+      });
+      _directories.add(_webPathPrefix);
+      return;
+    }
+    _memoryCache.remove(_relativeFromWebPath(targetPath));
   }
 
   static Future<String> getNextAvailableNameForTemplate(
@@ -194,9 +338,11 @@ class LevelRepository {
     String targetFileName,
   ) async {
     final srcName = _fileNameFromPath(srcPath);
+    final targetPath = _webJoin(targetDirPath, targetFileName);
+    final targetKey = _relativeFromWebPath(targetPath);
     if (!_memoryCache.containsKey(srcName)) return false;
-    if (_memoryCache.containsKey(targetFileName)) return false;
-    _memoryCache[targetFileName] = _memoryCache[srcName]!;
+    if (_memoryCache.containsKey(targetKey)) return false;
+    _memoryCache[targetKey] = _memoryCache[srcName]!;
     return true;
   }
 
@@ -206,7 +352,10 @@ class LevelRepository {
     String destDirPath,
   ) async {
     if (srcDirPath == destDirPath) return false;
-    if (!_memoryCache.containsKey(fileName)) return false;
+    final srcKey = _relativeFromWebPath(_webJoin(srcDirPath, fileName));
+    final dstKey = _relativeFromWebPath(_webJoin(destDirPath, fileName));
+    if (!_memoryCache.containsKey(srcKey) || _memoryCache.containsKey(dstKey)) return false;
+    _memoryCache[dstKey] = _memoryCache.remove(srcKey)!;
     return true;
   }
 
@@ -216,7 +365,11 @@ class LevelRepository {
     String destDirPath,
   ) async {
     if (srcDirPath == destDirPath) return false;
-    if (!_memoryCache.containsKey(fileName)) return false;
+    final srcKey = _relativeFromWebPath(_webJoin(srcDirPath, fileName));
+    final dstKey = _relativeFromWebPath(_webJoin(destDirPath, fileName));
+    if (!_memoryCache.containsKey(srcKey)) return false;
+    _memoryCache.remove(dstKey);
+    _memoryCache[dstKey] = _memoryCache.remove(srcKey)!;
     return true;
   }
 
@@ -238,29 +391,49 @@ class LevelRepository {
     String newFileName,
   ) async {
     if (srcDirPath == destDirPath) return null;
-    if (!_memoryCache.containsKey(fileName)) return null;
-    if (_memoryCache.containsKey(newFileName)) return null;
-    _memoryCache[newFileName] = _memoryCache.remove(fileName)!;
+    final srcKey = _relativeFromWebPath(_webJoin(srcDirPath, fileName));
+    final dstKey = _relativeFromWebPath(_webJoin(destDirPath, newFileName));
+    if (!_memoryCache.containsKey(srcKey)) return null;
+    if (_memoryCache.containsKey(dstKey)) return null;
+    _memoryCache[dstKey] = _memoryCache.remove(srcKey)!;
     return newFileName;
   }
 
   static Future<int> clearAllInternalCache() async {
     final count = _memoryCache.length;
     _memoryCache.clear();
+    _directories
+      ..clear()
+      ..add(_webPathPrefix);
     return count;
   }
 
   static Future<bool> prepareInternalCache(String sourcePath, String fileName) async {
-    return _memoryCache.containsKey(fileName);
+    final sourceKey = _fileNameFromPath(sourcePath);
+    if (_memoryCache.containsKey(sourceKey)) return true;
+    if (_memoryCache.containsKey(fileName)) return true;
+    return false;
   }
 
   static Future<bool> prepareInternalCacheFromString(String fileName, String content) async {
     _memoryCache[fileName] = Uint8List.fromList(utf8.encode(content));
+    var dir = _parentWebDir('$_webPathPrefix$fileName');
+    while (true) {
+      _directories.add(dir);
+      if (dir == _webPathPrefix) break;
+      dir = _parentWebDir(dir);
+    }
     return true;
   }
 
   static Future<bool> prepareInternalCacheFromBytes(String fileName, List<int> bytes) async {
     _memoryCache[fileName] = Uint8List.fromList(bytes);
+    var dir = _parentWebDir('$_webPathPrefix$fileName');
+    while (true) {
+      _directories.add(dir);
+      if (dir == _webPathPrefix) break;
+      dir = _parentWebDir(dir);
+    }
     return true;
   }
 
@@ -283,12 +456,26 @@ class LevelRepository {
 
   /// Triggers a download of a single level by file name (web only).
   static Future<void> downloadLevel(String fileName) async {
-    final content = _memoryCache[fileName];
+    Uint8List? content = _memoryCache[fileName];
+    if (content == null && fileName.startsWith(_webPathPrefix)) {
+      content = _memoryCache[_relativeFromWebPath(fileName)];
+    }
+    if (content == null) {
+      final targetLeaf = _leafNameFromWebPath(fileName);
+      final matches = _memoryCache.entries
+          .where((e) => _leafNameFromWebPath(e.key) == targetLeaf)
+          .toList();
+      if (matches.length == 1) {
+        content = matches.first.value;
+        fileName = _leafNameFromWebPath(matches.first.key);
+      }
+    }
     if (content == null) return;
-    final ext = p.extension(fileName).replaceFirst('.', '');
+    final downloadName = _leafNameFromWebPath(fileName);
+    final ext = _extensionFromName(downloadName);
     await FilePicker.platform.saveFile(
       dialogTitle: 'Save level',
-      fileName: fileName,
+      fileName: downloadName,
       type: FileType.custom,
       allowedExtensions: [ext.isEmpty ? 'json' : ext],
       bytes: content,
@@ -349,8 +536,10 @@ class LevelRepository {
     String newFileName,
     String assetContent,
   ) async {
-    if (_memoryCache.containsKey(newFileName)) return false;
-    _memoryCache[newFileName] = Uint8List.fromList(utf8.encode(assetContent));
+    final filePath = _webJoin(currentDirPath, newFileName);
+    final key = _relativeFromWebPath(filePath);
+    if (_memoryCache.containsKey(key)) return false;
+    _memoryCache[key] = Uint8List.fromList(utf8.encode(assetContent));
     return true;
   }
 
@@ -378,7 +567,9 @@ class LevelRepository {
     if (bytes == null) return null;
     final level = _decodeLevelBytes(sourceName, bytes);
     if (level == null) return null;
-    final target = targetName ?? '${baseNameWithoutLevelExtension(sourceName)}$targetExtension';
+    final sourceDir = _parentWebDir('$_webPathPrefix$srcName');
+    final targetNameOnly = targetName ?? '${baseNameWithoutLevelExtension(sourceName)}$targetExtension';
+    final target = _relativeFromWebPath(_webJoin(sourceDir, targetNameOnly));
     if (_memoryCache.containsKey(target)) return null;
     _memoryCache[target] = _encodeLevelBytes(target, level);
     return target;

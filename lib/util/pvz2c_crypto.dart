@@ -8,7 +8,7 @@ import 'package:convert/convert.dart' as convert;
 abstract final class PvZ2Crypto {
   static const String keyHex = '65bd1b2305f46eb2806b935aab7630bb';
 
-  static const int blockSize = 16;
+  static const int blockSize = 24;
 
   static Uint8List get keyBytes =>
       Uint8List.fromList(convert.hex.decode(keyHex));

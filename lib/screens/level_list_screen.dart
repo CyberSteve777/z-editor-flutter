@@ -81,14 +81,12 @@ class _LevelListScreenState extends State<LevelListScreen> {
     final lastLevelDir = kIsWeb ? null : await LevelRepository.getLastOpenedLevelDirectory();
     if (kIsWeb) {
       const webPath = 'web://';
-      final items = await LevelRepository.getDirectoryContents(webPath);
-      if (items.isNotEmpty && mounted) {
-        setState(() {
-          _rootFolderPath = webPath;
-          _pathStack = [(name: 'My levels', path: webPath)];
-        });
-        _loadCurrentDirectory();
-      }
+      if (!mounted) return;
+      setState(() {
+        _rootFolderPath = webPath;
+        _pathStack = [(name: 'My levels', path: webPath)];
+      });
+      _loadCurrentDirectory();
       return;
     }
     if (path != null && mounted) {

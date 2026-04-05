@@ -12,6 +12,9 @@ import 'package:z_editor/util/pvz2c_crypto.dart';
 import 'package:rijndael/rijndael.dart';
 
 class ReflectionObjectNotation {
+  static final BigInt _int64Min = BigInt.parse("-9223372036854775808");
+  static final BigInt _int64Max = BigInt.parse("9223372036854775807");
+
   SenBuffer decryptRTON(
     SenBuffer raw,
     RijndaelC cfg,
@@ -474,8 +477,8 @@ class ReflectionObjectNotation {
     if (number is double) {
       if (number == 0.0) {
         senFile.writeUInt8(0x23);
-      } else if (-9223372036854775807 <= number &&
-              number <= 9223372036854775807 ||
+      } else if (_int64Min.toDouble() <= number &&
+              number <= _int64Max.toDouble() ||
           checkInfinity(number)) {
         senFile.writeUInt8(0x22);
         senFile.writeFloatLE(number);
@@ -485,6 +488,7 @@ class ReflectionObjectNotation {
       }
     } else {
       number as int;
+      final bigIntNumber = BigInt.from(number);
       if (number == 0) {
         senFile.writeUInt8(0x21);
       } else if (0 <= number && number <= 2097151) {
@@ -505,11 +509,11 @@ class ReflectionObjectNotation {
       } else if (-281474976710656 <= number && number <= 0) {
         senFile.writeUInt8(0x45);
         senFile.writeZigZag64(number);
-      } else if (-9223372036854775808 <= number &&
-          number <= 9223372036854775807) {
+      } else if (_int64Min <= bigIntNumber &&
+          bigIntNumber <= _int64Max) {
         senFile.writeUInt8(0x40);
         senFile.writeBigInt64LE(number);
-      } else if (0 <= number && number > 9223372036854775807) {
+      } else if (0 <= number && bigIntNumber > _int64Max) {
         senFile.writeUInt8(0x46);
         senFile.writeBigUInt64LE(number);
       } else if (0 <= number) {
