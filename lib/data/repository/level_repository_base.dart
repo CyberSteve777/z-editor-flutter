@@ -25,7 +25,7 @@ class FileItem {
 }
 
 abstract class LevelRepositoryBase {
-  static const Set<String> levelExtensions = {'.json', '.hujson', '.rton'};
+  static const Set<String> levelExtensions = {'.json', '.hujson', '.rton', '.zlib', '.bin'};
 
   static const List<String> defaultTemplateList = [
     '1_blank_level.json',

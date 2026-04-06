@@ -10,22 +10,18 @@ class PopCapZlib {
     [0xD4, 0xFE, 0xAD, 0xDE],
   );
 
-  static final Uint8List blank = Uint8List.fromList([0x00, 0x00, 0x00, 0x00]);
-
   static const ZLibEncoder _zlibEnc = ZLibEncoder();
 
   static SenBuffer compress(
-    SenBuffer data,
-    bool use64BitVariant,
-  ) {
+      SenBuffer data,
+      bool use64BitVariant,
+      ) {
     final result = SenBuffer();
     result.writeBytes(magic);
     if (use64BitVariant) {
-      result.writeBytes(blank);
-    }
-    result.writeUInt32LE(data.length);
-    if (use64BitVariant) {
-      result.writeBytes(blank);
+      result.writeBigUInt64LE(data.length);
+    } else {
+      result.writeUInt32LE(data.length);
     }
     result.writeBytes(
       Uint8List.fromList(
@@ -36,9 +32,9 @@ class PopCapZlib {
   }
 
   static SenBuffer uncompress(
-    SenBuffer data,
-    bool use64BitVariant,
-  ) {
+      SenBuffer data,
+      bool use64BitVariant,
+      ) {
     final magicWord = data.readUInt32LE();
     if (magicWord != 0xDEADFED4) {
       throw Exception(
@@ -46,11 +42,8 @@ class PopCapZlib {
       );
     }
     if (use64BitVariant) {
-      data.readUInt32LE();
-    }
-    data.readUInt32LE();
-    if (use64BitVariant) {
-      data.readUInt32LE();
+      data.readBigUInt64LE();
+    } else {
       data.readUInt32LE();
     }
     final remaining = data.length - data.readOffset;

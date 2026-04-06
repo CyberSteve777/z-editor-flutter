@@ -54,14 +54,18 @@ class _LevelListScreenState extends State<LevelListScreen> {
   }
 
   /// If [inputName] already has a level extension, returns it; else appends the extension from [referenceFileName].
-  String _ensureLevelExtension(String inputName, String referenceFileName) {
-    final trimmed = inputName.trim();
-    final lower = trimmed.toLowerCase();
-    if (lower.endsWith('.json') || lower.endsWith('.hujson') || lower.endsWith('.rton')) {
-      return trimmed;
-    }
-    return trimmed + _levelExtensionFromFileName(referenceFileName);
+String _ensureLevelExtension(String inputName, String referenceFileName) {
+  final trimmed = inputName.trim();
+  final lower = trimmed.toLowerCase();
+  if (lower.endsWith('.json') ||
+      lower.endsWith('.hujson') ||
+      lower.endsWith('.rton') ||
+      lower.endsWith('.zlib') ||
+      lower.endsWith('.bin')) {
+    return trimmed;
   }
+  return trimmed + _levelExtensionFromFileName(referenceFileName);
+}
 
   @override
   void initState() {
@@ -1184,47 +1188,73 @@ class _LevelListScreenState extends State<LevelListScreen> {
     return null;
   }
 
-  Future<void> _showConvertMenuFor(FileItem item) async {
-    if (_pathStack.isEmpty || item.isDirectory) return;
-    final l10n = AppLocalizations.of(context)!;
-    final lower = item.name.toLowerCase();
-    String? targetExt;
-    if (lower.endsWith('.json')) {
-      targetExt = await showModalBottomSheet<String>(
-        context: context,
-        builder: (ctx) => SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.sync_alt),
-                title: Text(l10n.convertToHotUpdateJson),
-                onTap: () => Navigator.pop(ctx, '.hujson'),
-              ),
-              ListTile(
-                leading: const Icon(Icons.sync_alt),
-                title: Text(l10n.convertToEncryptedRton),
-                onTap: () => Navigator.pop(ctx, '.rton'),
-              ),
-            ],
-          ),
+Future<void> _showConvertMenuFor(FileItem item) async {
+  if (_pathStack.isEmpty || item.isDirectory) return;
+  final l10n = AppLocalizations.of(context)!;
+  final lower = item.name.toLowerCase();
+  String? targetExt;
+  if (lower.endsWith('.json')) {
+    targetExt = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.sync_alt),
+              title: Text(l10n.convertToHotUpdateJson),
+              onTap: () => Navigator.pop(ctx, '.hujson'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.sync_alt),
+              title: Text(l10n.convertToEncryptedRton),
+              onTap: () => Navigator.pop(ctx, '.rton'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.compress),
+              title: const Text('Compress with ZLib'),
+              onTap: () => Navigator.pop(ctx, '.zlib'),
+            ),
+          ],
         ),
-      );
-    } else if (lower.endsWith('.hujson') || lower.endsWith('.rton')) {
-      targetExt = await showModalBottomSheet<String>(
-        context: context,
-        builder: (ctx) => SafeArea(
-          child: ListTile(
-            leading: const Icon(Icons.sync_alt),
-            title: Text(l10n.convertToJson),
-            onTap: () => Navigator.pop(ctx, '.json'),
-          ),
+      ),
+    );
+  } else if (lower.endsWith('.hujson') || lower.endsWith('.rton')) {
+    targetExt = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.sync_alt),
+              title: Text(l10n.convertToJson),
+              onTap: () => Navigator.pop(ctx, '.json'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.compress),
+              title: const Text('Compress with ZLib'),
+              onTap: () => Navigator.pop(ctx, '.zlib'),
+            ),
+          ],
         ),
-      );
-    }
-    if (targetExt == null || !mounted) return;
-    await _convertItemToExtension(item, targetExt);
+      ),
+    );
+  } else if (lower.endsWith('.zlib')) {
+    targetExt = await showModalBottomSheet<String>(
+      context: context,
+      builder: (ctx) => SafeArea(
+        child: ListTile(
+          leading: const Icon(Icons.expand),
+          title: const Text('Decompress ZLib'),
+          onTap: () => Navigator.pop(ctx, '.bin'),
+        ),
+      ),
+    );
   }
+  if (targetExt == null || !mounted) return;
+  await _convertItemToExtension(item, targetExt);
+}
 
   Future<void> _handleMoveConfirm() async {
     final target = _itemToMove;
