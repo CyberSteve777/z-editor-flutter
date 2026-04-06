@@ -38,13 +38,14 @@ class CompiledText {
     RijndaelC rijndael,
     bool use64BitVariant,
   ) {
-    final compressed = PopCapZlib.compress(raw, use64BitVariant);
-    final enc = _cipher(rijndael).encrypt(compressed.toBytes());
-    final prefixed = Uint8List(2 + enc.length)
-      ..[0] = 0x10
-      ..[1] = 0x00
-      ..setRange(2, 2 + enc.length, enc);
-    return SenBuffer.fromBytes(ascii.encode(base64Encode(prefixed)));
+
+    final compressedData = PopCapZlib.compress(raw, use64BitVariant);
+        final SenBuffer ripe =
+        SenBuffer.fromBytes(Uint8List.fromList([0x10, 0x00]));
+    ripe.writeBytes(
+      _cipher(rijndael).encrypt(compressedData.toBytes())
+    );
+    return SenBuffer.fromBytes(ascii.encode(base64Encode(ripe.toBytes())));
   }
 
   static void encode_fs(

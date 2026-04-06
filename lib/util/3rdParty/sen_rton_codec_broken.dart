@@ -12,11 +12,11 @@ import 'package:z_editor/util/pvz2c_crypto.dart';
 import 'sen_buffer.dart';
 
 class ReflectionObjectNotation {
-  static void fillRijndaelBlock(SenBuffer raw, SenBuffer iv) {
-    final padding = iv.length - ((raw.length + iv.length - 1) % iv.length + 1);
-    raw.writeNull(padding);
-    return;
-  }
+  // static void fillRijndaelBlock(SenBuffer raw, SenBuffer iv) {
+  //   final padding = iv.length - ((raw.length + iv.length - 1) % iv.length + 1);
+  //   raw.writeNull(padding);
+  //   return;
+  // }
 
   SenBuffer decryptRTON(SenBuffer raw, RijndaelC cfg) {
     final cipherBytes = raw.getBytes(raw.length - 2, 2);

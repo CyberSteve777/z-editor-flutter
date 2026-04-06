@@ -29,23 +29,23 @@ class ReflectionObjectNotation {
     return SenBuffer.fromBytes(cbc.decrypt(cipherBytes));
   }
 
-  static void fillRijndaelBlock(
-    SenBuffer raw,
-    SenBuffer iv,
-  ) {
-    final padding = iv.length - ((raw.length + iv.length - 1) % iv.length + 1);
-    raw.writeNull(padding);
-    return;
-  }
+  // static void fillRijndaelBlock(
+  //   SenBuffer raw,
+  //   SenBuffer iv,
+  // ) {
+  //   final padding = iv.length - ((raw.length + iv.length - 1) % iv.length + 1);
+  //   raw.writeNull(padding);
+  //   return;
+  // }
 
   SenBuffer encryptRTON(
     SenBuffer raw,
     RijndaelC cfg,
   ) {
-    ReflectionObjectNotation.fillRijndaelBlock(
-      raw,
-      SenBuffer.fromBytes(Uint8List.fromList(cfg.ivBytes)),
-    );
+    // ReflectionObjectNotation.fillRijndaelBlock(
+    //   raw,
+    //   SenBuffer.fromBytes(Uint8List.fromList(cfg.ivBytes)),
+    // );
     var ripe = SenBuffer.fromBytes(Uint8List.fromList([0x10, 0x00]));
     final cbc = RijndaelCbc(
       cfg.keyBytes,
@@ -90,7 +90,7 @@ class ReflectionObjectNotation {
     if (version != 0x1) {
       throw Exception(
         localizations == null
-            ? "nvalid RTON version, should be version 1"
+            ? "Invalid RTON version, should be version 1"
             : localizations.invalidRtonVersion,
       );
     }
