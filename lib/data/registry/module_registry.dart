@@ -797,7 +797,7 @@ class ModuleRegistry {
       icon: Icons.fitness_center,
       isCore: true,
       allowMultiple: false,
-      category: ModuleCategory.mode,
+      category: ModuleCategory.scene,
       defaultAlias: 'Bronze',
       initialDataFactory: () => BronzePropertiesData(),
       routeId: 'Bronze',

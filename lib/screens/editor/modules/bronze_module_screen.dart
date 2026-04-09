@@ -466,25 +466,13 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                         kind: e.item.kind,
                                       ),
                                     ),
-                                    onKindChanged: (k) => _replaceItemAt(
-                                      _BronzeItemRef(
-                                        batchIndex: e.batchIndex,
-                                        itemIndex: e.itemIndex,
-                                      ),
-                                      BronzeStatueItemData(
-                                        mX: e.item.mX,
-                                        mY: e.item.mY,
-                                        spawnTime: e.item.spawnTime,
-                                        kind: k,
-                                      ),
-                                    ),
                                     deleteTooltip: l10n?.delete ?? 'Delete',
                                   ),
                                 ),
                             AddItemCard(
                               onPressed: () => _showAddBronzeSheet(context),
                               width: 140,
-                              minHeight: 220,
+                              minHeight: 195,
                             ),
                           ],
                         ),
@@ -529,18 +517,6 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                         mY: e.item.mY,
                                         spawnTime: t,
                                         kind: e.item.kind,
-                                      ),
-                                    ),
-                                    onKindChanged: (k) => _replaceItemAt(
-                                      _BronzeItemRef(
-                                        batchIndex: e.batchIndex,
-                                        itemIndex: e.itemIndex,
-                                      ),
-                                      BronzeStatueItemData(
-                                        mX: e.item.mX,
-                                        mY: e.item.mY,
-                                        spawnTime: e.item.spawnTime,
-                                        kind: k,
                                       ),
                                     ),
                                     deleteTooltip: l10n?.delete ?? 'Delete',
@@ -719,7 +695,6 @@ class _BronzeStatueCard extends StatefulWidget {
     required this.showCoordinates,
     required this.onDelete,
     required this.onSpawnTimeChanged,
-    required this.onKindChanged,
     required this.deleteTooltip,
   });
 
@@ -727,7 +702,6 @@ class _BronzeStatueCard extends StatefulWidget {
   final bool showCoordinates;
   final VoidCallback onDelete;
   final void Function(int spawnTime) onSpawnTimeChanged;
-  final void Function(BronzeStatueKind kind) onKindChanged;
   final String deleteTooltip;
 
   @override
@@ -831,47 +805,6 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
                         ],
                       ),
                     ),
-                  const SizedBox(height: 8),
-                  Text(
-                    l10n?.bronzeModuleTypeLabel ?? 'Type',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  SegmentedButton<BronzeStatueKind>(
-                    showSelectedIcon: false,
-                    segments: [
-                      ButtonSegment(
-                        value: BronzeStatueKind.strength,
-                        tooltip: l10n?.bronzeKindStrengthShort ?? 'Strong',
-                        icon: _BronzeZombieIcon(
-                          kind: BronzeStatueKind.strength,
-                          size: 22,
-                        ),
-                      ),
-                      ButtonSegment(
-                        value: BronzeStatueKind.mage,
-                        tooltip: l10n?.bronzeKindMageShort ?? 'Mage',
-                        icon: _BronzeZombieIcon(
-                          kind: BronzeStatueKind.mage,
-                          size: 22,
-                        ),
-                      ),
-                      ButtonSegment(
-                        value: BronzeStatueKind.agile,
-                        tooltip: l10n?.bronzeKindAgileShort ?? 'Agile',
-                        icon: _BronzeZombieIcon(
-                          kind: BronzeStatueKind.agile,
-                          size: 22,
-                        ),
-                      ),
-                    ],
-                    selected: {item.kind},
-                    onSelectionChanged: (s) {
-                      if (s.isNotEmpty) widget.onKindChanged(s.first);
-                    },
-                  ),
                   const SizedBox(height: 8),
                   TextField(
                     controller: _spawnCtrl,

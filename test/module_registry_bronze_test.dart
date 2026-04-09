@@ -9,13 +9,13 @@ void main() {
       expect(meta!.allowMultiple, isFalse);
     });
 
-    test('is in the same category as other minigame-style modules (mode)', () {
+    test('is categorized under Scene (not Special Modes)', () {
       final bronze = ModuleRegistry.registry['BronzeProperties'];
-      final bowling = ModuleRegistry.registry['BowlingMinigameProperties'];
+      final renai = ModuleRegistry.registry['RenaiModuleProperties'];
       expect(bronze, isNotNull);
-      expect(bowling, isNotNull);
-      expect(bronze!.category, ModuleCategory.mode);
-      expect(bronze.category, bowling!.category);
+      expect(renai, isNotNull);
+      expect(bronze!.category, ModuleCategory.scene);
+      expect(bronze.category, renai!.category);
     });
   });
 }
