@@ -6,10 +6,14 @@ import 'package:z_editor/data/repository/zombie_repository.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/l10n/resource_names.dart';
+import 'package:z_editor/theme/app_theme.dart';
 import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
 import 'package:z_editor/widgets/editor_components.dart';
 
 /// Kongfu World bronze statue (铜人阵) placement editor. Revival uses spawn time, not waves.
+
+/// Shared height so [AddItemCard] aligns with [_BronzeStatueCard] in the wrap.
+const double _kBronzeStatueCardHeight = 252;
 class BronzeModuleScreen extends StatefulWidget {
   const BronzeModuleScreen({
     super.key,
@@ -470,9 +474,9 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                   ),
                                 ),
                             AddItemCard(
-                              onPressed: () => _showAddBronzeSheet(context),
+                              onPressed: () => _showAddBronzeDialog(context),
                               width: 140,
-                              minHeight: 195,
+                              minHeight: _kBronzeStatueCardHeight,
                             ),
                           ],
                         ),
@@ -538,24 +542,22 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
     );
   }
 
-  Future<void> _showAddBronzeSheet(BuildContext context) async {
+  Future<void> _showAddBronzeDialog(BuildContext context) async {
     final l10n = AppLocalizations.of(context);
-    await showModalBottomSheet<void>(
+    final theme = Theme.of(context);
+    final cancelGreen = theme.brightness == Brightness.dark
+        ? pvzGreenLight
+        : pvzGreenDark;
+    await showDialog<void>(
       context: context,
-      showDragHandle: true,
       builder: (ctx) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
+        return AlertDialog(
+          title: Text(l10n?.bronzeModuleAddTitle ?? 'Add bronze type'),
+          content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(
-                  l10n?.bronzeModuleAddTitle ?? 'Add bronze type',
-                  style: Theme.of(ctx).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 12),
                 _AddBronzeKindRow(
                   kind: BronzeStatueKind.strength,
                   label: l10n?.bronzeKindStrength ?? 'Han (strong)',
@@ -564,6 +566,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                     _addBronze(BronzeStatueKind.strength);
                   },
                 ),
+                const SizedBox(height: 16),
                 _AddBronzeKindRow(
                   kind: BronzeStatueKind.mage,
                   label: l10n?.bronzeKindMage ?? 'Qigong (mage)',
@@ -572,6 +575,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                     _addBronze(BronzeStatueKind.mage);
                   },
                 ),
+                const SizedBox(height: 16),
                 _AddBronzeKindRow(
                   kind: BronzeStatueKind.agile,
                   label: l10n?.bronzeKindAgile ?? 'Knight (agile)',
@@ -583,6 +587,13 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
               ],
             ),
           ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              style: TextButton.styleFrom(foregroundColor: cancelGreen),
+              child: Text(l10n?.cancel ?? 'Cancel'),
+            ),
+          ],
         );
       },
     );
@@ -681,10 +692,22 @@ class _AddBronzeKindRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: _BronzeZombieIcon(kind: kind, size: 48),
-      title: Text(label),
-      onTap: onTap,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+          child: Row(
+            children: [
+              _BronzeZombieIcon(kind: kind, size: 48),
+              const SizedBox(width: 16),
+              Expanded(child: Text(label)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -746,91 +769,97 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
       clipBehavior: Clip.antiAlias,
       child: SizedBox(
         width: 140,
+        height: _kBronzeStatueCardHeight,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-                  child: Center(
-                    child: _BronzeZombieIcon(
-                      kind: item.kind,
-                      size: 77,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 4,
-                  right: 4,
-                  child: IconButton(
-                    icon: const Icon(Icons.delete_outline, size: 18),
-                    tooltip: widget.deleteTooltip,
-                    onPressed: widget.onDelete,
-                    style: IconButton.styleFrom(
-                      backgroundColor:
-                          theme.colorScheme.surfaceContainerHighest,
-                      padding: const EdgeInsets.all(4),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+            SizedBox(
+              height: 88,
+              child: Stack(
                 children: [
-                  Text(
-                    name,
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize:
-                          (theme.textTheme.titleSmall?.fontSize ?? 14) * 1.08,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  if (widget.showCoordinates)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 6),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.warning_amber_rounded,
-                            color: Colors.amber.shade700,
-                            size: 16,
-                          ),
-                          const SizedBox(width: 4),
-                          Text(
-                            'R${widget.item.mY + 1}:C${widget.item.mX + 1}',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: Colors.amber.shade700,
-                            ),
-                          ),
-                        ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                    child: Center(
+                      child: _BronzeZombieIcon(
+                        kind: item.kind,
+                        size: 77,
                       ),
                     ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: _spawnCtrl,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: l10n?.bronzeModuleSpawnTimeLabel ??
-                          'Revival time (s)',
-                      border: const OutlineInputBorder(),
+                  ),
+                  Positioned(
+                    top: 4,
+                    right: 4,
+                    child: IconButton(
+                      icon: const Icon(Icons.delete_outline, size: 18),
+                      tooltip: widget.deleteTooltip,
+                      onPressed: widget.onDelete,
+                      style: IconButton.styleFrom(
+                        backgroundColor:
+                            theme.colorScheme.surfaceContainerHighest,
+                        padding: const EdgeInsets.all(4),
+                      ),
                     ),
-                    onChanged: (v) {
-                      final n = int.tryParse(v);
-                      if (n != null && n >= 0) {
-                        widget.onSpawnTimeChanged(n);
-                      }
-                    },
                   ),
                 ],
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      name,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: (theme.textTheme.titleSmall?.fontSize ?? 14) *
+                            1.08,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    if (widget.showCoordinates)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 6),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.warning_amber_rounded,
+                              color: Colors.amber.shade700,
+                              size: 16,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              'R${widget.item.mY + 1}:C${widget.item.mX + 1}',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: Colors.amber.shade700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    const Spacer(),
+                    TextField(
+                      controller: _spawnCtrl,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: l10n?.bronzeModuleSpawnTimeLabel ??
+                            'Revival time (s)',
+                        border: const OutlineInputBorder(),
+                        isDense: true,
+                      ),
+                      onChanged: (v) {
+                        final n = int.tryParse(v);
+                        if (n != null && n >= 0) {
+                          widget.onSpawnTimeChanged(n);
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
