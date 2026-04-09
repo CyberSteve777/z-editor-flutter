@@ -41,8 +41,10 @@ class LevelRepositoryNativeImpl extends LevelRepositoryBase {
 
   @override
   Future<String> getCacheDir() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final cacheDir = Directory(p.join(dir.path, 'level_cache'));
+    // Internal working copy of levels — keep under app support. Using Documents
+    // was unreliable on Linux (XDG user dirs / headless) and blocked opening files.
+    final base = await getApplicationSupportDirectory();
+    final cacheDir = Directory(p.join(base.path, 'level_cache'));
     if (!await cacheDir.exists()) {
       await cacheDir.create(recursive: true);
     }
