@@ -7,13 +7,15 @@ import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/theme/app_theme.dart';
-import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
+import 'package:z_editor/widgets/asset_image.dart'
+    show AssetImageWidget, imageAltCandidates;
 import 'package:z_editor/widgets/editor_components.dart';
 
 /// Kongfu World bronze statue (铜人阵) placement editor. Revival uses spawn time, not waves.
 
 /// Shared height so [AddItemCard] aligns with [_BronzeStatueCard] in the wrap.
-const double _kBronzeStatueCardHeight = 252;
+const double _kBronzeStatueCardHeight = 175;
+
 class BronzeModuleScreen extends StatefulWidget {
   const BronzeModuleScreen({
     super.key,
@@ -72,7 +74,13 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
     for (var b = 0; b < _data.data.length; b++) {
       final batch = _data.data[b];
       for (var i = 0; i < batch.itemList.length; i++) {
-        out.add(_IndexedBronzeItem(batchIndex: b, itemIndex: i, item: batch.itemList[i]));
+        out.add(
+          _IndexedBronzeItem(
+            batchIndex: b,
+            itemIndex: i,
+            item: batch.itemList[i],
+          ),
+        );
       }
     }
     return out;
@@ -80,11 +88,13 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
 
   List<BronzeStatueItemData> get _itemsOutsideLawn {
     return _allItemsIndexed
-        .where((e) =>
-            e.item.mX < 0 ||
-            e.item.mY < 0 ||
-            e.item.mX >= _gridCols ||
-            e.item.mY >= _gridRows)
+        .where(
+          (e) =>
+              e.item.mX < 0 ||
+              e.item.mY < 0 ||
+              e.item.mX >= _gridCols ||
+              e.item.mY >= _gridRows,
+        )
         .map((e) => e.item)
         .toList();
   }
@@ -132,10 +142,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
     if (ref.itemIndex < 0 || ref.itemIndex >= items.length) return;
     items[ref.itemIndex] = next;
     batches[ref.batchIndex] = BronzeStatueBatchData(itemList: items);
-    _data = BronzePropertiesData(
-      data: batches,
-      shakeOffset: _data.shakeOffset,
-    );
+    _data = BronzePropertiesData(data: batches, shakeOffset: _data.shakeOffset);
     _sync();
   }
 
@@ -150,10 +157,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
     } else {
       batches[ref.batchIndex] = BronzeStatueBatchData(itemList: items);
     }
-    _data = BronzePropertiesData(
-      data: batches,
-      shakeOffset: _data.shakeOffset,
-    );
+    _data = BronzePropertiesData(data: batches, shakeOffset: _data.shakeOffset);
     _sync();
   }
 
@@ -165,7 +169,10 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
       kind: kind,
     );
     _data = BronzePropertiesData(
-      data: [..._data.data, BronzeStatueBatchData(itemList: [item])],
+      data: [
+        ..._data.data,
+        BronzeStatueBatchData(itemList: [item]),
+      ],
       shakeOffset: _data.shakeOffset,
     );
     _sync();
@@ -196,12 +203,14 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
               sections: [
                 HelpSectionData(
                   title: l10n?.bronzeModuleHelpOverview ?? 'Overview',
-                  body: l10n?.bronzeModuleHelpOverviewBody ??
+                  body:
+                      l10n?.bronzeModuleHelpOverviewBody ??
                       'Places Han, Qigong, and Knight bronze statues on the lawn. Revival uses spawn time (seconds), not waves.',
                 ),
                 HelpSectionData(
                   title: l10n?.bronzeModuleHelpBatches ?? 'Batches',
-                  body: l10n?.bronzeModuleHelpBatchesBody ??
+                  body:
+                      l10n?.bronzeModuleHelpBatchesBody ??
                       'Each added statue creates a batch. Statues with the same revival timing revive together.',
                 ),
               ],
@@ -223,7 +232,8 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          l10n?.bronzeModuleShakeOffset ?? 'Revival shake offset',
+                          l10n?.bronzeModuleShakeOffset ??
+                              'Revival shake offset',
                           style: theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: theme.colorScheme.primary,
@@ -238,7 +248,8 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                               decimal: true,
                             ),
                             decoration: InputDecoration(
-                              labelText: l10n?.bronzeModuleShakeOffsetLabel ??
+                              labelText:
+                                  l10n?.bronzeModuleShakeOffsetLabel ??
                                   'Shake offset',
                               border: const OutlineInputBorder(),
                             ),
@@ -278,8 +289,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                 ),
                                 Text(
                                   'R${_selectedY + 1} : C${_selectedX + 1}',
-                                  style:
-                                      theme.textTheme.titleLarge?.copyWith(
+                                  style: theme.textTheme.titleLarge?.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: theme.colorScheme.primary,
                                   ),
@@ -310,14 +320,18 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                   children: List.generate(_gridRows, (row) {
                                     return Expanded(
                                       child: Row(
-                                        children: List.generate(_gridCols, (col) {
+                                        children: List.generate(_gridCols, (
+                                          col,
+                                        ) {
                                           final isSelected =
                                               row == _selectedY &&
-                                                  col == _selectedX;
+                                              col == _selectedX;
                                           final cellItems = _allItemsIndexed
-                                              .where((e) =>
-                                                  e.item.mX == col &&
-                                                  e.item.mY == row)
+                                              .where(
+                                                (e) =>
+                                                    e.item.mX == col &&
+                                                    e.item.mY == row,
+                                              )
                                               .toList();
                                           final firstItem =
                                               cellItems.firstOrNull;
@@ -329,26 +343,31 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                                 _selectedY = row;
                                               }),
                                               child: Container(
-                                                margin:
-                                                    const EdgeInsets.all(0.5),
+                                                margin: const EdgeInsets.all(
+                                                  0.5,
+                                                ),
                                                 decoration: BoxDecoration(
                                                   color: isSelected
-                                                      ? theme.colorScheme.primary
-                                                          .withValues(
-                                                            alpha: 0.2,
-                                                          )
+                                                      ? theme
+                                                            .colorScheme
+                                                            .primary
+                                                            .withValues(
+                                                              alpha: 0.2,
+                                                            )
                                                       : Colors.transparent,
                                                   border: Border.all(
                                                     color: isSelected
                                                         ? theme
-                                                            .colorScheme.primary
+                                                              .colorScheme
+                                                              .primary
                                                         : const Color(
                                                             0xFF6B899A,
                                                           ),
                                                     width: 0.5,
                                                   ),
                                                 ),
-                                                child: count > 0 &&
+                                                child:
+                                                    count > 0 &&
                                                         firstItem != null
                                                     ? Stack(
                                                         fit: StackFit.expand,
@@ -356,16 +375,17 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                                           Positioned.fill(
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
-                                                                      .all(2),
+                                                                  const EdgeInsets.all(
+                                                                    2,
+                                                                  ),
                                                               child: FittedBox(
                                                                 fit: BoxFit
                                                                     .contain,
-                                                                child:
-                                                                    _BronzeZombieIcon(
-                                                                  kind: firstItem
-                                                                      .item
-                                                                      .kind,
+                                                                child: _BronzeZombieIcon(
+                                                                  kind:
+                                                                      firstItem
+                                                                          .item
+                                                                          .kind,
                                                                   size: 38,
                                                                 ),
                                                               ),
@@ -375,34 +395,29 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                                             Positioned(
                                                               top: 3,
                                                               right: 3,
-                                                              child:
-                                                                  Container(
+                                                              child: Container(
                                                                 padding:
-                                                                    const EdgeInsets
-                                                                        .symmetric(
-                                                                  horizontal:
-                                                                      6,
-                                                                  vertical: 3,
-                                                                ),
-                                                                decoration:
-                                                                    BoxDecoration(
+                                                                    const EdgeInsets.symmetric(
+                                                                      horizontal:
+                                                                          6,
+                                                                      vertical:
+                                                                          3,
+                                                                    ),
+                                                                decoration: BoxDecoration(
                                                                   color: theme
                                                                       .colorScheme
                                                                       .onSurfaceVariant,
                                                                   borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    bottomLeft:
-                                                                        Radius
-                                                                            .circular(
-                                                                      6,
-                                                                    ),
-                                                                  ),
+                                                                      const BorderRadius.only(
+                                                                        bottomLeft:
+                                                                            Radius.circular(
+                                                                              6,
+                                                                            ),
+                                                                      ),
                                                                 ),
                                                                 child: Text(
                                                                   '+${count - 1}',
-                                                                  style:
-                                                                      const TextStyle(
+                                                                  style: const TextStyle(
                                                                     color: Colors
                                                                         .white,
                                                                     fontSize:
@@ -444,9 +459,11 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                           runSpacing: 8,
                           children: [
                             ..._allItemsIndexed
-                                .where((e) =>
-                                    e.item.mX == _selectedX &&
-                                    e.item.mY == _selectedY)
+                                .where(
+                                  (e) =>
+                                      e.item.mX == _selectedX &&
+                                      e.item.mY == _selectedY,
+                                )
                                 .map(
                                   (e) => _BronzeStatueCard(
                                     item: e.item,
@@ -457,8 +474,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                         itemIndex: e.itemIndex,
                                       ),
                                     ),
-                                    onSpawnTimeChanged: (t) =>
-                                        _replaceItemAt(
+                                    onSpawnTimeChanged: (t) => _replaceItemAt(
                                       _BronzeItemRef(
                                         batchIndex: e.batchIndex,
                                         itemIndex: e.itemIndex,
@@ -495,11 +511,13 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                             spacing: 8,
                             runSpacing: 8,
                             children: _allItemsIndexed
-                                .where((e) =>
-                                    e.item.mX < 0 ||
-                                    e.item.mY < 0 ||
-                                    e.item.mX >= _gridCols ||
-                                    e.item.mY >= _gridRows)
+                                .where(
+                                  (e) =>
+                                      e.item.mX < 0 ||
+                                      e.item.mY < 0 ||
+                                      e.item.mX >= _gridCols ||
+                                      e.item.mY >= _gridRows,
+                                )
                                 .map(
                                   (e) => _BronzeStatueCard(
                                     item: e.item,
@@ -510,8 +528,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                         itemIndex: e.itemIndex,
                                       ),
                                     ),
-                                    onSpawnTimeChanged: (t) =>
-                                        _replaceItemAt(
+                                    onSpawnTimeChanged: (t) => _replaceItemAt(
                                       _BronzeItemRef(
                                         batchIndex: e.batchIndex,
                                         itemIndex: e.itemIndex,
@@ -737,8 +754,7 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
   @override
   void initState() {
     super.initState();
-    _spawnCtrl =
-        TextEditingController(text: '${widget.item.spawnTime}');
+    _spawnCtrl = TextEditingController(text: '${widget.item.spawnTime}');
   }
 
   @override
@@ -762,8 +778,7 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
     final item = widget.item;
     final zid = _zombieIdForBronzeKind(item.kind);
     final displayName = ResourceNames.lookup(context, 'zombie_$zid');
-    final name =
-        displayName != 'zombie_$zid' ? displayName : zid;
+    final name = displayName != 'zombie_$zid' ? displayName : zid;
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -780,10 +795,7 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
                   Padding(
                     padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
                     child: Center(
-                      child: _BronzeZombieIcon(
-                        kind: item.kind,
-                        size: 77,
-                      ),
+                      child: _BronzeZombieIcon(kind: item.kind, size: 77),
                     ),
                   ),
                   Positioned(
@@ -814,8 +826,8 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
                       textAlign: TextAlign.center,
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        fontSize: (theme.textTheme.titleSmall?.fontSize ?? 14) *
-                            1.08,
+                        fontSize:
+                            (theme.textTheme.titleSmall?.fontSize ?? 14) * 1.08,
                       ),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
@@ -846,7 +858,8 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
                       controller: _spawnCtrl,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: l10n?.bronzeModuleSpawnTimeLabel ??
+                        labelText:
+                            l10n?.bronzeModuleSpawnTimeLabel ??
                             'Revival time (s)',
                         border: const OutlineInputBorder(),
                         isDense: true,
