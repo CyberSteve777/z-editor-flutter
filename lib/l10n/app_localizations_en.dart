@@ -1572,7 +1572,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bronzeModuleHelpOverviewBody =>
-      'Places Han, Qigong, and Xiake bronze statues on the lawn. Revival uses spawn time in seconds (spawnTime), not wave numbers. Add each statue from the selected tile; each addition creates a batch entry in level data.';
+      'Places Han, Qigong, and Knight bronze statues on the lawn. Revival uses spawn time in seconds (spawnTime), not wave numbers. Add each statue from the selected tile; each addition creates a batch entry in level data.';
 
   @override
   String get bronzeModuleHelpBatches => 'Batches and timing';
@@ -1600,7 +1600,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bronzeKindMage => 'Qigong Bronze (mage)';
 
   @override
-  String get bronzeKindAgile => 'Xiake Bronze (agile)';
+  String get bronzeKindAgile => 'Knight Bronze (agile)';
 
   @override
   String get bronzeKindStrengthShort => 'Strong';

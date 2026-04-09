@@ -2917,7 +2917,7 @@ abstract class AppLocalizations {
   /// No description provided for @bronzeModuleHelpOverviewBody.
   ///
   /// In en, this message translates to:
-  /// **'Places Han, Qigong, and Xiake bronze statues on the lawn. Revival uses spawn time in seconds (spawnTime), not wave numbers. Add each statue from the selected tile; each addition creates a batch entry in level data.'**
+  /// **'Places Han, Qigong, and Knight bronze statues on the lawn. Revival uses spawn time in seconds (spawnTime), not wave numbers. Add each statue from the selected tile; each addition creates a batch entry in level data.'**
   String get bronzeModuleHelpOverviewBody;
 
   /// No description provided for @bronzeModuleHelpBatches.
@@ -2971,7 +2971,7 @@ abstract class AppLocalizations {
   /// No description provided for @bronzeKindAgile.
   ///
   /// In en, this message translates to:
-  /// **'Xiake Bronze (agile)'**
+  /// **'Knight Bronze (agile)'**
   String get bronzeKindAgile;
 
   /// No description provided for @bronzeKindStrengthShort.

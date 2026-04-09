@@ -193,7 +193,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                 HelpSectionData(
                   title: l10n?.bronzeModuleHelpOverview ?? 'Overview',
                   body: l10n?.bronzeModuleHelpOverviewBody ??
-                      'Places Han, Qigong, and Xiake bronze statues on the lawn. Revival uses spawn time (seconds), not waves.',
+                      'Places Han, Qigong, and Knight bronze statues on the lawn. Revival uses spawn time (seconds), not waves.',
                 ),
                 HelpSectionData(
                   title: l10n?.bronzeModuleHelpBatches ?? 'Batches',
@@ -362,7 +362,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                                                                   kind: firstItem
                                                                       .item
                                                                       .kind,
-                                                                  size: 32,
+                                                                  size: 38,
                                                                 ),
                                                               ),
                                                             ),
@@ -574,7 +574,7 @@ class _BronzeModuleScreenState extends State<BronzeModuleScreen> {
                 ),
                 _AddBronzeKindRow(
                   kind: BronzeStatueKind.agile,
-                  label: l10n?.bronzeKindAgile ?? 'Xiake (agile)',
+                  label: l10n?.bronzeKindAgile ?? 'Knight (agile)',
                   onTap: () {
                     Navigator.pop(ctx);
                     _addBronze(BronzeStatueKind.agile);
@@ -682,7 +682,7 @@ class _AddBronzeKindRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: _BronzeZombieIcon(kind: kind, size: 40),
+      leading: _BronzeZombieIcon(kind: kind, size: 48),
       title: Text(label),
       onTap: onTap,
     );
@@ -755,7 +755,10 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
                   child: Center(
-                    child: _BronzeZombieIcon(kind: item.kind, size: 64),
+                    child: _BronzeZombieIcon(
+                      kind: item.kind,
+                      size: 77,
+                    ),
                   ),
                 ),
                 Positioned(
@@ -775,20 +778,26 @@ class _BronzeStatueCardState extends State<_BronzeStatueCard> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+              padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
                     name,
-                    style: theme.textTheme.labelMedium,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize:
+                          (theme.textTheme.titleSmall?.fontSize ?? 14) * 1.08,
+                    ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
                   ),
                   if (widget.showCoordinates)
                     Padding(
-                      padding: const EdgeInsets.only(top: 4),
+                      padding: const EdgeInsets.only(top: 6),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.warning_amber_rounded,

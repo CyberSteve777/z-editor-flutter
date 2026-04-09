@@ -1563,7 +1563,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get bronzeModuleHelpOverviewBody =>
-      'Размещает статуи Хань, Сигун и Сякэ на газоне. Возрождение задаётся в секундах (spawnTime), а не номером волны. Добавляйте статую с выбранной клетки; каждое добавление создаёт запись в данных уровня.';
+      'Размещает статуи Хань, Сигун и Knight на газоне. Возрождение задаётся в секундах (spawnTime), а не номером волны. Добавляйте статую с выбранной клетки; каждое добавление создаёт запись в данных уровня.';
 
   @override
   String get bronzeModuleHelpBatches => 'Пакеты и время';
@@ -1591,7 +1591,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get bronzeKindMage => 'Цигун-бронза (маг)';
 
   @override
-  String get bronzeKindAgile => 'Сякэ-бронза (ловкость)';
+  String get bronzeKindAgile => 'Knight Bronze (ловкость)';
 
   @override
   String get bronzeKindStrengthShort => 'Сила';
