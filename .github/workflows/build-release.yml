@@ -43,13 +43,14 @@ jobs:
       - name: Stage Windows bundle for artifact
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Path z_editor -Force | Out-Null
-          Get-ChildItem -Path "build/windows/x64/runner/Release" -Force | Move-Item -Destination z_editor
+          $dest = "artifact/z_editor"
+          New-Item -ItemType Directory -Path $dest -Force | Out-Null
+          Get-ChildItem -Path "build/windows/x64/runner/Release" -Force | Move-Item -Destination $dest
 
       - uses: actions/upload-artifact@v4
         with:
           name: z-editor-windows-x64
-          path: z_editor
+          path: artifact
           if-no-files-found: error
 
   build-linux:
@@ -86,14 +87,14 @@ jobs:
 
       - name: Stage Linux bundle for artifact
         run: |
-          mkdir -p z_editor
+          mkdir -p artifact/z_editor
           shopt -s dotglob
-          mv build/linux/x64/release/bundle/* z_editor/
+          mv build/linux/x64/release/bundle/* artifact/z_editor/
 
       - uses: actions/upload-artifact@v4
         with:
           name: z-editor-linux-x64
-          path: z_editor
+          path: artifact
           if-no-files-found: error
 
   build-android:
