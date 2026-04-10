@@ -1820,9 +1820,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleCategoryScene => '场地配置';
 
   @override
-  String get moduleCategorySpecial => '特殊';
-
-  @override
   String get moduleTitle_RocketZombieFlickModuleProperties => '火箭筒小鬼划走';
 
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/data/pvz_models.dart';
 
-enum ModuleCategory { base, mode, scene, special }
+enum ModuleCategory { base, mode, scene }
 
 class ModuleMetadata {
   final String titleKey;
@@ -895,7 +895,7 @@ class ModuleRegistry {
       icon: Icons.swipe_vertical,
       isCore: false,
       allowMultiple: false,
-      category: ModuleCategory.special,
+      category: ModuleCategory.base,
       defaultAlias: 'RocketZombieFlick',
       routeId: 'UnknownDetail',
     ),
@@ -947,8 +947,6 @@ extension ModuleCategoryTitle on ModuleCategory {
         return 'Mode';
       case ModuleCategory.scene:
         return 'Scene';
-      case ModuleCategory.special:
-        return 'Special';
     }
   }
 }

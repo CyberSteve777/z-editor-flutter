@@ -1924,9 +1924,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get moduleCategoryScene => 'Сцена';
 
   @override
-  String get moduleCategorySpecial => 'Особые';
-
-  @override
   String get moduleTitle_RocketZombieFlickModuleProperties =>
       'Смахивание ракетного зомби';
 

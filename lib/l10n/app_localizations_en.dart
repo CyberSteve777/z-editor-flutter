@@ -1948,9 +1948,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get moduleCategoryScene => 'Scene Config';
 
   @override
-  String get moduleCategorySpecial => 'Special';
-
-  @override
   String get moduleTitle_RocketZombieFlickModuleProperties =>
       'Rocket zombie flick';
 

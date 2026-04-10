@@ -3580,12 +3580,6 @@ abstract class AppLocalizations {
   /// **'Scene Config'**
   String get moduleCategoryScene;
 
-  /// No description provided for @moduleCategorySpecial.
-  ///
-  /// In en, this message translates to:
-  /// **'Special'**
-  String get moduleCategorySpecial;
-
   /// No description provided for @moduleTitle_RocketZombieFlickModuleProperties.
   ///
   /// In en, this message translates to:

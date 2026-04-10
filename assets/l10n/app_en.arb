@@ -600,7 +600,6 @@
   "moduleCategoryBase": "Basic",
   "moduleCategoryMode": "Special Modes",
   "moduleCategoryScene": "Scene Config",
-  "moduleCategorySpecial": "Special",
   "moduleTitle_RocketZombieFlickModuleProperties": "Rocket zombie flick",
   "moduleDesc_RocketZombieFlickModuleProperties": "Lets Kongfu rocket imps be swiped off the lawn (rocket tube zombie template).",
   "kongfuRocketFlickDialogTitle": "Rocket zombie",
