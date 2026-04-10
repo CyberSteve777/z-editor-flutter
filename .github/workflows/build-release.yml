@@ -40,12 +40,14 @@ jobs:
 
       - name: Stage Windows bundle for artifact
         shell: pwsh
-        run: Move-Item -Path "build/windows/x64/runner/Release" -Destination "z-editor-windows-x64"
+        run: |
+          New-Item -ItemType Directory -Path z_editor -Force | Out-Null
+          Get-ChildItem -Path "build/windows/x64/runner/Release" -Force | Move-Item -Destination z_editor
 
       - uses: actions/upload-artifact@v4
         with:
           name: z-editor-windows-x64
-          path: z-editor-windows-x64
+          path: z_editor
           if-no-files-found: error
 
   build-linux:
@@ -81,12 +83,15 @@ jobs:
       - run: flutter build linux --release
 
       - name: Stage Linux bundle for artifact
-        run: mv build/linux/x64/release/bundle z-editor-linux-x64
+        run: |
+          mkdir -p z_editor
+          shopt -s dotglob
+          mv build/linux/x64/release/bundle/* z_editor/
 
       - uses: actions/upload-artifact@v4
         with:
           name: z-editor-linux-x64
-          path: z-editor-linux-x64
+          path: z_editor
           if-no-files-found: error
 
   build-android:
