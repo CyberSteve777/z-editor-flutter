@@ -64,6 +64,8 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev \
             libstdc++-14-dev
+          sudo ln -sf /usr/lib/x86_64-linux-gnu/libstdc++.so.6 \
+            /usr/lib/x86_64-linux-gnu/libstdc++.so
 
       - name: Cache Pub
         uses: actions/cache@v4
