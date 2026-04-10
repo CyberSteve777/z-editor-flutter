@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:z_editor/bloc/editor/editor_cubit.dart';
 import 'package:z_editor/data/repository/zombie_repository.dart';
 import 'package:z_editor/theme/app_theme.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/l10n/resource_names.dart';
+import 'package:z_editor/screens/select/kongfu_rocket_flick_prompt.dart';
 import 'package:z_editor/widgets/asset_image.dart'
     show AssetImageWidget, imageAltCandidates;
 
@@ -17,12 +19,15 @@ class ZombieSelectionScreen extends StatefulWidget {
     required this.onZombieSelected,
     this.onMultiZombieSelected,
     required this.onBack,
+    this.editorCubit,
   });
 
   final bool multiSelect;
   final void Function(String) onZombieSelected;
   final void Function(List<String>)? onMultiZombieSelected;
   final VoidCallback onBack;
+  /// When set (e.g. from the level editor), enables Kongfu rocket → flick module prompt.
+  final EditorCubit? editorCubit;
 
   @override
   State<ZombieSelectionScreen> createState() => _ZombieSelectionScreenState();
@@ -252,7 +257,13 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
           ? FloatingActionButton(
               backgroundColor: themeColor,
               foregroundColor: theme.colorScheme.surface,
-              onPressed: () {
+              onPressed: () async {
+                await maybeShowKongfuRocketFlickPrompt(
+                  context,
+                  _selectedIds,
+                  editorCubit: widget.editorCubit,
+                );
+                if (!context.mounted) return;
                 widget.onMultiZombieSelected?.call(_selectedIds.toList());
               },
               child: const Icon(Icons.check),
@@ -304,7 +315,7 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
                             zombie: zombie,
                             isSelected: isSelected,
                             isFavorite: isFavorite,
-                            onTap: () {
+                            onTap: () async {
                               if (widget.multiSelect) {
                                 setState(() {
                                   if (isSelected) {
@@ -314,6 +325,12 @@ class _ZombieSelectionScreenState extends State<ZombieSelectionScreen> {
                                   }
                                 });
                               } else {
+                                await maybeShowKongfuRocketFlickPrompt(
+                                  context,
+                                  [zombie.id],
+                                  editorCubit: widget.editorCubit,
+                                );
+                                if (!context.mounted) return;
                                 widget.onZombieSelected(zombie.id);
                               }
                             },

@@ -11,6 +11,7 @@ import 'package:z_editor/data/repository/zombie_properties_repository.dart';
 import 'package:z_editor/data/repository/fish_type_repository.dart';
 import 'package:z_editor/data/repository/fish_properties_repository.dart';
 import 'package:z_editor/data/repository/zombie_repository.dart';
+import 'package:z_editor/data/registry/module_registry.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/bloc/editor/editor_tab_type.dart';
 
@@ -142,5 +143,50 @@ class EditorCubit extends Cubit<EditorState> {
         availableTabs: _computeAvailableTabs(lf, parsed),
       ),
     );
+  }
+
+  static const String _rocketZombieFlickObjClass =
+      'RocketZombieFlickModuleProperties';
+
+  bool get hasRocketZombieFlickModule {
+    final pd = state.parsedData;
+    final def = pd?.levelDef;
+    if (pd == null || def == null) return false;
+    final map = pd.objectMap;
+    for (final rtid in def.modules) {
+      final info = RtidParser.parse(rtid);
+      if (info == null || info.source != 'CurrentLevel') continue;
+      if (map[info.alias]?.objClass == _rocketZombieFlickObjClass) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /// Adds [RocketZombieFlickModuleProperties] with empty objdata if not already present.
+  void addRocketZombieFlickModuleSilently() {
+    final lf = state.levelFile;
+    final def = state.parsedData?.levelDef;
+    if (lf == null || def == null) return;
+    if (hasRocketZombieFlickModule) return;
+
+    final meta = ModuleRegistry.getMetadata(_rocketZombieFlickObjClass);
+    var alias = meta.effectiveAlias;
+    var count = 0;
+    while (lf.objects.any((o) => o.aliases?.contains(alias) == true)) {
+      count++;
+      alias = '${meta.effectiveAlias}_$count';
+    }
+    final rtid = RtidParser.build(alias, meta.defaultSource);
+    def.modules.add(rtid);
+    lf.objects.add(
+      PvzObject(
+        aliases: [alias],
+        objClass: meta.objClass,
+        objData: Map<String, dynamic>.from(meta.initialData ?? {}),
+      ),
+    );
+    markDirty();
+    recalculateTabs();
   }
 }

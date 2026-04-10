@@ -3580,6 +3580,30 @@ abstract class AppLocalizations {
   /// **'Scene Config'**
   String get moduleCategoryScene;
 
+  /// No description provided for @moduleTitle_RocketZombieFlickModuleProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Rocket zombie flick'**
+  String get moduleTitle_RocketZombieFlickModuleProperties;
+
+  /// No description provided for @moduleDesc_RocketZombieFlickModuleProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Lets Kongfu rocket imps be swiped off the lawn (rocket tube zombie template).'**
+  String get moduleDesc_RocketZombieFlickModuleProperties;
+
+  /// No description provided for @kongfuRocketFlickDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rocket zombie'**
+  String get kongfuRocketFlickDialogTitle;
+
+  /// No description provided for @kongfuRocketFlickDialogMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want this zombie to be flicked off the lawn? You can add the Rocket Zombie Flick module to the level.'**
+  String get kongfuRocketFlickDialogMessage;
+
   /// No description provided for @customZombie.
   ///
   /// In en, this message translates to:

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:z_editor/bloc/editor/editor_cubit.dart';
 import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
@@ -19,12 +20,14 @@ class InitialZombieEntryScreen extends StatefulWidget {
     required this.levelFile,
     required this.onChanged,
     required this.onBack,
+    this.editorCubit,
   });
 
   final String rtid;
   final PvzLevelFile levelFile;
   final VoidCallback onChanged;
   final VoidCallback onBack;
+  final EditorCubit? editorCubit;
 
   @override
   State<InitialZombieEntryScreen> createState() =>
@@ -86,6 +89,7 @@ class _InitialZombieEntryScreenState extends State<InitialZombieEntryScreen> {
       context,
       MaterialPageRoute(
         builder: (_) => ZombieSelectionScreen(
+          editorCubit: widget.editorCubit,
           multiSelect: false,
           onZombieSelected: (id) {
             Navigator.pop(context);

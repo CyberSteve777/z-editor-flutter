@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:z_editor/bloc/editor/editor_cubit.dart';
 import 'package:z_editor/data/level_parser.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/repository/plant_repository.dart';
@@ -18,11 +19,13 @@ class VaseBreakerTab extends StatefulWidget {
     required this.levelFile,
     required this.onChanged,
     this.onAddModule,
+    this.editorCubit,
   });
 
   final PvzLevelFile levelFile;
   final VoidCallback onChanged;
   final void Function(String objClass)? onAddModule;
+  final EditorCubit? editorCubit;
 
   @override
   State<VaseBreakerTab> createState() => _VaseBreakerTabState();
@@ -552,6 +555,7 @@ class _VaseBreakerTabState extends State<VaseBreakerTab> {
       context,
       MaterialPageRoute(
         builder: (ctx) => ZombieSelectionScreen(
+          editorCubit: widget.editorCubit,
           onZombieSelected: (id) {
             _addVase(VaseDefinition(zombieTypeName: id, count: 1));
             Navigator.pop(ctx);

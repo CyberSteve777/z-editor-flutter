@@ -1924,6 +1924,21 @@ class AppLocalizationsRu extends AppLocalizations {
   String get moduleCategoryScene => 'Сцена';
 
   @override
+  String get moduleTitle_RocketZombieFlickModuleProperties =>
+      'Смахивание ракетного зомби';
+
+  @override
+  String get moduleDesc_RocketZombieFlickModuleProperties =>
+      'Позволяет смахивать импов с ракетницей с газона (шаблон).';
+
+  @override
+  String get kongfuRocketFlickDialogTitle => 'Ракетный зомби';
+
+  @override
+  String get kongfuRocketFlickDialogMessage =>
+      'Смахивать этого зомби с газона? Можно добавить в уровень модуль смахивания ракетного зомби.';
+
+  @override
   String get customZombie => 'Свой зомби';
 
   @override

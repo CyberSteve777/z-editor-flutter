@@ -627,6 +627,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -661,6 +662,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -749,6 +751,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -840,6 +843,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -896,6 +900,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -952,6 +957,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -1018,6 +1024,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -1054,6 +1061,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -1195,6 +1203,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -1755,6 +1764,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: true,
                     onZombieSelected: (_) {},
                     onMultiZombieSelected: (ids) {
@@ -1786,6 +1796,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -1943,6 +1954,7 @@ List<ModuleMetadata> _calculateMissingModules() {
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
             onAddModule: (objClass) => _addModule(ModuleRegistry.getMetadata(objClass)),
+            editorCubit: _ec,
           ),
         ),
       );
@@ -2047,6 +2059,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: true,
                     onZombieSelected: (_) {},
                     onMultiZombieSelected: (ids) {
@@ -2105,6 +2118,7 @@ List<ModuleMetadata> _calculateMissingModules() {
             levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
+            editorCubit: _ec,
           ),
         ),
       );
@@ -2414,6 +2428,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                 context,
                 MaterialPageRoute(
                   builder: (_) => ZombieSelectionScreen(
+                    editorCubit: _ec,
                     multiSelect: false,
                     onZombieSelected: (id) {
                       Navigator.pop(context);
@@ -2616,6 +2631,7 @@ List<ModuleMetadata> _calculateMissingModules() {
                                   return VaseBreakerTab(
                                     levelFile: _ec.state.levelFile!,
                                     onChanged: _markDirty,
+                                    editorCubit: _ec,
                                     onAddModule: (objClass) {
                                       _addModule(ModuleRegistry.getMetadata(objClass));
                                     },

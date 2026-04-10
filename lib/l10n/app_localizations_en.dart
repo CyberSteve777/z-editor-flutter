@@ -1948,6 +1948,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get moduleCategoryScene => 'Scene Config';
 
   @override
+  String get moduleTitle_RocketZombieFlickModuleProperties =>
+      'Rocket zombie flick';
+
+  @override
+  String get moduleDesc_RocketZombieFlickModuleProperties =>
+      'Lets Kongfu rocket imps be swiped off the lawn (rocket tube zombie template).';
+
+  @override
+  String get kongfuRocketFlickDialogTitle => 'Rocket zombie';
+
+  @override
+  String get kongfuRocketFlickDialogMessage =>
+      'Do you want this zombie to be flicked off the lawn? You can add the Rocket Zombie Flick module to the level.';
+
+  @override
   String get customZombie => 'Custom zombie';
 
   @override

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:z_editor/bloc/editor/editor_cubit.dart';
 import 'package:z_editor/data/repository/plant_repository.dart';
 import 'package:z_editor/data/pvz_models.dart';
 import 'package:z_editor/data/rtid_parser.dart';
@@ -20,6 +21,7 @@ class SeedRainPropertiesScreen extends StatefulWidget {
     required this.onChanged,
     required this.onBack,
     this.onAddModule,
+    this.editorCubit,
   });
 
   final String rtid;
@@ -27,6 +29,7 @@ class SeedRainPropertiesScreen extends StatefulWidget {
   final VoidCallback onChanged;
   final VoidCallback onBack;
   final void Function(String objClass)? onAddModule;
+  final EditorCubit? editorCubit;
 
   @override
   State<SeedRainPropertiesScreen> createState() =>
@@ -187,6 +190,7 @@ class _SeedRainPropertiesScreenState extends State<SeedRainPropertiesScreen> {
         context,
         MaterialPageRoute(
           builder: (ctx) => ZombieSelectionScreen(
+            editorCubit: widget.editorCubit,
             multiSelect: true,
             onZombieSelected: (_) {},
             onMultiZombieSelected: (ids) {

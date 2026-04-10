@@ -1820,6 +1820,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleCategoryScene => '场地配置';
 
   @override
+  String get moduleTitle_RocketZombieFlickModuleProperties => '火箭筒小鬼划走';
+
+  @override
+  String get moduleDesc_RocketZombieFlickModuleProperties =>
+      '允许功夫天空之城火箭筒小鬼被划走（火箭筒小鬼模板）。';
+
+  @override
+  String get kongfuRocketFlickDialogTitle => '火箭筒小鬼';
+
+  @override
+  String get kongfuRocketFlickDialogMessage =>
+      '是否要让该僵尸可被划走？可将「火箭筒小鬼划走」模块添加到关卡。';
+
+  @override
   String get customZombie => '自定义僵尸';
 
   @override
