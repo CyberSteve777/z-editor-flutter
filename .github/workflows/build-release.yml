@@ -38,6 +38,8 @@ jobs:
       - run: flutter pub get
       - run: flutter build windows --release
 
+      # upload-artifact strips the path root you upload; use artifact/z_editor so the
+      # downloaded zip has z_editor/ at the top, not loose exe/dll/data.
       - name: Stage Windows bundle for artifact
         shell: pwsh
         run: |
