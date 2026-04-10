@@ -1,0 +1,162 @@
+name: Build release (Windows, Linux, Android)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: build-release-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: stable
+
+jobs:
+  build-windows:
+    name: Windows x64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Pub
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}
+          restore-keys: |
+            pub-${{ runner.os }}-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter build windows --release
+
+      - name: Package Windows bundle
+        shell: pwsh
+        run: |
+          $out = "artifacts/z-editor-windows-x64"
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          Copy-Item -Recurse -Force "build/windows/x64/runner/Release/*" $out
+          Compress-Archive -Path $out -DestinationPath "artifacts/z-editor-windows-x64.zip" -Force
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: z-editor-windows-x64
+          path: artifacts/z-editor-windows-x64.zip
+          if-no-files-found: error
+
+  build-linux:
+    name: Linux x64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux build dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev \
+            libstdc++-14-dev
+
+      - name: Cache Pub
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}
+          restore-keys: |
+            pub-${{ runner.os }}-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter build linux --release
+
+      - name: Package Linux bundle
+        run: |
+          mkdir -p artifacts
+          cp -a build/linux/x64/release/bundle artifacts/z-editor-linux-x64
+          tar -C artifacts -czf artifacts/z-editor-linux-x64.tar.gz z-editor-linux-x64
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: z-editor-linux-x64
+          path: artifacts/z-editor-linux-x64.tar.gz
+          if-no-files-found: error
+
+  build-android:
+    name: Android APK (signed)
+    runs-on: ubuntu-latest
+    # Release keystore secrets are not available to workflows triggered from fork PRs.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Cache Pub
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}
+          restore-keys: |
+            pub-${{ runner.os }}-
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/**/*.gradle*', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Decode release keystore
+        env:
+          KEYSTORE_B64: ${{ secrets.KEYSTORE }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ]; then
+            echo "Missing repository secret KEYSTORE (base64-encoded keystore)."
+            exit 1
+          fi
+          echo "$KEYSTORE_B64" | base64 -d > android/app/release-keystore.jks
+
+      - run: flutter pub get
+
+      - name: Build signed release APK
+        env:
+          ANDROID_KEYSTORE_FILE: android/app/release-keystore.jks
+          KEYSTORE_ALIAS: ${{ secrets.KEYSTORE_ALIAS }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: flutter build apk --release
+
+      - name: Stage APK artifact
+        run: |
+          mkdir -p artifacts
+          cp build/app/outputs/flutter-apk/app-release.apk artifacts/z-editor-release.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: z-editor-android-apk
+          path: artifacts/z-editor-release.apk
+          if-no-files-found: error

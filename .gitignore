@@ -50,6 +50,7 @@ app.*.map.json
 report.txt
 /ANDROID_LASTEST_BUILD
 /android/signing
+android/app/release-keystore.jks
 local.properties
 /.vscode/launch.json
 /.devcontainer

@@ -40,15 +40,20 @@ android {
             if (keystorePropertiesFile.exists()) {
                 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
             }
-            val storeFilePath = keystoreProperties.getProperty("storeFile")
+            // CI: decode keystore to a path and set ANDROID_KEYSTORE_FILE, KEYSTORE_ALIAS, KEYSTORE_PASSWORD.
+            val envStoreFile = System.getenv("ANDROID_KEYSTORE_FILE")
+            val storeFilePath = envStoreFile ?: keystoreProperties.getProperty("storeFile")
             if (storeFilePath != null) {
                 storeFile = rootProject.file(storeFilePath)
             }
-            keyAlias = keystoreProperties.getProperty("keyAlias")
-            keyPassword = keystoreProperties.getProperty("keyPassword")
-            storePassword = keystoreProperties.getProperty("storePassword")
-
-
+            keyAlias =
+                System.getenv("KEYSTORE_ALIAS") ?: keystoreProperties.getProperty("keyAlias")
+            val envPassword = System.getenv("KEYSTORE_PASSWORD")
+            keyPassword = envPassword ?: keystoreProperties.getProperty("keyPassword")
+            storePassword =
+                envPassword
+                    ?: keystoreProperties.getProperty("storePassword")
+                    ?: keystoreProperties.getProperty("keyPassword")
         }
     }
 
