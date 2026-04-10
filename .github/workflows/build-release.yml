@@ -38,18 +38,10 @@ jobs:
       - run: flutter pub get
       - run: flutter build windows --release
 
-      - name: Package Windows bundle
-        shell: pwsh
-        run: |
-          $out = "artifacts/z-editor-windows-x64"
-          New-Item -ItemType Directory -Force -Path $out | Out-Null
-          Copy-Item -Recurse -Force "build/windows/x64/runner/Release/*" $out
-          Compress-Archive -Path $out -DestinationPath "artifacts/z-editor-windows-x64.zip" -Force
-
       - uses: actions/upload-artifact@v4
         with:
           name: z-editor-windows-x64
-          path: artifacts/z-editor-windows-x64.zip
+          path: build/windows/x64/runner/Release
           if-no-files-found: error
 
   build-linux:
@@ -84,16 +76,10 @@ jobs:
       - run: flutter pub get
       - run: flutter build linux --release
 
-      - name: Package Linux bundle
-        run: |
-          mkdir -p artifacts
-          cp -a build/linux/x64/release/bundle artifacts/z-editor-linux-x64
-          tar -C artifacts -czf artifacts/z-editor-linux-x64.tar.gz z-editor-linux-x64
-
       - uses: actions/upload-artifact@v4
         with:
           name: z-editor-linux-x64
-          path: artifacts/z-editor-linux-x64.tar.gz
+          path: build/linux/x64/release/bundle
           if-no-files-found: error
 
   build-android:
