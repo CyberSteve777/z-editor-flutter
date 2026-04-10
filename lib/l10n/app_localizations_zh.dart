@@ -4248,6 +4248,61 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleDesc_ZombieRushModuleProperties => '倒计时结束后关卡直接结算';
 
   @override
+  String get moduleTitle_PVZ1PassageModuleProperties => '传送门作战';
+
+  @override
+  String get moduleDesc_PVZ1PassageModuleProperties => '一代传送门：种类、生成列与传送间隔等';
+
+  @override
+  String get pvz1PassageModuleTitle => '传送门作战';
+
+  @override
+  String get pvz1PassageSectionParams => '传送门参数';
+
+  @override
+  String get pvz1PassageHelpOverview =>
+      '配置一代风格的场地传送门：传送门种类数、每组数量、可生成的列范围、同一只僵尸再次传送的最短间隔，以及传送门位置刷新的间隔。';
+
+  @override
+  String get pvz1PassageHelpFieldsTitle => '字段说明';
+
+  @override
+  String get pvz1PassageFieldGroupAmount => '传送门种类 (GroupAmount)';
+
+  @override
+  String get pvz1PassageHelpGroupAmount => '传送门种类（不同组类型的数量）。';
+
+  @override
+  String get pvz1PassageFieldPassageAmount => '每组传送门数量 (PassageAmount)';
+
+  @override
+  String get pvz1PassageHelpPassageAmount => '每一组内传送门的数量。';
+
+  @override
+  String get pvz1PassageFieldGridXMin => '最小生成列 (GridXMin)';
+
+  @override
+  String get pvz1PassageHelpGridXMin => '传送门可出现的最左列。';
+
+  @override
+  String get pvz1PassageFieldGridXMax => '最大生成列 (GridXMax)';
+
+  @override
+  String get pvz1PassageHelpGridXMax => '传送门可出现的最右列。';
+
+  @override
+  String get pvz1PassageFieldTransferCooldown => '同僵尸传送最短间隔 (transferCooldown)';
+
+  @override
+  String get pvz1PassageHelpTransferCooldown => '同一只僵尸两次传送之间的最短时间。';
+
+  @override
+  String get pvz1PassageFieldRefreshTime => '传送门位置刷新间隔 (refreshTime)';
+
+  @override
+  String get pvz1PassageHelpRefreshTime => '传送门重新生成位置的间隔。';
+
+  @override
   String get moduleTitle_RenaiModuleProperties => '复兴时代模块';
 
   @override

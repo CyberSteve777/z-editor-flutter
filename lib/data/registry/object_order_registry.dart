@@ -35,6 +35,7 @@ class ObjectOrderRegistry {
     'LawnMowerProperties',
     'IncreasedCostModuleProperties',
     'DeathHoleModuleProperties',
+    'PVZ1PassageModuleProperties',
     'LevelScoringModuleProperties',
     'LevelMutatorStartingPlantfoodProps',
     'LevelMutatorMaxSunProps',

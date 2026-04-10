@@ -57,6 +57,7 @@ import 'package:z_editor/screens/editor/modules/wave_manager_module_screen.dart'
 import 'package:z_editor/screens/editor/modules/lawn_mower_properties_screen.dart';
 import 'package:z_editor/screens/editor/modules/tunnel_defend_module_screen.dart';
 import 'package:z_editor/screens/editor/modules/zombie_rush_module_screen.dart';
+import 'package:z_editor/screens/editor/modules/pvz1_passage_module_screen.dart';
 import 'package:z_editor/screens/editor/tabs/izombie_tab.dart';
 import 'package:z_editor/screens/editor/tabs/level_settings_tab.dart';
 import 'package:z_editor/screens/editor/tabs/vase_breaker_tab.dart';
@@ -1849,6 +1850,21 @@ List<ModuleMetadata> _calculateMissingModules() {
         context,
         MaterialPageRoute(
           builder: (context) => DeathHoleModuleScreen(
+            rtid: rtid,
+            levelFile: _ec.state.levelFile!,
+            onChanged: _markDirty,
+            onBack: () => Navigator.pop(context),
+          ),
+        ),
+      );
+      return;
+    }
+    if (info.source == 'CurrentLevel' &&
+        objClass == 'PVZ1PassageModuleProperties') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PVZ1PassageModuleScreen(
             rtid: rtid,
             levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,

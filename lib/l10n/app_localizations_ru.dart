@@ -4417,6 +4417,74 @@ class AppLocalizationsRu extends AppLocalizations {
   String get moduleDesc_ZombieRushModuleProperties => 'Обратный отсчёт уровня';
 
   @override
+  String get moduleTitle_PVZ1PassageModuleProperties => 'Бой с порталами';
+
+  @override
+  String get moduleDesc_PVZ1PassageModuleProperties =>
+      'Порталы в стиле PVZ1: группы, колонки появления и тайминги телепорта';
+
+  @override
+  String get pvz1PassageModuleTitle => 'Бой с порталами';
+
+  @override
+  String get pvz1PassageSectionParams => 'Параметры порталов';
+
+  @override
+  String get pvz1PassageHelpOverview =>
+      'Настраивает порталы-проходы на газоне в стиле PVZ1: число типов групп порталов, число порталов в каждой группе, диапазон колонок появления, минимальный интервал между телепортами одного зомби и период обновления позиций порталов.';
+
+  @override
+  String get pvz1PassageHelpFieldsTitle => 'Описание полей';
+
+  @override
+  String get pvz1PassageFieldGroupAmount =>
+      'Типов групп порталов (GroupAmount)';
+
+  @override
+  String get pvz1PassageHelpGroupAmount =>
+      'Число различных типов групп порталов.';
+
+  @override
+  String get pvz1PassageFieldPassageAmount =>
+      'Порталов в группе (PassageAmount)';
+
+  @override
+  String get pvz1PassageHelpPassageAmount =>
+      'Сколько порталов в каждой группе.';
+
+  @override
+  String get pvz1PassageFieldGridXMin =>
+      'Минимальная колонка появления (GridXMin)';
+
+  @override
+  String get pvz1PassageHelpGridXMin =>
+      'Самая левая колонка газона, где могут появляться порталы.';
+
+  @override
+  String get pvz1PassageFieldGridXMax =>
+      'Максимальная колонка появления (GridXMax)';
+
+  @override
+  String get pvz1PassageHelpGridXMax =>
+      'Самая правая колонка газона, где могут появляться порталы.';
+
+  @override
+  String get pvz1PassageFieldTransferCooldown =>
+      'Перезарядка телепорта на зомби (transferCooldown)';
+
+  @override
+  String get pvz1PassageHelpTransferCooldown =>
+      'Минимальное время между телепортами одного и того же зомби.';
+
+  @override
+  String get pvz1PassageFieldRefreshTime =>
+      'Интервал смены позиций порталов (refreshTime)';
+
+  @override
+  String get pvz1PassageHelpRefreshTime =>
+      'Как часто заново выбираются позиции порталов.';
+
+  @override
   String get moduleTitle_RenaiModuleProperties => 'Ренессанс';
 
   @override

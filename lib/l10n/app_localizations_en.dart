@@ -4478,6 +4478,71 @@ class AppLocalizationsEn extends AppLocalizations {
       'Level ends when the timer reaches zero';
 
   @override
+  String get moduleTitle_PVZ1PassageModuleProperties => 'Portal Combat';
+
+  @override
+  String get moduleDesc_PVZ1PassageModuleProperties =>
+      'PVZ1-style passage portals: groups, spawn columns, and teleport timing';
+
+  @override
+  String get pvz1PassageModuleTitle => 'Portal Combat';
+
+  @override
+  String get pvz1PassageSectionParams => 'Portal parameters';
+
+  @override
+  String get pvz1PassageHelpOverview =>
+      'Configures PVZ1-style passage portals on the lawn: how many portal group types, how many portals in each group, the column range where portals can appear, the minimum interval before the same zombie can teleport again, and how often portal positions refresh.';
+
+  @override
+  String get pvz1PassageHelpFieldsTitle => 'Field reference';
+
+  @override
+  String get pvz1PassageFieldGroupAmount => 'Portal group types (GroupAmount)';
+
+  @override
+  String get pvz1PassageHelpGroupAmount =>
+      'Number of distinct portal group types.';
+
+  @override
+  String get pvz1PassageFieldPassageAmount =>
+      'Portals per group (PassageAmount)';
+
+  @override
+  String get pvz1PassageHelpPassageAmount =>
+      'How many portals exist in each group.';
+
+  @override
+  String get pvz1PassageFieldGridXMin => 'Minimum spawn column (GridXMin)';
+
+  @override
+  String get pvz1PassageHelpGridXMin =>
+      'Leftmost lawn column where portals may spawn.';
+
+  @override
+  String get pvz1PassageFieldGridXMax => 'Maximum spawn column (GridXMax)';
+
+  @override
+  String get pvz1PassageHelpGridXMax =>
+      'Rightmost lawn column where portals may spawn.';
+
+  @override
+  String get pvz1PassageFieldTransferCooldown =>
+      'Per-zombie teleport cooldown (transferCooldown)';
+
+  @override
+  String get pvz1PassageHelpTransferCooldown =>
+      'Shortest time between teleports for the same zombie.';
+
+  @override
+  String get pvz1PassageFieldRefreshTime =>
+      'Portal reposition interval (refreshTime)';
+
+  @override
+  String get pvz1PassageHelpRefreshTime =>
+      'How often portal positions are regenerated.';
+
+  @override
   String get moduleTitle_RenaiModuleProperties => 'Renaissance Module';
 
   @override

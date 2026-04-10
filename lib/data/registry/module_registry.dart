@@ -187,6 +187,8 @@ class ModuleRegistry {
         return l10n.moduleTitle_HeianWindModuleProperties;
       case 'moduleTitle_RocketZombieFlickModuleProperties':
         return l10n.moduleTitle_RocketZombieFlickModuleProperties;
+      case 'moduleTitle_PVZ1PassageModuleProperties':
+        return l10n.moduleTitle_PVZ1PassageModuleProperties;
       default:
         return key;
     }
@@ -307,6 +309,8 @@ class ModuleRegistry {
         return l10n.moduleDesc_HeianWindModuleProperties;
       case 'moduleDesc_RocketZombieFlickModuleProperties':
         return l10n.moduleDesc_RocketZombieFlickModuleProperties;
+      case 'moduleDesc_PVZ1PassageModuleProperties':
+        return l10n.moduleDesc_PVZ1PassageModuleProperties;
       default:
         return key;
     }
@@ -898,6 +902,17 @@ class ModuleRegistry {
       category: ModuleCategory.base,
       defaultAlias: 'RocketZombieFlick',
       routeId: 'UnknownDetail',
+    ),
+    'PVZ1PassageModuleProperties': ModuleMetadata(
+      titleKey: 'moduleTitle_PVZ1PassageModuleProperties',
+      descriptionKey: 'moduleDesc_PVZ1PassageModuleProperties',
+      icon: Icons.swap_horiz,
+      isCore: true,
+      allowMultiple: false,
+      category: ModuleCategory.mode,
+      defaultAlias: 'PassageModule',
+      initialDataFactory: () => PVZ1PassageModulePropertiesData(),
+      routeId: 'PVZ1PassageModule',
     ),
   };
 

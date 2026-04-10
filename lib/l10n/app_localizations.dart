@@ -8092,6 +8092,114 @@ abstract class AppLocalizations {
   /// **'Level ends when the timer reaches zero'**
   String get moduleDesc_ZombieRushModuleProperties;
 
+  /// No description provided for @moduleTitle_PVZ1PassageModuleProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Portal Combat'**
+  String get moduleTitle_PVZ1PassageModuleProperties;
+
+  /// No description provided for @moduleDesc_PVZ1PassageModuleProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'PVZ1-style passage portals: groups, spawn columns, and teleport timing'**
+  String get moduleDesc_PVZ1PassageModuleProperties;
+
+  /// No description provided for @pvz1PassageModuleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Portal Combat'**
+  String get pvz1PassageModuleTitle;
+
+  /// No description provided for @pvz1PassageSectionParams.
+  ///
+  /// In en, this message translates to:
+  /// **'Portal parameters'**
+  String get pvz1PassageSectionParams;
+
+  /// No description provided for @pvz1PassageHelpOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Configures PVZ1-style passage portals on the lawn: how many portal group types, how many portals in each group, the column range where portals can appear, the minimum interval before the same zombie can teleport again, and how often portal positions refresh.'**
+  String get pvz1PassageHelpOverview;
+
+  /// No description provided for @pvz1PassageHelpFieldsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Field reference'**
+  String get pvz1PassageHelpFieldsTitle;
+
+  /// No description provided for @pvz1PassageFieldGroupAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Portal group types (GroupAmount)'**
+  String get pvz1PassageFieldGroupAmount;
+
+  /// No description provided for @pvz1PassageHelpGroupAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of distinct portal group types.'**
+  String get pvz1PassageHelpGroupAmount;
+
+  /// No description provided for @pvz1PassageFieldPassageAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Portals per group (PassageAmount)'**
+  String get pvz1PassageFieldPassageAmount;
+
+  /// No description provided for @pvz1PassageHelpPassageAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'How many portals exist in each group.'**
+  String get pvz1PassageHelpPassageAmount;
+
+  /// No description provided for @pvz1PassageFieldGridXMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum spawn column (GridXMin)'**
+  String get pvz1PassageFieldGridXMin;
+
+  /// No description provided for @pvz1PassageHelpGridXMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Leftmost lawn column where portals may spawn.'**
+  String get pvz1PassageHelpGridXMin;
+
+  /// No description provided for @pvz1PassageFieldGridXMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum spawn column (GridXMax)'**
+  String get pvz1PassageFieldGridXMax;
+
+  /// No description provided for @pvz1PassageHelpGridXMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Rightmost lawn column where portals may spawn.'**
+  String get pvz1PassageHelpGridXMax;
+
+  /// No description provided for @pvz1PassageFieldTransferCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Per-zombie teleport cooldown (transferCooldown)'**
+  String get pvz1PassageFieldTransferCooldown;
+
+  /// No description provided for @pvz1PassageHelpTransferCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortest time between teleports for the same zombie.'**
+  String get pvz1PassageHelpTransferCooldown;
+
+  /// No description provided for @pvz1PassageFieldRefreshTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Portal reposition interval (refreshTime)'**
+  String get pvz1PassageFieldRefreshTime;
+
+  /// No description provided for @pvz1PassageHelpRefreshTime.
+  ///
+  /// In en, this message translates to:
+  /// **'How often portal positions are regenerated.'**
+  String get pvz1PassageHelpRefreshTime;
+
   /// No description provided for @moduleTitle_RenaiModuleProperties.
   ///
   /// In en, this message translates to:
