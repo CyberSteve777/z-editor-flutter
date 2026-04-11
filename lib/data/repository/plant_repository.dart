@@ -45,6 +45,7 @@ enum PlantTag {
   physical,
   original,
   parallel,
+  special
 }
 
 extension PlantTagExtension on PlantTag {
@@ -91,6 +92,8 @@ extension PlantTagExtension on PlantTag {
         return s.plantTagOriginal;
       case PlantTag.parallel:
         return s.plantTagParallel;
+      case PlantTag.special:
+        return s.plantTagSpecial;
     }
   }
 
@@ -160,6 +163,7 @@ extension PlantTagExtension on PlantTag {
         return PlantCategory.attribute;
       case PlantTag.original:
       case PlantTag.parallel:
+      case PlantTag.special:
         return PlantCategory.other;
     }
   }

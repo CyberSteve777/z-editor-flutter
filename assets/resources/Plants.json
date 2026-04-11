@@ -3284,5 +3284,159 @@
         "name": "plant_moonflower_iz",
         "tags": [],
         "icon": "icon_moonflower.webp"
+    },
+    {
+        "id": "minigame_imitater",
+        "name": "plant_minigame_imitater",
+        "tags": [
+            "White",
+            "Special",
+            "Trapper",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_white.png"
+    },
+    {
+        "id": "minigame_imitater_sun",
+        "name": "plant_minigame_imitater_sun",
+        "tags": [
+            "Orange",
+            "Special",
+            "SunProducer",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_melee1",
+        "name": "plant_minigame_imitater_melee1",
+        "tags": [
+            "Orange",
+            "Special",
+            "Vanguard",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_melee2",
+        "name": "plant_minigame_imitater_melee2",
+        "tags": [
+            "Orange",
+            "Special",
+            "Vanguard",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_melee3",
+        "name": "plant_minigame_imitater_melee3",
+        "tags": [
+            "Orange",
+            "Special",
+            "Vanguard",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_melee4",
+        "name": "plant_minigame_imitater_melee4",
+        "tags": [
+            "Orange",
+            "Special",
+            "Vanguard",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_defense",
+        "name": "plant_minigame_imitater_defense",
+        "tags": [
+            "Orange",
+            "Special",
+            "Defence",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_pitfall",
+        "name": "plant_minigame_imitater_pitfall",
+        "tags": [
+            "Orange",
+            "Special",
+            "Trapper",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_helper",
+        "name": "plant_minigame_imitater_helper",
+        "tags": [
+            "Orange",
+            "Special",
+            "Support",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_adc1",
+        "name": "plant_minigame_imitater_adc1",
+        "tags": [
+            "Orange",
+            "Special",
+            "Ranger",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_adc2",
+        "name": "plant_minigame_imitater_adc2",
+        "tags": [
+            "Orange",
+            "Special",
+            "Ranger",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_adc3",
+        "name": "plant_minigame_imitater_adc3",
+        "tags": [
+            "Orange",
+            "Special",
+            "Ranger",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_adc4",
+        "name": "plant_minigame_imitater_adc4",
+        "tags": [
+            "Orange",
+            "Special",
+            "Ranger",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "minigame_imitater_adc5",
+        "name": "plant_minigame_imitater_adc5",
+        "tags": [
+            "Orange",
+            "Special",
+            "Trapper",
+            "_internal_copycats"
+        ],
+        "icon": "icon_minigame_imitater_orange.png"
     }
 ]

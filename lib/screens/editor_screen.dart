@@ -57,6 +57,7 @@ import 'package:z_editor/screens/editor/modules/wave_manager_module_screen.dart'
 import 'package:z_editor/screens/editor/modules/lawn_mower_properties_screen.dart';
 import 'package:z_editor/screens/editor/modules/tunnel_defend_module_screen.dart';
 import 'package:z_editor/screens/editor/modules/zombie_rush_module_screen.dart';
+import 'package:z_editor/screens/editor/modules/pvz1_copycats_module_screen.dart';
 import 'package:z_editor/screens/editor/modules/pvz1_passage_module_screen.dart';
 import 'package:z_editor/screens/editor/tabs/izombie_tab.dart';
 import 'package:z_editor/screens/editor/tabs/level_settings_tab.dart';
@@ -152,6 +153,7 @@ class _EditorScreenState extends State<EditorScreen> {
   static const _internalTagToModule = <String, String>{
     '_internal_no42': 'UnchartedModeNo42UniverseModule',
     '_internal_mausoleum': 'PVZ2MausoleumModuleUnchartedMode',
+    '_internal_copycats': 'PVZ1CopycatsModuleProperties',
   };
 
   Set<String> _levelModuleObjClasses() {
@@ -1869,6 +1871,24 @@ List<ModuleMetadata> _calculateMissingModules() {
             levelFile: _ec.state.levelFile!,
             onChanged: _markDirty,
             onBack: () => Navigator.pop(context),
+          ),
+        ),
+      );
+      return;
+    }
+    if (info.source == 'CurrentLevel' &&
+        objClass == 'PVZ1CopycatsModuleProperties') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PVZ1CopycatsModuleScreen(
+            rtid: rtid,
+            levelFile: _ec.state.levelFile!,
+            onChanged: _markDirty,
+            onBack: () => Navigator.pop(context),
+            editorCubit: _ec,
+            onAddModule: (objClass) =>
+                _addModule(ModuleRegistry.getMetadata(objClass)),
           ),
         ),
       );

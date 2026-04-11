@@ -604,6 +604,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plantTagParallel => 'Parallel Universe';
 
   @override
+  String get plantTagSpecial => 'Special';
+
+  @override
   String get removeModuleConfirm =>
       'Remove this module? Local custom modules (@CurrentLevel) and their data will be deleted permanently.';
 
@@ -4483,6 +4486,80 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get moduleDesc_PVZ1PassageModuleProperties =>
       'PVZ1-style passage portals: groups, spawn columns, and teleport timing';
+
+  @override
+  String get moduleTitle_PVZ1CopycatsModuleProperties => 'Guess who I am';
+
+  @override
+  String get moduleDesc_PVZ1CopycatsModuleProperties =>
+      'Mini-game: summon plants or zombies; configure weights, tier, and allow/deny lists';
+
+  @override
+  String get pvz1CopycatsModuleTitle => 'Guess who I am';
+
+  @override
+  String get pvz1CopycatsSectionParams => 'Parameters';
+
+  @override
+  String get pvz1CopycatsFieldZombieWeightLabel =>
+      'Zombie spawn weight (ZombieWeight)';
+
+  @override
+  String get pvz1CopycatsHelpZombieWeight =>
+      'Relative weight for summoning zombies versus plants.';
+
+  @override
+  String get pvz1CopycatsFieldSpawnPlantLevelLabel =>
+      'Custom plant tier (SpawnPlantLevel)';
+
+  @override
+  String get pvz1CopycatsHelpSpawnPlantLevel =>
+      'Tier used when the hat summons a plant.';
+
+  @override
+  String get pvz1CopycatsSectionPlantBlackList =>
+      'Plant blacklist (PlantBlackList)';
+
+  @override
+  String get pvz1CopycatsHelpPlantBlackList =>
+      'Plants that cannot be summoned by the magic hat.';
+
+  @override
+  String get pvz1CopycatsSectionZombieWhiteList =>
+      'Zombie whitelist (ZombieWhiteList)';
+
+  @override
+  String get pvz1CopycatsHelpZombieWhiteList =>
+      'Zombie types allowed when the hat summons a zombie.';
+
+  @override
+  String get pvz1CopycatsHelpTip =>
+      'Remember to let players use the magic hat plant in the seed bank.';
+
+  @override
+  String get pvz1CopycatsHelpOverview =>
+      'Guess who I am: the hat randomly summons plants (from the full catalog except the blacklist) or zombies (from the whitelist), controlled by ZombieWeight and SpawnPlantLevel.';
+
+  @override
+  String get pvz1CopycatsHelpFieldsTitle => 'Field reference';
+
+  @override
+  String get pvz1CopycatsPlantListEmpty => 'No plants in the blacklist';
+
+  @override
+  String get pvz1CopycatsZombieListEmpty => 'No zombies in the whitelist';
+
+  @override
+  String get pvz1CopycatsAddPlant => 'Add plant to blacklist';
+
+  @override
+  String get pvz1CopycatsAddZombie => 'Add zombie to whitelist';
+
+  @override
+  String get magicHatSpawnPreviewTitle => 'Magic hat — possible plants';
+
+  @override
+  String get magicHatSpawnPreviewEmpty => 'No plants match this blacklist.';
 
   @override
   String get pvz1PassageModuleTitle => 'Portal Combat';

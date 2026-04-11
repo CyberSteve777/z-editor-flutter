@@ -596,6 +596,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plantTagParallel => '平行世界';
 
   @override
+  String get plantTagSpecial => '特殊';
+
+  @override
   String get removeModuleConfirm =>
       '确定要移除该模块吗？本地自定义模块(@CurrentLevel)及其关联数据将一并删除，不可恢复。';
 
@@ -4252,6 +4255,72 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get moduleDesc_PVZ1PassageModuleProperties => '一代传送门：种类、生成列与传送间隔等';
+
+  @override
+  String get moduleTitle_PVZ1CopycatsModuleProperties => '猜猜我是谁';
+
+  @override
+  String get moduleDesc_PVZ1CopycatsModuleProperties =>
+      '小游戏：召唤植物或僵尸；配置权重、阶级与黑白名单';
+
+  @override
+  String get pvz1CopycatsModuleTitle => '猜猜我是谁';
+
+  @override
+  String get pvz1CopycatsSectionParams => '参数';
+
+  @override
+  String get pvz1CopycatsFieldZombieWeightLabel => '召唤僵尸权重 (ZombieWeight)';
+
+  @override
+  String get pvz1CopycatsHelpZombieWeight => '召唤僵尸相对于植物的权重。';
+
+  @override
+  String get pvz1CopycatsFieldSpawnPlantLevelLabel =>
+      '自定义召唤阶级 (SpawnPlantLevel)';
+
+  @override
+  String get pvz1CopycatsHelpSpawnPlantLevel => '帽子召唤植物时使用的阶级。';
+
+  @override
+  String get pvz1CopycatsSectionPlantBlackList => '植物黑名单 (PlantBlackList)';
+
+  @override
+  String get pvz1CopycatsHelpPlantBlackList => '帽子不能召唤的植物。';
+
+  @override
+  String get pvz1CopycatsSectionZombieWhiteList => '僵尸白名单 (ZombieWhiteList)';
+
+  @override
+  String get pvz1CopycatsHelpZombieWhiteList => '允许被召唤的僵尸类型。';
+
+  @override
+  String get pvz1CopycatsHelpTip => '别忘了让玩家能使用魔术帽。';
+
+  @override
+  String get pvz1CopycatsHelpOverview =>
+      '猜猜我是谁：魔术帽随机召唤植物（全目录减去黑名单）或僵尸（白名单内），由 ZombieWeight 与 SpawnPlantLevel 等控制。';
+
+  @override
+  String get pvz1CopycatsHelpFieldsTitle => '字段说明';
+
+  @override
+  String get pvz1CopycatsPlantListEmpty => '黑名单为空';
+
+  @override
+  String get pvz1CopycatsZombieListEmpty => '白名单为空';
+
+  @override
+  String get pvz1CopycatsAddPlant => '向黑名单添加植物';
+
+  @override
+  String get pvz1CopycatsAddZombie => '向白名单添加僵尸';
+
+  @override
+  String get magicHatSpawnPreviewTitle => '魔术帽 — 可能召唤的植物';
+
+  @override
+  String get magicHatSpawnPreviewEmpty => '没有符合黑名单条件的植物。';
 
   @override
   String get pvz1PassageModuleTitle => '传送门作战';

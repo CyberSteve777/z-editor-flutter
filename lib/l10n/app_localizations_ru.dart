@@ -606,6 +606,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get plantTagParallel => 'Параллельный мир';
 
   @override
+  String get plantTagSpecial => 'Специальное';
+
+  @override
   String get removeModuleConfirm =>
       'Удалить этот модуль? Локальные модули (@CurrentLevel) и их данные будут удалены безвозвратно.';
 
@@ -4422,6 +4425,79 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get moduleDesc_PVZ1PassageModuleProperties =>
       'Порталы в стиле PVZ1: группы, колонки появления и тайминги телепорта';
+
+  @override
+  String get moduleTitle_PVZ1CopycatsModuleProperties => 'Угадай, кто я';
+
+  @override
+  String get moduleDesc_PVZ1CopycatsModuleProperties =>
+      'Мини-игра: призыв растений или зомби; веса, тир и белые/чёрные списки';
+
+  @override
+  String get pvz1CopycatsModuleTitle => 'Угадай, кто я';
+
+  @override
+  String get pvz1CopycatsSectionParams => 'Параметры';
+
+  @override
+  String get pvz1CopycatsFieldZombieWeightLabel => 'Вес зомби (ZombieWeight)';
+
+  @override
+  String get pvz1CopycatsHelpZombieWeight =>
+      'Относительный вес призыва зомби по сравнению с растениями.';
+
+  @override
+  String get pvz1CopycatsFieldSpawnPlantLevelLabel =>
+      'Тир растения (SpawnPlantLevel)';
+
+  @override
+  String get pvz1CopycatsHelpSpawnPlantLevel =>
+      'Тир при призыве растения шляпой.';
+
+  @override
+  String get pvz1CopycatsSectionPlantBlackList =>
+      'Чёрный список растений (PlantBlackList)';
+
+  @override
+  String get pvz1CopycatsHelpPlantBlackList =>
+      'Растения, которые шляпа не может призвать.';
+
+  @override
+  String get pvz1CopycatsSectionZombieWhiteList =>
+      'Белый список зомби (ZombieWhiteList)';
+
+  @override
+  String get pvz1CopycatsHelpZombieWhiteList =>
+      'Допустимые типы зомби при призыве зомби.';
+
+  @override
+  String get pvz1CopycatsHelpTip =>
+      'Не забудьте дать игроку шляпу в банке семян.';
+
+  @override
+  String get pvz1CopycatsHelpOverview =>
+      'Угадай, кто я: шляпа случайно призывает растения (из каталога, кроме чёрного списка) или зомби (из белого списка); задаётся ZombieWeight и SpawnPlantLevel.';
+
+  @override
+  String get pvz1CopycatsHelpFieldsTitle => 'Описание полей';
+
+  @override
+  String get pvz1CopycatsPlantListEmpty => 'Список пуст';
+
+  @override
+  String get pvz1CopycatsZombieListEmpty => 'Список пуст';
+
+  @override
+  String get pvz1CopycatsAddPlant => 'Добавить растение в чёрный список';
+
+  @override
+  String get pvz1CopycatsAddZombie => 'Добавить зомби в белый список';
+
+  @override
+  String get magicHatSpawnPreviewTitle => 'Шляпа — возможные растения';
+
+  @override
+  String get magicHatSpawnPreviewEmpty => 'Нет растений для этого списка.';
 
   @override
   String get pvz1PassageModuleTitle => 'Бой с порталами';

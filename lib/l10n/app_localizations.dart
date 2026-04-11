@@ -1228,6 +1228,12 @@ abstract class AppLocalizations {
   /// **'Parallel Universe'**
   String get plantTagParallel;
 
+  /// No description provided for @plantTagSpecial.
+  ///
+  /// In en, this message translates to:
+  /// **'Special'**
+  String get plantTagSpecial;
+
   /// No description provided for @removeModuleConfirm.
   ///
   /// In en, this message translates to:
@@ -8103,6 +8109,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PVZ1-style passage portals: groups, spawn columns, and teleport timing'**
   String get moduleDesc_PVZ1PassageModuleProperties;
+
+  /// No description provided for @moduleTitle_PVZ1CopycatsModuleProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Guess who I am'**
+  String get moduleTitle_PVZ1CopycatsModuleProperties;
+
+  /// No description provided for @moduleDesc_PVZ1CopycatsModuleProperties.
+  ///
+  /// In en, this message translates to:
+  /// **'Mini-game: summon plants or zombies; configure weights, tier, and allow/deny lists'**
+  String get moduleDesc_PVZ1CopycatsModuleProperties;
+
+  /// No description provided for @pvz1CopycatsModuleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Guess who I am'**
+  String get pvz1CopycatsModuleTitle;
+
+  /// No description provided for @pvz1CopycatsSectionParams.
+  ///
+  /// In en, this message translates to:
+  /// **'Parameters'**
+  String get pvz1CopycatsSectionParams;
+
+  /// No description provided for @pvz1CopycatsFieldZombieWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie spawn weight (ZombieWeight)'**
+  String get pvz1CopycatsFieldZombieWeightLabel;
+
+  /// No description provided for @pvz1CopycatsHelpZombieWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Relative weight for summoning zombies versus plants.'**
+  String get pvz1CopycatsHelpZombieWeight;
+
+  /// No description provided for @pvz1CopycatsFieldSpawnPlantLevelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom plant tier (SpawnPlantLevel)'**
+  String get pvz1CopycatsFieldSpawnPlantLevelLabel;
+
+  /// No description provided for @pvz1CopycatsHelpSpawnPlantLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Tier used when the hat summons a plant.'**
+  String get pvz1CopycatsHelpSpawnPlantLevel;
+
+  /// No description provided for @pvz1CopycatsSectionPlantBlackList.
+  ///
+  /// In en, this message translates to:
+  /// **'Plant blacklist (PlantBlackList)'**
+  String get pvz1CopycatsSectionPlantBlackList;
+
+  /// No description provided for @pvz1CopycatsHelpPlantBlackList.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants that cannot be summoned by the magic hat.'**
+  String get pvz1CopycatsHelpPlantBlackList;
+
+  /// No description provided for @pvz1CopycatsSectionZombieWhiteList.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie whitelist (ZombieWhiteList)'**
+  String get pvz1CopycatsSectionZombieWhiteList;
+
+  /// No description provided for @pvz1CopycatsHelpZombieWhiteList.
+  ///
+  /// In en, this message translates to:
+  /// **'Zombie types allowed when the hat summons a zombie.'**
+  String get pvz1CopycatsHelpZombieWhiteList;
+
+  /// No description provided for @pvz1CopycatsHelpTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember to let players use the magic hat plant in the seed bank.'**
+  String get pvz1CopycatsHelpTip;
+
+  /// No description provided for @pvz1CopycatsHelpOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Guess who I am: the hat randomly summons plants (from the full catalog except the blacklist) or zombies (from the whitelist), controlled by ZombieWeight and SpawnPlantLevel.'**
+  String get pvz1CopycatsHelpOverview;
+
+  /// No description provided for @pvz1CopycatsHelpFieldsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Field reference'**
+  String get pvz1CopycatsHelpFieldsTitle;
+
+  /// No description provided for @pvz1CopycatsPlantListEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No plants in the blacklist'**
+  String get pvz1CopycatsPlantListEmpty;
+
+  /// No description provided for @pvz1CopycatsZombieListEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No zombies in the whitelist'**
+  String get pvz1CopycatsZombieListEmpty;
+
+  /// No description provided for @pvz1CopycatsAddPlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Add plant to blacklist'**
+  String get pvz1CopycatsAddPlant;
+
+  /// No description provided for @pvz1CopycatsAddZombie.
+  ///
+  /// In en, this message translates to:
+  /// **'Add zombie to whitelist'**
+  String get pvz1CopycatsAddZombie;
+
+  /// No description provided for @magicHatSpawnPreviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Magic hat — possible plants'**
+  String get magicHatSpawnPreviewTitle;
+
+  /// No description provided for @magicHatSpawnPreviewEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No plants match this blacklist.'**
+  String get magicHatSpawnPreviewEmpty;
 
   /// No description provided for @pvz1PassageModuleTitle.
   ///

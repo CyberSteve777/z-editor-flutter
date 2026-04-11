@@ -6,6 +6,7 @@ import 'package:z_editor/data/repository/plant_repository.dart';
 import 'package:z_editor/data/rtid_parser.dart';
 import 'package:z_editor/l10n/app_localizations.dart';
 import 'package:z_editor/l10n/resource_names.dart';
+import 'package:z_editor/screens/select/magic_hat_spawn_preview_screen.dart';
 import 'package:z_editor/widgets/asset_image.dart'
     show AssetImageWidget, imageAltCandidates;
 
@@ -16,6 +17,7 @@ const String _kUnknownIconPath = 'assets/images/others/unknown.webp';
 const Map<String, String> _internalTagToModule = {
   '_internal_no42': 'UnchartedModeNo42UniverseModule',
   '_internal_mausoleum': 'PVZ2MausoleumModuleUnchartedMode',
+  '_internal_copycats': 'PVZ1CopycatsModuleProperties',
 };
 
 /// Plant selection. Ported from Z-Editor-master PlantSelectionScreen.kt
@@ -190,8 +192,28 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
     );
     if (added == true && mounted) {
       widget.onAddModule!(requiredObjClass);
+      if (!widget.isMultiSelect &&
+          requiredObjClass == 'PVZ1CopycatsModuleProperties') {
+        widget.onPlantSelected(plant.id);
+      }
       setState(() {});
     }
+  }
+
+  bool _isMagicHatPlant(PlantInfo plant) =>
+      plant.id.startsWith('minigame_imitater');
+
+  void _openMagicHatPreview(BuildContext context, String hatPlantId) {
+    Navigator.push<void>(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => MagicHatSpawnPreviewScreen(
+          hatPlantId: hatPlantId,
+          levelFile: widget.levelFile,
+          onBack: () => Navigator.pop(ctx),
+        ),
+      ),
+    );
   }
 
   @override
@@ -432,6 +454,7 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
                         plant,
                         levelModuleObjClasses,
                       );
+                      final isHat = _isMagicHatPlant(plant);
                       return _PlantGridItem(
                         plant: plant,
                         isSelected: isSelected,
@@ -443,7 +466,12 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
                           isEnabled,
                           levelModuleObjClasses,
                         ),
-                        onLongPress: () => _toggleFavorite(context, plant.id),
+                        onSecondaryTap: isHat
+                            ? () => _openMagicHatPreview(context, plant.id)
+                            : null,
+                        onLongPress: isHat
+                            ? () => _openMagicHatPreview(context, plant.id)
+                            : () => _toggleFavorite(context, plant.id),
                       );
                     },
                   ),
@@ -461,6 +489,7 @@ class _PlantGridItem extends StatelessWidget {
     required this.isFavorite,
     required this.isEnabled,
     required this.onTap,
+    this.onSecondaryTap,
     required this.onLongPress,
   });
 
@@ -469,6 +498,7 @@ class _PlantGridItem extends StatelessWidget {
   final bool isFavorite;
   final bool isEnabled;
   final VoidCallback onTap;
+  final VoidCallback? onSecondaryTap;
   final VoidCallback onLongPress;
 
   @override
@@ -483,16 +513,14 @@ class _PlantGridItem extends StatelessWidget {
     final bgColor = isSelected
         ? theme.colorScheme.primary.withValues(alpha: 0.08)
         : Colors.transparent;
-    return Opacity(
-      opacity: isEnabled ? 1.0 : 0.5,
-      child: Material(
-        color: bgColor,
+    final ink = Material(
+      color: bgColor,
+      borderRadius: BorderRadius.circular(8),
+      child: InkWell(
+        onTap: onTap,
+        onLongPress: onLongPress,
         borderRadius: BorderRadius.circular(8),
-        child: InkWell(
-          onTap: onTap,
-          onLongPress: onLongPress,
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
+        child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: borderColor, width: isSelected ? 2 : 0),
               borderRadius: BorderRadius.circular(8),
@@ -579,7 +607,15 @@ class _PlantGridItem extends StatelessWidget {
             ),
           ),
         ),
-      ),
+    );
+    return Opacity(
+      opacity: isEnabled ? 1.0 : 0.5,
+      child: onSecondaryTap == null
+          ? ink
+          : GestureDetector(
+              onSecondaryTap: onSecondaryTap,
+              child: ink,
+            ),
     );
   }
 }

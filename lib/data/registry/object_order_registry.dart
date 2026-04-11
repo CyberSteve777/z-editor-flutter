@@ -36,6 +36,7 @@ class ObjectOrderRegistry {
     'IncreasedCostModuleProperties',
     'DeathHoleModuleProperties',
     'PVZ1PassageModuleProperties',
+    'PVZ1CopycatsModuleProperties',
     'LevelScoringModuleProperties',
     'LevelMutatorStartingPlantfoodProps',
     'LevelMutatorMaxSunProps',
