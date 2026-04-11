@@ -319,12 +319,18 @@ class _ShellEventScreenState extends State<ShellEventScreen> {
                                           padding: const EdgeInsets.all(2),
                                           child: FittedBox(
                                             fit: BoxFit.contain,
-                                            child: GridItemIcon(
-                                                typeName: firstItem.type,
-                                                size: 32,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              child: Image.asset(
+                                                GridItemRepository.getIconPath(
+                                                  firstItem.type,
+                                                ),
                                                 fit: BoxFit.contain,
-                                                borderRadius: 4,
-                                                badgeScaleFactor: 1.25),
+                                                filterQuality:
+                                                    FilterQuality.medium,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
