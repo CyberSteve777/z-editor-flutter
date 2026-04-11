@@ -40,7 +40,8 @@ android {
             if (keystorePropertiesFile.exists()) {
                 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
             }
-            // CI: set ANDROID_KEYSTORE_FILE (path relative to android/ Gradle root), KEYSTORE_ALIAS, KEYSTORE_PASSWORD.
+            // CI: ANDROID_KEYSTORE_FILE (relative to android/ Gradle root), KEYSTORE_ALIAS,
+            // KEYSTORE_PASSWORD (keystore), KEYSTORE_ALIAS_PASSWORD (key).
             val envStoreFile = System.getenv("ANDROID_KEYSTORE_FILE")
             val storeFilePath = envStoreFile ?: keystoreProperties.getProperty("storeFile")
             if (storeFilePath != null) {
@@ -48,10 +49,12 @@ android {
             }
             keyAlias =
                 System.getenv("KEYSTORE_ALIAS") ?: keystoreProperties.getProperty("keyAlias")
-            val envPassword = System.getenv("KEYSTORE_PASSWORD")
-            keyPassword = envPassword ?: keystoreProperties.getProperty("keyPassword")
+            keyPassword =
+                System.getenv("KEYSTORE_ALIAS_PASSWORD")
+                    ?: keystoreProperties.getProperty("keyPassword")
+                    ?: keystoreProperties.getProperty("storePassword")
             storePassword =
-                envPassword
+                System.getenv("KEYSTORE_PASSWORD")
                     ?: keystoreProperties.getProperty("storePassword")
                     ?: keystoreProperties.getProperty("keyPassword")
         }
