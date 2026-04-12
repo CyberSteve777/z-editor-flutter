@@ -31,6 +31,7 @@ enum PlantTag {
   blue,
   purple,
   orange,
+  red,
   support,
   ranger,
   sun_producer,
@@ -64,6 +65,8 @@ extension PlantTagExtension on PlantTag {
         return s.plantTagPurple;
       case PlantTag.orange:
         return s.plantTagOrange;
+      case PlantTag.red:
+        return s.plantTagRed;
       case PlantTag.support:
         return s.plantTagSupport;
       case PlantTag.ranger:
@@ -109,6 +112,8 @@ extension PlantTagExtension on PlantTag {
         return 'Plant_Purple.webp';
       case PlantTag.orange:
         return 'Plant_Orange.webp';
+      case PlantTag.red:
+        return 'Plant_Red.png';
       case PlantTag.support:
         return 'Plant_Assist.webp';
       case PlantTag.ranger:
@@ -146,6 +151,7 @@ extension PlantTagExtension on PlantTag {
       case PlantTag.blue:
       case PlantTag.purple:
       case PlantTag.orange:
+      case PlantTag.red:
         return PlantCategory.quality;
       case PlantTag.support:
       case PlantTag.ranger:

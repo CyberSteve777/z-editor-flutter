@@ -4588,5 +4588,70 @@
       "Strong"
     ],
     "icon": "zombie_qin_terracotta_mid.webp"
+  },
+  {
+    "id": "beach_imp_quiff",
+    "name": "zombie_beach_imp_quiff",
+    "tags": [
+      "Dark_Beach",
+      "Universe",
+      "Imp"
+    ],
+    "icon": "zombie_beach_imp_quiff.webp"
+  },
+  {
+    "id": "bobsled_punk",
+    "name": "zombie_bobsled_punk",
+    "tags": [
+      "Festival2",
+      "Basic"
+    ],
+    "icon": "zombie_bobsled_punk.webp"
+  },
+  {
+    "id": "pogo",
+    "name": "zombie_pogo",
+    "tags": [
+      "Modern_Pvz1",
+      "Basic"
+    ],
+    "icon": "zombie_pogo.webp"
+  },
+  {
+    "id": "sled_punk",
+    "name": "zombie_sled_punk",
+    "tags": [
+      "Festival2",
+      "Basic"
+    ],
+    "icon": "zombie_sled_punk.webp"
+  },
+  {
+    "id": "treasureyeti_egypt",
+    "name": "zombie_treasureyeti_egypt",
+    "tags": [
+      "Egypt_Pirate",
+      "Fat"
+    ],
+    "icon": "zombie_treasureyeti_egypt.gif"
+  },
+  {
+    "id": "roman_ballista_no42",
+    "name": "zombie_roman_ballista_no42",
+    "tags": [
+      "Roman",
+      "Universe",
+      "Imp"
+    ],
+    "icon": "zombie_roman_ballista.webp"
+  },
+  {
+    "id": "slimes_gargantuar_no42",
+    "name": "zombie_slimes_gargantuar_no42",
+    "tags": [
+      "Universe",
+      "Gargantuar"
+    ],
+    "icon": "zombie_slimes.webp"
   }
 ]

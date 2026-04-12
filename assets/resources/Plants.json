@@ -3438,5 +3438,60 @@
             "_internal_copycats"
         ],
         "icon": "icon_minigame_imitater_orange.png"
+    },
+    {
+        "id": "levitater",
+        "name": "plant_levitater",
+        "tags": [
+            "Orange",
+            "Ranger",
+            "Magic",
+            "Original"
+        ],
+        "icon": "icon_levitater.webp"
+    },
+    {
+        "id": "apsarlotus",
+        "name": "plant_apsarlotus",
+        "tags": [
+            "Purple",
+            "Support",
+            "Magic",
+            "Original"
+        ],
+        "icon": "icon_apsarlotus.webp"
+    },
+    {
+        "id": "parallel_doomshroom",
+        "name": "plant_parallel_doomshroom",
+        "tags": [
+            "Parallel",
+            "Orange",
+            "Fire",
+            "_internal_no42"
+        ],
+        "icon": "icon_doomshroom.gif"
+    },
+    {
+        "id": "parallel_jackfruit",
+        "name": "plant_parallel_jackfruit",
+        "tags": [
+            "Red",
+            "Parallel",
+            "Trapper",
+            "Physical",
+            "_internal_no42"
+        ],
+        "icon": "icon_parallel_jackfriut.png"
+    },
+    {
+        "id": "sunflowerzombie",
+        "name": "plant_sunflowerzombie",
+        "tags": [
+            "Blue",
+            "SunProducer",
+            "Original"
+        ],
+        "icon": "icon_sunflowerzombie.webp"
     }
 ]
