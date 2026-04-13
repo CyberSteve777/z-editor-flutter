@@ -15,7 +15,28 @@ class FishInfo {
   final String creatureClass;
   final String? propertiesRtid;
 
-  String get iconAssetPath => 'assets/images/others/unknown.webp';
+  /// Icons under assets/images/fish/. Only these creatures are safe to pick in the editor.
+  /// Keys are lowercase; lookups must use [_normalizeFishAlias].
+  static const Map<String, String> iconAssetByAlias = {
+    'hermitcrab': 'assets/images/fish/icon_hermitcrab.webp',
+    'inkfish': 'assets/images/fish/icon_cutterfish.webp',
+    'jellyfish': 'assets/images/fish/icon_jellyfish.webp',
+    'krill': 'assets/images/fish/icon_krill.webp',
+    'pufferfish': 'assets/images/fish/icon_pufferfish.webp',
+    'starfish': 'assets/images/fish/icon_starfish.webp',
+    'swordfish': 'assets/images/fish/icon_swordfish.webp',
+  };
+
+  /// RTIDs and JSON may use mixed case; icon map keys are lowercase.
+  static String normalizeFishAlias(String s) => s.trim().toLowerCase();
+
+  static bool hasEditorIcon(String alias) =>
+      iconAssetByAlias.containsKey(normalizeFishAlias(alias));
+
+  /// Resolved icon path, or [unknown] if this creature has no bundled icon.
+  String get iconAssetPath =>
+      iconAssetByAlias[normalizeFishAlias(alias)] ??
+      'assets/images/others/unknown.webp';
 }
 
 class FishTypeRepository {
@@ -63,16 +84,20 @@ class FishTypeRepository {
   }
 
   FishInfo? getFishByTypeName(String typeName) {
+    final key = FishInfo.normalizeFishAlias(typeName);
     try {
-      return _allFishes.firstWhere((f) => f.typeName == typeName);
+      return _allFishes
+          .firstWhere((f) => FishInfo.normalizeFishAlias(f.typeName) == key);
     } catch (_) {
       return null;
     }
   }
 
   FishInfo? getFishByAlias(String alias) {
+    final key = FishInfo.normalizeFishAlias(alias);
     try {
-      return _allFishes.firstWhere((f) => f.alias == alias);
+      return _allFishes
+          .firstWhere((f) => FishInfo.normalizeFishAlias(f.alias) == key);
     } catch (_) {
       return null;
     }

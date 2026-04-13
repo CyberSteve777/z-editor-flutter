@@ -55,6 +55,7 @@ flutter:
     - assets/images/griditems/
     - assets/images/tools/
     - assets/images/others/
+    - assets/images/fish/
     - assets/images/tunnels/
 
 flutter_launcher_icons:

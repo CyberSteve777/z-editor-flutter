@@ -2240,6 +2240,8 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
         .toList();
     final customZombies = _collectCustomZombies();
     final customFishes = _collectCustomFishes();
+    final isDeepSeaLawn =
+        LevelParser.isDeepSeaLawnFromFile(widget.levelFile);
 
     return ListView(
       padding: const EdgeInsets.only(bottom: 80),
@@ -2247,7 +2249,7 @@ class _WaveTimelineTabState extends State<WaveTimelineTab> {
         _buildHintCard(context),
         if (deadLinks.isNotEmpty) _buildDeadLinksCard(context, deadLinks),
         _buildCustomZombieCard(context, customZombies),
-        _buildCustomFishCard(context, customFishes),
+        if (isDeepSeaLawn) _buildCustomFishCard(context, customFishes),
         _buildWaveManagerSettingsCard(
           context,
           interval,

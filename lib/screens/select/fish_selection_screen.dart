@@ -6,6 +6,10 @@ import 'package:z_editor/theme/app_theme.dart' show pvzFishDark, pvzFishLight;
 import 'package:z_editor/widgets/asset_image.dart' show AssetImageWidget, imageAltCandidates;
 
 /// Fish selection for ZombieFishWaveEvent. Selects creature types (fish).
+///
+/// Only fish listed in [FishInfo.iconAssetByAlias] (`fish_type_repository.dart`) appear
+/// here — each has `assets/images/fish/icon_*.webp`. Others (e.g. smalljellyfish) are omitted
+/// so levels cannot reference creatures without bundled icons (can crash the game).
 class FishSelectionScreen extends StatefulWidget {
   const FishSelectionScreen({
     super.key,
@@ -26,7 +30,15 @@ class _FishSelectionScreenState extends State<FishSelectionScreen> {
   List<FishInfo> get _displayList {
     final repo = FishTypeRepository();
     if (!repo.isLoaded) return [];
-    var list = repo.allFishes;
+    final order = FishInfo.iconAssetByAlias.keys.toList();
+    var list = repo.allFishes
+        .where((f) => FishInfo.hasEditorIcon(f.alias))
+        .toList();
+    list.sort(
+      (a, b) => order
+          .indexOf(FishInfo.normalizeFishAlias(a.alias))
+          .compareTo(order.indexOf(FishInfo.normalizeFishAlias(b.alias))),
+    );
     if (_searchQuery.trim().isNotEmpty) {
       final q = _searchQuery.toLowerCase();
       list = list
