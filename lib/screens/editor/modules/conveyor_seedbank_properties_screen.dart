@@ -19,6 +19,7 @@ class ConveyorSeedBankPropertiesScreen extends StatefulWidget {
     required this.onBack,
     required this.onRequestPlantSelection,
     required this.onRequestToolSelection,
+    this.onAddModule,
   });
 
   final String rtid;
@@ -27,6 +28,8 @@ class ConveyorSeedBankPropertiesScreen extends StatefulWidget {
   final VoidCallback onBack;
   final void Function(void Function(String) onSelected) onRequestPlantSelection;
   final void Function(void Function(String) onSelected) onRequestToolSelection;
+  /// Injects a level module by [objClass] (e.g. [PowerTileProperties]).
+  final void Function(String objClass)? onAddModule;
 
   @override
   State<ConveyorSeedBankPropertiesScreen> createState() =>
@@ -110,14 +113,58 @@ class _ConveyorSeedBankPropertiesScreenState
     });
   }
 
+  bool _hasPowerTileModule() =>
+      widget.levelFile.objects.any((o) => o.objClass == 'PowerTileProperties');
+
+  static bool _isPowerTileTool(String id) => id.startsWith('tool_powertile_');
+
   void _addTool() {
     widget.onRequestToolSelection((id) {
-      setState(() {
-        _data.initialPlantList
-            .add(InitialPlantListData(plantType: id));
-        _listKey++;
-        _sync();
-      });
+      void commit() {
+        setState(() {
+          _data.initialPlantList.add(InitialPlantListData(plantType: id));
+          _listKey++;
+          _sync();
+        });
+      }
+
+      if (_isPowerTileTool(id) && !_hasPowerTileModule()) {
+        final l10n = AppLocalizations.of(context);
+        showDialog<void>(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text(
+              l10n?.powerTileModuleRequiredTitle ??
+                  'Power Tiles module required',
+            ),
+            content: Text(
+              l10n?.powerTileModuleRequiredBody ??
+                  'Power tile tools need the Power Tiles module in this level. Add the default module now?',
+            ),
+            actions: [
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.green),
+                onPressed: () => Navigator.pop(ctx),
+                child: Text(l10n?.cancel ?? 'Cancel'),
+              ),
+              FilledButton(
+                style: FilledButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pop(ctx);
+                  widget.onAddModule?.call('PowerTileProperties');
+                  commit();
+                },
+                child: Text(l10n?.add ?? 'Add'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        commit();
+      }
     });
   }
 
@@ -135,6 +182,8 @@ class _ConveyorSeedBankPropertiesScreenState
       builder: (ctx) => _PlantDetailDialog(
         l10n: l10n,
         data: item,
+        hasCustomLevelModule: widget.levelFile.objects
+            .any((o) => o.objClass == 'CustomLevelModuleProperties'),
         onDismiss: () => Navigator.pop(ctx),
         onConfirm: () {
           _listKey++;
@@ -182,7 +231,6 @@ class _ConveyorSeedBankPropertiesScreenState
               _ConveyorConditionEditor(
                 title: l10n?.dropDelayConditions ?? 'Drop delay (DropDelayConditions)',
                 subtitle: l10n?.unitSeconds ?? 'Unit: seconds',
-                headers: ('MaxPackets', 'Delay'),
                 items: _data.dropDelayConditions,
                 extractMaxPackets: (e) => e.maxPacketsDelay,
                 onValueChange: _sync,
@@ -204,7 +252,8 @@ class _ConveyorSeedBankPropertiesScreenState
                   children: [
                     Expanded(
                       child: _NumberField(
-                        label: l10n?.threshold ?? 'Threshold',
+                        label:
+                            '${l10n?.threshold ?? 'Threshold'} (MaxPackets)',
                         value: item.maxPacketsDelay,
                         onChanged: (v) {
                           item.maxPacketsDelay = v;
@@ -215,7 +264,7 @@ class _ConveyorSeedBankPropertiesScreenState
                     const SizedBox(width: 8),
                     Expanded(
                       child: _NumberField(
-                        label: l10n?.delay ?? 'Delay',
+                        label: '${l10n?.delay ?? 'Delay'} (Delay)',
                         value: item.delay,
                         onChanged: (v) {
                           item.delay = v;
@@ -230,7 +279,6 @@ class _ConveyorSeedBankPropertiesScreenState
               _ConveyorConditionEditor(
                 title: l10n?.speedConditions ?? 'Speed (SpeedConditions)',
                 subtitle: l10n?.speedConditionsSubtitle ?? 'Standard value 100, higher = faster',
-                headers: ('MaxPackets', 'Speed'),
                 items: _data.speedConditions,
                 extractMaxPackets: (e) => e.maxPacketsSpeed,
                 onValueChange: _sync,
@@ -252,7 +300,8 @@ class _ConveyorSeedBankPropertiesScreenState
                   children: [
                     Expanded(
                       child: _NumberField(
-                        label: l10n?.threshold ?? 'Threshold',
+                        label:
+                            '${l10n?.threshold ?? 'Threshold'} (MaxPackets)',
                         value: item.maxPacketsSpeed,
                         onChanged: (v) {
                           item.maxPacketsSpeed = v;
@@ -360,7 +409,7 @@ class _ConveyorPlantListEditor extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: onAddPlant,
-                    icon: const Icon(Icons.add, size: 16),
+                    icon: const Icon(Icons.eco, size: 18),
                     label: Text(l10n?.addPlantConveyor ?? 'Add plant'),
                   ),
                 ),
@@ -368,7 +417,7 @@ class _ConveyorPlantListEditor extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: onAddTool,
-                    icon: const Icon(Icons.add, size: 16),
+                    icon: const Icon(Icons.build, size: 18),
                     label: Text(l10n?.addTool ?? 'Add tool'),
                   ),
                 ),
@@ -442,33 +491,51 @@ class _PlantRow extends StatelessWidget {
             padding: const EdgeInsets.all(12),
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
-                    width: 44,
-                    height: isTool ? 36 : 44,
-                    child: iconPath != null
-                        ? AssetImageWidget(
-                            assetPath: iconPath,
-                            width: 44,
-                            height: isTool ? 36 : 44,
-                            fit: BoxFit.cover,
-                          )
-                        : Container(
-                            color: theme.colorScheme.outline.withValues(alpha: 0.3),
-                            alignment: Alignment.center,
-                            child: Text(
-                              displayName.isNotEmpty
-                                  ? displayName[0].toUpperCase()
-                                  : '?',
-                              style: theme.textTheme.titleMedium?.copyWith(
-                                color: theme.colorScheme.onSurface,
-                                fontWeight: FontWeight.bold,
+                iconPath != null
+                    ? (isTool
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: SizedBox(
+                              width: 48,
+                              height: 58,
+                              child: AssetImageWidget(
+                                assetPath: iconPath,
+                                width: 48,
+                                height: 58,
+                                fit: BoxFit.contain,
                               ),
                             ),
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: SizedBox(
+                              width: 52,
+                              height: 52,
+                              child: AssetImageWidget(
+                                assetPath: iconPath,
+                                width: 52,
+                                height: 52,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ))
+                    : SizedBox(
+                        width: isTool ? 48 : 52,
+                        height: isTool ? 58 : 52,
+                        child: Container(
+                          color: theme.colorScheme.outline.withValues(alpha: 0.3),
+                          alignment: Alignment.center,
+                          child: Text(
+                            displayName.isNotEmpty
+                                ? displayName[0].toUpperCase()
+                                : '?',
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              color: theme.colorScheme.onSurface,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                  ),
-                ),
+                        ),
+                      ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -521,12 +588,14 @@ class _PlantDetailDialog extends StatefulWidget {
   const _PlantDetailDialog({
     required this.l10n,
     required this.data,
+    required this.hasCustomLevelModule,
     required this.onDismiss,
     required this.onConfirm,
   });
 
   final AppLocalizations? l10n;
   final InitialPlantListData data;
+  final bool hasCustomLevelModule;
   final VoidCallback onDismiss;
   final VoidCallback onConfirm;
 
@@ -537,6 +606,7 @@ class _PlantDetailDialog extends StatefulWidget {
 class _PlantDetailDialogState extends State<_PlantDetailDialog> {
   late int _weight;
   late int _level;
+  late bool _iAvatar;
   late int _maxCount;
   late double _maxWeightFactor;
   late int _minCount;
@@ -547,6 +617,7 @@ class _PlantDetailDialogState extends State<_PlantDetailDialog> {
     super.initState();
     _weight = widget.data.weight;
     _level = widget.data.iLevel ?? 0;
+    _iAvatar = widget.data.iAvatar ?? false;
     _maxCount = widget.data.maxCount;
     _maxWeightFactor = widget.data.maxWeightFactor;
     _minCount = widget.data.minCount;
@@ -554,12 +625,19 @@ class _PlantDetailDialogState extends State<_PlantDetailDialog> {
   }
 
   void _save() {
+    final isTool = widget.data.isToolEntry;
     widget.data.weight = _weight;
-    widget.data.iLevel = _level <= 0 ? null : _level;
     widget.data.maxCount = _maxCount;
     widget.data.maxWeightFactor = _maxWeightFactor;
     widget.data.minCount = _minCount;
     widget.data.minWeightFactor = _minWeightFactor;
+    if (isTool) {
+      widget.data.iLevel = null;
+      widget.data.iAvatar = null;
+    } else {
+      widget.data.iLevel = _level <= 0 ? null : _level;
+      widget.data.iAvatar = _iAvatar;
+    }
     widget.onConfirm();
   }
 
@@ -578,35 +656,60 @@ class _PlantDetailDialogState extends State<_PlantDetailDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: _NumberField(
-                    label: l10n?.initialWeight ?? 'Initial weight',
-                    value: _weight,
-                    onChanged: (v) => setState(() => _weight = v),
+            if (isTool)
+              _NumberField(
+                label: l10n?.initialWeight ?? 'Initial weight',
+                value: _weight,
+                onChanged: (v) => setState(() => _weight = v),
+              )
+            else ...[
+              Row(
+                children: [
+                  Expanded(
+                    child: _NumberField(
+                      label: l10n?.initialWeight ?? 'Initial weight',
+                      value: _weight,
+                      onChanged: (v) => setState(() => _weight = v),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: _NumberField(
+                      label: l10n?.plantLevelLabel ?? 'Plant level',
+                      value: _level,
+                      onChanged: (v) =>
+                          setState(() => _level = v.clamp(0, 5)),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '0 = follow account level',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+              ),
+              const SizedBox(height: 8),
+              Opacity(
+                opacity: widget.hasCustomLevelModule ? 0.5 : 1.0,
+                child: Tooltip(
+                  message: l10n?.conveyorPlantWearCostumeTooltip ??
+                      'When enabled, the seed packet may show a plant costume. '
+                          'Not available in Creative Courtyard levels.',
+                  child: SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      l10n?.conveyorPlantWearCostume ?? 'Wear costume (iAvatar)',
+                    ),
+                    value: _iAvatar,
+                    onChanged: widget.hasCustomLevelModule
+                        ? null
+                        : (v) => setState(() => _iAvatar = v),
                   ),
                 ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: _NumberField(
-                    label: l10n?.plantLevelLabel ?? 'Plant level',
-                    value: _level,
-                    onChanged: (v) =>
-                        setState(() => _level = isTool ? 0 : v.clamp(0, 5)),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              isTool
-                  ? (l10n?.toolCardsUseFixedLevel ?? 'Tool cards use fixed level')
-                  : '0 = follow account level',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-            ),
+              ),
+            ],
             const Divider(height: 24),
             Text(
               l10n?.maxLimits ?? 'Max limits',
@@ -682,7 +785,6 @@ class _ConveyorConditionEditor<T> extends StatelessWidget {
   const _ConveyorConditionEditor({
     required this.title,
     required this.subtitle,
-    required this.headers,
     required this.items,
     required this.extractMaxPackets,
     required this.onValueChange,
@@ -693,7 +795,6 @@ class _ConveyorConditionEditor<T> extends StatelessWidget {
 
   final String title;
   final String subtitle;
-  final (String, String) headers;
   final List<T> items;
   final int Function(T) extractMaxPackets;
   final VoidCallback onValueChange;
@@ -705,11 +806,13 @@ class _ConveyorConditionEditor<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    const double trailingSlot = 48;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(
               children: [
@@ -739,29 +842,6 @@ class _ConveyorConditionEditor<T> extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    headers.$1,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    headers.$2,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 32),
-              ],
-            ),
-            const SizedBox(height: 4),
             ...items.asMap().entries.map((e) {
               final idx = e.key;
               final item = e.value;
@@ -769,20 +849,25 @@ class _ConveyorConditionEditor<T> extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Expanded(child: buildRow(item, onValueChange)),
-                    if (isBase)
-                      Icon(
-                        Icons.lock,
-                        size: 20,
-                        color: theme.colorScheme.outline,
-                      )
-                    else
-                      IconButton(
-                        icon: const Icon(Icons.delete_outline),
-                        onPressed: () => onRemove(idx),
-                        iconSize: 20,
-                      ),
+                    SizedBox(
+                      width: trailingSlot,
+                      height: trailingSlot,
+                      child: isBase
+                          ? Center(
+                              child: Icon(
+                                Icons.lock_outline,
+                                size: 22,
+                                color: theme.colorScheme.outline,
+                              ),
+                            )
+                          : IconButton(
+                              icon: const Icon(Icons.delete_outline),
+                              onPressed: () => onRemove(idx),
+                            ),
+                    ),
                   ],
                 ),
               );

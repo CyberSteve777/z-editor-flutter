@@ -455,6 +455,7 @@ class InitialPlantListData {
   InitialPlantListData({
     this.plantType = '',
     this.iLevel,
+    this.iAvatar,
     this.weight = 100,
     this.maxCount = 0,
     this.maxWeightFactor = 1.0,
@@ -464,16 +465,24 @@ class InitialPlantListData {
 
   String plantType;
   int? iLevel;
+  /// When true, plant may use a costume on the conveyor card (plant entries only).
+  bool? iAvatar;
   int weight;
   int maxCount;
   double maxWeightFactor;
   int minCount;
   double minWeightFactor;
 
+  bool get isToolEntry =>
+      plantType.startsWith('tool_') && !plantType.startsWith('RTID(');
+
   factory InitialPlantListData.fromJson(Map<String, dynamic> json) {
+    final tool = json['ToolType'] as String?;
+    final plant = json['PlantType'] as String?;
     return InitialPlantListData(
-      plantType: json['PlantType'] as String? ?? '',
+      plantType: tool ?? plant ?? '',
       iLevel: json['iLevel'] as int?,
+      iAvatar: json['iAvatar'] as bool?,
       weight: json['Weight'] as int? ?? 100,
       maxCount: json['MaxCount'] as int? ?? 0,
       maxWeightFactor: (json['MaxWeightFactor'] as num?)?.toDouble() ?? 1.0,
@@ -482,15 +491,23 @@ class InitialPlantListData {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-    'PlantType': plantType,
-    if (iLevel != null) 'iLevel': iLevel,
-    'Weight': weight,
-    'MaxCount': maxCount,
-    'MaxWeightFactor': maxWeightFactor,
-    'MinCount': minCount,
-    'MinWeightFactor': minWeightFactor,
-  };
+  Map<String, dynamic> toJson() {
+    final m = <String, dynamic>{
+      'Weight': weight,
+      'MaxCount': maxCount,
+      'MaxWeightFactor': maxWeightFactor,
+      'MinCount': minCount,
+      'MinWeightFactor': minWeightFactor,
+    };
+    if (isToolEntry) {
+      m['ToolType'] = plantType;
+    } else {
+      m['PlantType'] = plantType;
+      if (iLevel != null) m['iLevel'] = iLevel;
+      if (iAvatar != null) m['iAvatar'] = iAvatar;
+    }
+    return m;
+  }
 }
 
 // === Initial Plant (Frozen Plant Placement - legacy format) ===
@@ -2963,6 +2980,7 @@ class ModifyConveyorPlantData {
   ModifyConveyorPlantData({
     this.type = '',
     this.iLevel,
+    this.iAvatar,
     this.weight = 100,
     this.maxCount = 0,
     this.maxWeightFactor = 1.0,
@@ -2972,16 +2990,21 @@ class ModifyConveyorPlantData {
 
   String type;
   int? iLevel;
+  bool? iAvatar;
   int weight;
   int maxCount;
   double maxWeightFactor;
   int minCount;
   double minWeightFactor;
 
+  bool get isToolEntry =>
+      type.startsWith('tool_') && !type.startsWith('RTID(');
+
   factory ModifyConveyorPlantData.fromJson(Map<String, dynamic> json) {
     return ModifyConveyorPlantData(
-      type: json['Type'] as String? ?? '',
+      type: json['ToolType'] as String? ?? json['Type'] as String? ?? '',
       iLevel: json['iLevel'] as int?,
+      iAvatar: json['iAvatar'] as bool?,
       weight: json['Weight'] as int? ?? 100,
       maxCount: json['MaxCount'] as int? ?? 0,
       maxWeightFactor: (json['MaxWeightFactor'] as num?)?.toDouble() ?? 1.0,
@@ -2992,14 +3015,19 @@ class ModifyConveyorPlantData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {
-      'Type': type,
       'Weight': weight,
       'MaxCount': maxCount,
       'MaxWeightFactor': maxWeightFactor,
       'MinCount': minCount,
       'MinWeightFactor': minWeightFactor,
     };
-    if (iLevel != null) data['iLevel'] = iLevel;
+    if (isToolEntry) {
+      data['ToolType'] = type;
+    } else {
+      data['Type'] = type;
+      if (iLevel != null) data['iLevel'] = iLevel;
+      if (iAvatar != null) data['iAvatar'] = iAvatar;
+    }
     return data;
   }
 }
@@ -3009,11 +3037,21 @@ class ModifyConveyorRemoveData {
 
   String type;
 
+  bool get isToolEntry =>
+      type.startsWith('tool_') && !type.startsWith('RTID(');
+
   factory ModifyConveyorRemoveData.fromJson(Map<String, dynamic> json) {
-    return ModifyConveyorRemoveData(type: json['Type'] as String? ?? '');
+    return ModifyConveyorRemoveData(
+      type: json['ToolType'] as String? ?? json['Type'] as String? ?? '',
+    );
   }
 
-  Map<String, dynamic> toJson() => {'Type': type};
+  Map<String, dynamic> toJson() {
+    if (isToolEntry) {
+      return {'ToolType': type};
+    }
+    return {'Type': type};
+  }
 }
 
 class TidalChangeWaveActionData {
