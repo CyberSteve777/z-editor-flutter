@@ -9,6 +9,8 @@ import 'package:z_editor/l10n/resource_names.dart';
 import 'package:z_editor/screens/select/magic_hat_spawn_preview_screen.dart';
 import 'package:z_editor/widgets/asset_image.dart'
     show AssetImageWidget, imageAltCandidates;
+import 'package:z_editor/widgets/editor_components.dart'
+    show ScrollableWithMouseDrag;
 
 /// Placeholder when a plant has no icon or icon fails to load.
 const String _kUnknownIconPath = 'assets/images/others/unknown.webp';
@@ -239,165 +241,19 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
       _selectedTag = visibleTags.first;
     }
     final themeColor = theme.colorScheme.primary;
-
-    final appBarHeight = _selectedCategory == PlantCategory.collection
-        ? 120.0
-        : 168.0;
+    final filterMaxHeight = MediaQuery.sizeOf(context).height * 0.42;
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(appBarHeight),
-        child: Container(
-          color: themeColor,
-          child: SafeArea(
-            bottom: false,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back),
-                          color: theme.colorScheme.surface,
-                          onPressed: widget.onBack,
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: TextField(
-                            onChanged: (v) => setState(() => _searchQuery = v),
-                            decoration: InputDecoration(
-                              hintText: widget.isMultiSelect
-                                  ? (l10n?.selectedCountTapToSearch(
-                                          _selectedIds.length,
-                                        ) ??
-                                        'Selected ${_selectedIds.length}, tap to search')
-                                  : (l10n?.searchPlant ?? 'Search plant'),
-                              prefixIcon: const Icon(Icons.search),
-                              suffixIcon: _searchQuery.isNotEmpty
-                                  ? IconButton(
-                                      icon: const Icon(Icons.clear),
-                                      onPressed: () =>
-                                          setState(() => _searchQuery = ''),
-                                    )
-                                  : null,
-                              filled: true,
-                              fillColor: theme.colorScheme.surface,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(24),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  DefaultTabController(
-                    key: ValueKey(_selectedCategory),
-                    length: PlantCategory.values.length,
-                    initialIndex: PlantCategory.values.indexOf(
-                      _selectedCategory,
-                    ),
-                    child: TabBar(
-                      isScrollable: true,
-                      indicatorColor: theme.colorScheme.surface,
-                      labelColor: theme.colorScheme.surface,
-                      unselectedLabelColor: theme.colorScheme.surface
-                          .withValues(alpha: 0.6),
-                      onTap: (index) =>
-                          _setCategory(PlantCategory.values[index]),
-                      tabs: PlantCategory.values.map((category) {
-                        final isSelected = _selectedCategory == category;
-                        return Tab(
-                          child: Row(
-                            children: [
-                              if (category == PlantCategory.collection) ...[
-                                Icon(
-                                  Icons.star,
-                                  size: 16,
-                                  color: isSelected
-                                      ? theme.colorScheme.surface
-                                      : theme.colorScheme.surface.withValues(
-                                          alpha: 0.6,
-                                        ),
-                                ),
-                                const SizedBox(width: 4),
-                              ],
-                              Text(
-                                category.getLabel(context),
-                                style: TextStyle(
-                                  fontWeight: isSelected
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                  if (_selectedCategory != PlantCategory.collection)
-                    DefaultTabController(
-                      key: ValueKey('${_selectedCategory.name}_tags'),
-                      length: visibleTags.length,
-                      initialIndex: safeTagIndex,
-                      child: TabBar(
-                        isScrollable: true,
-                        indicatorColor: theme.colorScheme.surface.withValues(
-                          alpha: 0.8,
-                        ),
-                        labelColor: theme.colorScheme.surface,
-                        unselectedLabelColor: theme.colorScheme.surface
-                            .withValues(alpha: 0.6),
-                        onTap: (index) =>
-                            setState(() => _selectedTag = visibleTags[index]),
-                        tabs: visibleTags.map((tag) {
-                          final isSelected = _selectedTag == tag;
-                          final iconName = tag.iconName;
-                          return Tab(
-                            child: Row(
-                              children: [
-                                if (iconName != null) ...[
-                                  AssetImageWidget(
-                                    assetPath: 'assets/images/tags/$iconName',
-                                    width: 18,
-                                    height: 18,
-                                    altCandidates: imageAltCandidates(
-                                      'assets/images/tags/$iconName',
-                                    ),
-                                    cacheWidth: 36,
-                                    cacheHeight: 36,
-                                  ),
-                                  const SizedBox(width: 6),
-                                ],
-                                Text(
-                                  tag.getLabel(context),
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: isSelected
-                                        ? FontWeight.bold
-                                        : FontWeight.normal,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ),
+      appBar: AppBar(
+        backgroundColor: themeColor,
+        foregroundColor: theme.colorScheme.surface,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: widget.onBack,
         ),
+        title: Text(l10n?.selectPlant ?? 'Select plant'),
       ),
       floatingActionButton: widget.isMultiSelect
           ? FloatingActionButton(
@@ -410,71 +266,213 @@ class _PlantSelectionScreenState extends State<PlantSelectionScreen> {
           : null,
       body: Column(
         children: [
+          Container(
+            width: double.infinity,
+            color: themeColor,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: filterMaxHeight),
+              child: ScrollableWithMouseDrag(
+                child: SingleChildScrollView(
+                  child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+                      child: TextField(
+                        onChanged: (v) => setState(() => _searchQuery = v),
+                        decoration: InputDecoration(
+                          hintText: widget.isMultiSelect
+                              ? (l10n?.selectedCountTapToSearch(
+                                      _selectedIds.length,
+                                    ) ??
+                                    'Selected ${_selectedIds.length}, tap to search')
+                              : (l10n?.searchPlant ?? 'Search plant'),
+                          prefixIcon: const Icon(Icons.search),
+                          suffixIcon: _searchQuery.isNotEmpty
+                              ? IconButton(
+                                  icon: const Icon(Icons.clear),
+                                  onPressed: () =>
+                                      setState(() => _searchQuery = ''),
+                                )
+                              : null,
+                          filled: true,
+                          fillColor: theme.colorScheme.surface,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(24),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                    DefaultTabController(
+                      key: ValueKey(_selectedCategory),
+                      length: PlantCategory.values.length,
+                      initialIndex: PlantCategory.values.indexOf(
+                        _selectedCategory,
+                      ),
+                      child: TabBar(
+                        isScrollable: true,
+                        indicatorColor: theme.colorScheme.surface,
+                        labelColor: theme.colorScheme.surface,
+                        unselectedLabelColor: theme.colorScheme.surface
+                            .withValues(alpha: 0.6),
+                        onTap: (index) =>
+                            _setCategory(PlantCategory.values[index]),
+                        tabs: PlantCategory.values.map((category) {
+                          final isSelected = _selectedCategory == category;
+                          return Tab(
+                            child: Row(
+                              children: [
+                                if (category == PlantCategory.collection) ...[
+                                  Icon(
+                                    Icons.star,
+                                    size: 16,
+                                    color: isSelected
+                                        ? theme.colorScheme.surface
+                                        : theme.colorScheme.surface.withValues(
+                                            alpha: 0.6,
+                                          ),
+                                  ),
+                                  const SizedBox(width: 4),
+                                ],
+                                Text(
+                                  category.getLabel(context),
+                                  style: TextStyle(
+                                    fontWeight: isSelected
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    if (_selectedCategory != PlantCategory.collection)
+                      DefaultTabController(
+                        key: ValueKey('${_selectedCategory.name}_tags'),
+                        length: visibleTags.length,
+                        initialIndex: safeTagIndex,
+                        child: TabBar(
+                          isScrollable: true,
+                          indicatorColor: theme.colorScheme.surface.withValues(
+                            alpha: 0.8,
+                          ),
+                          labelColor: theme.colorScheme.surface,
+                          unselectedLabelColor: theme.colorScheme.surface
+                              .withValues(alpha: 0.6),
+                          onTap: (index) => setState(
+                            () => _selectedTag = visibleTags[index],
+                          ),
+                          tabs: visibleTags.map((tag) {
+                            final isSelected = _selectedTag == tag;
+                            final iconName = tag.iconName;
+                            return Tab(
+                              child: Row(
+                                children: [
+                                  if (iconName != null) ...[
+                                    AssetImageWidget(
+                                      assetPath:
+                                          'assets/images/tags/$iconName',
+                                      width: 18,
+                                      height: 18,
+                                      altCandidates: imageAltCandidates(
+                                        'assets/images/tags/$iconName',
+                                      ),
+                                      cacheWidth: 36,
+                                      cacheHeight: 36,
+                                    ),
+                                    const SizedBox(width: 6),
+                                  ],
+                                  Text(
+                                    tag.getLabel(context),
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: isSelected
+                                          ? FontWeight.bold
+                                          : FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    const SizedBox(height: 8),
+                  ],
+                ),
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: !_isLoaded
                 ? const Center(child: CircularProgressIndicator())
                 : plants.isEmpty
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.search,
-                          size: 64,
-                          color: theme.colorScheme.onSurfaceVariant,
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search,
+                              size: 64,
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              _selectedCategory == PlantCategory.collection
+                                  ? (l10n?.noFavoritesLongPress ??
+                                        'No favorites. Long-press to favorite.')
+                                  : (l10n?.noPlantFound ?? 'No plant found'),
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 16),
-                        Text(
-                          _selectedCategory == PlantCategory.collection
-                              ? (l10n?.noFavoritesLongPress ??
-                                    'No favorites. Long-press to favorite.')
-                              : (l10n?.noPlantFound ?? 'No plant found'),
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : GridView.builder(
-                    padding: const EdgeInsets.all(12),
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      )
+                    : GridView.builder(
+                        padding: const EdgeInsets.all(12),
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 72,
                           mainAxisSpacing: 12,
                           crossAxisSpacing: 8,
                           childAspectRatio: 0.65,
                         ),
-                    itemCount: plants.length,
-                    itemBuilder: (_, i) {
-                      final plant = plants[i];
-                      final isSelected = _selectedIds.contains(plant.id);
-                      final isFavorite = repo.isFavorite(plant.id);
-                      final isEnabled = _isPlantEnabled(
-                        plant,
-                        levelModuleObjClasses,
-                      );
-                      final isHat = _isMagicHatPlant(plant);
-                      return _PlantGridItem(
-                        plant: plant,
-                        isSelected: isSelected,
-                        isFavorite: isFavorite,
-                        isEnabled: isEnabled,
-                        onTap: () => _onPlantTap(
-                          context,
-                          plant,
-                          isEnabled,
-                          levelModuleObjClasses,
-                        ),
-                        onSecondaryTap: isHat
-                            ? () => _openMagicHatPreview(context, plant.id)
-                            : null,
-                        onLongPress: isHat
-                            ? () => _openMagicHatPreview(context, plant.id)
-                            : () => _toggleFavorite(context, plant.id),
-                      );
-                    },
-                  ),
+                        itemCount: plants.length,
+                        itemBuilder: (_, i) {
+                          final plant = plants[i];
+                          final isSelected = _selectedIds.contains(plant.id);
+                          final isFavorite = repo.isFavorite(plant.id);
+                          final isEnabled = _isPlantEnabled(
+                            plant,
+                            levelModuleObjClasses,
+                          );
+                          final isHat = _isMagicHatPlant(plant);
+                          return _PlantGridItem(
+                            plant: plant,
+                            isSelected: isSelected,
+                            isFavorite: isFavorite,
+                            isEnabled: isEnabled,
+                            onTap: () => _onPlantTap(
+                              context,
+                              plant,
+                              isEnabled,
+                              levelModuleObjClasses,
+                            ),
+                            onSecondaryTap: isHat
+                                ? () => _openMagicHatPreview(context, plant.id)
+                                : null,
+                            onLongPress: isHat
+                                ? () => _openMagicHatPreview(context, plant.id)
+                                : () => _toggleFavorite(context, plant.id),
+                          );
+                        },
+                      ),
           ),
         ],
       ),
