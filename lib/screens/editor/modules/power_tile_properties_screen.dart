@@ -245,33 +245,36 @@ class _PowerTilePropertiesScreenState extends State<PowerTilePropertiesScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: _groups.map((g) {
-                final isSelected = _selectedGroup == g.$1;
-                return ChoiceChip(
-                  label: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(4),
-                        child: AssetImageWidget(
-                          assetPath: _toolPath(g.$4),
-                          width: 24,
-                          height: 24,
-                          fit: BoxFit.cover,
-                          altCandidates: imageAltCandidates(_toolPath(g.$4)),
+            Center(
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
+                children: _groups.map((g) {
+                  final isSelected = _selectedGroup == g.$1;
+                  return ChoiceChip(
+                    label: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: AssetImageWidget(
+                            assetPath: _toolPath(g.$4),
+                            width: 28,
+                            height: 28,
+                            fit: BoxFit.contain,
+                            altCandidates: imageAltCandidates(_toolPath(g.$4)),
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 6),
-                      Text(g.$2),
-                    ],
-                  ),
-                  selected: isSelected,
-                  onSelected: (_) => setState(() => _selectedGroup = g.$1),
-                );
-              }).toList(),
+                        const SizedBox(width: 6),
+                        Text(g.$2),
+                      ],
+                    ),
+                    selected: isSelected,
+                    onSelected: (_) => setState(() => _selectedGroup = g.$1),
+                  );
+                }).toList(),
+              ),
             ),
             const SizedBox(height: 24),
             Text(
@@ -292,7 +295,7 @@ class _PowerTilePropertiesScreenState extends State<PowerTilePropertiesScreen> {
                   context: context,
                   desktopScale: desktop ? 0.92 : 1.0,
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: ConstrainedBox(
                       constraints: BoxConstraints(maxWidth: maxGridW),
                       child: AspectRatio(
@@ -349,7 +352,7 @@ class _PowerTilePropertiesScreenState extends State<PowerTilePropertiesScreen> {
                                                   opacity:
                                                       tile.group == _selectedGroup
                                                           ? 1.0
-                                                          : 0.5,
+                                                          : 0.25,
                                                   child: LayoutBuilder(
                                                     builder: (context, c) {
                                                       final dpr = MediaQuery
