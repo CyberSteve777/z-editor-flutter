@@ -554,6 +554,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plantTagOrange => '橙色品质';
 
   @override
+  String get plantTagRed => '红色品质';
+
+  @override
   String get plantTagSupport => '辅助植物';
 
   @override
@@ -1126,7 +1129,32 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleTitle_CustomLevelModuleProperties => '庭院模块';
 
   @override
-  String get moduleDesc_CustomLevelModuleProperties => '开启后关卡适配庭院框架';
+  String get moduleDesc_CustomLevelModuleProperties =>
+      '开启后关卡适配庭院框架。此模式下植物无法穿戴装扮。';
+
+  @override
+  String get powerTileModuleRequiredTitle => '需要能量瓷砖模块';
+
+  @override
+  String get powerTileModuleRequiredBody => '能量瓷砖工具需要关卡中包含能量瓷砖模块。是否添加默认模块并继续？';
+
+  @override
+  String get conveyorPlantWearCostume => '穿戴装扮 (iAvatar)';
+
+  @override
+  String get conveyorPlantWearCostumeTooltip => '启用后传送带卡牌可显示植物装扮。启用创意庭院模块时不可用。';
+
+  @override
+  String get modifyConveyorAddPoolTitle => '加入传送带池';
+
+  @override
+  String get modifyConveyorAddPoolEmpty => '暂无条目。请添加植物或工具并设置权重与限制。';
+
+  @override
+  String get modifyConveyorRemovePoolTitle => '从传送带移除';
+
+  @override
+  String get modifyConveyorEntryEditTitle => '编辑传送带条目';
 
   @override
   String get moduleTitle_UnchartedModeNo42UniverseModule => '平行宇宙模块';
@@ -3240,6 +3268,52 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get powerTile => '能量瓷砖设置';
+
+  @override
+  String get powerTileGridSection => '能量瓷砖网格';
+
+  @override
+  String get powerTileGridHelpPrimary =>
+      '点击格子放置当前选中的组；再次点击相同组可移除；若该格已有其他组，将直接替换。';
+
+  @override
+  String get powerTileGridHelpSecondaryMobile => '长按格子可快速选择组、清空或设置传播延迟。';
+
+  @override
+  String get powerTileGridHelpSecondaryDesktop => '右键格子可快速选择组、清空或设置传播延迟。';
+
+  @override
+  String get powerTileLinkedTilesSection => '联动瓷砖';
+
+  @override
+  String get powerTilePropagationDelayLabel => '传播延迟（秒）';
+
+  @override
+  String get powerTilePropagationDelayTooltip => '沿该瓷砖联动传播前的延迟时间（0–5 秒）。';
+
+  @override
+  String get powerTileDialogEditCell => '编辑格子';
+
+  @override
+  String get powerTileDialogTileGroup => '瓷砖组';
+
+  @override
+  String get powerTileDialogNone => '无';
+
+  @override
+  String get powerTileDialogPropagationDelay => '传播延迟（秒）';
+
+  @override
+  String get powerTileHelpOverview =>
+      '按组（α–ε）放置能量瓷砖；每个瓷砖可设置传播延迟以控制连锁效果。网格中非当前选中组的瓷砖会以半透明显示。';
+
+  @override
+  String get powerTileHelpGridSize => '深海 / 亚特兰蒂斯关卡草坪为 10 列 × 6 行；其他关卡为 9 × 5。';
+
+  @override
+  String powerTileHelpQuickEdit(String interaction) {
+    return '快速编辑：$interaction';
+  }
 
   @override
   String get eventStandardSpawn => '事件类型：自然出怪';

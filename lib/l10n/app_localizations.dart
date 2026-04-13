@@ -1144,6 +1144,12 @@ abstract class AppLocalizations {
   /// **'Orange Quality'**
   String get plantTagOrange;
 
+  /// No description provided for @plantTagRed.
+  ///
+  /// In en, this message translates to:
+  /// **'Red Quality'**
+  String get plantTagRed;
+
   /// No description provided for @plantTagSupport.
   ///
   /// In en, this message translates to:
@@ -2227,8 +2233,56 @@ abstract class AppLocalizations {
   /// No description provided for @moduleDesc_CustomLevelModuleProperties.
   ///
   /// In en, this message translates to:
-  /// **'Enables Creative Courtyard features (likes, rewards, etc.)'**
+  /// **'Enables Creative Courtyard features (likes, rewards, etc.). Plant costumes cannot be worn in this mode.'**
   String get moduleDesc_CustomLevelModuleProperties;
+
+  /// No description provided for @powerTileModuleRequiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Power Tiles module required'**
+  String get powerTileModuleRequiredTitle;
+
+  /// No description provided for @powerTileModuleRequiredBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Power tile tools require the Power Tiles module in this level. Add the default module and continue?'**
+  String get powerTileModuleRequiredBody;
+
+  /// No description provided for @conveyorPlantWearCostume.
+  ///
+  /// In en, this message translates to:
+  /// **'Wear costume (iAvatar)'**
+  String get conveyorPlantWearCostume;
+
+  /// No description provided for @conveyorPlantWearCostumeTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'When enabled, the conveyor card may show a plant costume. Not available when the Creative Courtyard module is enabled.'**
+  String get conveyorPlantWearCostumeTooltip;
+
+  /// No description provided for @modifyConveyorAddPoolTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to conveyor pool'**
+  String get modifyConveyorAddPoolTitle;
+
+  /// No description provided for @modifyConveyorAddPoolEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No entries yet. Add a plant or tool, then set weights and limits.'**
+  String get modifyConveyorAddPoolEmpty;
+
+  /// No description provided for @modifyConveyorRemovePoolTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from conveyor pool'**
+  String get modifyConveyorRemovePoolTitle;
+
+  /// No description provided for @modifyConveyorEntryEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit conveyor entry'**
+  String get modifyConveyorEntryEditTitle;
 
   /// No description provided for @moduleTitle_UnchartedModeNo42UniverseModule.
   ///
@@ -6237,6 +6291,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Power Tiles'**
   String get powerTile;
+
+  /// No description provided for @powerTileGridSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Power tile grid'**
+  String get powerTileGridSection;
+
+  /// No description provided for @powerTileGridHelpPrimary.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a cell to place the selected group. Tap again to remove if it matches. If another group is already there, it is replaced.'**
+  String get powerTileGridHelpPrimary;
+
+  /// No description provided for @powerTileGridHelpSecondaryMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-press a cell to pick a group, clear the cell, or set propagation delay.'**
+  String get powerTileGridHelpSecondaryMobile;
+
+  /// No description provided for @powerTileGridHelpSecondaryDesktop.
+  ///
+  /// In en, this message translates to:
+  /// **'Right-click a cell to pick a group, clear the cell, or set propagation delay.'**
+  String get powerTileGridHelpSecondaryDesktop;
+
+  /// No description provided for @powerTileLinkedTilesSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked tiles'**
+  String get powerTileLinkedTilesSection;
+
+  /// No description provided for @powerTilePropagationDelayLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Propagation delay (s)'**
+  String get powerTilePropagationDelayLabel;
+
+  /// No description provided for @powerTilePropagationDelayTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Delay in seconds before the power effect propagates along this tile link (0–5).'**
+  String get powerTilePropagationDelayTooltip;
+
+  /// No description provided for @powerTileDialogEditCell.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit cell'**
+  String get powerTileDialogEditCell;
+
+  /// No description provided for @powerTileDialogTileGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Tile group'**
+  String get powerTileDialogTileGroup;
+
+  /// No description provided for @powerTileDialogNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get powerTileDialogNone;
+
+  /// No description provided for @powerTileDialogPropagationDelay.
+  ///
+  /// In en, this message translates to:
+  /// **'Propagation delay (seconds)'**
+  String get powerTileDialogPropagationDelay;
+
+  /// No description provided for @powerTileHelpOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Place power tiles in groups (α–ε). Each tile can have a propagation delay for chain effects. Tiles not using the currently selected group are shown dimmed in the grid.'**
+  String get powerTileHelpOverview;
+
+  /// No description provided for @powerTileHelpGridSize.
+  ///
+  /// In en, this message translates to:
+  /// **'On Deep Sea / Atlantis stages the lawn is 10 columns × 6 rows; on other stages it is 9 × 5.'**
+  String get powerTileHelpGridSize;
+
+  /// No description provided for @powerTileHelpQuickEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick edit: {interaction}'**
+  String powerTileHelpQuickEdit(String interaction);
 
   /// No description provided for @eventStandardSpawn.
   ///

@@ -564,6 +564,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get plantTagOrange => 'Оранжевое качество';
 
   @override
+  String get plantTagRed => 'Красное качество';
+
+  @override
   String get plantTagSupport => 'Поддержка';
 
   @override
@@ -1167,7 +1170,34 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get moduleDesc_CustomLevelModuleProperties =>
-      'Включить свою схему лужайки';
+      'Включает режим творческого двора. Костюмы растений в этом режиме недоступны.';
+
+  @override
+  String get powerTileModuleRequiredTitle => 'Нужен модуль силовых плиток';
+
+  @override
+  String get powerTileModuleRequiredBody =>
+      'Инструменты силовых плиток требуют модуль Power Tiles в уровне. Добавить модуль по умолчанию?';
+
+  @override
+  String get conveyorPlantWearCostume => 'Костюм (iAvatar)';
+
+  @override
+  String get conveyorPlantWearCostumeTooltip =>
+      'Если включено, на карточке может отображаться костюм. Недоступно при модуле творческого двора.';
+
+  @override
+  String get modifyConveyorAddPoolTitle => 'Добавить в пул конвейера';
+
+  @override
+  String get modifyConveyorAddPoolEmpty =>
+      'Пусто. Добавьте растение или инструмент и настройте веса.';
+
+  @override
+  String get modifyConveyorRemovePoolTitle => 'Убрать с конвейера';
+
+  @override
+  String get modifyConveyorEntryEditTitle => 'Параметры записи конвейера';
 
   @override
   String get moduleTitle_UnchartedModeNo42UniverseModule =>
@@ -3370,6 +3400,56 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get powerTile => 'Силовая плитка';
+
+  @override
+  String get powerTileGridSection => 'Сетка силовых плиток';
+
+  @override
+  String get powerTileGridHelpPrimary =>
+      'Нажмите клетку, чтобы поставить выбранную группу. Повторное нажатие снимает плитку той же группы. Если там другая группа — она заменяется.';
+
+  @override
+  String get powerTileGridHelpSecondaryMobile =>
+      'Долгое нажатие на клетку: выбор группы, очистка или задержка распространения.';
+
+  @override
+  String get powerTileGridHelpSecondaryDesktop =>
+      'Правый щелчок по клетке: выбор группы, очистка или задержка распространения.';
+
+  @override
+  String get powerTileLinkedTilesSection => 'Связанные плитки';
+
+  @override
+  String get powerTilePropagationDelayLabel => 'Задержка распространения (с)';
+
+  @override
+  String get powerTilePropagationDelayTooltip =>
+      'Задержка в секундах перед распространением эффекта по связи (0–5).';
+
+  @override
+  String get powerTileDialogEditCell => 'Редактировать клетку';
+
+  @override
+  String get powerTileDialogTileGroup => 'Группа плитки';
+
+  @override
+  String get powerTileDialogNone => 'Нет';
+
+  @override
+  String get powerTileDialogPropagationDelay => 'Задержка распространения (с)';
+
+  @override
+  String get powerTileHelpOverview =>
+      'Размещайте силовые плитки по группам (α–ε). Для каждой можно задать задержку распространения. Плитки не из выбранной группы в сетке отображаются полупрозрачными.';
+
+  @override
+  String get powerTileHelpGridSize =>
+      'На этапах «Глубокое море» / Атлантида сетка 10×6; на остальных — 9×5.';
+
+  @override
+  String powerTileHelpQuickEdit(String interaction) {
+    return 'Быстрое редактирование: $interaction';
+  }
 
   @override
   String get eventStandardSpawn => 'Событие: стандартный спавн';

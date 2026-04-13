@@ -562,6 +562,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plantTagOrange => 'Orange Quality';
 
   @override
+  String get plantTagRed => 'Red Quality';
+
+  @override
   String get plantTagSupport => 'Support';
 
   @override
@@ -1165,7 +1168,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moduleDesc_CustomLevelModuleProperties =>
-      'Enables Creative Courtyard features (likes, rewards, etc.)';
+      'Enables Creative Courtyard features (likes, rewards, etc.). Plant costumes cannot be worn in this mode.';
+
+  @override
+  String get powerTileModuleRequiredTitle => 'Power Tiles module required';
+
+  @override
+  String get powerTileModuleRequiredBody =>
+      'Power tile tools require the Power Tiles module in this level. Add the default module and continue?';
+
+  @override
+  String get conveyorPlantWearCostume => 'Wear costume (iAvatar)';
+
+  @override
+  String get conveyorPlantWearCostumeTooltip =>
+      'When enabled, the conveyor card may show a plant costume. Not available when the Creative Courtyard module is enabled.';
+
+  @override
+  String get modifyConveyorAddPoolTitle => 'Add to conveyor pool';
+
+  @override
+  String get modifyConveyorAddPoolEmpty =>
+      'No entries yet. Add a plant or tool, then set weights and limits.';
+
+  @override
+  String get modifyConveyorRemovePoolTitle => 'Remove from conveyor pool';
+
+  @override
+  String get modifyConveyorEntryEditTitle => 'Edit conveyor entry';
 
   @override
   String get moduleTitle_UnchartedModeNo42UniverseModule =>
@@ -3418,6 +3448,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get powerTile => 'Power Tiles';
+
+  @override
+  String get powerTileGridSection => 'Power tile grid';
+
+  @override
+  String get powerTileGridHelpPrimary =>
+      'Tap a cell to place the selected group. Tap again to remove if it matches. If another group is already there, it is replaced.';
+
+  @override
+  String get powerTileGridHelpSecondaryMobile =>
+      'Long-press a cell to pick a group, clear the cell, or set propagation delay.';
+
+  @override
+  String get powerTileGridHelpSecondaryDesktop =>
+      'Right-click a cell to pick a group, clear the cell, or set propagation delay.';
+
+  @override
+  String get powerTileLinkedTilesSection => 'Linked tiles';
+
+  @override
+  String get powerTilePropagationDelayLabel => 'Propagation delay (s)';
+
+  @override
+  String get powerTilePropagationDelayTooltip =>
+      'Delay in seconds before the power effect propagates along this tile link (0–5).';
+
+  @override
+  String get powerTileDialogEditCell => 'Edit cell';
+
+  @override
+  String get powerTileDialogTileGroup => 'Tile group';
+
+  @override
+  String get powerTileDialogNone => 'None';
+
+  @override
+  String get powerTileDialogPropagationDelay => 'Propagation delay (seconds)';
+
+  @override
+  String get powerTileHelpOverview =>
+      'Place power tiles in groups (α–ε). Each tile can have a propagation delay for chain effects. Tiles not using the currently selected group are shown dimmed in the grid.';
+
+  @override
+  String get powerTileHelpGridSize =>
+      'On Deep Sea / Atlantis stages the lawn is 10 columns × 6 rows; on other stages it is 9 × 5.';
+
+  @override
+  String powerTileHelpQuickEdit(String interaction) {
+    return 'Quick edit: $interaction';
+  }
 
   @override
   String get eventStandardSpawn => 'Event: Basic Spawner';
