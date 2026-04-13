@@ -16,10 +16,10 @@ class ToolRepository {
   ToolRepository._();
 
   static const List<ToolCardInfo> toolCards = [
-    ToolCardInfo(id: 'tool_powertile_alpha', name: 'Green tile', icon: 'tool_powertile_alpha.webp'),
-    ToolCardInfo(id: 'tool_powertile_beta', name: 'Red tile', icon: 'tool_powertile_beta.webp'),
-    ToolCardInfo(id: 'tool_powertile_gamma', name: 'Cyan tile', icon: 'tool_powertile_gamma.webp'),
-    ToolCardInfo(id: 'tool_powertile_delta', name: 'Yellow tile', icon: 'tool_powertile_delta.webp'),
+    ToolCardInfo(id: 'tool_powertile_alpha', name: 'Green tile', icon: 'tool_powertile_alpha.png'),
+    ToolCardInfo(id: 'tool_powertile_beta', name: 'Red tile', icon: 'tool_powertile_beta.png'),
+    ToolCardInfo(id: 'tool_powertile_gamma', name: 'Cyan tile', icon: 'tool_powertile_gamma.png'),
+    ToolCardInfo(id: 'tool_powertile_delta', name: 'Yellow tile', icon: 'tool_powertile_delta.png'),
     ToolCardInfo(id: 'tool_powertile_epsilon', name: 'Purple tile', icon: 'tool_powertile_epsilon.png'),
     ToolCardInfo(id: 'tool_projectile_bowlingbulb1', name: 'Bowling bulb small', icon: 'tool_projectile_bowlingbulb1.webp'),
     ToolCardInfo(id: 'tool_projectile_bowlingbulb2', name: 'Bowling bulb medium', icon: 'tool_projectile_bowlingbulb2.webp'),
