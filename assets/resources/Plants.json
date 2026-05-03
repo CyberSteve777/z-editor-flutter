@@ -3019,6 +3019,44 @@
         "icon": "icon_moton.webp"
     },
     {
+        "id": "levitater",
+        "name": "plant_levitater",
+        "tags": [
+            "Orange",
+            "Ranger",
+            "Magic"
+        ],
+        "icon": "icon_levitater.webp"
+    },
+    {
+        "id": "apsarlotus",
+        "name": "plant_apsarlotus",
+        "tags": [
+            "Orange",
+            "Support",
+            "Magic"
+        ],
+        "icon": "icon_apsarlotus.webp"
+    },
+    {
+        "id": "sunflowerzombie",
+        "name": "plant_sunflowerzombie",
+        "tags": [
+            "Blue",
+            "SunProducer"
+        ],
+        "icon": "icon_sunflowerzombie.webp"
+    },
+    {
+        "id": "moonflower_iz",
+        "name": "plant_moonflower_iz",
+        "tags": [
+            "Green",
+            "Support"
+        ],
+        "icon": "icon_moonflower.webp"
+    },
+    {
         "id": "uncharted_haystack",
         "name": "plant_uncharted_haystack",
         "tags": [
@@ -3045,26 +3083,6 @@
             "_internal_mausoleum"
         ],
         "icon": "icon_carrotlauncher.webp"
-    },
-    {
-        "id": "levitater",
-        "name": "plant_levitater",
-        "tags": [
-            "Orange",
-            "Ranger",
-            "Magic"
-        ],
-        "icon": "icon_levitater.webp"
-    },
-    {
-        "id": "apsarlotus",
-        "name": "plant_apsarlotus",
-        "tags": [
-            "Orange",
-            "Support",
-            "Magic"
-        ],
-        "icon": "icon_apsarlotus.webp"
     },
     {
         "id": "parallel_sunflower",
@@ -3394,24 +3412,6 @@
             "_internal_no42"
         ],
         "icon": "icon_parallel_jackfriut.png"
-    },
-    {
-        "id": "sunflowerzombie",
-        "name": "plant_sunflowerzombie",
-        "tags": [
-            "Blue",
-            "SunProducer"
-        ],
-        "icon": "icon_sunflowerzombie.webp"
-    },
-    {
-        "id": "moonflower_iz",
-        "name": "plant_moonflower_iz",
-        "tags": [
-            "Green",
-            "Support"
-        ],
-        "icon": "icon_moonflower.webp"
     },
     {
         "id": "minigame_imitater",
