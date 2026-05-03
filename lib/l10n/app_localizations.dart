@@ -4393,7 +4393,7 @@ abstract class AppLocalizations {
   /// No description provided for @stopColumn.
   ///
   /// In en, this message translates to:
-  /// **'Stop column (StopColumn, range: 0-9)'**
+  /// **'Stop column (StopColumn, range: 0-9 or 0-10)'**
   String get stopColumn;
 
   /// No description provided for @speedUp.
@@ -5443,7 +5443,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventHelpStormColumns.
   ///
   /// In en, this message translates to:
-  /// **'Left boundary: column 0. Right boundary: column 9. Start column must be less than end column, or the storm will not spawn.'**
+  /// **'The left boundary of the lawn is column 0, and the right boundary is column 9 (or column 10 in Underwater World). Start column must be less than end column, or the storm will not spawn.'**
   String get eventHelpStormColumns;
 
   /// No description provided for @eventHelpStormLevels.
@@ -6847,7 +6847,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventHelpStormColumnRange.
   ///
   /// In en, this message translates to:
-  /// **'The left boundary is column 0 and the right boundary is column 9. Start column must be less than end column, or the storm will not spawn.'**
+  /// **'The left boundary is column 0 and the right boundary is column 9 (or column 10 in Underwater World). Start column must be less than end column, or the storm will not spawn.'**
   String get eventHelpStormColumnRange;
 
   /// No description provided for @eventHelpStormZombieLevels.
@@ -8425,25 +8425,25 @@ abstract class AppLocalizations {
   /// No description provided for @pvz1PassageFieldGridXMin.
   ///
   /// In en, this message translates to:
-  /// **'Minimum spawn column (GridXMin, range 0-9)'**
+  /// **'Minimum spawn column (GridXMin, range 0-9 or 0-10)'**
   String get pvz1PassageFieldGridXMin;
 
   /// No description provided for @pvz1PassageHelpGridXMin.
   ///
   /// In en, this message translates to:
-  /// **'The leftmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9. This value must be less than the maximum column value.'**
+  /// **'The leftmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9 (or column 10 in Underwater World). This value must be less than the maximum column value.'**
   String get pvz1PassageHelpGridXMin;
 
   /// No description provided for @pvz1PassageFieldGridXMax.
   ///
   /// In en, this message translates to:
-  /// **'Maximum spawn column (GridXMax, range 0-9)'**
+  /// **'Maximum spawn column (GridXMax, range 0-9 or 0-10)'**
   String get pvz1PassageFieldGridXMax;
 
   /// No description provided for @pvz1PassageHelpGridXMax.
   ///
   /// In en, this message translates to:
-  /// **'The rightmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9. This value must be greater than the minimum column value.'**
+  /// **'The rightmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9 (or column 10 in Underwater World). This value must be greater than the minimum column value.'**
   String get pvz1PassageHelpGridXMax;
 
   /// No description provided for @pvz1PassageFieldTransferCooldown.

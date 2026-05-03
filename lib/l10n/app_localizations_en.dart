@@ -2394,7 +2394,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bowlingFoulLine => 'No-planting line (BowlingFoulLine)';
 
   @override
-  String get stopColumn => 'Stop column (StopColumn, range: 0-9)';
+  String get stopColumn => 'Stop column (StopColumn, range: 0-9 or 0-10)';
 
   @override
   String get speedUp => 'Speed multiplier (SpeedUp)';
@@ -3001,7 +3001,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpStormColumns =>
-      'Left boundary: column 0. Right boundary: column 9. Start column must be less than end column, or the storm will not spawn.';
+      'The left boundary of the lawn is column 0, and the right boundary is column 9 (or column 10 in Underwater World). Start column must be less than end column, or the storm will not spawn.';
 
   @override
   String get eventHelpStormLevels =>
@@ -3776,7 +3776,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpStormColumnRange =>
-      'The left boundary is column 0 and the right boundary is column 9. Start column must be less than end column, or the storm will not spawn.';
+      'The left boundary is column 0 and the right boundary is column 9 (or column 10 in Underwater World). Start column must be less than end column, or the storm will not spawn.';
 
   @override
   String get eventHelpStormZombieLevels =>
@@ -4675,19 +4675,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pvz1PassageFieldGridXMin =>
-      'Minimum spawn column (GridXMin, range 0-9)';
+      'Minimum spawn column (GridXMin, range 0-9 or 0-10)';
 
   @override
   String get pvz1PassageHelpGridXMin =>
-      'The leftmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9. This value must be less than the maximum column value.';
+      'The leftmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9 (or column 10 in Underwater World). This value must be less than the maximum column value.';
 
   @override
   String get pvz1PassageFieldGridXMax =>
-      'Maximum spawn column (GridXMax, range 0-9)';
+      'Maximum spawn column (GridXMax, range 0-9 or 0-10)';
 
   @override
   String get pvz1PassageHelpGridXMax =>
-      'The rightmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9. This value must be greater than the minimum column value.';
+      'The rightmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9 (or column 10 in Underwater World). This value must be greater than the minimum column value.';
 
   @override
   String get pvz1PassageFieldTransferCooldown =>

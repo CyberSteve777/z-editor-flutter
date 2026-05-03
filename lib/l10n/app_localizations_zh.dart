@@ -2258,7 +2258,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bowlingFoulLine => '禁种线 (BowlingFoulLine)';
 
   @override
-  String get stopColumn => '停止列 (StopColumn，范围0-9)';
+  String get stopColumn => '停止列 (StopColumn，范围0-9或0-10)';
 
   @override
   String get speedUp => '加速倍率 (SpeedUp)';
@@ -2835,7 +2835,8 @@ class AppLocalizationsZh extends AppLocalizations {
       '生成沙尘暴或暴风雪将僵尸快速传送到前线，可以分组出现。极寒风暴出现于回忆之旅，可以冻结经过的植物。';
 
   @override
-  String get eventHelpStormColumns => '场地左边界为0列，右边界为9列。起始列数要小于结束列数，否则风暴不会生成。';
+  String get eventHelpStormColumns =>
+      '场地左边界为0列，右边界为9列（海底世界地图为10列）。起始列数要小于结束列数，否则风暴不会生成。';
 
   @override
   String get eventHelpStormLevels =>
@@ -3593,7 +3594,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get eventHelpStormColumnRange =>
-      '场地左边界为0列，右边界为9列。起始列数要小于结束列数，否则风暴不会生成。';
+      '场地左边界为0列，右边界为9列（海底世界地图为10列）。起始列数要小于结束列数，否则风暴不会生成。';
 
   @override
   String get eventHelpStormZombieLevels =>
@@ -4428,28 +4429,28 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get pvz1PassageHelpGroupAmount =>
-      '关卡中出现的传送门种类数。一代风格的传送门共有两种：方形和圆形。若设为 1，则只会出现方形传送门；设为 2 时，方形传送门和圆形传送门会同时出现；设为 3 及以上时，多余的传送门种类会显示为阳光贴图，这些传送门不会刷新位置，但仍然可以传送僵尸。';
+      '关卡中出现的传送门种类数。一代风格的传送门共有两种：方形和圆形。若设为1，则只会出现方形传送门；设为2时，方形传送门和圆形传送门会同时出现；设为3及以上时，多余的传送门种类会显示为阳光贴图，这些传送门不会刷新位置，但仍然可以传送僵尸。';
 
   @override
   String get pvz1PassageFieldPassageAmount => '每组传送门数量 (PassageAmount)';
 
   @override
   String get pvz1PassageHelpPassageAmount =>
-      '每一组内传送门的数量。例如，设为 2 时，每种类型各有 2 个传送门。传送门的总数不能超过生成区域内的格子数。如果同一类型中存在多个可传送的传送门，僵尸会始终传送到指定的那个传送门。';
+      '每一组内传送门的数量。例如，设为2时，每种类型各有2个传送门。传送门的总数不能超过生成区域内的格子数。如果同一类型中存在多个可传送的传送门，僵尸会始终传送到指定的那个传送门。';
 
   @override
-  String get pvz1PassageFieldGridXMin => '最小生成列数 (GridXMin，范围0-9)';
+  String get pvz1PassageFieldGridXMin => '最小生成列数 (GridXMin，范围0-9或0-10)';
 
   @override
   String get pvz1PassageHelpGridXMin =>
-      '传送门可出现的最左列。场地左边界为0列，右边界为9列。最小生成列数必须小于最大生成列数。';
+      '传送门可出现的最左列。场地左边界为0列，右边界为9列（海底世界地图为10列）。最小生成列数必须小于最大生成列数。';
 
   @override
-  String get pvz1PassageFieldGridXMax => '最大生成列数 (GridXMax，范围0-9)';
+  String get pvz1PassageFieldGridXMax => '最大生成列数 (GridXMax，范围0-9或10列)';
 
   @override
   String get pvz1PassageHelpGridXMax =>
-      '传送门可出现的最右列。场地左边界为0列，右边界为9列。最大生成列数必须大于最小生成列数。';
+      '传送门可出现的最右列。场地左边界为0列，右边界为9列（海底世界地图为10列）。最大生成列数必须大于最小生成列数。';
 
   @override
   String get pvz1PassageFieldTransferCooldown =>
