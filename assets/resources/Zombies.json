@@ -119,6 +119,16 @@
     "icon": "zombie_pharaoh.webp"
   },
   {
+    "id": "treasureyeti_egypt",
+    "name": "zombie_treasureyeti_egypt",
+    "tags": [
+      "Egypt_Pirate",
+      "Universe",
+      "Fat"
+    ],
+    "icon": "zombie_treasureyeti_egypt.gif"
+  },
+  {
     "id": "pirate",
     "name": "zombie_pirate",
     "tags": [
@@ -1028,6 +1038,16 @@
       "Basic"
     ],
     "icon": "zombie_beach_shell.webp"
+  },
+  {
+    "id": "beach_imp_quiff",
+    "name": "zombie_beach_imp_quiff",
+    "tags": [
+      "Dark_Beach",
+      "Universe",
+      "Imp"
+    ],
+    "icon": "zombie_beach_imp_quiff.webp"
   },
   {
     "id": "iceage",
@@ -3143,26 +3163,6 @@
     "icon": "zombie_uncharted_gentleman.webp"
   },
   {
-    "id": "beach_imp_quiff",
-    "name": "zombie_beach_imp_quiff",
-    "tags": [
-      "Dark_Beach",
-      "Universe",
-      "Imp"
-    ],
-    "icon": "zombie_beach_imp_quiff.webp"
-  },
-  {
-    "id": "treasureyeti_egypt",
-    "name": "zombie_treasureyeti_egypt",
-    "tags": [
-      "Egypt_Pirate",
-      "Universe",
-      "Fat"
-    ],
-    "icon": "zombie_treasureyeti_egypt.gif"
-  },
-  {
     "id": "roman_ballista_no42",
     "name": "zombie_roman_ballista_no42",
     "tags": [
@@ -3181,6 +3181,15 @@
     "icon": "zombie_slimes.webp"
   },
   {
+    "id": "uncharted_cannon",
+    "name": "zombie_uncharted_cannon",
+    "tags": [
+      "Universe",
+      "Gargantuar"
+    ],
+    "icon": "zombie_uncharted_cannon.webp"
+  },
+  {
     "id": "iceage_fat_weasel",
     "name": "zombie_iceage_fat_weasel",
     "tags": [
@@ -3192,15 +3201,6 @@
     "icon": "zombie_iceage_fat_weasel_elite.webp"
   },
   {
-    "id": "uncharted_cannon",
-    "name": "zombie_uncharted_cannon",
-    "tags": [
-      "Universe",
-      "Gargantuar"
-    ],
-    "icon": "zombie_uncharted_cannon.webp"
-  },
-  {
     "id": "gargantuar_uncharted_imp",
     "name": "zombie_gargantuar_uncharted_imp",
     "tags": [
@@ -3210,7 +3210,6 @@
     ],
     "icon": "zombie_gargantuar_uncharted_imp.webp"
   },
-
   {
     "id": "lny",
     "name": "zombie_lny",
