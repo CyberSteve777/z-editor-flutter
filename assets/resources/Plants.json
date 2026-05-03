@@ -3061,8 +3061,9 @@
         "name": "plant_uncharted_haystack",
         "tags": [
             "Parallel",
-            "Support",
-            "_internal_mausoleum"
+            "_internal_mausoleum",
+            "White",
+            "Support"
         ],
         "icon": "icon_uncharted_haystack.webp"
     },
@@ -3071,7 +3072,10 @@
         "name": "plant_uncharted_phatbeet",
         "tags": [
             "Parallel",
-            "_internal_mausoleum"
+            "_internal_mausoleum",
+            "Blue",
+            "Vanguard",
+            "Physical"
         ],
         "icon": "icon_phatbeet.webp"
     },
@@ -3080,7 +3084,10 @@
         "name": "plant_uncharted_carrotlauncher",
         "tags": [
             "Parallel",
-            "_internal_mausoleum"
+            "_internal_mausoleum",
+            "Blue",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_carrotlauncher.webp"
     },

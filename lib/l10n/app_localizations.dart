@@ -3163,13 +3163,13 @@ abstract class AppLocalizations {
   /// No description provided for @eventTitle_SpawnZombiesFishWaveActionProps.
   ///
   /// In en, this message translates to:
-  /// **'Two-Sided Spawner'**
+  /// **'Underwater Spawner'**
   String get eventTitle_SpawnZombiesFishWaveActionProps;
 
   /// No description provided for @eventDesc_SpawnZombiesFishWaveActionProps.
   ///
   /// In en, this message translates to:
-  /// **'Spawns zombies or sea creatures from the left or right side of the lawn'**
+  /// **'Spawns zombies or sea creatures from the left or right side of the lawn; can only be used in Underwater World'**
   String get eventDesc_SpawnZombiesFishWaveActionProps;
 
   /// No description provided for @eventTitle_ModifyConveyorWaveActionProps.
@@ -4567,7 +4567,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventHelpTideWaveBody.
   ///
   /// In en, this message translates to:
-  /// **'Creates ocean currents that push the submarine and grant speed boosts to zombies. Commonly used in Underwater World – 20,000 Leagues Under the Sea levels'**
+  /// **'Creates ocean currents that push the submarine and grant speed boosts to zombies. Commonly used in Underwater World – 20,000 Leagues Under the Sea levels.'**
   String get eventHelpTideWaveBody;
 
   /// No description provided for @tideWaveHelpType.
@@ -4651,7 +4651,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventZombieFishWave.
   ///
   /// In en, this message translates to:
-  /// **'Event: Two-Sided Spawner'**
+  /// **'Event: Underwater Spawner'**
   String get eventZombieFishWave;
 
   /// No description provided for @eventHelpZombieFishWaveBody.

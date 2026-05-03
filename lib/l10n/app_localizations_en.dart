@@ -1708,11 +1708,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Moves submarine and affects zombie movement speed';
 
   @override
-  String get eventTitle_SpawnZombiesFishWaveActionProps => 'Two-Sided Spawner';
+  String get eventTitle_SpawnZombiesFishWaveActionProps => 'Underwater Spawner';
 
   @override
   String get eventDesc_SpawnZombiesFishWaveActionProps =>
-      'Spawns zombies or sea creatures from the left or right side of the lawn';
+      'Spawns zombies or sea creatures from the left or right side of the lawn; can only be used in Underwater World';
 
   @override
   String get eventTitle_ModifyConveyorWaveActionProps => 'Conveyor Change';
@@ -2496,7 +2496,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpTideWaveBody =>
-      'Creates ocean currents that push the submarine and grant speed boosts to zombies. Commonly used in Underwater World – 20,000 Leagues Under the Sea levels';
+      'Creates ocean currents that push the submarine and grant speed boosts to zombies. Commonly used in Underwater World – 20,000 Leagues Under the Sea levels.';
 
   @override
   String get tideWaveHelpType => 'Direction';
@@ -2543,7 +2543,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Zombie speed in current (tideWaveZombieMovingSpeed; 1 tile = 64 units)';
 
   @override
-  String get eventZombieFishWave => 'Event: Two-Sided Spawner';
+  String get eventZombieFishWave => 'Event: Underwater Spawner';
 
   @override
   String get eventHelpZombieFishWaveBody =>
