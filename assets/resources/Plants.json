@@ -2993,7 +2993,8 @@
         "tags": [
             "Orange",
             "Ranger",
-            "Fire"
+            "Fire",
+            "Ice"
         ],
         "icon": "icon_longmalily.gif"
     },
@@ -3019,7 +3020,7 @@
     },
     {
         "id": "uncharted_haystack",
-        "name": "uncharted_haystack",
+        "name": "plant_uncharted_haystack",
         "tags": [
             "Parallel",
             "Support",
@@ -3029,7 +3030,7 @@
     },
     {
         "id": "uncharted_phatbeet",
-        "name": "uncharted_phatbeet",
+        "name": "plant_uncharted_phatbeet",
         "tags": [
             "Parallel",
             "_internal_mausoleum"
@@ -3038,7 +3039,7 @@
     },
     {
         "id": "uncharted_carrotlauncher",
-        "name": "uncharted_carrotlauncher",
+        "name": "plant_uncharted_carrotlauncher",
         "tags": [
             "Parallel",
             "_internal_mausoleum"
@@ -3046,11 +3047,33 @@
         "icon": "icon_carrotlauncher.webp"
     },
     {
+        "id": "levitater",
+        "name": "plant_levitater",
+        "tags": [
+            "Orange",
+            "Ranger",
+            "Magic"
+        ],
+        "icon": "icon_levitater.webp"
+    },
+    {
+        "id": "apsarlotus",
+        "name": "plant_apsarlotus",
+        "tags": [
+            "Orange",
+            "Support",
+            "Magic"
+        ],
+        "icon": "icon_apsarlotus.webp"
+    },
+    {
         "id": "parallel_sunflower",
         "name": "plant_parallel_sunflower",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "SunProducer"
         ],
         "icon": "icon_sunflower.webp"
     },
@@ -3059,7 +3082,9 @@
         "name": "plant_parallel_peashooter",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "Ranger"
         ],
         "icon": "icon_peashooter.webp"
     },
@@ -3068,7 +3093,9 @@
         "name": "plant_parallel_wallnut",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "Defence"
         ],
         "icon": "icon_wallnut.webp"
     },
@@ -3077,7 +3104,10 @@
         "name": "plant_parallel_potatomine",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "Trapper",
+            "Physical"
         ],
         "icon": "icon_potatomine.webp"
     },
@@ -3086,7 +3116,10 @@
         "name": "plant_parallel_chomper",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "Vanguard",
+            "Physical"
         ],
         "icon": "icon_chomper.webp"
     },
@@ -3095,7 +3128,10 @@
         "name": "plant_parallel_cherry_bomb",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "Trapper",
+            "Fire"
         ],
         "icon": "icon_cherry_bomb.webp"
     },
@@ -3104,7 +3140,10 @@
         "name": "plant_parallel_iceburg",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "Trapper",
+            "Ice"
         ],
         "icon": "icon_iceburg.webp"
     },
@@ -3113,7 +3152,10 @@
         "name": "plant_parallel_bonkchoy",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "Vanguard",
+            "Physical"
         ],
         "icon": "icon_bonkchoy.webp"
     },
@@ -3122,7 +3164,9 @@
         "name": "plant_parallel_moonflower",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Green",
+            "Support"
         ],
         "icon": "icon_moonflower.webp"
     },
@@ -3131,7 +3175,10 @@
         "name": "plant_parallel_shadowshroom",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "Trapper",
+            "Poison"
         ],
         "icon": "icon_shadowshroom.webp"
     },
@@ -3140,7 +3187,10 @@
         "name": "plant_parallel_grimrose",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Purple",
+            "Trapper",
+            "Physical"
         ],
         "icon": "icon_grimrose.webp"
     },
@@ -3149,7 +3199,10 @@
         "name": "plant_parallel_nightshade",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Purple",
+            "Vanguard",
+            "Physical"
         ],
         "icon": "icon_nightshade.webp"
     },
@@ -3158,7 +3211,10 @@
         "name": "plant_parallel_dusklobber",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Orange",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_dusklobber.webp"
     },
@@ -3167,7 +3223,10 @@
         "name": "plant_parallel_shadowpeashooter",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Purple",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_shadowpeashooter.webp"
     },
@@ -3176,7 +3235,10 @@
         "name": "plant_parallel_shadowvanilla",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Purple",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_shadowvanilla.webp"
     },
@@ -3185,7 +3247,9 @@
         "name": "plant_parallel_primalsunflower",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "SunProducer"
         ],
         "icon": "icon_primalsunflower.webp"
     },
@@ -3194,7 +3258,10 @@
         "name": "plant_parallel_primalpeashooter",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_primalpeashooter.webp"
     },
@@ -3203,7 +3270,10 @@
         "name": "plant_parallel_primalwallnut",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "Defence",
+            "Physical"
         ],
         "icon": "icon_primalwallnut.webp"
     },
@@ -3212,7 +3282,10 @@
         "name": "plant_parallel_primalpotatomine",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Purple",
+            "Trapper",
+            "Physical"
         ],
         "icon": "icon_primalpotatomine.webp"
     },
@@ -3221,7 +3294,9 @@
         "name": "plant_parallel_pumpkin",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Blue",
+            "Defence"
         ],
         "icon": "icon_pumpkin.webp"
     },
@@ -3230,7 +3305,10 @@
         "name": "plant_parallel_nekotail",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Orange",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_nekotail.gif"
     },
@@ -3239,7 +3317,10 @@
         "name": "plant_parallel_kernelpult",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_kernelpult.webp"
     },
@@ -3248,7 +3329,10 @@
         "name": "plant_parallel_cobcannon",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Orange",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_cobcannon.webp"
     },
@@ -3257,7 +3341,10 @@
         "name": "plant_parallel_spikeweed",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "Trapper",
+            "Physical"
         ],
         "icon": "icon_spikeweed.webp"
     },
@@ -3266,7 +3353,10 @@
         "name": "plant_parallel_splitpea",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "White",
+            "Ranger",
+            "Physical"
         ],
         "icon": "icon_splitpea.webp"
     },
@@ -3275,14 +3365,52 @@
         "name": "plant_parallel_wintermelon",
         "tags": [
             "Parallel",
-            "_internal_no42"
+            "_internal_no42",
+            "Orange",
+            "Ranger",
+            "Ice"
         ],
         "icon": "icon_wintermelon.gif"
     },
     {
+        "id": "parallel_doomshroom",
+        "name": "plant_parallel_doomshroom",
+        "tags": [
+            "Parallel",
+            "Orange",
+            "Fire",
+            "_internal_no42"
+        ],
+        "icon": "icon_doomshroom.gif"
+    },
+    {
+        "id": "parallel_jackfruit",
+        "name": "plant_parallel_jackfruit",
+        "tags": [
+            "Red",
+            "Parallel",
+            "Trapper",
+            "Physical",
+            "_internal_no42"
+        ],
+        "icon": "icon_parallel_jackfriut.png"
+    },
+    {
+        "id": "sunflowerzombie",
+        "name": "plant_sunflowerzombie",
+        "tags": [
+            "Blue",
+            "SunProducer"
+        ],
+        "icon": "icon_sunflowerzombie.webp"
+    },
+    {
         "id": "moonflower_iz",
         "name": "plant_moonflower_iz",
-        "tags": [],
+        "tags": [
+            "Green",
+            "Support"
+        ],
         "icon": "icon_moonflower.webp"
     },
     {
@@ -3438,60 +3566,5 @@
             "_internal_copycats"
         ],
         "icon": "icon_minigame_imitater_orange.png"
-    },
-    {
-        "id": "levitater",
-        "name": "plant_levitater",
-        "tags": [
-            "Orange",
-            "Ranger",
-            "Magic",
-            "Original"
-        ],
-        "icon": "icon_levitater.webp"
-    },
-    {
-        "id": "apsarlotus",
-        "name": "plant_apsarlotus",
-        "tags": [
-            "Purple",
-            "Support",
-            "Magic",
-            "Original"
-        ],
-        "icon": "icon_apsarlotus.webp"
-    },
-    {
-        "id": "parallel_doomshroom",
-        "name": "plant_parallel_doomshroom",
-        "tags": [
-            "Parallel",
-            "Orange",
-            "Fire",
-            "_internal_no42"
-        ],
-        "icon": "icon_doomshroom.gif"
-    },
-    {
-        "id": "parallel_jackfruit",
-        "name": "plant_parallel_jackfruit",
-        "tags": [
-            "Red",
-            "Parallel",
-            "Trapper",
-            "Physical",
-            "_internal_no42"
-        ],
-        "icon": "icon_parallel_jackfriut.png"
-    },
-    {
-        "id": "sunflowerzombie",
-        "name": "plant_sunflowerzombie",
-        "tags": [
-            "Blue",
-            "SunProducer",
-            "Original"
-        ],
-        "icon": "icon_sunflowerzombie.webp"
     }
 ]
