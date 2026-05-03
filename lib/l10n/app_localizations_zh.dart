@@ -265,7 +265,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get convertToJson => '转换为 JSON';
 
   @override
-  String get convertToHotUpdateJson => '转换为热更新 JSON';
+  String get convertToHotUpdateJson => '转换为热更新 JSON (HUJSON)';
 
   @override
   String get convertToEncryptedRton => '转换为加密 RTON';
@@ -323,15 +323,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get usageText =>
-      '1. 目录设置：首次进入请选择存放 JSON 关卡文件的目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n交流 QQ 群：562251204';
+      '1. 目录设置：首次进入请选择存放 JSON 关卡文件的目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n5. 转换关卡文件：可将 JSON 转换为热更新可读的 HUJSON 或加密后的 RTON，随后通过其他工具导入游戏内进行测试（记得在导入前手动将文件扩展名从 .hujson 改回 .json）。\n交流 QQ 群：562251204';
 
   @override
   String get usageTextDesktop =>
-      '1. 目录设置：点击文件夹图标选择 JSON 关卡目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用 + 基于模板新建。\n3. 模块管理：在编辑器中添加新模块。\n4. 保存关卡：点击保存将修改写回 JSON 文件。\n交流 QQ 群：562251204';
+      '1. 目录设置：点击文件夹图标选择 JSON 关卡目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：点击保存将修改写回 JSON 文件。\n5. 转换关卡文件：可将 JSON 转换为热更新可读的 HUJSON 或加密后的 RTON，随后通过其他工具导入游戏内进行测试（记得在导入前手动将文件扩展名从 .hujson 改回 .json）。\n交流 QQ 群：562251204';
 
   @override
   String get usageTextMobile =>
-      '1. 目录设置：点击文件夹图标选择 JSON 关卡目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n交流 QQ 群：562251204';
+      '1. 目录设置：点击文件夹图标选择 JSON 关卡目录。\n2. 导入/新建：点击列表项编辑现有关卡，或使用右下角按钮基于模板新建。\n3. 模块管理：在编辑器中可添加新模块。\n4. 保存关卡：编辑完成后点击保存，文件将回写到原 JSON。\n5. 转换关卡文件：可将 JSON 转换为热更新可读的 HUJSON 或加密后的 RTON，随后通过其他工具导入游戏内进行测试（记得在导入前手动将文件扩展名从 .hujson 改回 .json）。\n交流 QQ 群：562251204';
 
   @override
   String get creditsSection => '致谢名单';
@@ -497,25 +497,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get zombieTagRoman => '罗马世界';
 
   @override
-  String get zombieTagPet => '僵尸宠物';
+  String get zombieTagPet => '宠物';
 
   @override
-  String get zombieTagImp => '小鬼僵尸';
+  String get zombieTagImp => '小鬼';
 
   @override
-  String get zombieTagBasic => '普通僵尸';
+  String get zombieTagBasic => '常规';
 
   @override
-  String get zombieTagFat => '胖子僵尸';
+  String get zombieTagFat => '胖子';
 
   @override
-  String get zombieTagStrong => '壮汉僵尸';
+  String get zombieTagStrong => '壮汉';
 
   @override
-  String get zombieTagGargantuar => '巨人僵尸';
+  String get zombieTagGargantuar => '巨人';
 
   @override
-  String get zombieTagElite => '精英僵尸';
+  String get zombieTagElite => '精英';
 
   @override
   String get zombieTagEvildave => '适配IZ';
@@ -599,7 +599,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plantTagParallel => '平行世界';
 
   @override
-  String get plantTagSpecial => '特殊';
+  String get plantTagSpecial => '魔术帽';
 
   @override
   String get removeModuleConfirm =>
@@ -661,7 +661,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '当前关卡启用了波次管理模块，但缺少存储波次数据的实体对象 (WaveManagerProperties)。请创建一个空波次容器。';
 
   @override
-  String get waveTimelineHint => '点击事件即可编辑，点击 + 添加新事件。';
+  String get waveTimelineHint => '点击事件即可编辑，点击“+”添加新事件。';
 
   @override
   String get waveTimelineHintDetail => '左滑波次可删除。';
@@ -683,7 +683,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get waveDeadLinksTitle => '引用失效报警';
 
   @override
-  String get waveDeadLinksClear => '一键清理失效波次';
+  String get waveDeadLinksClear => '一键清理失效事件';
 
   @override
   String get customZombieManagerTitle => '自定义僵尸管理';
@@ -702,7 +702,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String customZombieWaveItem(int n) {
-    return '第 $n 波';
+    return '第$n波';
   }
 
   @override
@@ -1086,7 +1086,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get disablePeavine => '禁用豆藤共生';
 
   @override
-  String get disableArtifact => '禁用神器';
+  String get disableArtifact => '禁用神器（庭院模式下自动生效）';
 
   @override
   String get selectPlant => '选择植物';
@@ -1129,44 +1129,45 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleTitle_CustomLevelModuleProperties => '庭院模块';
 
   @override
-  String get moduleDesc_CustomLevelModuleProperties =>
-      '开启后关卡适配庭院框架。此模式下植物无法穿戴装扮。';
+  String get moduleDesc_CustomLevelModuleProperties => '开启后关卡适配庭院框架，并屏蔽装扮功能';
 
   @override
   String get powerTileModuleRequiredTitle => '需要能量瓷砖模块';
 
   @override
-  String get powerTileModuleRequiredBody => '能量瓷砖工具需要关卡中包含能量瓷砖模块。是否添加默认模块并继续？';
+  String get powerTileModuleRequiredBody =>
+      '添加能量瓷砖工具卡需要关卡中包含能量瓷砖模块。是否添加该模块并继续？';
 
   @override
-  String get conveyorPlantWearCostume => '穿戴装扮 (iAvatar)';
+  String get conveyorPlantWearCostume => '显示装扮 (iAvatar)';
 
   @override
-  String get conveyorPlantWearCostumeTooltip => '启用后传送带卡牌可显示植物装扮。启用创意庭院模块时不可用。';
+  String get conveyorPlantWearCostumeTooltip =>
+      '启用后该植物在传送带上的卡牌将显示其装扮，该功能在庭院模块下不生效。';
 
   @override
-  String get modifyConveyorAddPoolTitle => '加入传送带池';
+  String get modifyConveyorAddPoolTitle => '加入传送带池 (Add List)';
 
   @override
-  String get modifyConveyorAddPoolEmpty => '暂无条目。请添加植物或工具并设置权重与限制。';
+  String get modifyConveyorAddPoolEmpty => '列表为空，请添加植物或工具卡';
 
   @override
-  String get modifyConveyorRemovePoolTitle => '从传送带移除';
+  String get modifyConveyorRemovePoolTitle => '移出传送带池（Remove List; 在庭院模块下不生效）';
 
   @override
-  String get modifyConveyorEntryEditTitle => '编辑传送带条目';
+  String get modifyConveyorEntryEditTitle => '编辑具体参数';
 
   @override
   String get moduleTitle_UnchartedModeNo42UniverseModule => '平行宇宙模块';
 
   @override
-  String get moduleDesc_UnchartedModeNo42UniverseModule => '开启后种子库可以选择平行宇宙植物';
+  String get moduleDesc_UnchartedModeNo42UniverseModule => '开启后可以选择平行宇宙植物';
 
   @override
   String get moduleTitle_PVZ2MausoleumModuleUnchartedMode => '地宫秘境模块';
 
   @override
-  String get moduleDesc_PVZ2MausoleumModuleUnchartedMode => '开启后种子库可以选择地宫秘境植物';
+  String get moduleDesc_PVZ2MausoleumModuleUnchartedMode => '开启后可以选择地宫秘境植物';
 
   @override
   String plantModuleRequiredMessage(String moduleName) {
@@ -1368,7 +1369,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleDesc_InitialPlantEntryProperties => '放置关卡开始时场上已存在的植物';
 
   @override
-  String get frozenPlantPlacementTitle => '旧版预置植物';
+  String get frozenPlantPlacementTitle => '初始植物配置';
 
   @override
   String get frozenPlantPlacementLastStand => '复活之战模式';
@@ -1380,7 +1381,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get frozenPlantPlacementPlaceHere => '在此放置';
 
   @override
-  String get frozenPlantPlacementPlantList => '植物分布列表（行优先排序）';
+  String get frozenPlantPlacementPlantList => '当前格子中的植物';
 
   @override
   String frozenPlantPlacementEditPlant(Object name) {
@@ -1413,7 +1414,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get frozenPlantPlacementHelpConditionTitle => '特殊状态';
 
   @override
-  String get frozenPlantPlacementHelpConditionBody => '可以为植物设置冰封状态，常见于冰河世界关卡。';
+  String get frozenPlantPlacementHelpConditionBody =>
+      '可以为植物设置冰封状态 (icecubed)，常见于冰河世界关卡。';
 
   @override
   String get frozenPlantPlacementHelpLastStandTitle => '复活之战模式';
@@ -1499,60 +1501,60 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleDesc_BombProperties => '配置功夫世界炸药桶引线的长度与燃烧速度';
 
   @override
-  String get moduleTitle_BronzeProperties => '铜人阵';
+  String get moduleTitle_BronzeProperties => '铜人像';
 
   @override
-  String get moduleDesc_BronzeProperties => '功夫世界铜人阵小游戏：放置铜人与复活时间（与波次无关）';
+  String get moduleDesc_BronzeProperties => '配置功夫世界的铜人像';
 
   @override
-  String get bronzeModuleTitle => '铜人阵';
+  String get bronzeModuleTitle => '铜人像';
 
   @override
-  String get bronzeModuleHelpTitle => '铜人阵';
+  String get bronzeModuleHelpTitle => '铜人像';
 
   @override
-  String get bronzeModuleHelpOverview => '概述';
+  String get bronzeModuleHelpOverview => '简要介绍';
 
   @override
   String get bronzeModuleHelpOverviewBody =>
-      '在草坪上放置大汉、气功、侠客三种铜人。复活使用 spawnTime（秒），与波次无关。在选中格子添加铜人；每次添加会在关卡数据中生成一组条目。';
+      '该模块用于在草坪上放置关卡开始时已存在的铜人像障碍物，常用于功夫世界小游戏“铜人阵”关卡。铜人像会随时间逐渐褪去铜皮，并在设定的倒计时结束后复活为铜人。铜人像的生命值与其对应的一阶铜人相同。\n抖动距离 (shakeOffset) 指复活动画中抖动中心的偏移量，调整该数值无实际意义。\n注意：此模块本身不包含在场上全部铜人像和铜人僵尸被消灭后立即消灭其余僵尸的效果。若需实现该效果，需要将死亡掉落模块替换为BronzeDeadWinCon@LevelModules。';
 
   @override
-  String get bronzeModuleHelpBatches => '批次与时间';
+  String get bronzeModuleHelpBatches => '复活逻辑';
 
   @override
   String get bronzeModuleHelpBatchesBody =>
-      '复活时间相同的铜人会同时复活；后续批次可承接前面的倒计时。先点选格子，再选择类型并设置复活秒数。';
+      '每添加一个铜人像，关卡文件中就会对应生成一组条目。复活使用条目中填写的复活时间 (spawnTime)，以秒为单位，与关卡波次无关。复活时间相同的铜人会同时复活。后续批次铜人的复活倒计时承接第一批铜人（例如：第一批为30秒，第二批为45秒，第三批为50秒，则第二批会在第一批复活后的15秒复活，第三批会在第二批复活后的5秒复活）。';
 
   @override
-  String get bronzeModuleShakeOffset => '动画';
+  String get bronzeModuleShakeOffset => '动画效果';
 
   @override
-  String get bronzeModuleShakeOffsetLabel => '复活抖动偏移';
+  String get bronzeModuleShakeOffsetLabel => '抖动距离';
 
   @override
-  String get bronzeModuleInCell => '当前格子中的铜人';
+  String get bronzeModuleInCell => '当前格子中的铜人像';
 
   @override
-  String get bronzeModuleAddTitle => '添加铜人类型';
+  String get bronzeModuleAddTitle => '添加铜人像';
 
   @override
-  String get bronzeKindStrength => '大汉铜人（力量）';
+  String get bronzeKindStrength => '大汉铜人像（strength）';
 
   @override
-  String get bronzeKindMage => '气功铜人（法师）';
+  String get bronzeKindMage => '气功铜人像（mage）';
 
   @override
-  String get bronzeKindAgile => '侠客铜人（敏捷）';
+  String get bronzeKindAgile => '侠客铜人像（agile）';
 
   @override
-  String get bronzeKindStrengthShort => '力量';
+  String get bronzeKindStrengthShort => '大汉铜人';
 
   @override
-  String get bronzeKindMageShort => '气功';
+  String get bronzeKindMageShort => '气功铜人';
 
   @override
-  String get bronzeKindAgileShort => '侠客';
+  String get bronzeKindAgileShort => '侠客铜人';
 
   @override
   String get bronzeModuleTypeLabel => '类型';
@@ -1609,10 +1611,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get eventDesc_TideWaveWaveActionProps => '改变潜艇位置并影响僵尸移速';
 
   @override
-  String get eventTitle_SpawnZombiesFishWaveActionProps => '双面夹击';
+  String get eventTitle_SpawnZombiesFishWaveActionProps => '海底出怪';
 
   @override
-  String get eventDesc_SpawnZombiesFishWaveActionProps => '在场地左侧或右侧生成僵尸或海洋生物';
+  String get eventDesc_SpawnZombiesFishWaveActionProps =>
+      '在场地左侧或右侧生成僵尸或海洋生物，只能在海底世界使用';
 
   @override
   String get eventTitle_ModifyConveyorWaveActionProps => '传送带修改';
@@ -1851,18 +1854,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleCategoryScene => '场地配置';
 
   @override
-  String get moduleTitle_RocketZombieFlickModuleProperties => '火箭筒小鬼划走';
+  String get moduleTitle_RocketZombieFlickModuleProperties => '划走火箭筒';
 
   @override
   String get moduleDesc_RocketZombieFlickModuleProperties =>
-      '允许功夫天空之城火箭筒小鬼被划走（火箭筒小鬼模板）。';
+      '允许在关卡内使用手指划过火箭筒，将火箭筒小鬼僵尸的火箭筒划飞';
 
   @override
-  String get kongfuRocketFlickDialogTitle => '火箭筒小鬼';
+  String get kongfuRocketFlickDialogTitle => '发现可添加模块';
 
   @override
   String get kongfuRocketFlickDialogMessage =>
-      '是否要让该僵尸可被划走？可将「火箭筒小鬼划走」模块添加到关卡。';
+      '添加「划走火箭筒」模块后，可划动屏幕，将小鬼僵尸从火箭筒上拨落。是否添加？';
 
   @override
   String get customZombie => '自定义僵尸';
@@ -2129,10 +2132,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get maxCount => '最大数量';
 
   @override
-  String get startColumn => '起始列';
+  String get startColumn => '起始列 (Start)';
 
   @override
-  String get endColumn => '结束列';
+  String get endColumn => '结束列 (End)';
 
   @override
   String get removeItem => '移除物品';
@@ -2144,19 +2147,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String groupN(int n) {
-    return '组 $n';
+    return '第$n组';
   }
 
   @override
   String rowN(int n) {
-    return '行 $n';
+    return '第$n行';
   }
 
   @override
   String get addItem => '添加物品';
 
   @override
-  String get addWind => '添加风';
+  String get addWind => '添加寒风';
 
   @override
   String get addDropItem => '添加掉落物品';
@@ -2166,7 +2169,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String pipeN(int n) {
-    return '管道 $n';
+    return '管道$n';
   }
 
   @override
@@ -2188,19 +2191,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get initialPlantLayout => '初始植物布局';
 
   @override
-  String get gridItemLayout => '障碍物布局';
+  String get gridItemLayout => '场地物品布局';
 
   @override
   String get zombieCount => '总数量 (Total)';
 
   @override
-  String get groupSize => '每组数量 (GroupSize)';
+  String get groupSize => '每批数量 (GroupSize)';
 
   @override
-  String get timeBetweenGroups => '组间间隔 (TimeBetweenGroups)';
+  String get timeBetweenGroups => '批次间隔 (TimeBetweenGroups)';
 
   @override
-  String get timeBeforeSpawn => '降落耗时（秒）';
+  String get timeBeforeSpawn => '完全生成前摇时间（秒）';
 
   @override
   String get waterBoundaryColumn => '变更位置 (ChangeAmount)';
@@ -2209,14 +2212,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get columnsDragged => '拖拽列数 (ColNumPlantIsDragged)';
 
   @override
-  String get typeIndex => '类型索引';
+  String get typeIndex => '镜子外观 (TypeIndex)';
 
   @override
   String get noStyle => '无样式';
 
   @override
   String styleN(int n) {
-    return '样式 $n';
+    return '样式$n';
   }
 
   @override
@@ -2243,7 +2246,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get holeLifetimeSeconds => '坑洞存在时间（秒）';
 
   @override
-  String get startingWaveLocation => '起始波次 (StartingWave)';
+  String get startingWaveLocation => '初始潮水位置 (StartingWaveLocation)';
 
   @override
   String get rainIntervalSeconds => '掉落间隔（秒）';
@@ -2270,7 +2273,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get initialMistPositionX => '迷雾起始列';
 
   @override
-  String get normalValueX => '正常值';
+  String get normalValueX => '往右延伸距离（1格为64单位）';
 
   @override
   String get bloverEffectInterval => '三叶草吹散后恢复秒数';
@@ -2299,7 +2302,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noEditorForModule => '该模块暂无可用编辑器';
 
   @override
-  String get noEditorForModuleBody => '该模块未注册到关卡解析器。可能是手动添加或单元类型(objclass)被修改。';
+  String get noEditorForModuleBody =>
+      '该模块未注册到关卡解释器，暂无可用编辑器。也有可能是手动修改了模块的objclass导致无法正常读取。';
 
   @override
   String get invalidEventTitle => '无效事件';
@@ -2308,20 +2312,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get invalidEventBody => '此事件对象无法解析。';
 
   @override
-  String get invalidReference => '无效引用';
+  String get invalidReference => '引用失效提示';
 
   @override
   String aliasNotFound(Object alias) {
-    return '未找到模块 \"$alias\"';
+    return '代号\"$alias\"找不到实体';
   }
 
   @override
   String invalidRefBody(int wave) {
-    return '波次 $wave 引用了此事件，但找不到对应实体。保留会导致崩溃。';
+    return '在第$wave波中引用了此事件，但在关卡中未找到对应的实体定义，这通常是因为对象被误删或手动改名导致的。将其存留在关卡中会导致游戏闪退。';
   }
 
   @override
-  String get removeInvalidRef => '从波次中移除此无效引用';
+  String get removeInvalidRef => '从波次容器中移除此无效引用';
 
   @override
   String get spawnCount => '生成数量控制';
@@ -2339,17 +2343,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get optional => '事件开始时在屏幕中央显示，不支持输入中文';
 
   @override
-  String get eventHelpBeachStageBody => '僵尸会从水下浮现。通常用于巨浪沙滩的潜水僵尸，或者需要在低潮期出现的僵尸。';
+  String get eventHelpBeachStageBody =>
+      '僵尸会从水下浮现。通常用于巨浪沙滩的潜水僵尸，或者需要在低潮期出现的僵尸。\n与空降事件类似，僵尸会分批次出现。可以指定总数量和出现范围。\n在单个事件中只能出现一种僵尸，若想实现多种僵尸出现需要额外添加若干次事件。';
 
   @override
-  String get eventHelpTidalChangeBody => '本事件用于在波次中改变潮水位置。';
+  String get eventHelpTidalChangeBody => '本事件用于在波次中改变潮水位置。潮水的更改范围不能超出场地。';
 
   @override
   String get eventTideWave => '事件类型：召唤洋流';
 
   @override
-  String get eventHelpTideWaveBody =>
-      '生成推动潜艇、为僵尸提供移速加成的洋流，常用于海底世界第一章-海底两万里关卡中。';
+  String get eventHelpTideWaveBody => '生成推动潜艇、为僵尸提供移速加成的洋流，常用于海底世界第一章-海底两万里关卡。';
 
   @override
   String get tideWaveHelpType => '类型说明';
@@ -2392,28 +2396,28 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tideWaveZombieMovingSpeed =>
-      '僵尸洋流中移动速度 (ZombieMovingSpeed，1格约60像素)';
+      '僵尸洋流中移动速度 (ZombieMovingSpeed，1格为64单位)';
 
   @override
-  String get eventZombieFishWave => '事件类型：双面夹击';
+  String get eventZombieFishWave => '事件类型：海底出怪';
 
   @override
   String get eventHelpZombieFishWaveBody =>
-      '本事件用于配置双面夹击的僵尸与海洋生物，常用于海底世界关卡中。坐标中的行、列均从 0 开始计数，因此第 1 行对应 0，第 10 列对应 9。';
+      '本事件用于配置双面夹击的僵尸与海洋生物，只能用于海底世界关卡。坐标中的行、列均从 0 开始计数，因此第 1 行对应 0，第 10 列对应 9。';
 
   @override
   String get eventHelpZombieFishWaveFish =>
-      '使用“海洋生物属性”按钮在场地上放置深海鱼群。场地大小因关卡而异，海底世界关卡为 6×10，其他关卡为 5×9。坐标中行对应 Y，列对应 X。';
+      '使用“添加海洋生物属性”按钮在场地上放置深海鱼群。场地大小因关卡而异，海底世界关卡为 6×10，其他关卡为 5×9。坐标中行对应 Y，列对应 X。';
 
   @override
-  String get eventHelpBatchLevel => '将本波次所有僵尸设为指定等级（精英僵尸不受影响，保持默认等级）';
+  String get eventHelpBatchLevel => '将本波次所有僵尸设为指定等级（精英僵尸不受影响，保持默认等级）。';
 
   @override
-  String get eventHelpDropConfig => '当掉落植物列表的植物数等于能量豆数量时会变为掉落植物卡片';
+  String get eventHelpDropConfig => '当掉落植物列表的植物数等于能量豆数量时会变为掉落植物卡片。';
 
   @override
   String get fishPropertiesEntryHelp =>
-      '点击选中网格后可以添加海洋生物。点击“ + ”可添加内置海洋生物。点击海洋生物图标可进行复制、删除、自定义等更多操作，自定义的海洋生物会显示蓝色的“C”角标。海洋生物放置在场地外会显示警告。';
+      '点击选中网格后可以添加海洋生物。点击“+”可添加内置海洋生物。点击海洋生物图标可进行复制、删除、自定义等更多操作，自定义的海洋生物会显示蓝色的“C”角标。海洋生物放置在场地外会显示警告。';
 
   @override
   String get fishAddCustom => '添加自定义海洋生物';
@@ -2446,7 +2450,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get editFishProperties => '编辑海洋生物属性';
 
   @override
-  String get fishPropertiesGrid => '海洋生物放置（行=Y，列=X）';
+  String get fishPropertiesGrid => '海洋生物放置';
 
   @override
   String get fishSelectedPosition => '已选：';
@@ -2458,7 +2462,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get fishColumn => '列';
 
   @override
-  String get fishAtPosition => '海洋生物位于：';
+  String get fishAtPosition => '当前格子中的海洋生物';
 
   @override
   String get searchFish => '搜索海洋生物';
@@ -2477,14 +2481,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String customFishWaveItem(int n) {
-    return '第 $n 波';
+    return '第$n波';
   }
 
   @override
   String get customFishDeleteConfirm => '确定要移除此自定义海洋生物及其属性数据？';
 
   @override
-  String get customFish => '自定义海洋生物';
+  String get customFish => '自定义海洋生物说明';
 
   @override
   String get customFishProperties => '自定义海洋生物属性';
@@ -2566,11 +2570,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get eventHelpParachuteRainBody =>
-      '僵尸会从屏幕上方空降突袭，通常用于失落之城的飞行员僵尸和Z公司的服务台僵尸。僵尸的阶级随地图阶级序列。';
+      '僵尸会从屏幕上方空降突袭，通常用于未来世界的机器虫小鬼僵尸、失落之城的飞行员僵尸、摇滚年代的贝斯手僵尸、Z公司的技术支持僵尸等。僵尸的阶级随地图阶级序列。';
 
   @override
   String get eventHelpParachuteRainLogic =>
-      '事件触发后，僵尸会分批次从天而降。可以控制总数量和每批次之间的时间间隔。僵尸会随机降落在选择的列数。若到达了下落总前摇时间，剩下的僵尸会立即出现。';
+      '事件触发后，僵尸会分批次从天而降。可以控制总数量和每批次之间的时间间隔。僵尸会随机降落在选择的列数。若到达了下落总前摇时间，剩下的僵尸会立即出现。\n事件出现前会出现红色字幕显示，在字幕中输入中文会显示乱码。可以不设置僵尸让这个事件变为纯粹的字幕显示。';
 
   @override
   String get eventHelpModernPortalsBody => '在场地上刷新出固定种类的时空裂缝，常见于摩登世界和回忆之旅。';
@@ -2595,21 +2599,22 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get eventHelpModifyConveyorAdd =>
-      '可以把新植物加入传送带。如果传送带上已经有该植物，会把之前的数据覆盖掉。';
+      '可以把新植物或工具卡加入传送带。如果传送带上已经有该植物或工具卡，会把之前的数据覆盖掉。';
 
   @override
   String get eventHelpModifyConveyorRemove =>
-      '移除植物在庭院模板下不生效，需要通过将植物权重强行设置为0来替代此效果。';
+      '移除功能在庭院模板下不生效，需要通过将植物权重强行设置为0来替代此效果。';
 
   @override
-  String get eventHelpDinoBody => '常见于恐龙危机的事件，在指定行召唤一只指定的恐龙进入场地，恐龙会协助僵尸进攻。';
+  String get eventHelpDinoBody =>
+      '常见于恐龙危机的事件，在指定行召唤一只指定的恐龙进入场地，恐龙会协助僵尸进攻。\n一个事件只能配置一只恐龙，若需要同时出现多只恐龙需要在波次内添加多个恐龙召唤事件。';
 
   @override
   String get eventHelpDinoDuration =>
       '恐龙在场上停留的时间，单位为波次。时间结束或与足够量的僵尸互动后恐龙会离开场地。';
 
   @override
-  String get eventDinoTread => '事件类型：雷龙践踏';
+  String get eventDinoTread => '事件类型：恐龙践踏';
 
   @override
   String get eventDinoRun => '事件类型：龙潮突袭';
@@ -2665,18 +2670,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get eventHelpZombiePotionUsage =>
-      '在部分缺少墓碑出土特效的地图可能会出现阳光贴图的情况，请谨慎使用此事件。';
+      '与障碍物生成的预选池不同，这个事件能精准地在固定格点强行生成障碍物并挤走植物。\n注意在部分缺少墓碑出土特效的地图可能会出现阳光贴图的情况，请谨慎使用此事件。';
 
   @override
   String get eventHelpShellBody => '此事件可以在指定位置生成海底贝壳或其他障碍物。';
 
   @override
   String get eventHelpShellUsage =>
-      '选中格子后，点击“添加”放置贝壳。场地大小因关卡地图而异，共有 5×9 和 6×10 两种规格。';
+      '选中格子后，点击“+”放置贝壳。场地大小因关卡地图而异，共有 5×9 和 6×10 两种规格。';
 
   @override
   String get eventHelpFairyFogBody =>
-      '生成覆盖场地、给僵尸提供护盾的魔力迷雾，常用于童话森林关卡，只有微风事件才能吹散。';
+      '本事件用于生成覆盖场地、给僵尸提供护盾的魔力迷雾，常用于童话森林关卡，只有微风事件才能吹散。\n迷雾等级越高，僵尸获得的护盾及免控效果越强。等级从低到高依次为白色、蓝色、紫色。';
 
   @override
   String get eventHelpFairyFogRange =>
@@ -2690,7 +2695,8 @@ class AppLocalizationsZh extends AppLocalizations {
       '该事件作用时可以改变抛射物的速度。1.0 表示原速，数值越大子弹运动越快。';
 
   @override
-  String get eventHelpRaidingPartyBody => '常见于海盗港湾的事件，能分批依次生成若干只飞索僵尸进攻。';
+  String get eventHelpRaidingPartyBody =>
+      '常见于海盗港湾的事件，能分批依次生成若干只飞索僵尸进攻。组间间隔 (TimeBetweenGroups) 指两批突袭之间的时间间隔。';
 
   @override
   String get eventHelpRaidingPartyGroup => '每一组所包含的僵尸数量。';
@@ -2718,7 +2724,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get eventHelpBarrelWaveTypes =>
-      '空桶：击破后无事发生。小鬼桶：击破后会从中钻出僵尸。僵尸种类可以自行选择，通常为小鬼。炸药桶：接触到植物或被击破时会爆炸，对周围 3×3 范围内的植物和僵尸造成伤害。';
+      '空桶：击破后无事发生。\n小鬼桶：击破后会从中钻出僵尸。僵尸种类可以自行选择，通常为小鬼。\n炸药桶：接触到植物或被击破时会爆炸，对周围 3×3 范围内的植物和僵尸造成伤害。';
 
   @override
   String get barrelWaveHelpRows => '行数说明';
@@ -2764,7 +2770,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get thunderWaveAddThunder => '添加闪电';
 
   @override
-  String get thunderWaveThunder => '雷云风暴';
+  String get thunderWaveThunder => '闪电';
 
   @override
   String get barrelWaveTypeEmpty => '空桶 (barrelempty)';
@@ -2776,7 +2782,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get barrelWaveTypeExplosive => '炸药桶 (barrelpowder)';
 
   @override
-  String get barrelWaveRowsHint => '这里1是第1行，以此类推';
+  String get barrelWaveRowsHint => '行数从1开始计，地图最上面一行为1，最下面一行为5（或 6）。';
 
   @override
   String get barrelWaveAddBarrel => '添加滚桶';
@@ -2837,16 +2843,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get eventHelpGroundSpawnBody =>
-      '从设定的区间范围直接从地下生成僵尸。参数配置和自然出怪基本一致。0阶表示随地图阶级，庭院模式下即为1阶。';
+      '从设定的区间范围直接从地下生成僵尸。参数配置和自然出怪基本一致。0阶表示随地图阶级，庭院模式下即为1阶。/n掉落物默认情况下配置的是携带能量豆的僵尸个数，启用掉落植物功能后会随机从配置的植物库里掉落植物卡片。 ';
 
   @override
-  String get moduleHelpTideBody => '本模块用于开启关卡中的潮水系统，以便后续使用潮水更改事件。';
+  String get moduleHelpTideBody =>
+      '本模块用于开启关卡中的潮水系统，以便后续使用潮水更改事件。注意该模块需要最后添加，否则可能导致闪退。';
 
   @override
-  String get moduleHelpTidePosition => '可以指定潮水的初始位置。场地最右边为0，最左边为9。允许输入负数在内的整数';
+  String get moduleHelpTidePosition =>
+      '可以指定潮水的初始位置，即关卡中海岸线所在的位置。场地最右边为0，最左边为9。允许输入负数在内的整数。';
 
   @override
-  String get initialTidePosition => '初始潮水配置';
+  String get initialTidePosition => '海岸线配置';
 
   @override
   String get moduleHelpManholeBody =>
@@ -2871,19 +2879,23 @@ class AppLocalizationsZh extends AppLocalizations {
       '药水会在指定的种类中随机选取，如果想间隔固定时间同时生成多个，可以尝试在关卡内添加多次此模块。';
 
   @override
-  String get moduleHelpUnknownBody => '关卡文件由根节点和模块构成。每个对象有代号、objclass、objdata。';
+  String get moduleHelpUnknownBody =>
+      '关卡文件是由根节点和多个模块构成的，这些可用模块称为PVZ2Object。每一个Object都有代号(Aliases)，类型(objclass)和数据(objdata)。根节点没有代号。';
 
   @override
-  String get moduleHelpUnknownEvents => '本软件通过 objclass 解析模块。此模块未注册。';
+  String get moduleHelpUnknownEvents =>
+      '本软件通过读取objclass解析模块类型。当前模块的objclass尚未注册到软件的模块列表中，所以没有匹配的模块编辑器，需要等开发者后续完善。';
 
   @override
-  String get eventHelpInvalidBody => '此事件被引用但解析器找不到其实体定义。';
+  String get eventHelpInvalidBody =>
+      '该事件在波次容器中被引用过，但是解析器在关卡里找不到这个事件的实体定义，Rtid语句块落空。';
 
   @override
-  String get eventHelpInvalidImpact => '保留此引用会导致游戏崩溃。请手动将其移除。';
+  String get eventHelpInvalidImpact =>
+      '若将该失效语句保留在关卡中，会导致关卡无法正常读取导致闪退。需要将该语句手动移除。';
 
   @override
-  String get position => '位置';
+  String get position => '初始潮水位置';
 
   @override
   String get editing => '编辑';
@@ -2910,10 +2922,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get velocityScale => '速度倍率 (VelocityScale)';
 
   @override
-  String get range => '范围 (Range)';
+  String get range => '范围参数 (Range)';
 
   @override
-  String get columnRange => '列范围';
+  String get columnRange => '出怪范围（列数）';
 
   @override
   String get zombieLevels => '僵尸等级';
@@ -2922,7 +2934,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get missingAssets => '缺少资源';
 
   @override
-  String get usage => '用法';
+  String get usage => '使用说明';
 
   @override
   String get types => '类型';
@@ -2940,7 +2952,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get placePlant => '放置植物';
 
   @override
-  String get plantList => '植物分布列表（先行后列）';
+  String get plantList => '当前格子中的植物';
 
   @override
   String get firstCostume => '佩戴第一装扮 (Avatar)';
@@ -2986,7 +2998,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get piratePlank => '海盗甲板模块';
 
   @override
-  String get weatherModule => '环境天气模块';
+  String get weatherModule => '环境天气模块说明';
 
   @override
   String get zombiePotion => '僵尸药水模块';
@@ -3013,7 +3025,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get eventConveyorModify => '事件类型：传送带更改';
 
   @override
-  String get bowlingMinigame => '旧版保龄球模块';
+  String get bowlingMinigame => '旧版保龄球设置';
 
   @override
   String get zombieMoveFast => '加速进场模块';
@@ -3046,7 +3058,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get eventRaidingParty => '事件类型：海盗登船';
 
   @override
-  String get swashbucklerCount => '飞索僵尸数量';
+  String get swashbucklerCount => '总僵尸数 (SwashbucklerCount)';
 
   @override
   String get sunBomb => '阳光炸弹模块';
@@ -3076,7 +3088,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get autoLevel => '自动设置等级';
 
   @override
-  String get apply => '应用';
+  String get apply => '一键应用';
 
   @override
   String get applyBatchLevel => '确认批量应用';
@@ -3109,7 +3121,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get spawnTimer => '生成时间间隔 (PotionSpawnTimer)';
 
   @override
-  String get plantLevels => '植物等级定义';
+  String get plantLevels => '阶级定义设置';
 
   @override
   String get globalPlantLevels => '阶级定义模块说明';
@@ -3124,7 +3136,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get addPlants => '添加植物';
 
   @override
-  String get noPlantsConfigured => '未配置植物';
+  String get noPlantsConfigured => '暂无配置，请添加植物';
 
   @override
   String batchLevelFormat(int level) {
@@ -3132,10 +3144,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get protectPlants => '保护植物';
+  String get protectPlants => '保护植物挑战';
 
   @override
-  String get protectItems => '保护物品';
+  String get protectItems => '保护物品挑战';
 
   @override
   String get autoCount => '自动计数';
@@ -3267,56 +3279,57 @@ class AppLocalizationsZh extends AppLocalizations {
   String get increasedCost => '通货膨胀设置';
 
   @override
-  String get powerTile => '能量瓷砖设置';
+  String get powerTile => '能量瓷砖模块';
 
   @override
-  String get powerTileGridSection => '能量瓷砖网格';
+  String get powerTileGridSection => '当前场地';
 
   @override
   String get powerTileGridHelpPrimary =>
-      '点击格子放置当前选中的组；再次点击相同组可移除；若该格已有其他组，将直接替换。';
+      '点击格子放置瓷砖，再次点击进行删除，若该格已有其他瓷砖将直接替换。场地中非当前选中组的瓷砖会以半透明效果显示。';
 
   @override
-  String get powerTileGridHelpSecondaryMobile => '长按格子可快速选择组、清空或设置传播延迟。';
+  String get powerTileGridHelpSecondaryMobile => '长按瓷砖可快速更改其所在组，或单独修改其传导延迟。';
 
   @override
-  String get powerTileGridHelpSecondaryDesktop => '右键格子可快速选择组、清空或设置传播延迟。';
+  String get powerTileGridHelpSecondaryDesktop => '右键点击瓷砖可快速更改其所在组，或单独修改其传导延迟。';
 
   @override
-  String get powerTileLinkedTilesSection => '联动瓷砖';
+  String get powerTileLinkedTilesSection => '瓷砖列表';
 
   @override
-  String get powerTilePropagationDelayLabel => '传播延迟（秒）';
+  String get powerTilePropagationDelayLabel => '传导延迟（PropagationDelay，单位：秒）';
 
   @override
-  String get powerTilePropagationDelayTooltip => '沿该瓷砖联动传播前的延迟时间（0–5 秒）。';
+  String get powerTilePropagationDelayTooltip =>
+      '能量开始传导至其他瓷砖之前的前摇时间（0–5秒），注意该时间不包含传输本身的时间。延迟默认为1.5秒。';
 
   @override
-  String get powerTileDialogEditCell => '编辑格子';
+  String get powerTileDialogEditCell => '编辑瓷砖';
 
   @override
-  String get powerTileDialogTileGroup => '瓷砖组';
+  String get powerTileDialogTileGroup => '瓷砖所在组';
 
   @override
   String get powerTileDialogNone => '无';
 
   @override
-  String get powerTileDialogPropagationDelay => '传播延迟（秒）';
+  String get powerTileDialogPropagationDelay => '传导延迟（PropagationDelay，单位：秒）';
 
   @override
   String get powerTileHelpOverview =>
-      '按组（α–ε）放置能量瓷砖；每个瓷砖可设置传播延迟以控制连锁效果。网格中非当前选中组的瓷砖会以半透明显示。';
+      '瓷砖分为五组。种植在瓷砖上的植物在触发能量豆大招时，会传导能量，使其他同组瓷砖上的植物也释放一次大招。可以设置能量开始传导的前摇时间。';
 
   @override
-  String get powerTileHelpGridSize => '深海 / 亚特兰蒂斯关卡草坪为 10 列 × 6 行；其他关卡为 9 × 5。';
+  String get powerTileHelpGridSize => '场地大小因关卡而异，海底世界关卡为6行10列，其他关卡为5行9列。';
 
   @override
   String powerTileHelpQuickEdit(String interaction) {
-    return '快速编辑：$interaction';
+    return '快捷编辑：$interaction';
   }
 
   @override
-  String get eventStandardSpawn => '事件类型：自然出怪';
+  String get eventStandardSpawn => '事件类型：普通出怪';
 
   @override
   String get eventGroundSpawn => '事件类型：地下突袭';
@@ -3338,7 +3351,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get changePosition => '潮水变更配置';
 
   @override
-  String get changePositionChangeAmount => '变更位置 (ChangeAmount)';
+  String get changePositionChangeAmount => '潮水变更配置';
 
   @override
   String get preview => '潮水位置预览';
@@ -3351,14 +3364,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String groupConfigN(int n) {
-    return '组 $n 配置';
+    return '第$n组配置';
   }
 
   @override
   String get globalParameters => '全局参数';
 
   @override
-  String get timePerGrid => '每格耗时';
+  String get timePerGrid => '传输耗时（秒/格）';
 
   @override
   String get damagePerSecond => '每秒伤害';
@@ -3373,10 +3386,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get currentStageNotPirate => '当前地图类型并非海盗港湾，此模块可能在游戏中可能无法生效，甚至导致闪退';
 
   @override
-  String get plankRows => '甲板行数配置 (0–4)';
+  String get plankRows => '甲板行数配置';
 
   @override
-  String get plankRowsDeepSea => '海底世界甲板行数配置 (0–5)';
+  String get plankRowsDeepSea => '海底世界甲板行数配置';
 
   @override
   String get selectedRows => '已选择的行：';
@@ -3456,7 +3469,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String rowNShort(int n) {
-    return '行 $n';
+    return '第$n行';
   }
 
   @override
@@ -3530,7 +3543,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get zombieList => '僵尸列表（先行后列）';
+  String get zombieList => '僵尸列表';
 
   @override
   String get positionPoolSpawnPositions => '候选位置池 (SpawnPositionsPool)';
@@ -3606,7 +3619,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String applyBatchLevelContent(int level) {
-    return '将本波次所有僵尸设为 $level阶（精英僵尸不受影响）';
+    return '将本波次所有僵尸设为$level阶（精英僵尸不受影响）';
   }
 
   @override
@@ -3626,14 +3639,14 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get eventStandardSpawnTitle => '自然出怪事件说明';
+  String get eventStandardSpawnTitle => '普通出怪事件说明';
 
   @override
   String get eventGroundSpawnTitle => '地下突袭事件说明';
 
   @override
   String get eventHelpStandardOverview =>
-      '最基础的生成僵尸事件。可以配置每一只僵尸的阶级和行号，0阶表示随地图阶级，庭院模式下即为1阶。';
+      '最基础的生成僵尸事件。可以配置每一只僵尸的阶级和行号，0阶表示随地图阶级，庭院模式下即为1阶。/n掉落物默认情况下配置的是携带能量豆的僵尸个数，启用掉落植物功能后会随机从配置的植物库里掉落植物卡片。';
 
   @override
   String get eventHelpStandardRow => '僵尸可出现在第 1–5 行中的任意一行，或随机选择一行出现。';
@@ -3694,7 +3707,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get protectedList => '保护目标列表';
 
   @override
-  String get plantLevelsFollowGlobal => '植物等级遵循全局定义，种子包等级将被覆盖。';
+  String get plantLevelsFollowGlobal => '此模块中的植物随玩家账号阶级，可以使用全局阶级定义模块统一等级。';
 
   @override
   String get protectPlantsOverview => '定义关卡中必须保护的植物。如果这些植物被僵尸吃掉或摧毁，关卡失败。';
@@ -3715,7 +3728,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String totalItemsCount(int count) {
-    return '物品总数：$count';
+    return '待生成物品总数：$count';
   }
 
   @override
@@ -3723,7 +3736,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get gravestoneBlockedInfo =>
-      '此事件中墓碑这类和植物冲突的障碍物会因为植物阻挡而无法生成，强制生成需要采用其它方法。';
+      '此事件中墓碑这类和植物冲突的障碍物会因为植物阻挡而无法生成，强制生成需要采用投放药水事件等其它方法。';
 
   @override
   String get enterConditionValue => '输入条件值';
@@ -3828,13 +3841,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noWaveManagerPropsFound => '未找到波次管理器 (WaveManagerProperties) 模块。';
 
   @override
-  String get itemsSortedByRow => '物品（按行排序）';
+  String get itemsSortedByRow => '当前格子中的物品';
 
   @override
   String get eventStormSpawn => '事件类型：风暴突袭';
 
   @override
-  String get stormEvent => '风暴突袭事件';
+  String get stormEvent => '风暴突袭事件说明';
 
   @override
   String get makeCustom => '设为自定义';
@@ -3856,7 +3869,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get backgroundMusicLevelJam => '魔音音乐切换 (LevelJam)';
 
   @override
-  String get onlyAppliesRockEra => '此事件触发时切换背景音乐，仅对摇滚年代地图有效';
+  String get onlyAppliesRockEra => '此事件触发时切换背景音乐，仅对摇滚年代地图有效。';
 
   @override
   String get appliesToAllNonElite => '将本波次所有僵尸设为指定等级（精英僵尸不受影响，保持默认等级）';
@@ -3877,7 +3890,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get descriptiveName => '提示名称 (DescriptiveName)';
 
   @override
-  String get count => '存活数量 (Count)';
+  String get count => '数量 (Count)';
 
   @override
   String get targetDistance =>
@@ -3983,8 +3996,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get baseCostIncreaseLabel => '每次增加消耗 (BaseCostIncreased)';
 
   @override
-  String get maxIncreaseCountLabel =>
-      '最大增长次数 (MaxIncreasedCount)，目前游戏只能读取默认值10次，更改次数无效';
+  String get maxIncreaseCountLabel => '最大增长次数，目前游戏只能读取默认值10次';
 
   @override
   String get selectGroup => '选择组';
@@ -4000,7 +4012,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '本模块是未来世界小游戏太阳风暴的必要模块，使用后天降阳光会变为紫色可引爆的阳光炸弹。阳光炸弹对不同阵营的杀伤可以区别填写。';
 
   @override
-  String get bombProperties => '简要介绍';
+  String get bombProperties => '炸药桶模块';
 
   @override
   String get bombPropertiesHelpBody =>
@@ -4068,7 +4080,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get invalidIdsHint =>
-      '非法的代号在卡槽中会空缺。在植物模式下僵尸代号非法，反之亦然，可以用此特点在关卡里创建两个种子库，拼接两种模式的卡槽。注意要将僵尸卡槽置于前面。';
+      '非法的代号在卡槽中会空缺。在植物模式下僵尸代号非法，反之亦然。可以用此特点在关卡里创建两个种子库，拼接两种模式的卡槽。注意要将僵尸卡槽置于前面。';
 
   @override
   String get seedBankIZombie => '种子库（我是僵尸）';
@@ -4199,22 +4211,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get missingModulesRecommended => '关卡可能无法正常运行。建议添加以下模块：';
 
   @override
-  String get itemListRowFirst => '物品分布列表（行优先排序）';
+  String get itemListRowFirst => '当前格子中的物品';
 
   @override
-  String get railcartCowboy => '西部矿车 (railcart_cowboy)';
+  String get railcartCowboy => '西部矿车';
 
   @override
-  String get railcartFuture => '未来矿车 (railcart_future)';
+  String get railcartFuture => '未来矿车';
 
   @override
-  String get railcartEgypt => '埃及矿车 (railcart_egypt)';
+  String get railcartEgypt => '埃及矿车';
 
   @override
-  String get railcartPirate => '海盗矿车 (railcart_pirate)';
+  String get railcartPirate => '海盗矿车';
 
   @override
-  String get railcartWorldcup => '世界杯矿车 (railcart_worldcup)';
+  String get railcartWorldcup => '世界杯矿车';
 
   @override
   String get clearUnusedTitle => '清除未使用对象？';
@@ -4247,7 +4259,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get lawnMowerSelectType => '选择小推车类型';
 
   @override
-  String get zombieRushTitle => '关卡计时设置';
+  String get zombieRushTitle => '关卡计时模块';
 
   @override
   String get zombieRushHelpOverview => '僵尸清除计划里的倒计时模块，在倒计时结束后关卡会结束进行结算。';
@@ -4263,7 +4275,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get zombieRushTimeSettings => '时间设置';
 
   @override
-  String get levelCountdown => '关卡倒计时';
+  String get levelCountdown => '关卡倒计时（秒）';
 
   @override
   String get tunnelDefendTitle => '地宫坑道设置';
@@ -4325,58 +4337,60 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moduleDesc_ZombieRushModuleProperties => '倒计时结束后关卡直接结算';
 
   @override
-  String get moduleTitle_PVZ1PassageModuleProperties => '传送门作战';
+  String get moduleTitle_PVZ1PassageModuleProperties => '斗转星移';
 
   @override
-  String get moduleDesc_PVZ1PassageModuleProperties => '一代传送门：种类、生成列与传送间隔等';
+  String get moduleDesc_PVZ1PassageModuleProperties => '配置一代传送门的生成情况';
 
   @override
   String get moduleTitle_PVZ1CopycatsModuleProperties => '猜猜我是谁';
 
   @override
-  String get moduleDesc_PVZ1CopycatsModuleProperties =>
-      '小游戏：召唤植物或僵尸；配置权重、阶级与黑白名单';
+  String get moduleDesc_PVZ1CopycatsModuleProperties => '配置魔术帽的召唤情况，开启后可选择魔术帽';
 
   @override
   String get pvz1CopycatsModuleTitle => '猜猜我是谁';
 
   @override
-  String get pvz1CopycatsSectionParams => '参数';
+  String get pvz1CopycatsSectionParams => '参数配置';
 
   @override
   String get pvz1CopycatsFieldZombieWeightLabel => '召唤僵尸权重 (ZombieWeight)';
 
   @override
-  String get pvz1CopycatsHelpZombieWeight => '召唤僵尸相对于植物的权重。';
+  String get pvz1CopycatsHelpZombieWeight =>
+      '单次召唤时出现僵尸的概率（范围为0-1），用1减去该值即可得到植物出现的概率。';
 
   @override
   String get pvz1CopycatsFieldSpawnPlantLevelLabel =>
-      '自定义召唤阶级 (SpawnPlantLevel)';
+      '召唤植物阶级 (SpawnPlantLevel)';
 
   @override
-  String get pvz1CopycatsHelpSpawnPlantLevel => '帽子召唤植物时使用的阶级。';
+  String get pvz1CopycatsHelpSpawnPlantLevel => '魔术帽召唤出的植物的阶级。';
 
   @override
   String get pvz1CopycatsSectionPlantBlackList => '植物黑名单 (PlantBlackList)';
 
   @override
-  String get pvz1CopycatsHelpPlantBlackList => '帽子不能召唤的植物。';
+  String get pvz1CopycatsHelpPlantBlackList =>
+      '每种魔术帽都有独立的可召唤植物列表，列表不受黑名单影响，因此修改黑名单没有意义。';
 
   @override
   String get pvz1CopycatsSectionZombieWhiteList => '僵尸白名单 (ZombieWhiteList)';
 
   @override
-  String get pvz1CopycatsHelpZombieWhiteList => '允许被召唤的僵尸类型。';
+  String get pvz1CopycatsHelpZombieWhiteList => '魔术帽仅会召唤白名单中的僵尸。';
 
   @override
-  String get pvz1CopycatsHelpTip => '别忘了让玩家能使用魔术帽。';
+  String get pvz1CopycatsHelpTip =>
+      '添加此模块后，不要忘记在种子库或传送带模块中预选魔术帽。长按或右键点击选择植物界面的魔术帽，可以预览该魔术帽可能召唤的植物。';
 
   @override
   String get pvz1CopycatsHelpOverview =>
-      '猜猜我是谁：魔术帽随机召唤植物（全目录减去黑名单）或僵尸（白名单内），由 ZombieWeight 与 SpawnPlantLevel 等控制。';
+      '本模块用于配置卡槽中可种植的魔术帽的召唤情况，常用于回忆之旅小游戏“猜猜我是谁”关卡。缺少该模块时，魔术帽将无法正常召唤。不同种类的魔法帽有着不同的阳光消耗和冷却时间。魔术帽种下后会在片刻内变为随机的植物或僵尸。\n植物从魔术帽自身的植物列表中选择，僵尸仅会从白名单中选择。植物或僵尸列表中各项的出现权重无法单独设置。';
 
   @override
-  String get pvz1CopycatsHelpFieldsTitle => '字段说明';
+  String get pvz1CopycatsHelpFieldsTitle => '参数介绍';
 
   @override
   String get pvz1CopycatsPlantListEmpty => '黑名单为空';
@@ -4391,59 +4405,66 @@ class AppLocalizationsZh extends AppLocalizations {
   String get pvz1CopycatsAddZombie => '向白名单添加僵尸';
 
   @override
-  String get magicHatSpawnPreviewTitle => '魔术帽 — 可能召唤的植物';
+  String get magicHatSpawnPreviewTitle => '魔术帽可能召唤的植物';
 
   @override
   String get magicHatSpawnPreviewEmpty => '没有符合黑名单条件的植物。';
 
   @override
-  String get pvz1PassageModuleTitle => '传送门作战';
+  String get pvz1PassageModuleTitle => '斗转星移';
 
   @override
   String get pvz1PassageSectionParams => '传送门参数';
 
   @override
   String get pvz1PassageHelpOverview =>
-      '配置一代风格的场地传送门：传送门种类数、每组数量、可生成的列范围、同一只僵尸再次传送的最短间隔，以及传送门位置刷新的间隔。';
+      '本模块用于配置一代风格的传送门，常用于回忆之旅小游戏“斗转星移”关卡。传送门成对出现，影响植物子弹和僵尸的运动轨迹，每隔一段时间会改变位置。注意传送门不会影响植物的索敌范围，即植物不会主动攻击前方传送门另一端的僵尸，只会在本行有僵尸时发动攻击。';
 
   @override
-  String get pvz1PassageHelpFieldsTitle => '字段说明';
+  String get pvz1PassageHelpFieldsTitle => '参数介绍';
 
   @override
   String get pvz1PassageFieldGroupAmount => '传送门种类 (GroupAmount)';
 
   @override
-  String get pvz1PassageHelpGroupAmount => '传送门种类（不同组类型的数量）。';
+  String get pvz1PassageHelpGroupAmount =>
+      '关卡中出现的传送门种类数。一代风格的传送门共有两种：方形和圆形。若设为 1，则只会出现方形传送门；设为 2 时，方形传送门和圆形传送门会同时出现；设为 3 及以上时，多余的传送门种类会显示为阳光贴图，这些传送门不会刷新位置，但仍然可以传送僵尸。';
 
   @override
   String get pvz1PassageFieldPassageAmount => '每组传送门数量 (PassageAmount)';
 
   @override
-  String get pvz1PassageHelpPassageAmount => '每一组内传送门的数量。';
+  String get pvz1PassageHelpPassageAmount =>
+      '每一组内传送门的数量。例如，设为 2 时，每种类型各有 2 个传送门。传送门的总数不能超过生成区域内的格子数。如果同一类型中存在多个可传送的传送门，僵尸会始终传送到指定的那个传送门。';
 
   @override
-  String get pvz1PassageFieldGridXMin => '最小生成列 (GridXMin)';
+  String get pvz1PassageFieldGridXMin => '最小生成列数 (GridXMin，范围0-9)';
 
   @override
-  String get pvz1PassageHelpGridXMin => '传送门可出现的最左列。';
+  String get pvz1PassageHelpGridXMin =>
+      '传送门可出现的最左列。场地左边界为0列，右边界为9列。最小生成列数必须小于最大生成列数。';
 
   @override
-  String get pvz1PassageFieldGridXMax => '最大生成列 (GridXMax)';
+  String get pvz1PassageFieldGridXMax => '最大生成列数 (GridXMax，范围0-9)';
 
   @override
-  String get pvz1PassageHelpGridXMax => '传送门可出现的最右列。';
+  String get pvz1PassageHelpGridXMax =>
+      '传送门可出现的最右列。场地左边界为0列，右边界为9列。最大生成列数必须大于最小生成列数。';
 
   @override
-  String get pvz1PassageFieldTransferCooldown => '同僵尸传送最短间隔 (transferCooldown)';
+  String get pvz1PassageFieldTransferCooldown =>
+      '同僵尸传送最短间隔 (transferCooldown，单位：秒)';
 
   @override
-  String get pvz1PassageHelpTransferCooldown => '同一只僵尸两次传送之间的最短时间。';
+  String get pvz1PassageHelpTransferCooldown =>
+      '同一只僵尸两次传送之间的最短时间。如果时间设置过短，僵尸在传送后未能在间隔内离开传送门所在格，则会在间隔结束后再次被传送回原传送门。';
 
   @override
-  String get pvz1PassageFieldRefreshTime => '传送门位置刷新间隔 (refreshTime)';
+  String get pvz1PassageFieldRefreshTime => '传送门位置刷新间隔 (refreshTime，单位：秒)';
 
   @override
-  String get pvz1PassageHelpRefreshTime => '传送门重新生成位置的间隔。';
+  String get pvz1PassageHelpRefreshTime =>
+      '传送门重新生成位置的间隔。位置生成是逐个进行的，即每次刷新只会改变同一类型中的一个传送门的位置。';
 
   @override
   String get moduleTitle_RenaiModuleProperties => '复兴时代模块';
@@ -4469,7 +4490,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get renaiModuleHelpStatuesBody =>
-      '初始障碍物指关卡开始时场上已存在的雕像和原石像，会在指定波次复活成为僵尸。夜间障碍物指黑夜开始后生成的障碍物，生成时若目标格上已有植物，则不会生成。黑夜开始的波次从0开始计数，如第1波入夜填0，第2波入夜填1。';
+      '初始障碍物指关卡开始时场上已存在的雕像和原石像，会在指定波次复活成为僵尸。夜间障碍物指黑夜开始后生成的障碍物，生成时若目标格上已有植物，则不会生成。黑夜开始的波次在代码中从0开始计数（如第1波入夜为0，第2波入夜为1），但在编辑器界面中请照常从1开始填写。';
 
   @override
   String get renaiModuleEnableNight => '启用昼夜更替功能';
@@ -4478,7 +4499,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get renaiModuleEnableNightSubtitle => '允许设置夜幕降临的波次和夜间障碍物';
 
   @override
-  String get renaiModuleNightStart => '黑夜开始波次（从0开始）';
+  String get renaiModuleNightStart => '黑夜开始波次';
 
   @override
   String get renaiModuleDayStatues => '初始障碍物';
@@ -4487,7 +4508,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get renaiModuleNightStatues => '夜间障碍物';
 
   @override
-  String get renaiModuleNightStatuesDisabledHint => '请先启用昼夜更替功能以添加夜间障碍物';
+  String get renaiModuleNightStatuesDisabledHint => '请先启用昼夜更替功能';
 
   @override
   String get renaiModuleAddStatue => '添加雕像';
@@ -4691,10 +4712,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bungeeWaveCurrentTarget => '当前目标';
 
   @override
-  String get bungeeWaveCol => '列数为';
+  String get bungeeWaveCol => 'Col';
 
   @override
-  String get bungeeWaveRow => '行数为';
+  String get bungeeWaveRow => 'Row';
 
   @override
   String get bungeeWavePropertiesConfig => '属性配置';
@@ -4744,7 +4765,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get zombieSunDropEditHint => '配置该僵尸在不同阶级的阳光掉落量，若超过6阶则使用1阶数值';
 
   @override
-  String get zombieSunDropTier => '阶';
+  String get zombieSunDropTier => '阶级';
 
   @override
   String get moduleTitle_PickupCollectableTutorialProperties => '捡取教程';
@@ -4798,16 +4819,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get pickupCollectableLootGoldCoin => '金币';
 
   @override
-  String get invalidRtonMagic => '无效的 RTON 文件：文件头应为「RTON」。';
+  String get invalidRtonMagic => 'RTON 文件无效，文件开头应为「RTON」。';
 
   @override
-  String get invalidRtonVersion => '无效的 RTON 版本（应为 1）。';
+  String get invalidRtonVersion => 'RTON 版本无效（应为 1）。';
 
   @override
-  String get invalidRtonEnd => '无效的 RTON 文件：应以「DONE」结尾。';
+  String get invalidRtonEnd => 'RTON 文件无效，应以「DONE」结尾。';
 
   @override
-  String get invalidRtonArrayEnd => '无效的 RTON 数组分隔符。';
+  String get invalidRtonArrayEnd => '无效的RTON 数组分隔符。';
 
   @override
   String get invalidRtid => '无效的 RTID 值。';
