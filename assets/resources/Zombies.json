@@ -95,6 +95,7 @@
     "name": "zombie_camel_twohump",
     "tags": [
       "Egypt_Pirate",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_camel_onehump.webp"
@@ -176,6 +177,7 @@
     "name": "zombie_swashbuckler",
     "tags": [
       "Egypt_Pirate",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_swashbuckler.webp"
@@ -194,6 +196,7 @@
     "name": "zombie_barrelroller",
     "tags": [
       "Egypt_Pirate",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_barrelroller.webp"
@@ -222,6 +225,7 @@
     "name": "zombie_cannon",
     "tags": [
       "Egypt_Pirate",
+      "Evildave",
       "Imp"
     ],
     "icon": "zombie_cannon.webp"
@@ -231,6 +235,7 @@
     "name": "zombie_cowboy",
     "tags": [
       "West_Future",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_cowboy.webp"
@@ -240,6 +245,7 @@
     "name": "zombie_cowboy_armor1",
     "tags": [
       "West_Future",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_cowboy_armor1.webp"
@@ -249,6 +255,7 @@
     "name": "zombie_cowboy_armor2",
     "tags": [
       "West_Future",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_cowboy_armor2.webp"
@@ -294,6 +301,7 @@
     "name": "zombie_prospector",
     "tags": [
       "West_Future",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_prospector.webp"
@@ -323,6 +331,7 @@
     "name": "zombie_piano",
     "tags": [
       "West_Future",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_piano.webp"
@@ -359,6 +368,7 @@
     "name": "zombie_kongfu_basic",
     "tags": [
       "Kongfu_Skycity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_kongfu_basic.webp"
@@ -386,6 +396,7 @@
     "name": "zombie_kongfu_basic_armor3",
     "tags": [
       "Kongfu_Skycity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_kongfu_basic_armor3.webp"
@@ -413,6 +424,7 @@
     "name": "zombie_kongfu_selfexplode",
     "tags": [
       "Kongfu_Skycity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_kongfu_selfexplode.webp"
@@ -449,6 +461,7 @@
     "name": "zombie_kongfu_qigong",
     "tags": [
       "Kongfu_Skycity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_kongfu_qigong.webp"
@@ -530,6 +543,7 @@
     "name": "zombie_kongfu_monk_drink",
     "tags": [
       "Kongfu_Skycity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_kongfu_monk_drink.webp"
@@ -539,6 +553,7 @@
     "name": "zombie_kongfu_monk_nunchaku",
     "tags": [
       "Kongfu_Skycity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_kongfu_monk_nunchaku.webp"
@@ -548,6 +563,7 @@
     "name": "zombie_kongfu_strong_bronze",
     "tags": [
       "Kongfu_Skycity",
+      "Evildave",
       "Gargantuar"
     ],
     "icon": "zombie_kongfu_strong_bronze.webp"
@@ -726,6 +742,7 @@
     "name": "zombie_dark_armor3",
     "tags": [
       "Dark_Beach",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_dark_armor3.webp"
@@ -809,6 +826,7 @@
     "name": "zombie_dark_wizard",
     "tags": [
       "Dark_Beach",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_dark_wizard.webp"
@@ -818,6 +836,7 @@
     "name": "zombie_dark_imp_dragon",
     "tags": [
       "Dark_Beach",
+      "Evildave",
       "Imp",
       "Pet"
     ],
@@ -975,6 +994,7 @@
     "name": "zombie_beach_fisherman",
     "tags": [
       "Dark_Beach",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_beach_fisherman.webp"
@@ -984,6 +1004,7 @@
     "name": "zombie_beach_surfer",
     "tags": [
       "Dark_Beach",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_beach_surfer.webp"
@@ -993,6 +1014,7 @@
     "name": "zombie_beach_snorkel",
     "tags": [
       "Dark_Beach",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_beach_snorkel.webp"
@@ -1002,6 +1024,7 @@
     "name": "zombie_beach_shell",
     "tags": [
       "Dark_Beach",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_beach_shell.webp"
@@ -1084,6 +1107,7 @@
     "name": "zombie_iceage_hunter",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_iceage_hunter.webp"
@@ -1093,6 +1117,7 @@
     "name": "zombie_iceage_walrus",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Pet"
     ],
     "icon": "zombie_iceage_walrus.webp"
@@ -1102,6 +1127,7 @@
     "name": "zombie_iceage_ski",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_iceage_ski.webp"
@@ -1120,6 +1146,7 @@
     "name": "zombie_iceage_weasel",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Pet"
     ],
     "icon": "zombie_iceage_weasel.webp"
@@ -1139,6 +1166,7 @@
     "name": "zombie_iceage_dodo",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Pet"
     ],
     "icon": "zombie_iceage_dodo.webp"
@@ -1350,6 +1378,7 @@
     "name": "zombie_lostcity_bug",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Pet"
     ],
     "icon": "zombie_lostcity_bug.webp"
@@ -1451,6 +1480,7 @@
     "name": "zombie_lostcity_crystalskull",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_lostcity_crystalskull.webp"
@@ -1469,6 +1499,7 @@
     "name": "zombie_lostcity_guide",
     "tags": [
       "Iceage_Lostcity",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_lostcity_guide.webp"
@@ -1514,6 +1545,7 @@
     "name": "zombie_eighties_gargantuar",
     "tags": [
       "Eighties_Dino",
+      "Evildave",
       "Gargantuar"
     ],
     "icon": "zombie_eighties_gargantuar.webp"
@@ -1532,6 +1564,7 @@
     "name": "zombie_eighties_punk",
     "tags": [
       "Eighties_Dino",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_eighties_punk.webp"
@@ -1541,6 +1574,7 @@
     "name": "zombie_eighties_mc",
     "tags": [
       "Eighties_Dino",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_eighties_mc.webp"
@@ -1595,6 +1629,7 @@
     "name": "zombie_eighties_breakdancer",
     "tags": [
       "Eighties_Dino",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_eighties_breakdancer.webp"
@@ -2001,6 +2036,36 @@
       "Basic"
     ],
     "icon": "zombie_ladder.webp"
+  },
+  {
+    "id": "bobsled_punk",
+    "name": "zombie_bobsled_punk",
+    "tags": [
+      "Modern_Pvz1",
+      "Memory",
+      "Basic"
+    ],
+    "icon": "zombie_bobsled_punk.webp"
+  },
+  {
+    "id": "sled_punk",
+    "name": "zombie_sled_punk",
+    "tags": [
+      "Modern_Pvz1",
+      "Memory",
+      "Basic"
+    ],
+    "icon": "zombie_sled_punk.webp"
+  },
+  {
+    "id": "pogo",
+    "name": "zombie_pogo",
+    "tags": [
+      "Modern_Pvz1",
+      "Memory",
+      "Basic"
+    ],
+    "icon": "zombie_pogo.webp"
   },
   {
     "id": "treasureyeti",
@@ -2604,6 +2669,7 @@
     "name": "zombie_zcorp",
     "tags": [
       "Tale_ZCorp",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_zcorp.webp"
@@ -2613,6 +2679,7 @@
     "name": "zombie_zcorp_armor1",
     "tags": [
       "Tale_ZCorp",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_zcorp_armor1.webp"
@@ -2622,6 +2689,7 @@
     "name": "zombie_zcorp_armor2",
     "tags": [
       "Tale_ZCorp",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_zcorp_armor2.webp"
@@ -2667,6 +2735,7 @@
     "name": "zombie_zcorp_consultant",
     "tags": [
       "Tale_ZCorp",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_zcorp_consultant.webp"
@@ -2676,6 +2745,7 @@
     "name": "zombie_zcorp_racer_chair",
     "tags": [
       "Tale_ZCorp",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_zcorp_racer.webp"
@@ -2694,6 +2764,7 @@
     "name": "zombie_zcorp_helpdesk",
     "tags": [
       "Tale_ZCorp",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_zcorp_helpdesk.webp"
@@ -2712,6 +2783,7 @@
     "name": "zombie_zcorp_imp",
     "tags": [
       "Tale_ZCorp",
+      "Evildave",
       "Imp",
       "Gargantuar"
     ],
@@ -2815,6 +2887,7 @@
     "name": "zombie_needforspeed",
     "tags": [
       "Parkour_Speed",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_needforspeed.webp"
@@ -2824,6 +2897,7 @@
     "name": "zombie_needforspeed_armor1",
     "tags": [
       "Parkour_Speed",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_needforspeed_armor1.webp"
@@ -2833,6 +2907,7 @@
     "name": "zombie_needforspeed_armor2",
     "tags": [
       "Parkour_Speed",
+      "Evildave",
       "Basic"
     ],
     "icon": "zombie_needforspeed_armor2.webp"
@@ -3068,13 +3143,42 @@
     "icon": "zombie_uncharted_gentleman.webp"
   },
   {
-    "id": "uncharted_cannon",
-    "name": "zombie_uncharted_cannon",
+    "id": "beach_imp_quiff",
+    "name": "zombie_beach_imp_quiff",
+    "tags": [
+      "Dark_Beach",
+      "Universe",
+      "Imp"
+    ],
+    "icon": "zombie_beach_imp_quiff.webp"
+  },
+  {
+    "id": "treasureyeti_egypt",
+    "name": "zombie_treasureyeti_egypt",
+    "tags": [
+      "Egypt_Pirate",
+      "Universe",
+      "Fat"
+    ],
+    "icon": "zombie_treasureyeti_egypt.gif"
+  },
+  {
+    "id": "roman_ballista_no42",
+    "name": "zombie_roman_ballista_no42",
     "tags": [
       "Universe",
-      "Gargantuar"
+      "Imp"
     ],
-    "icon": "zombie_uncharted_cannon.webp"
+    "icon": "zombie_roman_ballista.webp"
+  },
+  {
+    "id": "slimes_gargantuar_no42",
+    "name": "zombie_slimes_gargantuar_no42",
+    "tags": [
+      "Universe",
+      "Basic"
+    ],
+    "icon": "zombie_slimes.webp"
   },
   {
     "id": "iceage_fat_weasel",
@@ -3088,6 +3192,15 @@
     "icon": "zombie_iceage_fat_weasel_elite.webp"
   },
   {
+    "id": "uncharted_cannon",
+    "name": "zombie_uncharted_cannon",
+    "tags": [
+      "Universe",
+      "Gargantuar"
+    ],
+    "icon": "zombie_uncharted_cannon.webp"
+  },
+  {
     "id": "gargantuar_uncharted_imp",
     "name": "zombie_gargantuar_uncharted_imp",
     "tags": [
@@ -3097,6 +3210,7 @@
     ],
     "icon": "zombie_gargantuar_uncharted_imp.webp"
   },
+
   {
     "id": "lny",
     "name": "zombie_lny",
@@ -4104,7 +4218,8 @@
     "id": "slimes",
     "name": "zombie_slimes",
     "tags": [
-      "Memory"
+      "Memory",
+      "Basic"
     ],
     "icon": "zombie_slimes.webp"
   },
@@ -4588,70 +4703,5 @@
       "Strong"
     ],
     "icon": "zombie_qin_terracotta_mid.webp"
-  },
-  {
-    "id": "beach_imp_quiff",
-    "name": "zombie_beach_imp_quiff",
-    "tags": [
-      "Dark_Beach",
-      "Universe",
-      "Imp"
-    ],
-    "icon": "zombie_beach_imp_quiff.webp"
-  },
-  {
-    "id": "bobsled_punk",
-    "name": "zombie_bobsled_punk",
-    "tags": [
-      "Festival2",
-      "Basic"
-    ],
-    "icon": "zombie_bobsled_punk.webp"
-  },
-  {
-    "id": "pogo",
-    "name": "zombie_pogo",
-    "tags": [
-      "Modern_Pvz1",
-      "Basic"
-    ],
-    "icon": "zombie_pogo.webp"
-  },
-  {
-    "id": "sled_punk",
-    "name": "zombie_sled_punk",
-    "tags": [
-      "Festival2",
-      "Basic"
-    ],
-    "icon": "zombie_sled_punk.webp"
-  },
-  {
-    "id": "treasureyeti_egypt",
-    "name": "zombie_treasureyeti_egypt",
-    "tags": [
-      "Egypt_Pirate",
-      "Fat"
-    ],
-    "icon": "zombie_treasureyeti_egypt.gif"
-  },
-  {
-    "id": "roman_ballista_no42",
-    "name": "zombie_roman_ballista_no42",
-    "tags": [
-      "Roman",
-      "Universe",
-      "Imp"
-    ],
-    "icon": "zombie_roman_ballista.webp"
-  },
-  {
-    "id": "slimes_gargantuar_no42",
-    "name": "zombie_slimes_gargantuar_no42",
-    "tags": [
-      "Universe",
-      "Gargantuar"
-    ],
-    "icon": "zombie_slimes.webp"
   }
 ]
