@@ -2769,7 +2769,8 @@
         "name": "plant_paphiopedilum",
         "tags": [
             "Orange",
-            "Ranger"
+            "Ranger",
+            "Electric"
         ],
         "icon": "icon_paphiopedilum.webp"
     },
@@ -3023,8 +3024,8 @@
         "name": "plant_moton",
         "tags": [
             "Blue",
-            "Electric",
-            "Ranger"
+            "Ranger",
+            "Electric"
         ],
         "icon": "icon_moton.webp"
     },

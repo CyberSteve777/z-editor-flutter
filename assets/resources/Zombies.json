@@ -2104,7 +2104,7 @@
       "Modern_Pvz1",
       "Fat"
     ],
-    "icon": "zombie_treasureyeti.webp"
+    "icon": "zombie_yeti.webp"
   },
   {
     "id": "steam_worker",
@@ -4747,7 +4747,7 @@
       "Tothewest",
       "Basic"
     ],
-    "icon": "zombie_mausoleum_basic_ghost.webp"
+    "icon": "zombie_mausoleum_basic_ghost_spirit.webp"
   },
   {
     "id": "mausoleum_armor1_ghost",
@@ -4765,7 +4765,7 @@
       "Tothewest",
       "Basic"
     ],
-    "icon": "zombie_mausoleum_armor1_ghost.webp"
+    "icon": "zombie_mausoleum_armor1_ghost_spirit.webp"
   },
   {
     "id": "mausoleum_armor2_ghost",
@@ -4783,7 +4783,7 @@
       "Tothewest",
       "Basic"
     ],
-    "icon": "zombie_mausoleum_armor2_ghost.webp"
+    "icon": "zombie_mausoleum_armor2_ghost_spirit.webp"
   },
   {
     "id": "mausoleum_gargantuar_ghost",
@@ -4801,7 +4801,7 @@
       "Tothewest",
       "Gargantuar"
     ],
-    "icon": "zombie_mausoleum_gargantuar_ghost.webp"
+    "icon": "zombie_mausoleum_gargantuar_ghost_sp.webp"
   },
   {
     "id": "mausoleum_archer_ghost",
@@ -4819,7 +4819,7 @@
       "Tothewest",
       "Basic"
     ],
-    "icon": "zombie_mausoleum_archer_ghost.webp"
+    "icon": "zombie_mausoleum_archer_ghost_spirit.webp"
   },
   {
     "id": "qin_jingke_ghost",
@@ -4837,7 +4837,7 @@
       "Tothewest",
       "Basic"
     ],
-    "icon": "zombie_qin_jingke_ghost.webp"
+    "icon": "zombie_qin_jingke_ghost_spirit.webp"
   },
   {
     "id": "mausoleum_drunkard",
@@ -4864,7 +4864,7 @@
       "Tothewest",
       "Fat"
     ],
-    "icon": "zombie_mausoleum_drunkard_ghost.webp"
+    "icon": "zombie_mausoleum_drunkard_ghost_spirit.webp"
   },
   {
     "id": "qin_mystic_formation_summon",
@@ -4882,6 +4882,6 @@
       "Tothewest",
       "Basic"
     ],
-    "icon": "zombie_qin_mystic_formation_summon.webp"
+    "icon": "zombie_qin_mystic_formation_defense.webp"
   }
 ]
