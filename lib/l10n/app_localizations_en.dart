@@ -1698,7 +1698,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventTitle_TidalChangeWaveActionProps => 'Tide Change';
 
   @override
-  String get eventDesc_TidalChangeWaveActionProps => 'Change the tide position';
+  String get eventDesc_TidalChangeWaveActionProps =>
+      'Changes the tide position';
 
   @override
   String get eventTitle_TideWaveWaveActionProps => 'Ocean Current';
@@ -1790,7 +1791,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventDesc_SpawnZombiesFromGridItemSpawnerProps =>
-      'Spawn zombies from specific grid items';
+      'Spawns zombies from specific grid items';
 
   @override
   String get eventTitle_FairyTaleFogWaveActionProps => 'Magic Fog';
@@ -1846,10 +1847,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventDesc_BungeeWaveActionProps =>
-      'Drop a zombie by bungee to the lawn';
+      'Drops a zombie by bungee to the lawn';
 
   @override
-  String get eventTitle_ThunderWaveActionProps => 'Thundercloud Storms';
+  String get eventTitle_ThunderWaveActionProps => 'Thundercloud Storm';
 
   @override
   String get eventDesc_ThunderWaveActionProps =>
@@ -2096,24 +2097,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enable elite immunities (EnableEliteImmunities)';
 
   @override
-  String get canSpawnPlantFood => 'Can Drop Plant Food (CanSpawnPlantFood)';
+  String get canSpawnPlantFood => 'Can drop Plant Food (CanSpawnPlantFood)';
 
   @override
   String get canSurrender =>
-      'Can Die Immediately at the End if No Other Zombies Remain (CanSurrender)';
+      'Can die immediately at the end if no other zombies remain (CanSurrender)';
 
   @override
   String get canTriggerZombieWin =>
       'Triggers game over when reaching the house (CanTriggerZombieWin)';
 
   @override
-  String get resilience => 'Resilience';
+  String get resilience => 'Resistances (Resistences)';
 
   @override
-  String get resilienceArmor => 'Resilience (armor)';
+  String get resilienceArmor => 'Resilience Bar';
 
   @override
-  String get enableResilience => 'Enable Resilience';
+  String get enableResilience => 'Enable resilience';
 
   @override
   String get resilienceSource => 'Source';
@@ -2125,7 +2126,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resilienceCustom => 'Custom';
 
   @override
-  String get resiliencePresetSelect => 'Select Resilience preset';
+  String get resiliencePresetSelect => 'Selected resilience preset';
 
   @override
   String get resilienceAmount => 'Resilience value (Amount)';
@@ -3238,7 +3239,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventBarrelWave => 'Event: Barrel Crisis';
 
   @override
-  String get eventThunderWave => 'Event: Thundercloud Storms';
+  String get eventThunderWave => 'Event: Thundercloud Storm';
 
   @override
   String get eventGraveSpawn => 'Event: Grid Item Spawner';

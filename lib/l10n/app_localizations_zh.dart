@@ -1975,10 +1975,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get canTriggerZombieWin => '可食脑判负 (CanTriggerZombieWin)';
 
   @override
-  String get resilience => '韧性';
+  String get resilience => '僵尸抗性设置 (Resistences)';
 
   @override
-  String get resilienceArmor => '韧性（护甲）';
+  String get resilienceArmor => '韧性条 (Resilience)';
 
   @override
   String get enableResilience => '启用韧性';

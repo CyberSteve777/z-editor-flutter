@@ -3145,7 +3145,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventDesc_TidalChangeWaveActionProps.
   ///
   /// In en, this message translates to:
-  /// **'Change the tide position'**
+  /// **'Changes the tide position'**
   String get eventDesc_TidalChangeWaveActionProps;
 
   /// No description provided for @eventTitle_TideWaveWaveActionProps.
@@ -3301,7 +3301,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventDesc_SpawnZombiesFromGridItemSpawnerProps.
   ///
   /// In en, this message translates to:
-  /// **'Spawn zombies from specific grid items'**
+  /// **'Spawns zombies from specific grid items'**
   String get eventDesc_SpawnZombiesFromGridItemSpawnerProps;
 
   /// No description provided for @eventTitle_FairyTaleFogWaveActionProps.
@@ -3397,13 +3397,13 @@ abstract class AppLocalizations {
   /// No description provided for @eventDesc_BungeeWaveActionProps.
   ///
   /// In en, this message translates to:
-  /// **'Drop a zombie by bungee to the lawn'**
+  /// **'Drops a zombie by bungee to the lawn'**
   String get eventDesc_BungeeWaveActionProps;
 
   /// No description provided for @eventTitle_ThunderWaveActionProps.
   ///
   /// In en, this message translates to:
-  /// **'Thundercloud Storms'**
+  /// **'Thundercloud Storm'**
   String get eventTitle_ThunderWaveActionProps;
 
   /// No description provided for @eventDesc_ThunderWaveActionProps.
@@ -3859,13 +3859,13 @@ abstract class AppLocalizations {
   /// No description provided for @canSpawnPlantFood.
   ///
   /// In en, this message translates to:
-  /// **'Can Drop Plant Food (CanSpawnPlantFood)'**
+  /// **'Can drop Plant Food (CanSpawnPlantFood)'**
   String get canSpawnPlantFood;
 
   /// No description provided for @canSurrender.
   ///
   /// In en, this message translates to:
-  /// **'Can Die Immediately at the End if No Other Zombies Remain (CanSurrender)'**
+  /// **'Can die immediately at the end if no other zombies remain (CanSurrender)'**
   String get canSurrender;
 
   /// No description provided for @canTriggerZombieWin.
@@ -3877,19 +3877,19 @@ abstract class AppLocalizations {
   /// No description provided for @resilience.
   ///
   /// In en, this message translates to:
-  /// **'Resilience'**
+  /// **'Resistances (Resistences)'**
   String get resilience;
 
   /// No description provided for @resilienceArmor.
   ///
   /// In en, this message translates to:
-  /// **'Resilience (armor)'**
+  /// **'Resilience Bar'**
   String get resilienceArmor;
 
   /// No description provided for @enableResilience.
   ///
   /// In en, this message translates to:
-  /// **'Enable Resilience'**
+  /// **'Enable resilience'**
   String get enableResilience;
 
   /// No description provided for @resilienceSource.
@@ -3913,7 +3913,7 @@ abstract class AppLocalizations {
   /// No description provided for @resiliencePresetSelect.
   ///
   /// In en, this message translates to:
-  /// **'Select Resilience preset'**
+  /// **'Selected resilience preset'**
   String get resiliencePresetSelect;
 
   /// No description provided for @resilienceAmount.
@@ -5881,7 +5881,7 @@ abstract class AppLocalizations {
   /// No description provided for @eventThunderWave.
   ///
   /// In en, this message translates to:
-  /// **'Event: Thundercloud Storms'**
+  /// **'Event: Thundercloud Storm'**
   String get eventThunderWave;
 
   /// No description provided for @eventGraveSpawn.
