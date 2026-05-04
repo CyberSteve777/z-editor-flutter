@@ -3039,6 +3039,57 @@
         "icon": "icon_apsarlotus.webp"
     },
     {
+        "id": "goldmagnet",
+        "name": "plant_goldmagnet",
+        "tags": [
+            "Orange",
+            "Trapper",
+            "Original"
+        ],
+        "icon": "icon_goldmagnet.webp"
+    },
+    {
+        "id": "glaciershroom",
+        "name": "plant_glaciershroom",
+        "tags": [
+            "Orange",
+            "Ice",
+            "Vanguard",
+            "Original"
+        ],
+        "icon": "icon_glaciershroom.webp"
+    },
+    {
+        "id": "gloombara",
+        "name": "plant_gloombara",
+        "tags": [
+            "Purple",
+            "Trapper",
+            "Magic"
+        ],
+        "icon": "icon_gloombara.webp"
+    },
+    {
+        "id": "exorcislily",
+        "name": "plant_exorcislily",
+        "tags": [
+            "Purple",
+            "Ranger",
+            "Magic"
+        ],
+        "icon": "icon_exorcislily.webp"
+    },
+    {
+        "id": "doombell",
+        "name": "plant_doombell",
+        "tags": [
+            "Blue",
+            "Defence",
+            "Physics"
+        ],
+        "icon": "icon_doombell.webp"
+    },
+    {
         "id": "sunflowerzombie",
         "name": "plant_sunflowerzombie",
         "tags": [
