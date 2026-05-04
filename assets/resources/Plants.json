@@ -569,7 +569,8 @@
         "tags": [
             "Orange",
             "Ranger",
-            "Ice"
+            "Ice",
+            "Magic"
         ],
         "icon": "icon_iceshroom.webp"
     },
@@ -1173,7 +1174,8 @@
         "tags": [
             "Blue",
             "Vanguard",
-            "Physical"
+            "Physical",
+            "Magic"
         ],
         "icon": "icon_phatbeet.webp"
     },
@@ -1276,7 +1278,8 @@
         "tags": [
             "Orange",
             "Vanguard",
-            "Ice"
+            "Ice",
+            "Magic"
         ],
         "icon": "icon_coldsnapdragon.webp"
     },
@@ -1285,7 +1288,8 @@
         "name": "plant_shrinkingviolet",
         "tags": [
             "Purple",
-            "Trapper"
+            "Trapper",
+            "Magic"
         ],
         "icon": "icon_shrinkingviolet.webp"
     },
@@ -1463,7 +1467,8 @@
         "name": "plant_moonflower",
         "tags": [
             "Green",
-            "Support"
+            "Support",
+            "Magic"
         ],
         "icon": "icon_moonflower.webp"
     },
@@ -1563,7 +1568,8 @@
         "name": "plant_goldbloom",
         "tags": [
             "White",
-            "SunProducer"
+            "SunProducer",
+            "Magic"
         ],
         "icon": "icon_goldbloom.webp"
     },
@@ -1785,7 +1791,8 @@
         "name": "plant_aloes",
         "tags": [
             "Purple",
-            "Support"
+            "Support",
+            "Magic"
         ],
         "icon": "icon_aloes.webp"
     },
@@ -2622,7 +2629,8 @@
         "name": "plant_tristerixaphyllus",
         "tags": [
             "Orange",
-            "Ranger"
+            "Ranger",
+            "Magic"
         ],
         "icon": "icon_tristerixaphyllus.webp"
     },
@@ -2830,7 +2838,8 @@
         "name": "plant_oxygenalgae",
         "tags": [
             "White",
-            "SunProducer"
+            "SunProducer",
+            "Magic"
         ],
         "icon": "icon_oxygenalgae.webp"
     },
@@ -2870,7 +2879,8 @@
         "name": "plant_seaderris",
         "tags": [
             "Green",
-            "Trapper"
+            "Trapper",
+            "Poison"
         ],
         "icon": "icon_seaderris.webp"
     },
@@ -3053,6 +3063,7 @@
         "tags": [
             "Orange",
             "Trapper",
+            "Magic",
             "Original"
         ],
         "icon": "icon_goldmagnet.webp"
@@ -3103,7 +3114,8 @@
         "name": "plant_moonflower_iz",
         "tags": [
             "Green",
-            "Support"
+            "Support",
+            "Magic"
         ],
         "icon": "icon_moonflower.webp"
     },
@@ -3126,7 +3138,8 @@
             "_internal_mausoleum",
             "Blue",
             "Vanguard",
-            "Physical"
+            "Physical",
+            "Magic"
         ],
         "icon": "icon_phatbeet.webp"
     },
@@ -3242,7 +3255,8 @@
             "Parallel",
             "_internal_no42",
             "Green",
-            "Support"
+            "Support",
+            "Magic"
         ],
         "icon": "icon_moonflower.webp"
     },
@@ -3621,6 +3635,7 @@
             "Orange",
             "Special",
             "Trapper",
+            "Original",
             "_internal_copycats"
         ],
         "icon": "icon_minigame_imitater_orange.png"
