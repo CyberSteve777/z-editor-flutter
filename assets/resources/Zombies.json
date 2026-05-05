@@ -4259,6 +4259,25 @@
     "icon": "zombie_slimes.webp"
   },
   {
+    "id": "carnie_magician",
+    "name": "zombie_carnie_magician",
+    "tags": [
+      "Memory",
+      "Basic",
+      "Pet"
+    ],
+    "icon": "zombie_carnie_magician.webp"
+  },
+  {
+    "id": "carnie_dove",
+    "name": "zombie_carnie_dove",
+    "tags": [
+      "Memory",
+      "Pet"
+    ],
+    "icon": "zombie_carnie_dove.webp"
+  },
+  {
     "id": "roman",
     "name": "zombie_roman",
     "tags": [
