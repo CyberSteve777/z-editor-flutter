@@ -331,15 +331,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get usageText =>
-      '1. Directory Setup: Tap the folder icon to select a folder for level JSON files.\n2. Open/Create: Tap a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\n5. If you have any questions or need help with advanced level creation, feel free to join the Plants vs. Zombies Discord server and ask in the PvZ2C-Modding channel thread.\nServer invite link: https://discord.gg/FBasnrE\nQQ group: 562251204';
+      '1. Directory Setup: Tap the folder icon to select a folder for level JSON files.\n2. Open/Create: Tap a level to edit or use \"+\" to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\n5. Convert level files: JSON can be converted into hot-update-readable HUJSON or encrypted RTON, after which the files can be imported into the game using other tools for testing (remember to manually change the file extension from .hujson back to .json before importing).\n6. If you have any questions or need help with advanced level creation, feel free to join the Plants vs. Zombies Discord server and ask in the PvZ2C-Modding channel thread.\nServer invite link: https://discord.gg/FBasnrE\nQQ group: 562251204';
 
   @override
   String get usageTextDesktop =>
-      '1. Directory Setup: Tap the folder icon to select a folder for level JSON files.\n2. Open/Create: Click a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Click save to write back to the JSON file.\n5. If you have any questions or need help with advanced level creation, feel free to join the Plants vs. Zombies Discord server and ask in the PvZ2C-Modding channel thread.\nServer invite link: https://discord.gg/FBasnrE\nQQ group: 562251204';
+      '1. Directory Setup: Tap the folder icon to select a folder for level JSON files.\n2. Open/Create: Click a level to edit or use \"+\" to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Click save to write back to the JSON file.\n5. Convert level files: JSON can be converted into hot-update-readable HUJSON or encrypted RTON, after which the files can be imported into the game using other tools for testing (remember to manually change the file extension from .hujson back to .json before importing).\n6. If you have any questions or need help with advanced level creation, feel free to join the Plants vs. Zombies Discord server and ask in the PvZ2C-Modding channel thread.\nServer invite link: https://discord.gg/FBasnrE\nQQ group: 562251204';
 
   @override
   String get usageTextMobile =>
-      '1. Directory Setup: Tap the folder icon to select a folder for level JSON files.\n2. Open/Create: Tap a level to edit or use + to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\n5. If you have any questions or need help with advanced level creation, feel free to join the Plants vs. Zombies Discord server and ask in the PvZ2C-Modding channel thread.\nServer invite link: https://discord.gg/FBasnrE\nQQ group: 562251204';
+      '1. Directory Setup: Tap the folder icon to select a folder for level JSON files.\n2. Open/Create: Tap a level to edit or use \"+\" to create from template.\n3. Modules: Add modules in the editor.\n4. Save: Tap save to write back to the JSON file.\n5. Convert level files: JSON can be converted into hot-update-readable HUJSON or encrypted RTON, after which the files can be imported into the game using other tools for testing (remember to manually change the file extension from .hujson back to .json before importing).\n6. If you have any questions or need help with advanced level creation, feel free to join the Plants vs. Zombies Discord server and ask in the PvZ2C-Modding channel thread.\nServer invite link: https://discord.gg/FBasnrE\nQQ group: 562251204';
 
   @override
   String get creditsSection => 'Credits';
@@ -607,7 +607,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get plantTagParallel => 'Parallel Universe';
 
   @override
-  String get plantTagSpecial => 'Special';
+  String get plantTagSpecial => 'Magic Hats';
 
   @override
   String get removeModuleConfirm =>
@@ -671,7 +671,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get waveTimelineHint =>
-      'Tap an event to edit it, or tap + to add a new one.';
+      'Tap an event to edit it, or tap \"+\" to add a new one.';
 
   @override
   String get waveTimelineHintDetail => 'Swipe left on a wave to delete it.';
@@ -681,24 +681,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get waveTimelineGuideBody =>
-      'Swipe right: manage wave events\nSwipe left: delete a wave\nTap pt: view spawn expectations';
+      'Swipe right: Manage wave events\nSwipe left: Delete a wave\nTap pt: View spawn expectations';
 
   @override
   String get waveTimelineGuideBodyDesktop =>
-      'Left-click a wave: manage events\nClick delete: remove a wave\nClick pt: view spawn expectations';
+      'Left-click a wave: Manage wave events\nClick delete: Remove a wave\nClick pt: View spawn expectations';
 
   @override
   String get waveTimelineGuideBodyMobile =>
-      'Swipe right: manage wave events\nSwipe left: delete a wave\nTap pt: view spwan expectations';
+      'Swipe right: Manage wave events\nSwipe left: Delete a wave\nTap pt: View spawn expectations';
 
   @override
-  String get waveDeadLinksTitle => 'Broken references';
+  String get waveDeadLinksTitle => 'Broken References';
 
   @override
   String get waveDeadLinksClear => 'Clear dead links';
 
   @override
-  String get customZombieManagerTitle => 'Custom zombie management';
+  String get customZombieManagerTitle => 'Custom Zombie Management';
 
   @override
   String get customZombieEmpty => 'No custom zombie data';
@@ -711,7 +711,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get customZombieNotUsed =>
-      'This custom zombie is curreently not used by any wave or module.';
+      'This custom zombie is currently not used by any wave or module.';
 
   @override
   String customZombieWaveItem(int n) {
@@ -732,7 +732,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get customLabel => 'Custom';
 
   @override
-  String get waveManagerGlobalParams => 'Wave manager parameters';
+  String get waveManagerGlobalParams => 'Wave Manager Parameters';
 
   @override
   String waveManagerGlobalSummary(
@@ -751,7 +751,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Add the first wave, or remove this empty container.';
 
   @override
-  String get waveHeaderPreview => 'Content & points preview';
+  String get waveHeaderPreview => 'Content & Points Preview';
 
   @override
   String waveTotalLabel(int total) {
@@ -783,7 +783,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get waveManagerSettings => 'Wave manager settings';
+  String get waveManagerSettings => 'Wave Manager Settings';
 
   @override
   String get flagInterval => 'Flag interval';
@@ -820,7 +820,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'This setting applies only to the Modern Day world. It sets a fixed global background track that enables abilities for certain Neon Mixtape Tour zombies.';
 
   @override
-  String get waveManagerBasicParams => 'Basic params';
+  String get waveManagerBasicParams => 'Basic parameters';
 
   @override
   String get waveManagerMaxHealthThreshold => 'Max next wave health threshold';
@@ -1036,7 +1036,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get conflictDesc_SeedBankConveyor =>
-      'Seed Bank and Conveyor modules interfere with each other\'s UI and may cause crashes. Ensure Seed Bank is in pre-selection mode.';
+      'Seed Bank and Conveyor modules interfere with each other\'s UI and may cause crashes. Ensure Seed Bank is in Preset mode.';
 
   @override
   String get conflictDesc_VaseBreakerIntro =>
@@ -1122,7 +1122,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get disablePeavine => 'Disable Pea Vine\'s Pea Symbiosis';
 
   @override
-  String get disableArtifact => 'Disable artifact';
+  String get disableArtifact =>
+      'Disable Artifact (auto-applied when Creative Courtyard module is enabled)';
 
   @override
   String get selectPlant => 'Select plant';
@@ -1168,34 +1169,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moduleDesc_CustomLevelModuleProperties =>
-      'Enables Creative Courtyard features (likes, rewards, etc.). Plant costumes cannot be worn in this mode.';
+      'Enables Creative Courtyard features (likes, rewards, costume feature disabling, etc.)';
 
   @override
   String get powerTileModuleRequiredTitle => 'Power Tiles module required';
 
   @override
   String get powerTileModuleRequiredBody =>
-      'Power tile tools require the Power Tiles module in this level. Add the default module and continue?';
+      'Adding Power Tile tool packets requires the level to include the Power Tile module. Add the module and continue?';
 
   @override
-  String get conveyorPlantWearCostume => 'Wear costume (iAvatar)';
+  String get conveyorPlantWearCostume => 'Display costume (iAvatar)';
 
   @override
   String get conveyorPlantWearCostumeTooltip =>
-      'When enabled, the conveyor card may show a plant costume. Not available when the Creative Courtyard module is enabled.';
+      'When enabled, this plant’s packet on the conveyor belt will display its costume. This feature does not work when the Creative Courtyard module is enabled.';
 
   @override
-  String get modifyConveyorAddPoolTitle => 'Add to conveyor pool';
+  String get modifyConveyorAddPoolTitle => 'Add to Conveyor Pool';
 
   @override
   String get modifyConveyorAddPoolEmpty =>
-      'No entries yet. Add a plant or tool, then set weights and limits.';
+      'The list is empty. Please add plants or tool packets.';
 
   @override
-  String get modifyConveyorRemovePoolTitle => 'Remove from conveyor pool';
+  String get modifyConveyorRemovePoolTitle =>
+      'Remove from Conveyor Pool (doesn\'t work when Creative Courtyard module is enabled)';
 
   @override
-  String get modifyConveyorEntryEditTitle => 'Edit conveyor entry';
+  String get modifyConveyorEntryEditTitle => 'Edit parameters';
 
   @override
   String get moduleTitle_UnchartedModeNo42UniverseModule =>
@@ -1256,7 +1258,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moduleDesc_SeedBankProperties =>
-      'Preset seed slots and selection method';
+      'Preset seed slots and seed selection mode';
 
   @override
   String get moduleTitle_ConveyorSeedBankProperties => 'Conveyor Belt';
@@ -1320,7 +1322,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moduleDesc_LevelScoringModuleProperties =>
-      'Enable scoring system based on zombie kills';
+      'Enables scoring system based on zombie kills';
 
   @override
   String get moduleTitle_BowlingMinigameProperties => 'Bulb Bowling';
@@ -1456,7 +1458,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get frozenPlantPlacementPlaceHere => 'Add plant';
 
   @override
-  String get frozenPlantPlacementPlantList => 'Plant list (row-first)';
+  String get frozenPlantPlacementPlantList => 'Plant(s) in selected tile';
 
   @override
   String frozenPlantPlacementEditPlant(Object name) {
@@ -1490,7 +1492,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get frozenPlantPlacementHelpConditionBody =>
-      'Plants can be set to frozen state, commonly used in Frostbite Caves levels.';
+      'Plants can be set to frozen state (icecubed), commonly used in Frostbite Caves levels.';
 
   @override
   String get frozenPlantPlacementHelpLastStandTitle => 'Intensive Battle Mode';
@@ -1588,67 +1590,67 @@ class AppLocalizationsEn extends AppLocalizations {
       'Configures the fuse length and burn rate of Kongfu World powder kegs';
 
   @override
-  String get moduleTitle_BronzeProperties => 'Bronze Statues';
+  String get moduleTitle_BronzeProperties => 'Bronze Matrix Statues';
 
   @override
   String get moduleDesc_BronzeProperties =>
-      'Kongfu World bronze statue minigame: place statues and revival times (not tied to waves)';
+      'Configures Kongfu World bronze statues';
 
   @override
-  String get bronzeModuleTitle => 'Bronze Statues';
+  String get bronzeModuleTitle => 'Bronze Matrix Statues';
 
   @override
-  String get bronzeModuleHelpTitle => 'Bronze Statues';
+  String get bronzeModuleHelpTitle => 'Bronze Matrix Statues';
 
   @override
   String get bronzeModuleHelpOverview => 'Overview';
 
   @override
   String get bronzeModuleHelpOverviewBody =>
-      'Places Han, Qigong, and Knight bronze statues on the lawn. Revival uses spawn time in seconds (spawnTime), not wave numbers. Add each statue from the selected tile; each addition creates a batch entry in level data.';
+      'This module is used to place bronze statue grid items on the lawn that exist at the start of the level, commonly used in the Kongfu World brain buster \"Bronze Matrix\". Bronze statues gradually lose their copper coating over time and will revive as gargantuar bronzes when the specified countdown ends. The HP of a bronze statue is the same as the corresponding Tier 1 Gargantuar Bronze.\nShake offset (shakeOffset) indicates the center offset of the revive animation’s shaking; adjusting this value has no practical effect.\nNote: This module itself does not include the effect of instantly eliminating remaining zombies after all bronze statues and gargantuar bronzes on the lawn are destroyed. To achieve that effect, replace the loot drop module with BronzeDeadWinCon@LevelModules.';
 
   @override
-  String get bronzeModuleHelpBatches => 'Batches and timing';
+  String get bronzeModuleHelpBatches => 'Revival Logic';
 
   @override
   String get bronzeModuleHelpBatchesBody =>
-      'Bronzes that share the same revival time revive together. Later batches can chain off earlier countdowns. Use the grid to pick a tile, then add a type and set revival seconds.';
+      'Each bronze statue added generates a corresponding entry in the level file. Revival timing is determined by the spawn time (spawnTime), in seconds, and is independent of waves. Bronze statues with the same spawn time will revive simultaneously.\nThe revival countdown for subsequent batches is offset from the first batch. For example, if the first batch is set to 30s, the second to 45s, and the third to 50s, then the second batch will revive 15s after the first, and the third batch 5s after the second.';
 
   @override
   String get bronzeModuleShakeOffset => 'Animation';
 
   @override
-  String get bronzeModuleShakeOffsetLabel => 'Revival shake offset';
+  String get bronzeModuleShakeOffsetLabel => 'Shake offset';
 
   @override
-  String get bronzeModuleInCell => 'Bronze statues in selected tile';
+  String get bronzeModuleInCell => 'Bronze statue(s) in selected tile';
 
   @override
-  String get bronzeModuleAddTitle => 'Add bronze type';
+  String get bronzeModuleAddTitle => 'Add bronze statue';
 
   @override
-  String get bronzeKindStrength => 'Han Bronze (strong)';
+  String get bronzeKindStrength => 'Han Bronze (strength)';
 
   @override
   String get bronzeKindMage => 'Qigong Bronze (mage)';
 
   @override
-  String get bronzeKindAgile => 'Knight Bronze (agile)';
+  String get bronzeKindAgile => 'Xiake Bronze (agile)';
 
   @override
-  String get bronzeKindStrengthShort => 'Strong';
+  String get bronzeKindStrengthShort => 'Han Bronze';
 
   @override
-  String get bronzeKindMageShort => 'Mage';
+  String get bronzeKindMageShort => 'Qigong Bronze';
 
   @override
-  String get bronzeKindAgileShort => 'Agile';
+  String get bronzeKindAgileShort => 'Xiake Bronze';
 
   @override
   String get bronzeModuleTypeLabel => 'Type';
 
   @override
-  String get bronzeModuleSpawnTimeLabel => 'Revival time (s)';
+  String get bronzeModuleSpawnTimeLabel => 'Revival time (seconds)';
 
   @override
   String get moduleTitle_WarMistProperties => 'Fog System';
@@ -1697,7 +1699,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventDesc_TidalChangeWaveActionProps =>
-      'Change the water level position';
+      'Changes the tide position';
 
   @override
   String get eventTitle_TideWaveWaveActionProps => 'Ocean Current';
@@ -1707,11 +1709,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Moves submarine and affects zombie movement speed';
 
   @override
-  String get eventTitle_SpawnZombiesFishWaveActionProps => 'Two-Sided Spawner';
+  String get eventTitle_SpawnZombiesFishWaveActionProps => 'Underwater Spawner';
 
   @override
   String get eventDesc_SpawnZombiesFishWaveActionProps =>
-      'Spawns zombies or sea creatures from the left or right side of the lawn';
+      'Spawns zombies or sea creatures from the left or right side of the lawn; can only be used in Underwater World';
 
   @override
   String get eventTitle_ModifyConveyorWaveActionProps => 'Conveyor Change';
@@ -1789,7 +1791,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventDesc_SpawnZombiesFromGridItemSpawnerProps =>
-      'Spawn zombies from specific grid items';
+      'Spawns zombies from specific grid items';
 
   @override
   String get eventTitle_FairyTaleFogWaveActionProps => 'Magic Fog';
@@ -1845,10 +1847,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventDesc_BungeeWaveActionProps =>
-      'Drop a zombie by bungee to the lawn';
+      'Drops a zombie by bungee to the lawn';
 
   @override
-  String get eventTitle_ThunderWaveActionProps => 'Thundercloud Storms';
+  String get eventTitle_ThunderWaveActionProps => 'Thundercloud Storm';
 
   @override
   String get eventDesc_ThunderWaveActionProps =>
@@ -1951,7 +1953,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemLabel => 'Item';
 
   @override
-  String get railcartSettings => 'Minecart and Rail settings';
+  String get railcartSettings => 'Minecart and Rail Settings';
 
   @override
   String get railcartType => 'Minecart type';
@@ -1981,25 +1983,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get moduleCategoryScene => 'Scene Config';
 
   @override
-  String get moduleTitle_RocketZombieFlickModuleProperties =>
-      'Rocket zombie flick';
+  String get moduleTitle_RocketZombieFlickModuleProperties => 'Rocket Flick';
 
   @override
   String get moduleDesc_RocketZombieFlickModuleProperties =>
-      'Lets Kongfu rocket imps be swiped off the lawn (rocket tube zombie template).';
+      'Enables swiping to knock Rocket Imps off their rockets';
 
   @override
-  String get kongfuRocketFlickDialogTitle => 'Rocket zombie';
+  String get kongfuRocketFlickDialogTitle => 'This Module Can Be Added';
 
   @override
   String get kongfuRocketFlickDialogMessage =>
-      'Do you want this zombie to be flicked off the lawn? You can add the Rocket Zombie Flick module to the level.';
+      'The \"Rocket Flick\" module lets you swipe rockets on the screen to knock Rocket Imps off them. Add this module?';
 
   @override
   String get customZombie => 'Custom zombie';
 
   @override
-  String get customZombieProperties => 'Custom zombie properties';
+  String get customZombieProperties => 'Custom Zombie Properties';
 
   @override
   String get zombieTypeNotFound => 'Zombie type object not found.';
@@ -2096,24 +2097,24 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enable elite immunities (EnableEliteImmunities)';
 
   @override
-  String get canSpawnPlantFood => 'Can Drop Plant Food (CanSpawnPlantFood)';
+  String get canSpawnPlantFood => 'Can drop Plant Food (CanSpawnPlantFood)';
 
   @override
   String get canSurrender =>
-      'Can Die Immediately at the End if No Other Zombies Remain (CanSurrender)';
+      'Can die immediately at the end if no other zombies remain (CanSurrender)';
 
   @override
   String get canTriggerZombieWin =>
       'Triggers game over when reaching the house (CanTriggerZombieWin)';
 
   @override
-  String get resilience => 'Resilience';
+  String get resilience => 'Resistances (Resistences)';
 
   @override
-  String get resilienceArmor => 'Resilience (armor)';
+  String get resilienceArmor => 'Resilience Bar';
 
   @override
-  String get enableResilience => 'Enable Resilience';
+  String get enableResilience => 'Enable resilience';
 
   @override
   String get resilienceSource => 'Source';
@@ -2125,7 +2126,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resilienceCustom => 'Custom';
 
   @override
-  String get resiliencePresetSelect => 'Select Resilience preset';
+  String get resiliencePresetSelect => 'Selected resilience preset';
 
   @override
   String get resilienceAmount => 'Resilience value (Amount)';
@@ -2338,7 +2339,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get timeBetweenGroups => 'Group Interval (TimeBetweenGroups; seconds)';
 
   @override
-  String get timeBeforeSpawn => 'Time before spawn (seconds)';
+  String get timeBeforeSpawn => 'Time before full spawn (seconds)';
 
   @override
   String get waterBoundaryColumn => 'Column Offset (ChangeAmount)';
@@ -2347,7 +2348,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get columnsDragged => 'Columns dragged (ColNumPlantIsDragged)';
 
   @override
-  String get typeIndex => 'Type index';
+  String get typeIndex => 'Mirror Appearance (TypeIndex)';
 
   @override
   String get noStyle => 'No style';
@@ -2375,13 +2376,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get weatherSettings => 'Weather settings';
+  String get weatherSettings => 'Weather Settings';
 
   @override
   String get holeLifetimeSeconds => 'Crater duration (seconds)';
 
   @override
-  String get startingWaveLocation => 'Starting wave location';
+  String get startingWaveLocation =>
+      'Initial tide position (StartingWaveLocation)';
 
   @override
   String get rainIntervalSeconds => 'Drop interval (seconds)';
@@ -2393,7 +2395,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bowlingFoulLine => 'No-planting line (BowlingFoulLine)';
 
   @override
-  String get stopColumn => 'Stop column (StopColumn, range: 0-9)';
+  String get stopColumn => 'Stop column (StopColumn, range: 0-9 or 0-10)';
 
   @override
   String get speedUp => 'Speed multiplier (SpeedUp)';
@@ -2409,7 +2411,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get initialMistPositionX => 'Initial fog column';
 
   @override
-  String get normalValueX => 'Normal value';
+  String get normalValueX =>
+      'Extension distance to the right (1 tile = 64 units)';
 
   @override
   String get bloverEffectInterval => 'Blover effect interval (seconds)';
@@ -2440,7 +2443,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noEditorForModuleBody =>
-      'This module is not registered in the level parser. It may have been added manually or the objclass was changed.';
+      'This module is not registered in the level interpreter, so no editor is available. It may also be due to the module\'s objclass being manually modified, preventing it from being read correctly.';
 
   @override
   String get invalidEventTitle => 'Invalid event';
@@ -2458,11 +2461,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String invalidRefBody(int wave) {
-    return 'Wave $wave references this event, but no matching entity exists. Keeping it will cause a crash.';
+    return 'Wave $wave references this event, but no corresponding entity definition was found in the level. This is usually caused by accidental deletion or manual renaming. Keeping it in the level may cause the game to crash.';
   }
 
   @override
-  String get removeInvalidRef => 'Remove this invalid reference from wave';
+  String get removeInvalidRef =>
+      'Remove this invalid reference from the wave container';
 
   @override
   String get spawnCount => 'Spawn count';
@@ -2482,18 +2486,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpBeachStageBody =>
-      'Zombies emerge from beneath the water. Commonly used for Snorkel Zombies in Big Wave Beach or for zombies that appear during low tide.';
+      'Zombies emerge from beneath the water. Commonly used for Snorkel Zombies in Big Wave Beach or for zombies that appear during low tide.\nSimilar to Parachute Rain, zombies will spawn in batches. You can specify the total number and spawn range.\nOnly one type of zombie can be used per event. To include multiple types, you need to add multiple events.';
 
   @override
   String get eventHelpTidalChangeBody =>
-      'This event is used to change the tide position during the selected wave.';
+      'This event is used to change the tide position during the selected wave. The range of tide changes cannot exceed the bounds of the lawn.';
 
   @override
   String get eventTideWave => 'Event: Ocean Currents';
 
   @override
   String get eventHelpTideWaveBody =>
-      'Creates ocean currents that push the submarine and grant speed boosts to zombies. Commonly used in Underwater World – 20,000 Leagues Under the Sea levels';
+      'Creates ocean currents that push the submarine and grant speed boosts to zombies. Commonly used in Underwater World – 20,000 Leagues Under the Sea levels.';
 
   @override
   String get tideWaveHelpType => 'Direction';
@@ -2537,18 +2541,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tideWaveZombieMovingSpeed =>
-      'Zombie speed in current (tideWaveZombieMovingSpeed；1 tile ≈ 60 pixels)';
+      'Zombie speed in current (tideWaveZombieMovingSpeed; 1 tile = 64 units)';
 
   @override
-  String get eventZombieFishWave => 'Event: Two-Sided Spawner';
+  String get eventZombieFishWave => 'Event: Underwater Spawner';
 
   @override
   String get eventHelpZombieFishWaveBody =>
-      'Configures the zombies and sea creatures used in Two-Sided Attack. Commonly used in Underwater World levels. Coordinates are 0-based: row 1 = 0, column 10 = 9.';
+      'Configures the zombies and sea creatures used in Two-Sided Attack, and can only be used in Underwater World levels. Coordinates are 0-based: row 1 = 0, column 10 = 9.';
 
   @override
   String get eventHelpZombieFishWaveFish =>
-      'Use the \"Sea creature properties\" button to place sea creatures on the lawn. Size of the lawn varies by level: 6×10 in Underwater World, 5×9 in other levels. Rows correspond to Y, columns to X';
+      'Use the \"Add sea creature properties\" button to place sea creatures on the lawn. Size of the lawn varies by level: 6×10 in Underwater World, 5×9 in other levels. Rows correspond to Y, columns to X.';
 
   @override
   String get eventHelpBatchLevel =>
@@ -2703,7 +2707,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpBlackHoleBody =>
-      'A event commonly seen in KongfuWorld. A black hole will spawn and pull all plants to the right.';
+      'A event commonly seen in Kongfu World. A black hole will spawn and pull all plants to the right.';
 
   @override
   String get eventHelpBlackHoleColumns =>
@@ -2711,7 +2715,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpMagicMirrorBody =>
-      'Spawns paired mirrors on the field. Each pair consists of an entrance and an exit, both sharing the same appearance.';
+      'Spawns paired mirrors on the lawn. Each pair consists of an entrance and an exit, both sharing the same appearance.';
 
   @override
   String get eventHelpMagicMirrorType =>
@@ -2719,15 +2723,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpParachuteRainBody =>
-      'Zombies will parachute in from above for a surprise attack. Commonly used for Lost Pilot Zombie and ZCorp Helpdesk. Zombie levels follow the lawn’s level sequence.';
+      'Zombies will parachute in from above for a surprise attack. Commonly used for Bug Bot Imp, Lost Pilot Zombie, Bass Zombie, ZCorp Helpdesk, and more. Zombie levels follow the lawn’s level sequence.';
 
   @override
   String get eventHelpParachuteRainLogic =>
-      'Zombies drop in batches. You can control the total number and the interval between each batch. Zombies will land randomly within the selected columns. If the total pre-drop delay is reached, any remaining zombies will spawn immediately.';
+      'Zombies drop in batches. You can control the total number and the interval between each batch. Zombies will land randomly within the selected columns. If the total pre-drop delay is reached, any remaining zombies will spawn immediately./nA red warning message will appear before the event starts. Entering Chinese text in the message may result in garbled characters. You can leave the zombie type empty to use this event purely for message display.';
 
   @override
   String get eventHelpModernPortalsBody =>
-      'Spawns fixed types of spacetime portals on the field, commonly seen in Modern Day and Memory Lane';
+      'Spawns fixed types of spacetime portals on the lawn, commonly seen in Modern Day and Memory Lane';
 
   @override
   String get eventHelpModernPortalsType =>
@@ -2751,19 +2755,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpModifyConveyorAdd =>
-      'Adds new plants to the conveyor belt. If the plant already exists, its previous data will be overwritten.';
+      'Adds new plants or tool packets to the conveyor belt. If the plant already exists, its previous data will be overwritten.';
 
   @override
   String get eventHelpModifyConveyorRemove =>
-      'Removing plants does not work when the Creative Courtyard module is enabled. Instead, set the plant’s weight to 0 to achieve the same effect.';
+      'Removing does not work when the Creative Courtyard module is enabled. Instead, set the plant’s weight to 0 to achieve the same effect.';
 
   @override
   String get eventHelpDinoBody =>
-      'A common event in Jurassic Marsh. Summons a specified dinosaur into a chosen row. The dinosaur will assist zombies in attacking.';
+      'A common event in Jurassic Marsh. Summons a specified dinosaur into a chosen row. The dinosaur will assist zombies in attacking.\nOnly one dinosaur can be configured per event. To have multiple dinosaurs appear simultaneously, add multiple Dino Summon events within the wave.';
 
   @override
   String get eventHelpDinoDuration =>
-      'The duration the dinosaur stays on the field, measured in waves. It will leave after the time expires or after interacting with enough zombies.';
+      'The duration the dinosaur stays on the lawn, measured in waves. It will leave after the time expires or after interacting with enough zombies.';
 
   @override
   String get eventDinoTread => 'Event: Dino Stomp';
@@ -2823,7 +2827,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpZombiePotionUsage =>
-      'On lawns without tombstone spawn effects, sun textures may appear incorrectly. Use with caution.';
+      'Unlike the preset pools used for grid item spawning, this event forces grid items to spawn on specific tiles and displaces plants. /nNote that on lawns without tombstone spawn effects, sun textures may appear incorrectly. Use with caution.';
 
   @override
   String get eventHelpShellBody =>
@@ -2831,11 +2835,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpShellUsage =>
-      'Select a tile, then tap \"Add\" to place a seashell. Lawn size varies by level: 6×10 in Underwater World levels, 5×9 in other levels.';
+      'Select a tile, then tap \"+\" to place a seashell. Lawn size varies by level: 6 rows × 10 columns in Underwater World, and 5 rows × 9 columns in other levels.';
 
   @override
   String get eventHelpFairyFogBody =>
-      'Creates magic fog that covers the lawn and grants shields to zombies. Commonly used in Fairytale Forest levels. Can only be cleared by the Fairtyale Breeze event.';
+      'Creates magic fog that covers the lawn and grants shields to zombies. Commonly used in Fairytale Forest levels. Can only be cleared by the Fairtyale Breeze event.\nHigher-tier fog grants stronger shields and increased control immunity to zombies. Tiers, from lowest to highest, are White, Blue, and Purple.';
 
   @override
   String get eventHelpFairyFogRange =>
@@ -2851,7 +2855,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpRaidingPartyBody =>
-      'Commonly seen in Pirate Seas levels. Spawns groups of Swashbuckler Zombies in batches.';
+      'Commonly seen in Pirate Seas levels. Spawns groups of Swashbuckler Zombies in batches. TimeBetweenGroups defines the interval between each group.';
 
   @override
   String get eventHelpRaidingPartyGroup => 'Zombies per group.';
@@ -2870,7 +2874,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpGravestoneMissingAssets =>
-      'Some lawns without tombstone spawn effects may show sun textures instead. Use with caution';
+      'Some lawns without tombstone spawn effects may show sun textures instead. Use with caution.';
 
   @override
   String get eventHelpBarrelWaveBody =>
@@ -2941,7 +2945,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get barrelWaveRowsHint =>
-      'Rows are 1-based: 1–5 in standard levels, 1–6 in Underwater World levels.';
+      'Rows are 1-based: Row 1 = top lane, Row 5/6 = bottom lane.';
 
   @override
   String get barrelWaveAddBarrel => 'Add barrel';
@@ -2998,7 +3002,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpStormColumns =>
-      'Left boundary: column 0. Right boundary: column 9. Start column must be less than end column, or the storm will not spawn.';
+      'The left boundary of the lawn is column 0, and the right boundary is column 9 (or column 10 in Underwater World). Start column must be less than end column, or the storm will not spawn.';
 
   @override
   String get eventHelpStormLevels =>
@@ -3006,18 +3010,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpGroundSpawnBody =>
-      'Spawns zombies directly from the ground within the specified range. Configuration is similar to natural spawning. Level 0 follows the lawn’s default level (which is Level 1 in Creative Courtyard).';
+      'Spawns zombies directly from the ground within the specified range. Configuration is similar to natural spawning. Level 0 follows the lawn’s default level (which is Level 1 in Creative Courtyard).\n By default, the Drop config specifies the number of zombies that carry Plant Food. After adding a plant, it will randomly assign a zombie to drop a seed packet of the selected plant.';
 
   @override
   String get moduleHelpTideBody =>
-      'Enables the tide system for the level, allowing tide-related events to be used.';
+      'Enables the tide system for the level, allowing tide-related events to be used. Note that this module must be added last; otherwise, it may cause the level to crash.';
 
   @override
   String get moduleHelpTidePosition =>
-      'Sets the initial tide position. The rightmost column is 0 and the leftmost is 9. Accepts integers, including negative values.';
+      'Sets the position of the tide at the start of the level, i.e., the position of the tide line within the level. The rightmost column is 0 and the leftmost is 9. Accepts integers, including negative values.';
 
   @override
-  String get initialTidePosition => 'Initial tide position';
+  String get initialTidePosition => 'Tide line configuration';
 
   @override
   String get moduleHelpManholeBody =>
@@ -3041,26 +3045,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moduleHelpZombiePotionTypes =>
-      'Potions are randomly selected from the specified types. To spawn multiple obstacles at fixed intervals, add multiple instances of this module.';
+      'Potions are randomly selected from the specified types. To spawn multiple grid items at fixed intervals, add multiple instances of this module.';
 
   @override
   String get moduleHelpUnknownBody =>
-      'Level files consist of root nodes and modules. Each object has aliases, objclass, objdata.';
+      'A level file consists of a root node and multiple modules, known as PVZ2Object. Each object has aliases, a type (objclass), and data (objdata). The root node has no aliases.';
 
   @override
   String get moduleHelpUnknownEvents =>
-      'Modules are parsed based on objclass. This module is not registered.';
+      'This software determines module types by reading objclass. The objclass of the current module is not registered in the module list, so no matching editor is available. Support may be added in a future update.';
 
   @override
   String get eventHelpInvalidBody =>
-      'This event is referenced but its definition cannot be found.';
+      'This event is referenced in the wave container, but the parser cannot find its entity definition in the level, leaving the RTID block unresolved.';
 
   @override
   String get eventHelpInvalidImpact =>
-      'Keeping this reference will cause the game to crash. Please remove it manually.';
+      'Keeping this invalid entry in the level will prevent it from being read correctly and may cause a crash. It should be removed manually.';
 
   @override
-  String get position => 'Position';
+  String get position => 'Initial tide position';
 
   @override
   String get editing => 'Editing';
@@ -3117,7 +3121,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get placePlant => 'Place plant';
 
   @override
-  String get plantList => 'Plant list (row-first)';
+  String get plantList => 'Plant(s) in selected tile';
 
   @override
   String get firstCostume => 'Wears primary costume (Avatar)';
@@ -3181,7 +3185,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventFrostWind => 'Event: Freezing Wind';
 
   @override
-  String get lastStandSettings => 'Last stand settings';
+  String get lastStandSettings => 'Last Stand Settings';
 
   @override
   String get roofFlowerPot => 'Roof pots module';
@@ -3235,7 +3239,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventBarrelWave => 'Event: Barrel Crisis';
 
   @override
-  String get eventThunderWave => 'Event: Thundercloud Storms';
+  String get eventThunderWave => 'Event: Thundercloud Storm';
 
   @override
   String get eventGraveSpawn => 'Event: Grid Item Spawner';
@@ -3259,10 +3263,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get applyBatchLevel => 'Apply batch level?';
 
   @override
-  String get conveyorBelt => 'Conveyor belt module';
+  String get conveyorBelt => 'Conveyor Belt Module Settings';
 
   @override
-  String get starChallenges => 'Challenge module';
+  String get starChallenges => 'Challenge Module Settings';
 
   @override
   String get addChallenge => 'Add challenge';
@@ -3295,13 +3299,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scope => 'Scope';
 
   @override
-  String get applyBatch => 'Apply batch';
+  String get applyBatch => 'Batch apply';
 
   @override
-  String get addPlants => 'Add plants';
+  String get addPlants => 'Add plants to the list';
 
   @override
-  String get noPlantsConfigured => 'No plants configured';
+  String get noPlantsConfigured =>
+      'No plants configured. Please add plants to the list.';
 
   @override
   String batchLevelFormat(int level) {
@@ -3331,7 +3336,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get iconImage => 'Icon Image';
 
   @override
-  String get overrideMaxSun => 'Max sun limit settings';
+  String get overrideMaxSun => 'Max Sun Limit Settings';
 
   @override
   String get maxSunOverride => 'Max sun limit (MaxSunOverride)';
@@ -3383,7 +3388,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get manualInput => 'Manual input';
 
   @override
-  String get waveManagerModule => 'Wave manager module';
+  String get waveManagerModule => 'Wave Manager Module';
 
   @override
   String get points => 'Points';
@@ -3450,29 +3455,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get powerTile => 'Power Tiles';
 
   @override
-  String get powerTileGridSection => 'Power tile grid';
+  String get powerTileGridSection => 'Current lawn';
 
   @override
   String get powerTileGridHelpPrimary =>
-      'Tap a cell to place the selected group. Tap again to remove if it matches. If another group is already there, it is replaced.';
+      'Tap a cell to place a tile, and tap again to remove it. Placing a tile on an occupied cell will replace the existing one. Tiles from other groups are shown dimmed to indicate they are not in the selected group.';
 
   @override
   String get powerTileGridHelpSecondaryMobile =>
-      'Long-press a cell to pick a group, clear the cell, or set propagation delay.';
+      'Long press a cell to quickly set a group or adjust the propagation delay.';
 
   @override
   String get powerTileGridHelpSecondaryDesktop =>
-      'Right-click a cell to pick a group, clear the cell, or set propagation delay.';
+      'Right-click a cell to quickly set a group or adjust its propagation delay.';
 
   @override
-  String get powerTileLinkedTilesSection => 'Linked tiles';
+  String get powerTileLinkedTilesSection => 'Tile list';
 
   @override
-  String get powerTilePropagationDelayLabel => 'Propagation delay (s)';
+  String get powerTilePropagationDelayLabel => 'Propagation delay (seconds)';
 
   @override
   String get powerTilePropagationDelayTooltip =>
-      'Delay in seconds before the power effect propagates along this tile link (0–5).';
+      'The delay before power begins to propagate to other tiles (0–5 seconds). This does not include the transmission time itself. The default propagation delay is 1.5 seconds.';
 
   @override
   String get powerTileDialogEditCell => 'Edit cell';
@@ -3488,11 +3493,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get powerTileHelpOverview =>
-      'Place power tiles in groups (α–ε). Each tile can have a propagation delay for chain effects. Tiles not using the currently selected group are shown dimmed in the grid.';
+      'Power Tiles are divided into five groups. When a plant on a tile activates its Plant Food effect, power is propagated to other tiles in the same group, causing those plants to activate their Plant Food effect as well. The initial delay before propagation can be configured. ';
 
   @override
   String get powerTileHelpGridSize =>
-      'On Deep Sea / Atlantis stages the lawn is 10 columns × 6 rows; on other stages it is 9 × 5.';
+      'Lawn size varies by level: 6 rows × 10 columns in Underwater World, and 5 rows × 9 columns in other levels.';
 
   @override
   String powerTileHelpQuickEdit(String interaction) {
@@ -3542,7 +3547,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get globalParameters => 'Global parameters';
 
   @override
-  String get timePerGrid => 'Time per grid';
+  String get timePerGrid => 'Transfer time (seconds per tile)';
 
   @override
   String get damagePerSecond => 'Damage per second';
@@ -3558,10 +3563,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'The current lawn is not Pirate Seas. This module may not work correctly and could cause a crash.';
 
   @override
-  String get plankRows => 'Plank rows (0–4)';
+  String get plankRows => 'Plank rows';
 
   @override
-  String get plankRowsDeepSea => 'Plank rows (0–5)';
+  String get plankRowsDeepSea => 'Plank rows (Underwater World)';
 
   @override
   String get selectedRows => 'Rows selected:';
@@ -3576,7 +3581,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectWeatherType => 'Select weather type';
 
   @override
-  String get counts => 'Count settings';
+  String get counts => 'Count Settings';
 
   @override
   String get initial => 'Initial count (InitialPotionCount)';
@@ -3672,11 +3677,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get conveyorBeltHelpDropDelay =>
-      'Seed Packets delay: Controls the interval between seed packet generation. The interval can scale based on the number of queued plants: more backlog usually results in slower generation.';
+      'Seed packets delay: Controls the interval between seed packet generation. The interval can scale based on the number of queued plants: more backlog usually results in slower generation.';
 
   @override
   String get conveyorBeltHelpSpeed =>
-      'Conveyor Speed: Controls the movement speed of cards on the conveyor belt. Default speed is 100. Speed can scale dynamically based on backlog size.';
+      'Conveyor speed: Controls the movement speed of cards on the conveyor belt. Default speed is 100. Speed can scale dynamically based on backlog size.';
 
   @override
   String get cannotAddEliteZombies => 'Cannot add elite zombies';
@@ -3717,11 +3722,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String windN(int n) {
-    return 'Freezing Winds #$n';
+    return 'Freezing Wind #$n';
   }
 
   @override
-  String get zombieList => 'Zombie list (row-first)';
+  String get zombieList => 'Zombie list';
 
   @override
   String get positionPoolSpawnPositions => 'Position pool (SpawnPositionsPool)';
@@ -3772,7 +3777,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpStormColumnRange =>
-      'The left boundary is column 0 and the right boundary is column 9. Start column must be less than end column, or the storm will not spawn.';
+      'The left boundary is column 0 and the right boundary is column 9 (or column 10 in Underwater World). Start column must be less than end column, or the storm will not spawn.';
 
   @override
   String get eventHelpStormZombieLevels =>
@@ -3825,7 +3830,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get eventHelpStandardOverview =>
-      'Basic event for spawning zombies. Allows configuring the level and row for each zombie. Level 0 follows the lawn’s default level (which is Level 1 in Creative Courtyard).';
+      'Basic event for spawning zombies. Allows configuring the level and row for each zombie. Level 0 follows the lawn’s default level (which is Level 1 in Creative Courtyard).\nBy default, the Drop config specifies the number of zombies that carry Plant Food. After adding a plant, it will randomly assign a zombie to drop a seed packet of the selected plant.';
 
   @override
   String get eventHelpStandardRow =>
@@ -3892,7 +3897,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get plantLevelsFollowGlobal =>
-      'Plant levels follow global settings. Seed packet levels will be overridden.';
+      'Plants in this module follow their respective tiers from the player’s account. You can standardize their levels using the Tier Definition module.';
 
   @override
   String get protectPlantsOverview =>
@@ -3917,7 +3922,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String totalItemsCount(int count) {
-    return 'Total grid items: $count';
+    return 'Total items to be spawned: $count';
   }
 
   @override
@@ -3926,7 +3931,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gravestoneBlockedInfo =>
-      'Grid items like tombstones cannot spawn if blocked by plants. Use other methods to force spawn them';
+      'Grid items like tombstones cannot spawn if blocked by plants. Use other methods to force spawn them, such as the Potion Drop event.';
 
   @override
   String get enterConditionValue => 'Enter condition value';
@@ -3941,7 +3946,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectFromPresetHint => 'Select from preset condition list';
 
   @override
-  String get conveyorCardPool => 'Conveyor card pool';
+  String get conveyorCardPool => 'Conveyor Pool';
 
   @override
   String get toolCardsUseFixedLevel =>
@@ -4036,7 +4041,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Wave Manager module (WaveManagerProperties) not found.';
 
   @override
-  String get itemsSortedByRow => 'Items (sorted by row)';
+  String get itemsSortedByRow => 'Item(s) in selected tile';
 
   @override
   String get eventStormSpawn => 'Event: Storm Raid';
@@ -4088,7 +4093,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get descriptiveName => 'Descriptive Name';
 
   @override
-  String get count => 'Survivor Count (Count)';
+  String get count => 'Count';
 
   @override
   String get targetDistance =>
@@ -4121,7 +4126,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get maximumPlantsLost => 'Maximum Plants Lost';
 
   @override
-  String get maximumPlants => 'Maximum Plants';
+  String get maximumPlants => 'Maximum Plants on the Lawn';
 
   @override
   String get targetScore => 'Target Score';
@@ -4216,11 +4221,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Required for the Far Future brain buster \"Sun Bomb\". When enabled, falling sun will turn into purple, detonatable Sun Bombs. Damage dealt by Sun Bombs can be configured separately for different factions.';
 
   @override
-  String get bombProperties => 'Powder Keg';
+  String get bombProperties => 'Powder Keg module';
 
   @override
   String get bombPropertiesHelpBody =>
-      ' required for configuring the Kongfu World brain buster \"Powder Keg\". When enabled, Powder Kegs will appear at lawn mower positions and spawn a fuse that can be ignited. If a flame travels along the fuse and reaches the Powder Keg, it will explode, destroying plants within a 3×3 area centered on itself.';
+      'Required for configuring the Kongfu World brain buster \"Powder Keg\". When enabled, Powder Kegs will appear at lawn mower positions and spawn a fuse that can be ignited. If a flame travels along the fuse and reaches the Powder Keg, it will explode, destroying plants within a 3×3 area centered on itself.';
 
   @override
   String get bombPropertiesHelpFuse => 'Fuse lengths';
@@ -4279,11 +4284,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seedBankLetsPlayersChoose =>
-      'Seed Bank lets players choose from available plants. In Creative Courtyard, it supports setting a global tier and enables access to all plants. When Selection Mode is set to Preset, placing the Seed Bank before the Conveyor Belt makes conveyor plants cost sun, while placing it after allows preset plants to be planted without sun cost.';
+      'Seed Bank lets players choose from available plants. In Creative Courtyard, it supports setting a global tier and enables access to all plants. When selection mode is set to Preset, placing the Seed Bank before the Conveyor Belt makes conveyor plants cost sun, while placing it after allows preset plants to be planted without sun cost.';
 
   @override
   String get iZombieModePresetHint =>
-      'When I, Zombie Mode is enabled, available zombies must be preset. Selection method will be forced to Preset. If both plant and zombie seed packets are used, they must be locked to the same level.';
+      'When I, Zombie Mode is enabled, available zombies must be preset. Selection mode will be forced to Preset. If both plant and zombie seed packets are used, they must be locked to the same level.';
 
   @override
   String get invalidIdsHint =>
@@ -4293,13 +4298,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get seedBankIZombie => 'Seed Bank (I, Zombie Mode)';
 
   @override
-  String get basicRules => 'Basic rules';
+  String get basicRules => 'Basic Rules';
 
   @override
-  String get selectionMethod => 'Selection method';
+  String get selectionMethod => 'Selection Mode';
 
   @override
-  String get emptyList => 'Empty list';
+  String get emptyList => 'The list is empty';
 
   @override
   String get plantsAvailableAtStart => 'Plants pre-selected at the start';
@@ -4423,7 +4428,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'The level might not function correctly. Recommended to add the following modules:';
 
   @override
-  String get itemListRowFirst => 'Item list (row-first)';
+  String get itemListRowFirst => 'Item(s) in selected tile';
 
   @override
   String get railcartCowboy => 'Wild West mine cart (railcart_cowboy)';
@@ -4456,7 +4461,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get lawnMowerTitle => 'Lawn mower style';
+  String get lawnMowerTitle => 'Lawn Mowers';
 
   @override
   String get lawnMowerNotes => 'Notes';
@@ -4473,7 +4478,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lawnMowerSelectType => 'Select mower type';
 
   @override
-  String get zombieRushTitle => 'Level Timer';
+  String get zombieRushTitle => 'Level Timer module';
 
   @override
   String get zombieRushHelpOverview =>
@@ -4487,7 +4492,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Penny’s Pursuit timer module is incompatible with Creative Courtyard and may cause crashes. It is recommended to use the Zombie Elimination Initiative timer module instead.';
 
   @override
-  String get zombieRushTimeSettings => 'Time settings';
+  String get zombieRushTimeSettings => 'Time Settings';
 
   @override
   String get levelCountdown => 'Level countdown (seconds)';
@@ -4543,7 +4548,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moduleDesc_LawnMowerProperties =>
-      'Set mower styles (may not work in custom lawns)';
+      'Sets mower styles (may not work in custom lawns)';
 
   @override
   String get moduleTitle_TunnelDefendModuleProperties =>
@@ -4565,36 +4570,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moduleDesc_PVZ1PassageModuleProperties =>
-      'PVZ1-style passage portals: groups, spawn columns, and teleport timing';
+      'Configures the spawning of PvZ1-style portals';
 
   @override
-  String get moduleTitle_PVZ1CopycatsModuleProperties => 'Guess who I am';
+  String get moduleTitle_PVZ1CopycatsModuleProperties => 'Guess Who I Am';
 
   @override
   String get moduleDesc_PVZ1CopycatsModuleProperties =>
-      'Mini-game: summon plants or zombies; configure weights, tier, and allow/deny lists';
+      'Configures Magic Hat summons, enables Magic Hat selection';
 
   @override
-  String get pvz1CopycatsModuleTitle => 'Guess who I am';
+  String get pvz1CopycatsModuleTitle => 'Guess Who I Am';
 
   @override
   String get pvz1CopycatsSectionParams => 'Parameters';
 
   @override
   String get pvz1CopycatsFieldZombieWeightLabel =>
-      'Zombie spawn weight (ZombieWeight)';
+      'Zombie weight (ZombieWeight)';
 
   @override
   String get pvz1CopycatsHelpZombieWeight =>
-      'Relative weight for summoning zombies versus plants.';
+      'The probability of summoning a zombie per attempt (0–1). The probability of summoning a plant is 1 minus this value.';
 
   @override
   String get pvz1CopycatsFieldSpawnPlantLevelLabel =>
-      'Custom plant tier (SpawnPlantLevel)';
+      'Plant level (SpawnPlantLevel)';
 
   @override
   String get pvz1CopycatsHelpSpawnPlantLevel =>
-      'Tier used when the hat summons a plant.';
+      'The level of plants summoned by the Magic Hat.';
 
   @override
   String get pvz1CopycatsSectionPlantBlackList =>
@@ -4602,7 +4607,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pvz1CopycatsHelpPlantBlackList =>
-      'Plants that cannot be summoned by the magic hat.';
+      'Each type of Magic Hat has its own plant pool. This pool is not affected by the blacklist, so modifying the blacklist has no effect.';
 
   @override
   String get pvz1CopycatsSectionZombieWhiteList =>
@@ -4610,24 +4615,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pvz1CopycatsHelpZombieWhiteList =>
-      'Zombie types allowed when the hat summons a zombie.';
+      'Only zombies in the whitelist can be summoned by the Magic Hat.';
 
   @override
   String get pvz1CopycatsHelpTip =>
-      'Remember to let players use the magic hat plant in the seed bank.';
+      'After adding this module, remember to pre-select Magic Hats in the Seed Bank or Conveyor Belt module. Long press or right-click the Magic Hat in the plant selection screen to preview the plants it can summon.';
 
   @override
   String get pvz1CopycatsHelpOverview =>
-      'Guess who I am: the hat randomly summons plants (from the full catalog except the blacklist) or zombies (from the whitelist), controlled by ZombieWeight and SpawnPlantLevel.';
+      'This module configures the summon behavior of Magic Hats that can be planted in the seed slots, commonly used in the Memory Lane mini-game \"Guess Who I Am\". Without this module, Magic Hats will not function properly. Different types of Magic Hat vary in sun cost and cooldown time. After being planted, a Magic Hat will transform into a random plant or zombie. Plants are selected from the Magic Hat’s own plant pool, while zombies are selected only from the whitelist. The weights of individual entries in the plant or zombie pools cannot be adjusted.';
 
   @override
-  String get pvz1CopycatsHelpFieldsTitle => 'Field reference';
+  String get pvz1CopycatsHelpFieldsTitle => 'Parameter details';
 
   @override
-  String get pvz1CopycatsPlantListEmpty => 'No plants in the blacklist';
+  String get pvz1CopycatsPlantListEmpty => 'Blacklist is empty';
 
   @override
-  String get pvz1CopycatsZombieListEmpty => 'No zombies in the whitelist';
+  String get pvz1CopycatsZombieListEmpty => 'Whitelist is empty';
 
   @override
   String get pvz1CopycatsAddPlant => 'Add plant to blacklist';
@@ -4636,7 +4641,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pvz1CopycatsAddZombie => 'Add zombie to whitelist';
 
   @override
-  String get magicHatSpawnPreviewTitle => 'Magic hat — possible plants';
+  String get magicHatSpawnPreviewTitle => 'Possible plants from Magic Hat';
 
   @override
   String get magicHatSpawnPreviewEmpty => 'No plants match this blacklist.';
@@ -4649,55 +4654,57 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pvz1PassageHelpOverview =>
-      'Configures PVZ1-style passage portals on the lawn: how many portal group types, how many portals in each group, the column range where portals can appear, the minimum interval before the same zombie can teleport again, and how often portal positions refresh.';
+      'This module configures PvZ1-style portals, commonly used in the Memory Lane mini-game \"Portal Combat\". Portals appear in groups and affect the movement paths of plant projectiles and zombies, and will periodically change positions. Note that portals do not affect plant targeting. Plants will not attack zombies on the other end of a portal ahead of them, and will only attack if there are zombies in their lane.';
 
   @override
-  String get pvz1PassageHelpFieldsTitle => 'Field reference';
+  String get pvz1PassageHelpFieldsTitle => 'Parameter Overview';
 
   @override
-  String get pvz1PassageFieldGroupAmount => 'Portal group types (GroupAmount)';
+  String get pvz1PassageFieldGroupAmount => 'Portal types (GroupAmount)';
 
   @override
   String get pvz1PassageHelpGroupAmount =>
-      'Number of distinct portal group types.';
+      'The number of portal types that appear in the level. PvZ1-style portals have two types: square and circular. If set to 1, only square portals will appear. If set to 2, both square and circular portals will appear. If set to 3 or higher, the extra portal types will display as sun textures; these portals do not change position, but can still teleport zombies.';
 
   @override
   String get pvz1PassageFieldPassageAmount =>
-      'Portals per group (PassageAmount)';
+      'Portals per type (PassageAmount)';
 
   @override
   String get pvz1PassageHelpPassageAmount =>
-      'How many portals exist in each group.';
+      'The number of portals within each type. For example, if set to 2, each type will have 2 portals. The total number of portals cannot exceed the number of tiles in the spawn area. If multiple valid destination portals exist within the same type, zombies will always teleport to the designated one.';
 
   @override
-  String get pvz1PassageFieldGridXMin => 'Minimum spawn column (GridXMin)';
+  String get pvz1PassageFieldGridXMin =>
+      'Minimum spawn column (GridXMin, range 0-9 or 0-10)';
 
   @override
   String get pvz1PassageHelpGridXMin =>
-      'Leftmost lawn column where portals may spawn.';
+      'The leftmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9 (or column 10 in Underwater World). This value must be less than the maximum column value.';
 
   @override
-  String get pvz1PassageFieldGridXMax => 'Maximum spawn column (GridXMax)';
+  String get pvz1PassageFieldGridXMax =>
+      'Maximum spawn column (GridXMax, range 0-9 or 0-10)';
 
   @override
   String get pvz1PassageHelpGridXMax =>
-      'Rightmost lawn column where portals may spawn.';
+      'The rightmost column where portals may spawn. The left boundary of the field is column 0, and the right boundary is column 9 (or column 10 in Underwater World). This value must be greater than the minimum column value.';
 
   @override
   String get pvz1PassageFieldTransferCooldown =>
-      'Per-zombie teleport cooldown (transferCooldown)';
+      'Same-zombie teleport cooldown (transferCooldown, seconds)';
 
   @override
   String get pvz1PassageHelpTransferCooldown =>
-      'Shortest time between teleports for the same zombie.';
+      'The minimum time between two teleports of the same zombie. If set too low, a zombie that fails to leave the portal tile within the interval may be teleported back to the original portal again once the cooldown ends.';
 
   @override
   String get pvz1PassageFieldRefreshTime =>
-      'Portal reposition interval (refreshTime)';
+      'Portal reposition interval (refreshTime, seconds)';
 
   @override
   String get pvz1PassageHelpRefreshTime =>
-      'How often portal positions are regenerated.';
+      'The interval at which portal positions are regenerated. Portals are refreshed one at a time, meaning each refresh only changes the position of one portal within the same type.';
 
   @override
   String get moduleTitle_RenaiModuleProperties => 'Renaissance Module';
@@ -4720,11 +4727,11 @@ class AppLocalizationsEn extends AppLocalizations {
       'Used to make the Vitruvian Wheel respond to Floor-de-Lis tiles; configure day–night cycle waves; and, at night, revive Renaissance Statues and Marble Mounds, and spawn grid items based on settings. Typically used in Renaissance Ages levels.';
 
   @override
-  String get renaiModuleHelpStatues => 'Feature Notes';
+  String get renaiModuleHelpStatues => 'Notes';
 
   @override
   String get renaiModuleHelpStatuesBody =>
-      'Initial grid items refer to statues and Marble Mounds present at the start of the level, which revive into zombies at specified waves. Night grid items are generated after night begins; if a plant occupies the target tile, they will not spawn. Night start waves are counted from 0 (e.g. wave 1 → 0, wave 2 → 1).';
+      'Initial grid items refer to statues and Marble Mounds present at the start of the level, which revive into zombies at specified waves. Night grid items are generated after night begins; if a plant occupies the target tile, they will not spawn. Night start waves are counted from 0 in the code (e.g., wave 1 → 0, wave 2 → 1); however, when entering the value in the editor interface, you should start from 1 as usual.';
 
   @override
   String get renaiModuleEnableNight => 'Enable Day–Night Cycle';
@@ -4734,7 +4741,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Allows setting the wave when night begins and configuring night grid items';
 
   @override
-  String get renaiModuleNightStart => 'Night Start Wave (starts from 0)';
+  String get renaiModuleNightStart => 'Night Start Wave';
 
   @override
   String get renaiModuleDayStatues => 'Initial grid items';
@@ -4744,7 +4751,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get renaiModuleNightStatuesDisabledHint =>
-      'Allows configuring night grid items for the day–night cycle';
+      'Please enable the day–night cycle first';
 
   @override
   String get renaiModuleAddStatue => 'Add statue';
@@ -4753,7 +4760,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get renaiModuleCarveWave => 'Statue revival wave';
 
   @override
-  String get renaiModuleStatuesInCell => 'Statues in selected tile';
+  String get renaiModuleStatuesInCell => 'Statue(s) in selected tile';
 
   @override
   String get renaiModuleExpectationLabel => 'Night event';
@@ -4823,7 +4830,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get airDropShipModuleColMax => 'End column';
 
   @override
-  String get openModuleSettings => 'Open module settings';
+  String get openModuleSettings => 'Open Module Settings';
 
   @override
   String get moduleTitle_HeianWindModuleProperties => 'Heian Divine Wind';
@@ -4984,7 +4991,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get zombieSunDropHelpOverview =>
-      'Used to configure how much sun specific zombies drop in a level, mainly for Penny\'s Pursuit Level 5. As a side effect, the Sun Shovel will be disabled.';
+      'Used to configure how much sun specific zombies drop in a level, mainly for Penny\'s Pursuit Level 5. As a side effect, the Sun Shovel becomes ineffective.';
 
   @override
   String get zombieSunDropHelpValues => 'Values';
